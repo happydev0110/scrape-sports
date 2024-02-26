@@ -19,25 +19,19 @@ function App() {
 
     return (
         <>
-            <div className="p-2 bg-primary text-white text-center">
-                <h1>ScoreDashboard</h1>
-                {/* <p>Resize this responsive page to see the effect!</p> */}
-            </div>
-            <div className='container-fluid'>
-                <div className='my-3'>
-                    <div className='row'>
-                        <div className='col-6'>
-                            <Filter label='Event Name:' 
-                                list = {eventList.events}
-                            />
-                        </div>
-                        <div className='col-6'>
-                            {/* <Filter label='Refresh Frequency:' /> */}
-                        </div>
+            <div className='my-3'>
+                <div className='row'>
+                    <div className='col-6'>
+                        <Filter label='Event Name:'
+                            list={eventList.events ? eventList.events : []}
+                        />
+                    </div>
+                    <div className='col-6'>
+                        {/* <Filter label='Refresh Frequency:' /> */}
                     </div>
                 </div>
-                <ScoreBoard />
             </div>
+            <ScoreBoard />
         </>
     );
 }

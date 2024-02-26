@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 import { URL } from '../../CONST'
-import TableComponent from "../../layouts/Table";
+import DataTable from "../../layouts/DataTable";
 
 const TABLE_HEADER = [
     {
@@ -18,17 +18,17 @@ function ScoreBoard(props) {
     const [data, setData] = useState();
 
     useEffect(() => {
-        axios.get(URL.BASKETBALL).then((response) => {
+        axios.get(URL.BASKETBALL, {
+            params: {
+                event: 401584705
+            }
+        }).then((response) => {
+            console.log(response.data)
             setData(response.data)
-            console.log(data)
         });
-        // getData(URL.BASKETBALL)
     }, [])
 
-    return <TableComponent
-        header={TABLE_HEADER}
-        list={[]}
-    />;
+    return(<div>admin</div>)
 }
 
 export default ScoreBoard;

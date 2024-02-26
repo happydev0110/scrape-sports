@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from "react";
 
-function Filter(props) {
+function Filter({ handleChange, columns, label, list }) {
     const [id, setId] = useState(-1);
 
     useEffect(() => {
 
     }, [id])
 
-    const handleChange = (evt) => {
+    const setValue = (evt) => {
         setId(evt.target.value);
-        console.log('id', evt.target.value);
+        if (handleChange) {
+            handleChange(evt.target.value)
+        }
     }
 
     return (
         <div>
-            <label className="form-label" style={{ float: "left" }}>{props.label && props.label}</label>
+            <label className="form-label" style={{ float: "left" }}>{label && label}</label>
             <select className="form-select form-select-sm"
                 value={id}
-                onChange={handleChange}
+                onChange={setValue}
             >
-                <option value={-1}>All</option>
+                <option value={-1}>Choose One</option>
                 {
-                    props.list && props.list.map((item, index) => {
+                    list && list.map((item, index) => {
                         return (
-                            <option key={index} value={item.id}>{item.name}</option>
+                            <option key={index} value={item[columns.value]}>{item[columns.label]}</option>
                         )
                     })
                 }
