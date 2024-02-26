@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-
 import { URL } from '../../CONST'
-import DataTable from "../../layouts/DataTable";
 
-const TABLE_HEADER = [
-    {
-        label: 'Time'
-    },
-    {
-        label: 'Name'
-    }
-]
+// const TABLE_HEADER = [
+//     {
+//         label: 'Time'
+//     },
+//     {
+//         label: 'Name'
+//     }
+// ]
 
 function ScoreBoard(props) {
     const [data, setData] = useState();
@@ -25,6 +23,7 @@ function ScoreBoard(props) {
         }).then((response) => {
             console.log(response.data)
             setData(response.data)
+            console.log(data)
         });
     }, [])
 
