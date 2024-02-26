@@ -12,7 +12,7 @@ const columns = [
     // Add more columns based on your data structure
 ];
 
-function App() {
+function EventList() {
     const [eventList, setEvenList] = useState([]);
 
     useEffect(() => {
@@ -47,4 +47,4 @@ function App() {
     );
 }
 
-export default App;
+export default EventList;
