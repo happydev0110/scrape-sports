@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import { URL } from '../../CONST';
+import { URL } from '../../const';
 
 // import DataTable from '../../layouts/DataTable';
 import Filter from '../../layouts/Filter';

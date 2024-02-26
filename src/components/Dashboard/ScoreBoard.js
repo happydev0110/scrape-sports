@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import { URL } from '../../CONST'
+import { URL } from '../../const'
 
 // const TABLE_HEADER = [
 //     {
