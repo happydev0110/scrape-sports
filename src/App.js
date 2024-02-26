@@ -1,37 +1,40 @@
-import { useState, useEffect } from 'react';
-import './assets/App.css';
+// import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
+// import Dashboard from './components/Dashboard'
+import Event from './components/Event'
+
 import 'bootstrap/dist/css/bootstrap.css'
+import './assets/App.css';
 
-import axios from 'axios';
-
-import TableComponent from './components/tableComponent';
-
-const TABLE_HEADER = [
-  {
-    label:'Time'
-  },
-  {
-    label:'Name'
-  }
-]
 function App() {
-  const [eventList, setEvenList] = useState([]);
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    axios.get('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard').then((response) => {
-      // console.log(response.data)
-      setEvenList(response.data)
-      console.log('App render')
-    });
-  },[])
-
   return (
-    <div className="App">
-      <TableComponent 
-        header={TABLE_HEADER}
-      />
-    </div>
+    <>
+      <div className="p-2 bg-primary text-white text-left">
+        <h1>ScoreDashboard</h1>
+        {/* <p>Resize this responsive page to see the effect!</p> */}
+      </div>
+      <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div className="container-fluid">
+          <ul className="navbar-nav">
+            {/* <li className="nav-item">
+              <a className="nav-link active" href="#">Active</a>
+            </li> */}
+            <li className="nav-item">
+              <a className="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/event">Event</a>
+            </li>
+            {/* <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li> */}
+          </ul>
+        </div>
+      </nav>
+      <div className='container-fluid'>
+        <Event />
+      </div>
+    </>
   );
 }
 

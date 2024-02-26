@@ -33,3 +33,87 @@ https://docs.google.com/document/d/1mRZqg55sh-7EBtJnhPP-26sIiaIXqfkFd2AScgbmR_s/
 
 #################################################################################################################
 
+DataSet 1: 3 point shot made Team1 (Team ID 9) = +3 table unit increase
+There are multiple id’s for this event, so we use the scorevalue: 3 to identify it. 
+{
+    "id": "40158541710",
+    "sequenceNumber": "10",
+    "type": {
+        "id": "92",
+        "text": "Jump Shot"
+    },
+    "text": "Draymond Green makes 28-foot three point jumper (Klay Thompson assists)",
+    "awayScore": 2,
+    "homeScore": 3,
+    "period": {
+        "number": 1,
+        "displayValue": "1st Quarter"
+    },
+    "clock": {
+        "displayValue": "11:16"
+    },
+    "scoringPlay": true,
+    "scoreValue": 3,
+    "team": {
+        "id": "9"
+    },
+    "participants": [
+        {
+            "athlete": {
+                "id": "6589"
+            }
+        },
+        {
+            "athlete": {
+                "id": "6475"
+            }
+        }
+    ],
+    "wallclock": "2024-02-15T03:14:25Z",
+    "shootingPlay": true,
+    "coordinate": {
+        "x": 34,
+        "y": 27
+    }
+}
+
+DataSet 4: Team1 (Team ID 9) Made free throw 2 of 2 = +1 unit increase
+
+After the points have been awarded to the current table for this data set, it also triggers an “end of turn” for the table and starts the turn for the next of the table. For example, table1 will earn 1 point and their turn will end. Table2 will begin their turn to earn units. 
+{
+    "id": "40158541787",
+    "sequenceNumber": "87",
+    "type": {
+        "id": "99",
+        "text": "Free Throw - 2 of 2"
+    },
+    "text": "Kevon Looney makes free throw 2 of 2",
+    "awayScore": 16,
+    "homeScore": 21,
+    "period": {
+        "number": 1,
+        "displayValue": "1st Quarter"
+    },
+    "clock": {
+        "displayValue": "4:30"
+    },
+    "scoringPlay": true,
+    "scoreValue": 1,
+    "team": {
+        "id": "9"
+    },
+    "participants": [
+        {
+            "athlete": {
+                "id": "3155535"
+            }
+        }
+    ],
+    "wallclock": "2024-02-15T03:29:16Z",
+    "shootingPlay": true,
+    "coordinate": {
+        "x": -214748340,
+        "y": -214748365
+    }
+}
+

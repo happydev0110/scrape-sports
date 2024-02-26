@@ -317,8 +317,8 @@
                     type: 'GET',
                     success: function (response) {
                         $("#loader").hide();
+                        console.log(response);
                         eventList = response.events;
-                        console.log(eventList);
 
                         filteredEventList = $("#gamesFilter").val() == "0" ? eventList : eventList.filter(e => e.id.toString() == $("#gamesFilter").val());
                         addFilterEvents();

@@ -1,18 +1,7 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 
 function TableComponent(props) {
-    const [data, setData] = useState();
 
-    useEffect(() => {
-        axios.get('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary?event=401584705').then((response) => {
-            // console.log(response.data)
-            setData(response.data)
-            console.log('table render')
-        });
-    }, [])
-
-    console.log(props, 'props')
     return (
         <table className="table">
             <thead className="table-dark">
@@ -28,8 +17,14 @@ function TableComponent(props) {
             </thead>
             <tbody>
                 <tr>
-                    <td>John</td>
-                    <td>Doe</td>
+                    {
+                        props.list && props.list.map((item, index) => {
+                            return (
+                                <td key={index}>{item.value}</td>
+                                // <th key={index}>{item.label}</th>
+                            )
+                        })
+                    }
                 </tr>
             </tbody>
         </table>
