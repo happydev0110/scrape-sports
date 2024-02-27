@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Filter({ handleChange, columns, label, list, disabled }) {
+function Filter({ handleChange, indexValue, columns, label, list, disabled }) {
     const [id, setId] = useState(-1);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ function Filter({ handleChange, columns, label, list, disabled }) {
                 {
                     list && list.map((item, index) => {
                         return (
-                            <option key={index} value={item[columns.value]}>{item[columns.label]}</option>
+                            <option key={index} value={indexValue ? index : item[columns.value]}>{item[columns.label]}</option>
                         )
                     })
                 }

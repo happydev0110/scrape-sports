@@ -1,6 +1,6 @@
 // import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import Dashboard from './components/Dashboard';
+// import Dashboard from './components/Dashboard';
 import Event from './components/Event';
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -25,7 +25,7 @@ function App() {
           </ul>
         </div>
       </nav> */}
-      <div className='container-fluid'>
+      <div className='container'>
         {/* <Dashboard /> */}
         <Event />
       </div>

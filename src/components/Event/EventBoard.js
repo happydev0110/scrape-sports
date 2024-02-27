@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 
-import { URL } from '../../CONST'
+import { URL } from '../../const'
 import TableComponent from "../../layouts/Table";
 
 const TABLE_HEADER = [
