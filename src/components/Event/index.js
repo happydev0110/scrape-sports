@@ -63,10 +63,10 @@ function EventList() {
         try {
             axios.get(URL.EVENT).then((response) => {
                 setData(response.data);
-    
+
             });
         } catch (error) {
-            console.log(error)            
+            console.log(error)
         }
     }, [])
 
@@ -88,7 +88,7 @@ function EventList() {
                         setTeam2(response.data.boxscore.teams[1].team.name + "(TeamId-" + response.data.boxscore.teams[1].team.id + ")");
                     });
                 } catch (error) {
-                    console.log(error)                    
+                    console.log(error)
                 }
             }, intervalTime * 1000);
             return () => clearInterval(interval);
@@ -130,8 +130,148 @@ function EventList() {
                         handleChange={(time) => { setIntervalTime(time) }}
                     />
                 </div>
+                <div className='col-md-3'>
+                    <label>Score:</label><br/>
+                    <p className='p-0'>{team1}</p>
+                    <p className='p-0'>{team2}</p>
+                </div>
+                <div className='col-md-3'>
+                    <label>Time:</label>
+                    <p></p>
+                </div>
             </div>
             <div className='row'>
+                <div className='col-md-6'>
+                    <table className="table">
+                        <thead className="table-dark">
+                            <tr>
+                                <th>No</th>
+                                <th>Process</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                eventList.plays && eventList.plays.slice(eventList.plays.length - 2, eventList.plays.length - 1).map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>
+                                                <div className='row'>
+                                                    <div className='col-md-6'>
+                                                        <div className='p-3' style={{ backgroundColor: '#f5f5f5', borderRadius: 5 }}>
+                                                            <span><b>Sequence Number:</b></span>{item.sequenceNumber}<br />
+                                                            <span><b>Description:</b></span>{item.text}<br />
+                                                            {item.team && <><span><b>Team:</b></span>{item.team.id == eventList.boxscore.teams[0].team.id ? eventList.boxscore.teams[0].team.name : eventList.boxscore.teams[1].team.name}<br /></>}
+                                                            <span><b>Score:</b></span>{'Home(' + item.homeScore + '), Away(' + item.awayScore + ')'}<br />
+                                                            <span><b>Time Remaining:</b></span>{item.period.displayValue + '(' + item.clock.displayValue + ')'}<br />
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='p-3' style={{ backgroundColor: '#f5f5f5', borderRadius: 5 }}>
+                                                            <span><b>Sequence Number:</b></span>{item.sequenceNumber}<br />
+                                                            <span><b>Description:</b></span>{item.text}<br />
+                                                            {item.team && <><span><b>Team:</b></span>{item.team.id == eventList.boxscore.teams[0].team.id ? eventList.boxscore.teams[0].team.name : eventList.boxscore.teams[1].team.name}<br /></>}
+                                                            <span><b>Score:</b></span>{'Home(' + item.homeScore + '), Away(' + item.awayScore + ')'}<br />
+                                                            <span><b>Time Remaining:</b></span>{item.period.displayValue + '(' + item.clock.displayValue + ')'}<br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div className='col-md-6'>
+                    <table className="table">
+                        <thead className="table-dark">
+                            <tr>
+                                <th>No</th>
+                                <th>Process</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                eventList.plays && eventList.plays.slice(eventList.plays.length - 2, eventList.plays.length - 1).map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>
+                                                <div className='row'>
+                                                    <div className='col-md-6'>
+                                                        <div className='p-3' style={{ backgroundColor: '#f5f5f5', borderRadius: 5 }}>
+                                                            <span><b>Sequence Number:</b></span>{item.sequenceNumber}<br />
+                                                            <span><b>Description:</b></span>{item.text}<br />
+                                                            {item.team && <><span><b>Team:</b></span>{item.team.id == eventList.boxscore.teams[0].team.id ? eventList.boxscore.teams[0].team.name : eventList.boxscore.teams[1].team.name}<br /></>}
+                                                            <span><b>Score:</b></span>{'Home(' + item.homeScore + '), Away(' + item.awayScore + ')'}<br />
+                                                            <span><b>Time Remaining:</b></span>{item.period.displayValue + '(' + item.clock.displayValue + ')'}<br />
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='p-3' style={{ backgroundColor: '#f5f5f5', borderRadius: 5 }}>
+                                                            <span><b>Sequence Number:</b></span>{item.sequenceNumber}<br />
+                                                            <span><b>Description:</b></span>{item.text}<br />
+                                                            {item.team && <><span><b>Team:</b></span>{item.team.id == eventList.boxscore.teams[0].team.id ? eventList.boxscore.teams[0].team.name : eventList.boxscore.teams[1].team.name}<br /></>}
+                                                            <span><b>Score:</b></span>{'Home(' + item.homeScore + '), Away(' + item.awayScore + ')'}<br />
+                                                            <span><b>Time Remaining:</b></span>{item.period.displayValue + '(' + item.clock.displayValue + ')'}<br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-md-6'>
+                    <table className="table">
+                        <thead className="table-dark">
+                            <tr>
+                                <th>No</th>
+                                <th>Process</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                eventList.plays && eventList.plays.slice(eventList.plays.length - 2, eventList.plays.length - 1).map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>
+                                                <div className='row'>
+                                                    <div className='col-md-6'>
+                                                        <div className='p-3' style={{ backgroundColor: '#f5f5f5', borderRadius: 5 }}>
+                                                            <span><b>Sequence Number:</b></span>{item.sequenceNumber}<br />
+                                                            <span><b>Description:</b></span>{item.text}<br />
+                                                            {item.team && <><span><b>Team:</b></span>{item.team.id == eventList.boxscore.teams[0].team.id ? eventList.boxscore.teams[0].team.name : eventList.boxscore.teams[1].team.name}<br /></>}
+                                                            <span><b>Score:</b></span>{'Home(' + item.homeScore + '), Away(' + item.awayScore + ')'}<br />
+                                                            <span><b>Time Remaining:</b></span>{item.period.displayValue + '(' + item.clock.displayValue + ')'}<br />
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-md-6'>
+                                                        <div className='p-3' style={{ backgroundColor: '#f5f5f5', borderRadius: 5 }}>
+                                                            <span><b>Sequence Number:</b></span>{item.sequenceNumber}<br />
+                                                            <span><b>Description:</b></span>{item.text}<br />
+                                                            {item.team && <><span><b>Team:</b></span>{item.team.id == eventList.boxscore.teams[0].team.id ? eventList.boxscore.teams[0].team.name : eventList.boxscore.teams[1].team.name}<br /></>}
+                                                            <span><b>Score:</b></span>{'Home(' + item.homeScore + '), Away(' + item.awayScore + ')'}<br />
+                                                            <span><b>Time Remaining:</b></span>{item.period.displayValue + '(' + item.clock.displayValue + ')'}<br />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
                 <div className='col-md-6'>
                     <table className="table">
                         <thead className="table-dark">
