@@ -25,7 +25,7 @@ function App() {
           </ul>
         </div>
       </nav> */}
-      <div className='container'>
+      <div className='container-fluid'>
         {/* <Dashboard /> */}
         <Event />
       </div>

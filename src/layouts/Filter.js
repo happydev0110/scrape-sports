@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Filter({ handleChange, columns, label, list }) {
+function Filter({ handleChange, columns, label, list, disabled }) {
     const [id, setId] = useState(-1);
 
     useEffect(() => {
@@ -20,6 +20,7 @@ function Filter({ handleChange, columns, label, list }) {
             <select className="form-select form-select-sm"
                 value={id}
                 onChange={setValue}
+                disabled={disabled}
             >
                 <option value={-1}>Choose One</option>
                 {
