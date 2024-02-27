@@ -7,7 +7,7 @@ import Filter from '../../layouts/Filter';
 function EventComponent() {
     const [events, setEvents] = useState([]);
     const [playList, setPlayList] = useState([]);
-    const [intervalTime, setIntervalTime] = useState(1);
+    const [intervalTime, setIntervalTime] = useState(3);
 
     const [eventId, setEventId] = useState(-1);
 
@@ -18,7 +18,7 @@ function EventComponent() {
     const [team1Score, setTeam1Score] = useState(0);
     const [team2Score, setTeam2Score] = useState(0);
 
-    const [selTblIdx, setSelTblIdx] = useState(0);
+    const [selTblIdx, setSelTblIdx] = useState(-1);
     const [table1Score, setTable1Score] = useState(0);
     const [table2Score, setTable2Score] = useState(0);
     const [table3Score, setTable3Score] = useState(0);
@@ -39,30 +39,10 @@ function EventComponent() {
 
     useEffect(() => {
         if (eventId != -1) {
+            console.log(eventId, team1Idx, "event play script")
             // Get Event List
             const interval = setInterval(() => {
-                axios.get(URL.BASKETBALL,
-                    {
-                        params: {
-                            event: eventId
-                        }
-                    }
-                ).then((response) => {
-                    // console.log(response.data,'data')
-                    setPlayList(response.data);
-                    var resList = response.data;
-                    if (team1Idx != -1 && resList.playList) {
-                        resList.plays.forEach((item, index) => {
-                            console.log(item, index, 'event play')
-                            let score1 = 0;
-                            if (item.team.id == resList.boxscore.teams[team1Idx].team.id && item.scoreValue == 3) {
-                                score1 = score1 + item.scoreValue;
-                            }
-                        });
-                    }
-                }).catch((err) => {
-                    console.log(err)
-                });
+                fetchEventPlay();
             }, intervalTime * 1000);
             return () => clearInterval(interval);
         } else {
@@ -70,7 +50,31 @@ function EventComponent() {
         }
     }, [eventId, intervalTime])
 
-    // console.log(playList, "play list")
+    const fetchEventPlay = () => {
+        axios.get(URL.BASKETBALL,
+            {
+                params: {
+                    event: eventId
+                }
+            }
+        ).then((response) => {
+            // console.log(response.data,'data')
+            setPlayList(response.data);
+            var resList = response.data;
+            if (team1Idx != -1 && resList.playList) {
+                resList.plays.forEach((item, index) => {
+                    console.log(item, index, 'event play')
+                    let score1 = 0;
+                    if (item.team.id == resList.boxscore.teams[team1Idx].team.id && item.scoreValue == 3) {
+                        score1 = score1 + item.scoreValue;
+                    }
+                });
+            }
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
+
     return (
         <>
             <div className='row my-3'>
@@ -82,9 +86,17 @@ function EventComponent() {
                         handleChange={(id) => {
                             setEventId(id);
                             setTeam1Idx(-1);
+                            setTeam2Name('');
+                            setPlayList([])
                         }}
                     />
                 </div>
+                {/* <div className='col-md-3'>
+                    <label className="form-label">gameId</label>
+                    <input type="text" value={eventId} className="form-control form-control-sm"
+                        disabled={eventId != -1}
+                    />
+                </div> */}
             </div>
             <div className='row my-3'>
                 <div className='col-md-2'>
@@ -108,7 +120,7 @@ function EventComponent() {
                 </div>
                 <div className='col-md-2'>
                     <label className="form-label">Team2</label>
-                    <input type="text" value={team2Name} className="form-control form-control-sm" id="team2-name" disabled />
+                    <input type="text" value={team2Name} className="form-control form-control-sm" disabled />
                 </div>
                 <div className='col-md-2'>
                     <Filter
