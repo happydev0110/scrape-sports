@@ -12,7 +12,7 @@ function EventComponent() {
     const [intervalTime, setIntervalTime] = useState(3);
 
     const [eventId, setEventId] = useState(-1);
-    const [gameId, setGameId] = useState();
+    const [gameId, setGameId] = useState('');
 
     const [time, setTime] = useState();
     const [team1Idx, setTeam1Idx] = useState(-1);
@@ -65,7 +65,9 @@ function EventComponent() {
                 let result;
 
                 for (let i = 0; i < resList.plays.length; i++) {
+                    // console.log(i,'Events List')
                     for (let j = 0; j < DATASET_TYPE.length; j++) {
+                        // console.log(j, 'Dataset_type')
                         var playItem = resList.plays[i];
                         var dataTypeItem = DATASET_TYPE[j];
 
@@ -78,6 +80,8 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
+
+                                        // console.log(playIndex,"event Id-typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
@@ -85,6 +89,8 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
+
+                                        // console.log(playIndex,"event Id-typeId")
                                     }
                                 }
                             } else {
@@ -94,6 +100,8 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
+
+                                        // console.log(playIndex,"event Id-scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId)
@@ -105,6 +113,7 @@ function EventComponent() {
                         }
                     }
                 }
+                // console.log(result.score)
 
                 setTableScore(result.score);
                 setSelTblIdx(tableIndex)
