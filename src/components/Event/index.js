@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import DatePicker from "react-datepicker";
 import { URL, INTERVAL_TIME } from '../../const.js';
 import Filter from '../../layouts/Filter';
+import "react-datepicker/dist/react-datepicker.css";
 
 function EventComponent() {
     const [events, setEvents] = useState([]);
     const [playList, setPlayList] = useState([]);
     const [intervalTime, setIntervalTime] = useState(3);
 
+    const [date, setDate] = useState(new Date());
     const [eventId, setEventId] = useState(-1);
 
     const [time, setTime] = useState();
@@ -19,28 +22,25 @@ function EventComponent() {
     const [team2Score, setTeam2Score] = useState(0);
 
     const [selTblIdx, setSelTblIdx] = useState(-1);
+    const [description, setDescription] = useState('')
     const [table1Score, setTable1Score] = useState(0);
     const [table2Score, setTable2Score] = useState(0);
     const [table3Score, setTable3Score] = useState(0);
     const [table4Score, setTable4Score] = useState(0);
 
+    // Get Total Event
     useEffect(() => {
-        // Get Total Event
-        try {
-            axios.get(URL.EVENT).then((response) => {
-                setEvents(response.data.events);
-            }).catch((err) => {
-                console.log(err);
-            });
-        } catch (error) {
-            console.log(error)
-        }
+        axios.get(URL.EVENT).then((response) => {
+            setEvents(response.data.events);
+        }).catch((err) => {
+            console.log(err);
+        });
     }, [])
 
+    // Get Event List
     useEffect(() => {
         if (eventId != -1) {
-            console.log(eventId, team1Idx, "event play script")
-            // Get Event List
+            // console.log(eventId, team1Idx, "event play script")
             const interval = setInterval(() => {
                 fetchEventPlay();
             }, intervalTime * 1000);
@@ -48,9 +48,9 @@ function EventComponent() {
         } else {
             setPlayList([])
         }
-    }, [eventId, intervalTime])
+    }, [eventId, intervalTime, team1Idx])
 
-    const fetchEventPlay = () => {
+    const fetchEventPlay = async () => {
         axios.get(URL.BASKETBALL,
             {
                 params: {
@@ -58,17 +58,39 @@ function EventComponent() {
                 }
             }
         ).then((response) => {
-            // console.log(response.data,'data')
             setPlayList(response.data);
             var resList = response.data;
-            if (team1Idx != -1 && resList.playList) {
-                resList.plays.forEach((item, index) => {
-                    console.log(item, index, 'event play')
-                    let score1 = 0;
-                    if (item.team.id == resList.boxscore.teams[team1Idx].team.id && item.scoreValue == 3) {
-                        score1 = score1 + item.scoreValue;
+
+            // console.log(team1Idx, resList.plays, 'response data')
+            if (team1Idx != -1 && resList.plays) {
+                let score = 0
+                let description = "";
+
+                for (let i = 0; i < resList.plays.length; i++) {
+                    if(resList.plays[i].scoreValue == 3 && resList.plays[i].team.id == resList.boxscore.teams[team1Idx].team.id ){
+                        score = score + resList.plays[i].scoreValue;
+                        description = resList.plays[i].text;
+
+                        console.log(resList.plays[i], i, resList.boxscore.teams[team1Idx].team.id, score, 'team info')
+                        // setTeam1Score(table1Score + resList.play[i].scoreValue);
+                        // selTblIdx(0)
                     }
-                });
+                    // let score1 = 0;
+                    // if (resList.plays[i].team.id == resList.boxscore.teams[team1Idx].team.id && resList.plays[i].scoreValue == 3) {
+                    //     score1 = score1 + resList.plays[i].scoreValue;
+                    // }
+                }
+                setTable1Score(score);
+                setSelTblIdx(0)
+                setDescription(description)
+                // resList.plays.forEach((item, index) => {
+                //     let score1 = 0;
+                //     console.log(item.team, index, "team info")
+                //     // console.log(item, index, 'event play')
+                //     if (item.team.id == resList.boxscore.teams[team1Idx].team.id && item.scoreValue == 3) {
+                //         score1 = score1 + item.scoreValue;
+                //     }
+                // });
             }
         }).catch((err) => {
             console.log(err)
@@ -78,6 +100,21 @@ function EventComponent() {
     return (
         <>
             <div className='row my-3'>
+                <div className='col-md-3'>
+                    <label className="form-label">Date</label><br />
+                    <DatePicker
+                        className='form-control form-control-sm'
+                        selected={date}
+                        onSelect={(item) => {
+                            console.log(item, 'seleted date')
+                        }}
+                        onChange={(item) => {
+                            console.log(item, 'changed date')
+                            setDate(item)
+                        }}
+                        dateFormat="YYYY-MM-dd"
+                    />
+                </div>
                 <div className='col-md-3'>
                     <Filter
                         label='Event'
@@ -141,7 +178,7 @@ function EventComponent() {
                         <div className='col-md-3'>
                             <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
                             <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[team1Idx].team.name}</p>
-                            <p><b>{team1Score}</b></p>
+                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? team1Score : 0}</b></p>
                         </div>
                         <div className='col-md-3'>
                             <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
@@ -164,9 +201,12 @@ function EventComponent() {
                         <p className='d-inline-block text-danger px-4'>{selTblIdx == 0 && 'Current Table'}</p>
                     </div>
                     <div className={selTblIdx == 0 ? 'border border-danger p-3' : 'border p-3'}>
-                        <p className='d-inline-block'><b>Description:</b></p>
-                        <p className='d-inline-block'>{table1Score}</p><br />
-
+                        {
+                            selTblIdx == 0 && <>
+                                <p className='d-inline-block'><b>Description:</b></p>
+                                <p className='d-inline-block'>{description}</p><br />
+                            </>
+                        }
                         <p className='d-inline-block'><b>score:</b></p>
                         <p className='d-inline-block'>{table1Score}</p>
                     </div>
@@ -180,13 +220,13 @@ function EventComponent() {
                     </div>
                     <div className={selTblIdx == 1 ? 'border border-danger p-3' : 'border p-3'}>
                         {
-                            selTblIdx == 3 && <>
+                            selTblIdx == 1 && <>
                                 <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block'>{table1Score}</p><br />
+                                <p className='d-inline-block'>{table2Score}</p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
-                        <p className='d-inline-block'>{table1Score}</p>
+                        <p className='d-inline-block'>{table2Score}</p>
                     </div>
                 </div>
             </div>
@@ -198,13 +238,13 @@ function EventComponent() {
                     </div>
                     <div className={selTblIdx == 2 ? 'border border-danger p-3' : 'border p-3'}>
                         {
-                            selTblIdx == 3 && <>
+                            selTblIdx == 2 && <>
                                 <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block'>{table1Score}</p><br />
+                                <p className='d-inline-block'>{table3Score}</p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
-                        <p className='d-inline-block'>{table1Score}</p>
+                        <p className='d-inline-block'>{table3Score}</p>
                     </div>
                 </div>
             </div>
@@ -218,11 +258,11 @@ function EventComponent() {
                         {
                             selTblIdx == 3 && <>
                                 <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block'>{table1Score}</p><br />
+                                <p className='d-inline-block'>{table4Score}</p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
-                        <p className='d-inline-block'>{table1Score}</p>
+                        <p className='d-inline-block'>{table4Score}</p>
                     </div>
                 </div>
             </div>
