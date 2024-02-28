@@ -279,4 +279,16 @@ export const DATASET_TYPE = [
     //     Increase: 1,
     //     rotation: false
     // },
+    {//DataSet33
+        typeId: 99,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DataSet34
+        typeId: 99,
+        scoreValue: 0,
+        Increase: false,
+        rotation: true
+    },
 ]
