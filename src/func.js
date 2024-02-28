@@ -5,14 +5,19 @@ export const isValidDate = (dateString) => {
 
 export const formatDate = (date) => {
     var year, month, day = '';
-    if (isValidDate(date)) {
-        // console.log(`${date} is a valid date.`);
-        return 'Valid Date.'
+    // if (isValidDate(date)) {
+    //     return 'Valid Date.'
+    // } else {
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    day = date.getDate();
+
+    if (month < 10) {
+        // console.log(year.toString() + '0' + month.toString() + day.toString(), 'date format')
+        return(year.toString() + '0' + month.toString() + day.toString());
     } else {
-        // console.log(`${inputDate} is not a valid date.`);
-        year = date.getYear();
-        month = date.getMonth();
-        day = date.getDay();
-        console.log()
+        // console.log(year.toString() + month.toString() + day.toString(), 'date format')
+        return(year.toString() + month.toString() + day.toString())
     }
+    // }
 }

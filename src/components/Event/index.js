@@ -2,17 +2,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import DatePicker from "react-datepicker";
-import { URL, INTERVAL_TIME } from '../../const.js';
-import Filter from '../../layouts/Filter';
 import "react-datepicker/dist/react-datepicker.css";
+import Filter from '../../layouts/Filter';
+
+import { URL, INTERVAL_TIME, DATASET_TYPE } from '../../const.js';
+// import { formatDate } from '../../func.js';
 
 function EventComponent() {
     const [events, setEvents] = useState([]);
     const [playList, setPlayList] = useState([]);
     const [intervalTime, setIntervalTime] = useState(3);
 
-    const [date, setDate] = useState(new Date());
+    // const [date, setDate] = useState(new Date());
+    // const [dateKey, setDateKey] = useState(formatDate(new Date()));
+
     const [eventId, setEventId] = useState(-1);
+    const [gameId, setGameId] = useState();
 
     const [time, setTime] = useState();
     const [team1Idx, setTeam1Idx] = useState(-1);
@@ -22,15 +27,14 @@ function EventComponent() {
     const [team2Score, setTeam2Score] = useState(0);
 
     const [selTblIdx, setSelTblIdx] = useState(-1);
-    const [description, setDescription] = useState('')
-    const [table1Score, setTable1Score] = useState(0);
-    const [table2Score, setTable2Score] = useState(0);
-    const [table3Score, setTable3Score] = useState(0);
-    const [table4Score, setTable4Score] = useState(0);
+    const [description, setDescription] = useState('');
+
+    const [tableScore, setTableScore] = useState([0,0,0,0]);
 
     // Get Total Event
     useEffect(() => {
-        axios.get(URL.EVENT).then((response) => {
+        axios.get(URL.EVENT1,
+        ).then((response) => {
             setEvents(response.data.events);
         }).catch((err) => {
             console.log(err);
@@ -40,7 +44,6 @@ function EventComponent() {
     // Get Event List
     useEffect(() => {
         if (eventId != -1) {
-            // console.log(eventId, team1Idx, "event play script")
             const interval = setInterval(() => {
                 fetchEventPlay();
             }, intervalTime * 1000);
@@ -53,6 +56,7 @@ function EventComponent() {
     const fetchEventPlay = async () => {
         axios.get(URL.BASKETBALL,
             {
+                // headers:{'Content-Type': 'application/x-www-form-urlencoded'},
                 params: {
                     event: eventId
                 }
@@ -63,61 +67,123 @@ function EventComponent() {
 
             // console.log(team1Idx, resList.plays, 'response data')
             if (team1Idx != -1 && resList.plays) {
-                let score = 0
+                let score = [0,0,0,0], tableIndex = 0, sequenceTime = '';
                 let description = "";
 
                 for (let i = 0; i < resList.plays.length; i++) {
-                    if(resList.plays[i].scoreValue == 3 && resList.plays[i].team.id == resList.boxscore.teams[team1Idx].team.id ){
-                        score = score + resList.plays[i].scoreValue;
-                        description = resList.plays[i].text;
+                    // console.log(i,'playlist index')
+                    for (let j = 0; j < DATASET_TYPE.length; j++) {
+                        // const element = array[j];
+                        var playItem = resList.plays[i];
+                        var dataTypeItem = DATASET_TYPE[j];
 
-                        console.log(resList.plays[i], i, resList.boxscore.teams[team1Idx].team.id, score, 'team info')
-                        // setTeam1Score(table1Score + resList.play[i].scoreValue);
-                        // selTblIdx(0)
+                        // console.log(resList.plays[i].team.id,'team id in play list')
+                        // console.log(resList.boxscore.teams[team1Idx].team.id,'team1 Id')
+                        
+                        if (playItem.team && (playItem.team.id == resList.boxscore.teams[team1Idx].team.id)) {
+                            // console.log(playItem.team.id, resList.boxscore.teams[team1Idx].team.id, i,'compare team id');
+
+                            if (dataTypeItem.typeId) {
+                                if (dataTypeItem.scoreValue) {
+                                    //Compare(teamId, typeId, scoreValue)
+                                    if(playItem.type.id == dataTypeItem.typeId && playItem.scoreValue == dataTypeItem.Increase){
+                                        // console.log(i, 'play index');
+                                        if (dataTypeItem.Increase) {
+                                            score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
+                                        }
+            
+                                        if (dataTypeItem.rotation) {
+                                            tableIndex = tableIndex + 1;
+                                            tableIndex = tableIndex % 4;
+                                        }
+    
+                                        description = playItem.text;
+                                        sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
+                                    }
+                                } else {
+                                    // Compare(teamId, typeId)
+                                    if (playItem.type.id == dataTypeItem.typeId) {
+                                        if (dataTypeItem.Increase) {
+                                            score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
+                                        }
+            
+                                        if (dataTypeItem.rotation) {
+                                            tableIndex = tableIndex + 1;
+                                            tableIndex = tableIndex % 4;
+                                        }
+                                        description = playItem.text;
+                                        sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
+                                    }
+                                }
+                            } else {
+                                if (dataTypeItem.scoreValue) {
+                                    // Compare(teamId, scoreValue)
+                                    if(playItem.scoreValue == dataTypeItem.Increase){
+                                        if (dataTypeItem.Increase) {
+                                            score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
+                                        }
+                                        
+                                        if (dataTypeItem.rotation) {
+                                            tableIndex = tableIndex + 1;
+                                            tableIndex = tableIndex % 4;
+                                        }
+                                        description = playItem.text;
+                                        sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
+                                        // console.log(i,score, tableIndex, 'play index(scoreValue, teamId)');
+                                    }
+                                } else {
+                                    // Compare(teamId)
+                                    if (dataTypeItem.Increase) {
+                                        score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
+                                    }
+        
+                                    if (dataTypeItem.rotation) {
+                                        tableIndex = tableIndex + 1;
+                                        tableIndex = tableIndex % 4;
+                                    }
+                                    description = playItem.text;
+                                    sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
+                                }
+                            }
+                        }
                     }
-                    // let score1 = 0;
-                    // if (resList.plays[i].team.id == resList.boxscore.teams[team1Idx].team.id && resList.plays[i].scoreValue == 3) {
-                    //     score1 = score1 + resList.plays[i].scoreValue;
-                    // }
                 }
-                setTable1Score(score);
-                setSelTblIdx(0)
+
+                // console.log(score, "Total Score")
+                // console.log(tableIndex, "Table Index")
+                // console.log(description, "Description")
+
+                setTableScore(score);
+                setSelTblIdx(tableIndex)
                 setDescription(description)
-                // resList.plays.forEach((item, index) => {
-                //     let score1 = 0;
-                //     console.log(item.team, index, "team info")
-                //     // console.log(item, index, 'event play')
-                //     if (item.team.id == resList.boxscore.teams[team1Idx].team.id && item.scoreValue == 3) {
-                //         score1 = score1 + item.scoreValue;
-                //     }
-                // });
+                setTime(sequenceTime)
             }
         }).catch((err) => {
             console.log(err)
         });
     }
 
+    // const handleDate = (item) => {
+    //     setDate(item);
+    //     // setDateKey(formatDate(item))
+    // }
+
     return (
         <>
             <div className='row my-3'>
-                <div className='col-md-3'>
+                {/* <div className='col-md-3'>
                     <label className="form-label">Date</label><br />
                     <DatePicker
                         className='form-control form-control-sm'
                         selected={date}
-                        onSelect={(item) => {
-                            console.log(item, 'seleted date')
-                        }}
-                        onChange={(item) => {
-                            console.log(item, 'changed date')
-                            setDate(item)
-                        }}
+                        onSelect={handleDate}
+                        onChange={handleDate}
                         dateFormat="YYYY-MM-dd"
                     />
-                </div>
+                </div> */}
                 <div className='col-md-3'>
                     <Filter
-                        label='Event'
+                        label='Today Event'
                         columns={{ label: "name", value: "id" }}
                         list={events ? events : []}
                         handleChange={(id) => {
@@ -128,12 +194,13 @@ function EventComponent() {
                         }}
                     />
                 </div>
-                {/* <div className='col-md-3'>
-                    <label className="form-label">gameId</label>
-                    <input type="text" value={eventId} className="form-control form-control-sm"
-                        disabled={eventId != -1}
+                <div className='col-md-3'>
+                    <label className="form-label">Random GameId</label><br />
+                    <input className='form-control form-control-sm'
+                        value={gameId}
+                        onChange={(item) => { setGameId(item) }}
                     />
-                </div> */}
+                </div>
             </div>
             <div className='row my-3'>
                 <div className='col-md-2'>
@@ -178,12 +245,12 @@ function EventComponent() {
                         <div className='col-md-3'>
                             <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
                             <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[team1Idx].team.name}</p>
-                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? team1Score : 0}</b></p>
+                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? team1Score : team2Score}</b></p>
                         </div>
                         <div className='col-md-3'>
                             <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
                             <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name}</p>
-                            <p><b>{team2Score}</b></p>
+                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? team2Score : team1Score}</b></p>
                         </div>
                     </>
                 }
@@ -204,11 +271,11 @@ function EventComponent() {
                         {
                             selTblIdx == 0 && <>
                                 <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block'>{description}</p><br />
+                                <p className='d-inline-block px-3'>{description}</p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
-                        <p className='d-inline-block'>{table1Score}</p>
+                        <p className='d-inline-block px-3'>{tableScore[0]}</p>
                     </div>
                 </div>
             </div>
@@ -222,11 +289,11 @@ function EventComponent() {
                         {
                             selTblIdx == 1 && <>
                                 <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block'>{table2Score}</p><br />
+                                <p className='d-inline-block px-3'>{description}</p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
-                        <p className='d-inline-block'>{table2Score}</p>
+                        <p className='d-inline-block px-3'>{tableScore[1]}</p>
                     </div>
                 </div>
             </div>
@@ -240,11 +307,11 @@ function EventComponent() {
                         {
                             selTblIdx == 2 && <>
                                 <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block'>{table3Score}</p><br />
+                                <p className='d-inline-block px-3'>{description}</p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
-                        <p className='d-inline-block'>{table3Score}</p>
+                        <p className='d-inline-block px-3'>{tableScore[2]}</p>
                     </div>
                 </div>
             </div>
@@ -258,11 +325,11 @@ function EventComponent() {
                         {
                             selTblIdx == 3 && <>
                                 <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block'>{table4Score}</p><br />
+                                <p className='d-inline-block px-3'>{description}</p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
-                        <p className='d-inline-block'>{table4Score}</p>
+                        <p className='d-inline-block px-3'>{tableScore[3]}</p>
                     </div>
                 </div>
             </div>
