@@ -39,7 +39,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex) => {
     homeScore = playItem.homeScore;
     awayScore = playItem.awayScore;
     
-    console.log(score,'handleScore')
+    // console.log(score,'handleScore')
     return{
         tableIndex,
         sequenceTime,

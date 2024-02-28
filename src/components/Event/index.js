@@ -81,7 +81,7 @@ function EventComponent() {
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        // console.log(playIndex,"event Id-typeId,scoreValue")
+                                        console.log(i,playItem,"event Id-typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
@@ -90,7 +90,7 @@ function EventComponent() {
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        // console.log(playIndex,"event Id-typeId")
+                                        console.log(i,playItem,"event Id-typeId")
                                     }
                                 }
                             } else {
@@ -101,7 +101,7 @@ function EventComponent() {
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        // console.log(playIndex,"event Id-scoreValue")
+                                        console.log(i,playItem,"event Id-scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId)
@@ -205,12 +205,12 @@ function EventComponent() {
                         <div className='col-md-3'>
                             <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
                             <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[team1Idx].team.name}</p>
-                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
+                            <p className='px-2'><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
                         </div>
                         <div className='col-md-3'>
                             <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
                             <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name}</p>
-                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
+                            <p className='p-2'><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
                         </div>
                     </>
                 }
