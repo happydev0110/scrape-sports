@@ -21,3 +21,30 @@ export const formatDate = (date) => {
     }
     // }
 }
+
+export const handleScore = (playItem, dataTypeItem, score, tableIndex) => {
+    let description, sequenceTime, homeScore, awayScore;
+
+    if (dataTypeItem.Increase) {
+        score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
+    }
+
+    if (dataTypeItem.rotation) {
+        tableIndex = tableIndex + 1;
+        tableIndex = tableIndex % 4;
+    }
+
+    description = playItem.text;
+    sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
+    homeScore = playItem.homeScore;
+    awayScore = playItem.awayScore;
+
+    return{
+        tableIndex,
+        sequenceTime,
+        score,
+        description,
+        homeScore,
+        awayScore
+    }
+}

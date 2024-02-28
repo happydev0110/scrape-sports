@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Filter from '../../layouts/Filter';
 
 import { URL, INTERVAL_TIME, DATASET_TYPE } from '../../const.js';
-// import { formatDate } from '../../func.js';
+import { handleScore } from '../../func.js';
 
 function EventComponent() {
     const [events, setEvents] = useState([]);
     const [playList, setPlayList] = useState([]);
     const [intervalTime, setIntervalTime] = useState(3);
-
-    // const [date, setDate] = useState(new Date());
-    // const [dateKey, setDateKey] = useState(formatDate(new Date()));
 
     const [eventId, setEventId] = useState(-1);
     const [gameId, setGameId] = useState();
@@ -65,8 +60,9 @@ function EventComponent() {
             var resList = response.data;
 
             if (team1Idx != -1 && resList.plays) {
-                let score = [0, 0, 0, 0], tableIndex = 0, sequenceTime = '', homeScore = 0, awayScore = 0;
-                let description = "";
+                let score = [0, 0, 0, 0], tableIndex = 0;
+                let playIndex = 0;
+                let result;
 
                 for (let i = 0; i < resList.plays.length; i++) {
                     for (let j = 0; j < DATASET_TYPE.length; j++) {
@@ -75,87 +71,59 @@ function EventComponent() {
 
                         if (playItem.team && (playItem.team.id == resList.boxscore.teams[team1Idx].team.id)) {
                             if (dataTypeItem.typeId) {
-                                if (dataTypeItem.scoreValue) {
+                                if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
-                                    if (playItem.type.id == dataTypeItem.typeId && playItem.scoreValue == dataTypeItem.Increase) {
-                                        if (dataTypeItem.Increase) {
-                                            score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
-                                        }
+                                    if (playItem.type.id == dataTypeItem.typeId && playItem.scoreValue == dataTypeItem.scoreValue) {
 
-                                        if (dataTypeItem.rotation) {
-                                            tableIndex = tableIndex + 1;
-                                            tableIndex = tableIndex % 4;
-                                        }
-
-                                        description = playItem.text;
-                                        sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
-                                        homeScore = playItem.homeScore;
-                                        awayScore = playItem.awayScore;
+                                        result = handleScore(playItem, dataTypeItem, score, tableIndex);
+                                        tableIndex = result.tableIndex;
+                                        playIndex = i;
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
                                     if (playItem.type.id == dataTypeItem.typeId) {
-                                        if (dataTypeItem.Increase) {
-                                            score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
-                                        }
-
-                                        if (dataTypeItem.rotation) {
-                                            tableIndex = tableIndex + 1;
-                                            tableIndex = tableIndex % 4;
-                                        }
-                                        description = playItem.text;
-                                        sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
-                                        homeScore = playItem.homeScore;
-                                        awayScore = playItem.awayScore;
+                                        result = handleScore(playItem, dataTypeItem, score, tableIndex);
+                                        tableIndex = result.tableIndex;
+                                        playIndex = i;
                                     }
                                 }
                             } else {
-                                if (dataTypeItem.scoreValue) {
+                                if (dataTypeItem.scoreValue != -1) {
                                     // Compare(teamId, scoreValue)
-                                    if (playItem.scoreValue == dataTypeItem.Increase) {
-                                        if (dataTypeItem.Increase) {
-                                            score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
-                                        }
-
-                                        if (dataTypeItem.rotation) {
-                                            tableIndex = tableIndex + 1;
-                                            tableIndex = tableIndex % 4;
-                                        }
-                                        description = playItem.text;
-                                        sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
-                                        homeScore = playItem.homeScore;
-                                        awayScore = playItem.awayScore;
+                                    if (playItem.scoreValue == dataTypeItem.scoreValue) {
+                                        result = handleScore(playItem, dataTypeItem, score, tableIndex);
+                                        tableIndex = result.tableIndex;
+                                        playIndex = i;
                                     }
                                 } else {
                                     // Compare(teamId)
-                                    if (dataTypeItem.Increase) {
-                                        score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
-                                    }
-
-                                    if (dataTypeItem.rotation) {
-                                        tableIndex = tableIndex + 1;
-                                        tableIndex = tableIndex % 4;
-                                    }
-                                    description = playItem.text;
-                                    sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
-                                    homeScore = playItem.homeScore;
-                                    awayScore = playItem.awayScore;
+                                    result = handleScore(playItem, dataTypeItem, score, tableIndex);
+                                    tableIndex = result.tableIndex;
+                                    playIndex = i;
                                 }
                             }
                         }
                     }
                 }
 
-                setTableScore(score);
+                setTableScore(result.score);
                 setSelTblIdx(tableIndex)
-                setDescription(description)
-                setTime(sequenceTime)
-                setHomeScore(homeScore)
-                setAwayScore(awayScore)
+                setDescription(result.description)
+                setTime(result.sequenceTime)
+                setHomeScore(result.homeScore)
+                setAwayScore(result.awayScore)
             }
         }).catch((err) => {
             console.log(err)
         });
+    }
+
+    const handleEvent = () => { 
+        if(eventId == -1){
+            setEventId(gameId)
+        } else {
+            alert("please set 'Choose One' in Today Event and then start again.");
+        } 
     }
 
     return (
@@ -176,10 +144,13 @@ function EventComponent() {
                 </div>
                 <div className='col-md-3'>
                     <label className="form-label">Random GameId</label><br />
-                    <input className='form-control form-control-sm'
-                        value={gameId}
-                        onChange={(item) => { setGameId(item) }}
-                    />
+                    <div className="input-group">
+                        <input type="text" className="form-control form-control-sm" placeholder="Game Id"
+                            value={gameId}
+                            onChange={(evt) => { setGameId(evt.target.value) }}
+                        />
+                        <button className="btn btn-success btn-sm" onClick={handleEvent}>Start</button>
+                    </div>
                 </div>
             </div>
             <div className='row my-3'>
