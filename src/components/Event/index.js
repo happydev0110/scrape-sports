@@ -225,12 +225,12 @@ function EventComponent() {
                         <div className='col-md-3'>
                             <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
                             <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[team1Idx].team.name}</p>
-                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
+                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
                         </div>
                         <div className='col-md-3'>
                             <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
                             <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name}</p>
-                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
+                            <p><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
                         </div>
                     </>
                 }
