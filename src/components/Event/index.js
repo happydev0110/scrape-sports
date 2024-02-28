@@ -158,11 +158,6 @@ function EventComponent() {
         });
     }
 
-    // const handleDate = (item) => {
-    //     setDate(item);
-    //     // setDateKey(formatDate(item))
-    // }
-
     return (
         <>
             <div className='row my-3'>
@@ -241,9 +236,9 @@ function EventComponent() {
                 }
             </div>
             <div className='row pb-2'>
-                <div className='col-md-3'>
-                    <h5><b>Time:</b></h5>
-                    <p>{time}</p>
+                <div className='col-md-6'>
+                    <h5 className='d-inline-block'><b>Time:</b></h5>
+                    <p className='d-inline-block px-5'>{time}</p>
                 </div>
             </div>
             <div className='row py-3'>
