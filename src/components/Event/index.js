@@ -68,8 +68,8 @@ function EventComponent() {
                 let team1Id = resList.boxscore.teams[team1Idx].team.id;
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
 
-                console.log(team1Id,'team1 Index')
-                console.log(team2Id,'team2 Index')
+                console.log(team1Id, 'team1 Index')
+                console.log(team2Id, 'team2 Index')
                 for (let i = 0; i < resList.plays.length; i++) {
                     // console.log(i,'Events List')
                     for (let j = 0; j < DATASET_TYPE.length; j++) {
@@ -92,7 +92,7 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-                                        console.log(playItem.sequenceNumber,playItem.team.id,playItem.type.id,playItem.scoreValue, "event Id-typeId,scoreValue")
+                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, "event Id-typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
@@ -100,7 +100,7 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-                                        console.log(playItem.sequenceNumber,playItem.team.id,playItem.type.id,playItem.scoreValue, "event Id-typeId")
+                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, "event Id-typeId")
                                     }
                                 }
                             } else {
@@ -110,14 +110,14 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-                                        console.log(playItem.sequenceNumber,playItem.team.id,playItem.type.id,playItem.scoreValue, "event Id-scoreValue")
+                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, "event Id-scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId)
                                     result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     tableIndex = result.tableIndex;
                                     playIndex = i;
-                                    console.log(playItem.sequenceNumber,playItem.team.id,playItem.type.id,playItem.scoreValue, "event Id-scoreValue")
+                                    console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, "event Id-scoreValue")
                                 }
                             }
                         }
