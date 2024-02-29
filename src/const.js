@@ -159,30 +159,35 @@ export const DATASET_TYPE = [
         rotation: false
     },
     {//DataSet13
+        teamId: true,
         typeId: 100,
         scoreValue: 0,
         Increase: 1,
         rotation: false
     },
     {//DataSet14
+        teamId: true,
         typeId: 101,
         scoreValue: 0,
         Increase: 1,
         rotation: false
     },
     {//DataSet15
+        teamId: true,
         typeId: 100,
         scoreValue: 0,
         Increase: 1,
         rotation: false
     },
     {//DataSet16
+        teamId: true,
         typeId: 98,
         scoreValue: 0,
         Increase: 1,
         rotation: false
     },
     {//DataSet17
+        teamId: true,
         typeId: 99,
         scoreValue: 0,
         Increase: 1,
@@ -195,42 +200,49 @@ export const DATASET_TYPE = [
         rotation: false
     },
     {//DataSet19
+        teamId: true,
         typeId: 103,
         scoreValue: 0,
         Increase: 1,
         rotation: false
     },
     {//DataSet20
+        teamId: true,
         typeId: 90,
         scoreValue: -1,
         Increase: 1,
         rotation: false
     },
     {//DataSet21
+        teamId: true,
         typeId: 87,
         scoreValue: -1,
         Increase: 1,
         rotation: false
     },
     {//DataSet22
+        teamId: true,
         typeId: 70,
         scoreValue: -1,
         Increase: 1,
         rotation: false
     },
     {//DataSet23
+        teamId: true,
         typeId: 66,
         scoreValue: -1,
         Increase: 1,
         rotation: false
     },
     {//DataSet24
+        teamId: true,
         typeId: 71,
         scoreValue: -1,
         Increase: 1,
         rotation: false
     },
     {//DataSet25
+        teamId: true,
         typeId: 64,
         scoreValue: -1,
         Increase: 1,
@@ -261,24 +273,27 @@ export const DATASET_TYPE = [
         rotation: true
     },
 
-    // {//DataSet30
-    //     typeId: 64,
-    //     scoreValue: -1,
-    //     Increase: 1,
-    //     rotation: false
-    // },
+    {//DataSet30
+        teamId: true, 
+        typeId: 44,
+        scoreValue: false,
+        Increase: -1,
+        rotation: false
+    },
+
     {//DataSet31
         typeId: 97,
         scoreValue: 0,
         Increase: false,
+        rotation: true
+    },
+    {//DataSet32
+        teamId: true,
+        typeId: 45,
+        scoreValue: false,
+        Increase: 1,
         rotation: false
     },
-    // {//DataSet32
-    //     typeId: 45,
-    //     scoreValue: -1,
-    //     Increase: 1,
-    //     rotation: false
-    // },
     {//DataSet33
         typeId: 99,
         scoreValue: 1,
@@ -288,6 +303,42 @@ export const DATASET_TYPE = [
     {//DataSet34
         typeId: 99,
         scoreValue: 0,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet35
+        typeId: 90,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet36
+        typeId: 87,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet37
+        typeId: 70,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet38
+        typeId: 66,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet39
+        typeId: 71,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet40
+        typeId: 64,
+        scoreValue: -1,
         Increase: false,
         rotation: true
     },

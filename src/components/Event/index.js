@@ -70,42 +70,46 @@ function EventComponent() {
                         // console.log(j, 'Dataset_type')
                         var playItem = resList.plays[i];
                         var dataTypeItem = DATASET_TYPE[j];
+                        var matchTeamId = resList.boxscore.teams[team1Idx].team.id;
+                        var prevPlayItem = resList.plays[i-1];
 
-                        if (playItem.team && (playItem.team.id == resList.boxscore.teams[team1Idx].team.id)) {
+                        if (DATASET_TYPE[j].teamId) matchTeamId = resList.boxscore.teams[(team1Idx + 1) % 2].team.id;
+
+                        if (playItem.team && (playItem.team.id == matchTeamId)) {
                             if (dataTypeItem.typeId) {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
                                     if (playItem.type.id == dataTypeItem.typeId && playItem.scoreValue == dataTypeItem.scoreValue) {
 
-                                        result = handleScore(playItem, dataTypeItem, score, tableIndex);
+                                        result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        console.log(i,playItem,"event Id-typeId,scoreValue")
+                                        console.log(i, playItem, "event Id-typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
                                     if (playItem.type.id == dataTypeItem.typeId) {
-                                        result = handleScore(playItem, dataTypeItem, score, tableIndex);
+                                        result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        console.log(i,playItem,"event Id-typeId")
+                                        console.log(i, playItem, "event Id-typeId")
                                     }
                                 }
                             } else {
                                 if (dataTypeItem.scoreValue != -1) {
                                     // Compare(teamId, scoreValue)
                                     if (playItem.scoreValue == dataTypeItem.scoreValue) {
-                                        result = handleScore(playItem, dataTypeItem, score, tableIndex);
+                                        result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        console.log(i,playItem,"event Id-scoreValue")
+                                        console.log(i, playItem, "event Id-scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId)
-                                    result = handleScore(playItem, dataTypeItem, score, tableIndex);
+                                    result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     tableIndex = result.tableIndex;
                                     playIndex = i;
                                 }
@@ -127,12 +131,12 @@ function EventComponent() {
         });
     }
 
-    const handleEvent = () => { 
-        if(eventId == -1){
+    const handleEvent = () => {
+        if (eventId == -1) {
             setEventId(gameId)
         } else {
             alert("please set 'Choose One' in Today Event and then start again.");
-        } 
+        }
     }
 
     return (

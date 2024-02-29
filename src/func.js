@@ -22,11 +22,16 @@ export const formatDate = (date) => {
     // }
 }
 
-export const handleScore = (playItem, dataTypeItem, score, tableIndex) => {
+export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem) => {
     let description, sequenceTime, homeScore, awayScore;
+    let increaseMount = dataTypeItem.Increase;
+
+    if (dataTypeItem.Increase == -1) {
+        increaseMount = prevPlayItem.scoreValue    
+    }
 
     if (dataTypeItem.Increase) {
-        score[tableIndex] = score[tableIndex] + dataTypeItem.Increase;
+        score[tableIndex] = score[tableIndex] + increaseMount;
     }
     
     if (dataTypeItem.rotation) {
