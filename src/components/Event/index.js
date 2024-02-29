@@ -235,7 +235,7 @@ function EventComponent() {
             <div className='row py-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Table1</h5>
+                        <h5 className='d-inline-block'>Team1</h5>
                         <p className='d-inline-block text-danger px-4'>{selTblIdx == 0 && 'Current Table'}</p>
                     </div>
                     <div className={selTblIdx == 0 ? 'border border-danger p-3' : 'border p-3'}>
@@ -253,7 +253,7 @@ function EventComponent() {
             <div className='row py-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Table2</h5>
+                        <h5 className='d-inline-block'>Team2</h5>
                         <p className='d-inline-block text-danger px-4'>{selTblIdx == 1 && 'Current Table'}</p>
                     </div>
                     <div className={selTblIdx == 1 ? 'border border-danger p-3' : 'border p-3'}>
@@ -271,7 +271,7 @@ function EventComponent() {
             <div className='row py-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Table3</h5>
+                        <h5 className='d-inline-block'>Team3</h5>
                         <p className='d-inline-block text-danger px-4'>{selTblIdx == 2 && 'Current Table'}</p>
                     </div>
                     <div className={selTblIdx == 2 ? 'border border-danger p-3' : 'border p-3'}>
@@ -289,7 +289,7 @@ function EventComponent() {
             <div className='row py-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Table4</h5>
+                        <h5 className='d-inline-block'>Team4</h5>
                         <p className='d-inline-block text-danger px-4'>{selTblIdx == 3 && 'Current Table'}</p>
                     </div>
                     <div className={selTblIdx == 3 ? 'border border-danger p-3' : 'border p-3'}>
