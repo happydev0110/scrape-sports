@@ -16,6 +16,7 @@ function EventComponent() {
 
     const [time, setTime] = useState();
     const [team1Idx, setTeam1Idx] = useState(-1);
+    // const [team2Idx, setTeam2Idx] = useState(-1);
     const [team2Name, setTeam2Name] = useState('');
 
     const [homeScore, setHomeScore] = useState(0);
@@ -64,16 +65,23 @@ function EventComponent() {
                 let playIndex = 0;
                 let result;
 
+                let team1Id = resList.boxscore.teams[team1Idx].team.id;
+                let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+
+                console.log(team1Id,'team1 Index')
+                console.log(team2Id,'team2 Index')
                 for (let i = 0; i < resList.plays.length; i++) {
                     // console.log(i,'Events List')
                     for (let j = 0; j < DATASET_TYPE.length; j++) {
                         // console.log(j, 'Dataset_type')
                         var playItem = resList.plays[i];
                         var dataTypeItem = DATASET_TYPE[j];
-                        var matchTeamId = resList.boxscore.teams[team1Idx].team.id;
-                        var prevPlayItem = resList.plays[i-1];
+                        var matchTeamId = team1Id
+                        var prevPlayItem = resList.plays[i - 1];
 
-                        if (DATASET_TYPE[j].teamId) matchTeamId = resList.boxscore.teams[(team1Idx + 1) % 2].team.id;
+                        if (DATASET_TYPE[j].teamId) {
+                            matchTeamId = team2Id
+                        }
 
                         if (playItem.team && (playItem.team.id == matchTeamId)) {
                             if (dataTypeItem.typeId) {
@@ -84,8 +92,7 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-
-                                        console.log(i, playItem, "event Id-typeId,scoreValue")
+                                        console.log(i,j,1, playItem, "event Id-typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
@@ -93,8 +100,7 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-
-                                        console.log(i, playItem, "event Id-typeId")
+                                        console.log(i,j,2, playItem, "event Id-typeId")
                                     }
                                 }
                             } else {
@@ -104,27 +110,28 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-
-                                        console.log(i, playItem, "event Id-scoreValue")
+                                        console.log(i,j,3, playItem, "event Id-scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId)
                                     result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     tableIndex = result.tableIndex;
                                     playIndex = i;
+                                    console.log(i,j,4, playItem, "event Id-scoreValue")
                                 }
                             }
                         }
                     }
                 }
-                // console.log(result.score)
 
-                setTableScore(result.score);
-                setSelTblIdx(tableIndex)
-                setDescription(result.description)
-                setTime(result.sequenceTime)
-                setHomeScore(result.homeScore)
-                setAwayScore(result.awayScore)
+                if (result) {
+                    setTableScore(result.score);
+                    setSelTblIdx(tableIndex)
+                    setDescription(result.description)
+                    setTime(result.sequenceTime)
+                    setHomeScore(result.homeScore)
+                    setAwayScore(result.awayScore)
+                }
             }
         }).catch((err) => {
             console.log(err)
