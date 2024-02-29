@@ -92,7 +92,7 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, "event Id-typeId,scoreValue")
+                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
@@ -100,7 +100,7 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, "event Id-typeId")
+                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-typeId")
                                     }
                                 }
                             } else {
@@ -110,14 +110,14 @@ function EventComponent() {
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
-                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, "event Id-scoreValue")
+                                        console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId)
                                     result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     tableIndex = result.tableIndex;
                                     playIndex = i;
-                                    console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, "event Id-scoreValue")
+                                    console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-scoreValue")
                                 }
                             }
                         }
@@ -208,28 +208,30 @@ function EventComponent() {
             </div>
             <div className='row py-2'>
                 <div className='col-md-2'>
-                    <h5><b>Score:</b></h5>
+                    {/* <h5 className='d-inline-block'><b>Score:</b></h5> */}
+                    {
+                        eventId != -1 && team1Idx != -1 &&
+                        <>
+                            <div className='d-inline-block'>
+                                <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
+                                {/* <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[team1Idx].team.name}</p> */}
+                                <p className='px-2 d-inline-block'><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
+                            </div>
+                            <div className='d-inline-block'>
+                                <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
+                                {/* <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name}</p> */}
+                                <p className='px-2 d-inline-block'><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
+                            </div>
+                            <div className='d-inline-block'>
+                                {/* <h5 className='d-inline-block'><b>Time:</b></h5> */}
+                                <p className='d-inline-block px-5'>{time}</p>
+                            </div>
+                        </>
+                    }
                 </div>
-                {
-                    eventId != -1 && team1Idx != -1 &&
-                    <>
-                        <div className='col-md-3'>
-                            <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
-                            <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[team1Idx].team.name}</p>
-                            <p className='px-2'><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
-                        </div>
-                        <div className='col-md-3'>
-                            <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
-                            <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name}</p>
-                            <p className='p-2'><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
-                        </div>
-                    </>
-                }
             </div>
             <div className='row pb-2'>
                 <div className='col-md-6'>
-                    <h5 className='d-inline-block'><b>Time:</b></h5>
-                    <p className='d-inline-block px-5'>{time}</p>
                 </div>
             </div>
             <div className='row py-3'>
