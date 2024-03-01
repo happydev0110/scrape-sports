@@ -117,8 +117,7 @@ function EventComponent() {
                                             'awayScore',playItem.awayScore, 
                                             'Period:',playItem.period.displayValue, 
                                             'Clock:',playItem.clock.displayValue, 
-                                            'compare Status:',"teanId,typeId,scoreValue")
-                                        // console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-typeId,scoreValue")
+                                            'compare fields:',"teanId,typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
@@ -140,8 +139,7 @@ function EventComponent() {
                                             'awayScore',playItem.awayScore, 
                                             'Period:',playItem.period.displayValue, 
                                             'Clock:',playItem.clock.displayValue, 
-                                            'compare Status:',"teamId, typeId")
-                                        // console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-typeId")
+                                            'compare fields:',"teamId, typeId")
                                     }
                                 }
                             } else {
@@ -166,7 +164,7 @@ function EventComponent() {
                                         'awayScore',playItem.awayScore, 
                                         'Period:',playItem.period.displayValue, 
                                         'Clock:',playItem.clock.displayValue, 
-                                        'compare Status:',"teamId,scoreValue")
+                                        'compare fields:',"teamId,scoreValue")
                                     }
                                 } else {
                                     matchEvtList.push(playItem);
@@ -187,8 +185,7 @@ function EventComponent() {
                                         'awayScore',playItem.awayScore, 
                                         'Period:',playItem.period.displayValue, 
                                         'Clock:',playItem.clock.displayValue, 
-                                        'compare Status:',"teamId")
-                                    // console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-scoreValue")
+                                        'compare fields:',"teamId")
                                 }
                             }
                         }
