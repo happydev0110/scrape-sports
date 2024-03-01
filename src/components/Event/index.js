@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Filter from '../../layouts/Filter';
 
-import { URL, INTERVAL_TIME, DATASET_TYPE } from '../../const.js';
+import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE } from '../../const.js';
 import { handleScore } from '../../func.js';
 
 function EventComponent() {
@@ -13,10 +13,10 @@ function EventComponent() {
 
     const [eventId, setEventId] = useState(-1);
     const [gameId, setGameId] = useState('');
+    const [sportCategory, setSportCategory] = useState(-1);
 
     const [time, setTime] = useState();
     const [team1Idx, setTeam1Idx] = useState(-1);
-    // const [team2Idx, setTeam2Idx] = useState(-1);
     const [team2Name, setTeam2Name] = useState('');
 
     const [homeScore, setHomeScore] = useState(0);
@@ -67,6 +67,7 @@ function EventComponent() {
 
                 let team1Id = resList.boxscore.teams[team1Idx].team.id;
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                let matchEvtList = [];
 
                 console.log(team1Id, 'team1 Index')
                 console.log(team2Id, 'team2 Index')
@@ -88,35 +89,47 @@ function EventComponent() {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
                                     if (playItem.type.id == dataTypeItem.typeId && playItem.scoreValue == dataTypeItem.scoreValue) {
-
+                                        matchEvtList.push(playItem);
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
+
+                                        matchEvtList.push(playItem)
                                         console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
                                     if (playItem.type.id == dataTypeItem.typeId) {
+                                        matchEvtList.push(playItem);
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
+
+                                        matchEvtList.push(playItem)
                                         console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-typeId")
                                     }
                                 }
                             } else {
                                 if (dataTypeItem.scoreValue != -1) {
+
                                     // Compare(teamId, scoreValue)
                                     if (playItem.scoreValue == dataTypeItem.scoreValue) {
+                                        matchEvtList.push(playItem);
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
+
+                                        matchEvtList.push(playItem)
                                         console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-scoreValue")
                                     }
                                 } else {
+                                    matchEvtList.push(playItem);
                                     // Compare(teamId)
                                     result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     tableIndex = result.tableIndex;
                                     playIndex = i;
+
+                                    matchEvtList.push(playItem)
                                     console.log(playItem.sequenceNumber, playItem.team.id, playItem.type.id, playItem.scoreValue, dataTypeItem.rotation, playItem.text, playItem.homeScore, playItem.awayScore, playItem.period.displayValue, playItem.clock.displayValue, "event Id-scoreValue")
                                 }
                             }
@@ -148,6 +161,26 @@ function EventComponent() {
 
     return (
         <>
+            <div className='row'>
+                <div className='col-md-2'>
+                    <label className="form-label" style={{ float: "left" }}>Sports Category</label>
+                    <select className="form-select form-select-sm"
+                        value={sportCategory}
+                        onChange={evt => {
+                            setSportCategory(evt.target.value)
+                        }}
+                    >
+                        <option value={-1}>Choose One</option>
+                        {
+                            SPORTS_CATEGORY.map((item, index) => {
+                                return (
+                                    <option key={index} value={item.value}>{item.label}</option>
+                                )
+                            })
+                        }
+                    </select>
+                </div>
+            </div>
             <div className='row my-3'>
                 <div className='col-md-3'>
                     <Filter
