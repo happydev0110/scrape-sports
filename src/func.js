@@ -23,7 +23,7 @@ export const formatDate = (date) => {
 }
 
 export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem) => {
-    let description, sequenceTime, homeScore, awayScore;
+    let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
     let increaseMount = dataTypeItem.Increase;
 
     if (dataTypeItem.Increase == -1) {
@@ -46,7 +46,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     
     // console.log(score,'handleScore')
     return{
+        textIndex,
         tableIndex,
+        increaseMount,
         sequenceTime,
         score,
         description,

@@ -19,9 +19,11 @@ function EventComponent() {
     const [team1Idx, setTeam1Idx] = useState(-1);
     const [team2Name, setTeam2Name] = useState('');
 
+    const [increaseAmt, setIncreaseAmt] = useState(false);
     const [homeScore, setHomeScore] = useState(0);
     const [awayScore, setAwayScore] = useState(0);
 
+    const [selTextIdx, setSelTextIdx] = useState(-1);
     const [selTblIdx, setSelTblIdx] = useState(-1);
     const [description, setDescription] = useState('');
 
@@ -70,7 +72,7 @@ function EventComponent() {
             var resList = response.data;
 
             if (team1Idx != -1 && resList.plays) {
-                let score = [0, 0, 0, 0], tableIndex = 0;
+                let score = [0, 0, 0, 0], tableIndex = 0, textIndex, increaseAmount;
                 let playIndex = 0;
                 let result;
 
@@ -102,6 +104,8 @@ function EventComponent() {
                                     if (playItem.type.id == dataTypeItem.typeId && playItem.scoreValue == dataTypeItem.scoreValue) {
                                         matchEvtList.push(playItem);
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                        increaseAmount = result.increaseMount;
+                                        textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
@@ -124,6 +128,8 @@ function EventComponent() {
                                     if (playItem.type.id == dataTypeItem.typeId) {
                                         matchEvtList.push(playItem);
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                        increaseAmount = result.increaseMount;
+                                        textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
@@ -144,11 +150,12 @@ function EventComponent() {
                                 }
                             } else {
                                 if (dataTypeItem.scoreValue != -1) {
-
                                     // Compare(teamId, scoreValue)
                                     if (playItem.scoreValue == dataTypeItem.scoreValue) {
                                         matchEvtList.push(playItem);
                                         result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                        increaseAmount = result.increaseMount;
+                                        textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
@@ -167,9 +174,11 @@ function EventComponent() {
                                         'compare fields:',"teamId,scoreValue")
                                     }
                                 } else {
-                                    matchEvtList.push(playItem);
                                     // Compare(teamId)
+                                    matchEvtList.push(playItem);
                                     result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                    increaseAmount = result.increaseMount;
+                                    textIndex = result.textIndex;
                                     tableIndex = result.tableIndex;
                                     playIndex = i;
 
@@ -194,11 +203,13 @@ function EventComponent() {
 
                 if (result) {
                     setTableScore(result.score);
-                    setSelTblIdx(tableIndex)
-                    setDescription(result.description)
-                    setTime(result.sequenceTime)
-                    setHomeScore(result.homeScore)
-                    setAwayScore(result.awayScore)
+                    setSelTextIdx(textIndex);
+                    setSelTblIdx(tableIndex);
+                    setIncreaseAmt(increaseAmount);
+                    setDescription(result.description);
+                    setTime(result.sequenceTime);
+                    setHomeScore(result.homeScore);
+                    setAwayScore(result.awayScore);
                 }
             }
         }).catch((err) => {
@@ -327,13 +338,13 @@ function EventComponent() {
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team1</h5>
-                        <p className='d-inline-block text-danger px-4'>{selTblIdx == 0 && 'Current Table'}</p>
+                        {/* <p className='d-inline-block text-danger px-4'>{selTblIdx == 0 && 'Current Table'}</p> */}
                     </div>
                     <div className={selTblIdx == 0 ? 'border border-danger p-3' : 'border p-3'}>
                         {
-                            selTblIdx == 0 && <>
-                                <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block px-3'>{description}</p><br />
+                            selTextIdx == 0 && <>
+                                <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt?" +"+increaseAmt: ' +0'}</b></p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
@@ -345,13 +356,13 @@ function EventComponent() {
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team2</h5>
-                        <p className='d-inline-block text-danger px-4'>{selTblIdx == 1 && 'Current Table'}</p>
+                        {/* <p className='d-inline-block text-danger px-4'>{selTblIdx == 1 && 'Current Table'}</p> */}
                     </div>
                     <div className={selTblIdx == 1 ? 'border border-danger p-3' : 'border p-3'}>
                         {
-                            selTblIdx == 1 && <>
-                                <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block px-3'>{description}</p><br />
+                            selTextIdx == 1 && <>
+                                <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt?" +"+increaseAmt: ' +0'}</b></p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
@@ -363,13 +374,13 @@ function EventComponent() {
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team3</h5>
-                        <p className='d-inline-block text-danger px-4'>{selTblIdx == 2 && 'Current Table'}</p>
+                        {/* <p className='d-inline-block text-danger px-4'>{selTblIdx == 2 && 'Current Table'}</p> */}
                     </div>
                     <div className={selTblIdx == 2 ? 'border border-danger p-3' : 'border p-3'}>
                         {
-                            selTblIdx == 2 && <>
-                                <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block px-3'>{description}</p><br />
+                            selTextIdx == 2 && <>
+                                <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt?" +"+increaseAmt: ' +0'}</b></p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
@@ -381,13 +392,13 @@ function EventComponent() {
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team4</h5>
-                        <p className='d-inline-block text-danger px-4'>{selTblIdx == 3 && 'Current Table'}</p>
+                        {/* <p className='d-inline-block text-danger px-4'>{selTblIdx == 3 && 'Current Table'}</p> */}
                     </div>
                     <div className={selTblIdx == 3 ? 'border border-danger p-3' : 'border p-3'}>
                         {
-                            selTblIdx == 3 && <>
-                                <p className='d-inline-block'><b>Description:</b></p>
-                                <p className='d-inline-block px-3'>{description}</p><br />
+                            selTextIdx == 3 && <>
+                                <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt?" +"+increaseAmt: ' +0'}</b></p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
