@@ -13,7 +13,7 @@ function EventComponent() {
 
     const [eventId, setEventId] = useState(-1);
     const [gameId, setGameId] = useState('');
-    const [sportCategory, setSportCategory] = useState(-1);
+    const [sportCategory, setSportCategory] = useState(1);
 
     const [time, setTime] = useState();
     const [team1Idx, setTeam1Idx] = useState(-1);
@@ -181,7 +181,7 @@ function EventComponent() {
                             setSportCategory(evt.target.value)
                         }}
                     >
-                        <option value={-1}>Choose One</option>
+                        {/* <option value={-1}>Choose One</option> */}
                         {
                             SPORTS_CATEGORY.map((item, index) => {
                                 return (
