@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Filter from '../../layouts/Filter';
 
-import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE } from '../../const.js';
+import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE, DATASET_TYPE1 } from '../../const.js';
 import { handleScore } from '../../func.js';
 
 function EventComponent() {
@@ -50,7 +50,16 @@ function EventComponent() {
     }, [eventId, intervalTime, team1Idx])
 
     const fetchEventPlay = async () => {
-        axios.get(URL.BASKETBALL,
+
+        let dataSetType = DATASET_TYPE;
+        let apiUrl = URL.BASKETBALL;
+
+        if (sportCategory == 2) {
+            dataSetType = DATASET_TYPE1;
+            apiUrl = URL.NCAA_EVENT;
+        }
+
+        axios.get(apiUrl,
             {
                 params: {
                     event: eventId
@@ -68,19 +77,21 @@ function EventComponent() {
                 let team1Id = resList.boxscore.teams[team1Idx].team.id;
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 let matchEvtList = [];
+                
 
                 console.log(team1Id, 'team1 Index')
                 console.log(team2Id, 'team2 Index')
+                
                 for (let i = 0; i < resList.plays.length; i++) {
                     // console.log(i,'Events List')
-                    for (let j = 0; j < DATASET_TYPE.length; j++) {
+                    for (let j = 0; j < dataSetType.length; j++) {
                         // console.log(j, 'Dataset_type')
                         var playItem = resList.plays[i];
-                        var dataTypeItem = DATASET_TYPE[j];
+                        var dataTypeItem = dataSetType[j];
                         var matchTeamId = team1Id
                         var prevPlayItem = resList.plays[i - 1];
 
-                        if (DATASET_TYPE[j].teamId) {
+                        if (dataSetType[j].teamId) {
                             matchTeamId = team2Id
                         }
 
@@ -187,6 +198,7 @@ function EventComponent() {
                         label='Today Event'
                         columns={{ label: "name", value: "id" }}
                         list={events ? events : []}
+                        disabled={sportCategory == 2}
                         handleChange={(id) => {
                             setEventId(id);
                             setTeam1Idx(-1);
