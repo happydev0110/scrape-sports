@@ -72,7 +72,7 @@ function EventComponent() {
             var resList = response.data;
 
             if (team1Idx != -1 && resList.plays) {
-                let score = [0, 0, 0, 0], tableIndex = 0, textIndex, increaseAmount;
+                let score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
                 let playIndex = 0;
                 let result;
 
@@ -80,7 +80,6 @@ function EventComponent() {
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 let matchEvtList = [];
                 
-
                 console.log(team1Id, 'team1 Index')
                 console.log(team2Id, 'team2 Index')
                 
@@ -116,6 +115,7 @@ function EventComponent() {
                                             'typeId:',playItem.type.id, 
                                             "scoreValue:",playItem.scoreValue,
                                             "rotation:", dataTypeItem.rotation, 
+                                            'tableIndex:',tableIndex,
                                             'description:',playItem.text, 
                                             'homeScore:',playItem.homeScore, 
                                             'awayScore',playItem.awayScore, 
@@ -139,7 +139,8 @@ function EventComponent() {
                                             'teamId:',playItem.team.id, 
                                             'typeId:',playItem.type.id, 
                                             "scoreValue:",playItem.scoreValue,
-                                            "rotation:", dataTypeItem.rotation, 
+                                            "rotation:", dataTypeItem.rotation,
+                                            'tableIndex:',tableIndex, 
                                             'description:',playItem.text, 
                                             'homeScore:',playItem.homeScore, 
                                             'awayScore',playItem.awayScore, 
@@ -166,6 +167,7 @@ function EventComponent() {
                                         'typeId:',playItem.type.id, 
                                         "scoreValue:",playItem.scoreValue,
                                         "rotation:", dataTypeItem.rotation, 
+                                        'tableIndex:',tableIndex,
                                         'description:',playItem.text, 
                                         'homeScore:',playItem.homeScore, 
                                         'awayScore',playItem.awayScore, 
@@ -189,6 +191,7 @@ function EventComponent() {
                                         'typeId:',playItem.type.id, 
                                         "scoreValue:",playItem.scoreValue,
                                         "rotation:", dataTypeItem.rotation, 
+                                        'tableIndex:',tableIndex,
                                         'description:',playItem.text, 
                                         'homeScore:',playItem.homeScore, 
                                         'awayScore',playItem.awayScore, 
@@ -236,7 +239,6 @@ function EventComponent() {
                             setSportCategory(evt.target.value)
                         }}
                     >
-                        {/* <option value={-1}>Choose One</option> */}
                         {
                             SPORTS_CATEGORY.map((item, index) => {
                                 return (
@@ -308,22 +310,18 @@ function EventComponent() {
             </div>
             <div className='row py-2'>
                 <div className='col-md-2'>
-                    {/* <h5 className='d-inline-block'><b>Score:</b></h5> */}
                     {
                         eventId != -1 && team1Idx != -1 &&
                         <>
                             <div className='d-inline-block'>
                                 <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
-                                {/* <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[team1Idx].team.name}</p> */}
                                 <p className='px-2 d-inline-block'><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
                             </div>
                             <div className='d-inline-block'>
                                 <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
-                                {/* <p className='p-0 d-inline-block'>{team1Idx != -1 && playList.boxscore && playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name}</p> */}
                                 <p className='px-2 d-inline-block'><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
                             </div>
                             <div className='d-inline-block'>
-                                {/* <h5 className='d-inline-block'><b>Time:</b></h5> */}
                                 <p className='d-inline-block px-5'>{time}</p>
                             </div>
                         </>
@@ -338,7 +336,6 @@ function EventComponent() {
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team1</h5>
-                        {/* <p className='d-inline-block text-danger px-4'>{selTblIdx == 0 && 'Current Table'}</p> */}
                     </div>
                     <div className={selTblIdx == 0 ? 'border border-danger p-3' : 'border p-3'}>
                         {
@@ -356,7 +353,6 @@ function EventComponent() {
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team2</h5>
-                        {/* <p className='d-inline-block text-danger px-4'>{selTblIdx == 1 && 'Current Table'}</p> */}
                     </div>
                     <div className={selTblIdx == 1 ? 'border border-danger p-3' : 'border p-3'}>
                         {
@@ -374,7 +370,6 @@ function EventComponent() {
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team3</h5>
-                        {/* <p className='d-inline-block text-danger px-4'>{selTblIdx == 2 && 'Current Table'}</p> */}
                     </div>
                     <div className={selTblIdx == 2 ? 'border border-danger p-3' : 'border p-3'}>
                         {
@@ -392,7 +387,6 @@ function EventComponent() {
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team4</h5>
-                        {/* <p className='d-inline-block text-danger px-4'>{selTblIdx == 3 && 'Current Table'}</p> */}
                     </div>
                     <div className={selTblIdx == 3 ? 'border border-danger p-3' : 'border p-3'}>
                         {
