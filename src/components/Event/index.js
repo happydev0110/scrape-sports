@@ -152,25 +152,25 @@ function EventComponent() {
                                         playIndex = i;
 
                                         matchEvtList.push(currentPlayItem)
-                                        console.log(
-                                            'datasetNum:', dataTypeItem.index,
-                                            'currentPlayItem:', currentPlayItem,
-                                            'prevPlayItem:',prevPlayItem
-                                        )
                                         // console.log(
-                                        //     'sequence:', currentPlayItem.sequenceNumber,
-                                        //     'teamId:', currentPlayItem.team.id,
-                                        //     'typeId:', currentPlayItem.type.id,
-                                        //     "scoreValue:", currentPlayItem.scoreValue,
-                                        //     "rotation:", dataTypeItem.rotation,
-                                        //     'teamIndex:', tableIndex,
-                                        //     'increase:', increaseAmount,
-                                        //     'description:', result.description,
-                                        //     'homeScore:', currentPlayItem.homeScore,
-                                        //     'awayScore', currentPlayItem.awayScore,
-                                        //     'Period:', currentPlayItem.period.displayValue,
-                                        //     'Clock:', currentPlayItem.clock.displayValue,
-                                        //     'compare fields:', "teamId, typeId")
+                                        //     'datasetNum:', dataTypeItem.index,
+                                        //     'currentPlayItem:', currentPlayItem,
+                                        //     'prevPlayItem:',prevPlayItem
+                                        // )
+                                        console.log(
+                                            'sequence:', currentPlayItem.sequenceNumber,
+                                            'teamId:', currentPlayItem.team.id,
+                                            'typeId:', currentPlayItem.type.id,
+                                            "scoreValue:", currentPlayItem.scoreValue,
+                                            "rotation:", dataTypeItem.rotation,
+                                            'teamIndex:', tableIndex,
+                                            'increase:', increaseAmount,
+                                            'description:', result.description,
+                                            'homeScore:', currentPlayItem.homeScore,
+                                            'awayScore', currentPlayItem.awayScore,
+                                            'Period:', currentPlayItem.period.displayValue,
+                                            'Clock:', currentPlayItem.clock.displayValue,
+                                            'compare fields:', "teamId, typeId")
                                     }
                                 }
                             } else {
