@@ -42,6 +42,11 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     }
     
     description = playItem.text;
+    
+    if(dataTypeItem.description){
+        description = prevPlayItem.text;
+    }
+    
     sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
     homeScore = playItem.homeScore;
     awayScore = playItem.awayScore;

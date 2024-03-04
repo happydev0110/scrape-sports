@@ -118,7 +118,7 @@ function EventComponent() {
                                             "rotation:", dataTypeItem.rotation,
                                             'teamIndex:', tableIndex,
                                             'increase:', increaseAmount,
-                                            'description:', currentPlayItem.text,
+                                            'description:', result.description,
                                             'homeScore:', currentPlayItem.homeScore,
                                             'awayScore', currentPlayItem.awayScore,
                                             'Period:', currentPlayItem.period.displayValue,
@@ -130,14 +130,19 @@ function EventComponent() {
                                     if (currentPlayItem.type.id == dataTypeItem.typeId) {
                                         matchEvtList.push(currentPlayItem);
                                         // Dataset30
-                                        if (dataTypeItem.index == 30) {
-                                            if (currentPlayItem.clock.displayValue != prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                                        if (dataTypeItem.index === 30) {
+                                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
                                                 continue;
                                             }
                                         }
                                         // Dataset30
 
                                         // Dataset48
+                                        if(dataTypeItem.index === 48){
+                                            if(currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue){
+                                                continue;
+                                            }
+                                        }
                                         // Dataset48
 
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
@@ -148,19 +153,24 @@ function EventComponent() {
 
                                         matchEvtList.push(currentPlayItem)
                                         console.log(
-                                            'sequence:', currentPlayItem.sequenceNumber,
-                                            'teamId:', currentPlayItem.team.id,
-                                            'typeId:', currentPlayItem.type.id,
-                                            "scoreValue:", currentPlayItem.scoreValue,
-                                            "rotation:", dataTypeItem.rotation,
-                                            'teamIndex:', tableIndex,
-                                            'increase:', increaseAmount,
-                                            'description:', currentPlayItem.text,
-                                            'homeScore:', currentPlayItem.homeScore,
-                                            'awayScore', currentPlayItem.awayScore,
-                                            'Period:', currentPlayItem.period.displayValue,
-                                            'Clock:', currentPlayItem.clock.displayValue,
-                                            'compare fields:', "teamId, typeId")
+                                            'datasetNum:', dataTypeItem.index,
+                                            'currentPlayItem:', currentPlayItem,
+                                            'prevPlayItem:',prevPlayItem
+                                        )
+                                        // console.log(
+                                        //     'sequence:', currentPlayItem.sequenceNumber,
+                                        //     'teamId:', currentPlayItem.team.id,
+                                        //     'typeId:', currentPlayItem.type.id,
+                                        //     "scoreValue:", currentPlayItem.scoreValue,
+                                        //     "rotation:", dataTypeItem.rotation,
+                                        //     'teamIndex:', tableIndex,
+                                        //     'increase:', increaseAmount,
+                                        //     'description:', result.description,
+                                        //     'homeScore:', currentPlayItem.homeScore,
+                                        //     'awayScore', currentPlayItem.awayScore,
+                                        //     'Period:', currentPlayItem.period.displayValue,
+                                        //     'Clock:', currentPlayItem.clock.displayValue,
+                                        //     'compare fields:', "teamId, typeId")
                                     }
                                 }
                             } else {
@@ -183,7 +193,7 @@ function EventComponent() {
                                             "rotation:", dataTypeItem.rotation,
                                             'teamIndex:', tableIndex,
                                             'increase:', increaseAmount,
-                                            'description:', currentPlayItem.text,
+                                            'description:', result.description,
                                             'homeScore:', currentPlayItem.homeScore,
                                             'awayScore', currentPlayItem.awayScore,
                                             'Period:', currentPlayItem.period.displayValue,
@@ -208,7 +218,7 @@ function EventComponent() {
                                         "rotation:", dataTypeItem.rotation,
                                         'teamIndex:', tableIndex,
                                         'increase:', increaseAmount,
-                                        'description:', currentPlayItem.text,
+                                        'description:', result.description,
                                         'homeScore:', currentPlayItem.homeScore,
                                         'awayScore', currentPlayItem.awayScore,
                                         'Period:', currentPlayItem.period.displayValue,
