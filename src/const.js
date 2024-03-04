@@ -140,13 +140,13 @@ export const DATASET_TYPE = [
         Increase: 2,
         rotation: false
     },
-    {//DataSet7-5
-        teamId: false,
-        typeId: 141,
-        scoreValue: 2,
-        Increase: 2,
-        rotation: false
-    },
+    // {//DataSet7-5--Delete
+    //     teamId: false,
+    //     typeId: 141,
+    //     scoreValue: 2,
+    //     Increase: 2,
+    //     rotation: false
+    // },
     {//DataSet7-6
         teamId: false,
         typeId: 118,
@@ -446,12 +446,12 @@ export const DATASET_TYPE = [
         typeId: 22,
         scoreValue: -1,
         Increase: false,
-        rotation: false
+        rotation: true
     },
     {//DataSet47
         teamId: true,
         typeId: 22,
-        scoreValue: -1,
+        scoreValue: 1,
         Increase: 1,
         rotation: false
     },
