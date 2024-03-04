@@ -112,6 +112,7 @@ function EventComponent() {
                                         matchEvtList.push(currentPlayItem)
                                         console.log(
                                             'sequence:', currentPlayItem.sequenceNumber,
+                                            'team1Id:', team1Id,
                                             'teamId:', currentPlayItem.team.id,
                                             'typeId:', currentPlayItem.type.id,
                                             "scoreValue:", currentPlayItem.scoreValue,
@@ -159,6 +160,7 @@ function EventComponent() {
                                         // )
                                         console.log(
                                             'sequence:', currentPlayItem.sequenceNumber,
+                                            'team1Id:', team1Id,
                                             'teamId:', currentPlayItem.team.id,
                                             'typeId:', currentPlayItem.type.id,
                                             "scoreValue:", currentPlayItem.scoreValue,
@@ -187,6 +189,7 @@ function EventComponent() {
                                         matchEvtList.push(currentPlayItem)
                                         console.log(
                                             'sequence:', currentPlayItem.sequenceNumber,
+                                            'team1Id:', team1Id,
                                             'teamId:', currentPlayItem.team.id,
                                             'typeId:', currentPlayItem.type.id,
                                             "scoreValue:", currentPlayItem.scoreValue,
@@ -212,6 +215,7 @@ function EventComponent() {
                                     matchEvtList.push(currentPlayItem)
                                     console.log(
                                         'sequence:', currentPlayItem.sequenceNumber,
+                                        'team1Id:', team1Id,
                                         'teamId:', currentPlayItem.team.id,
                                         'typeId:', currentPlayItem.type.id,
                                         "scoreValue:", currentPlayItem.scoreValue,
