@@ -91,13 +91,6 @@ export const DATASET_TYPE = [
         Increase: false,
         rotation: true
     },
-    // {//DataSet4
-    //     teamId: false,
-    //     typeId: 42,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
     {//DataSet5
         teamId: false,
         typeId: 31,
@@ -140,13 +133,6 @@ export const DATASET_TYPE = [
         Increase: 2,
         rotation: false
     },
-    // {//DataSet7-5--Delete
-    //     teamId: false,
-    //     typeId: 141,
-    //     scoreValue: 2,
-    //     Increase: 2,
-    //     rotation: false
-    // },
     {//DataSet7-6
         teamId: false,
         typeId: 118,
@@ -323,10 +309,12 @@ export const DATASET_TYPE = [
         rotation: true
     },
     {//DataSet30
+        index: 30,
+        noMatchList:[96,116,115,150,118,138,149],
         teamId: true, 
         typeId: 44,
         scoreValue: -1,
-        Increase: -1,
+        Increase: 2,
         rotation: false
     },
     {//DataSet31

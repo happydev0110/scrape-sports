@@ -79,129 +79,141 @@ function EventComponent() {
                 let team1Id = resList.boxscore.teams[team1Idx].team.id;
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 let matchEvtList = [];
-                
+
                 console.log(team1Id, 'team1 Index')
                 console.log(team2Id, 'team2 Index')
-                
+
                 for (let i = 0; i < resList.plays.length; i++) {
                     // console.log(i,'Events List')
                     for (let j = 0; j < dataSetType.length; j++) {
                         // console.log(j, 'Dataset_type')
-                        var playItem = resList.plays[i];
-                        var dataTypeItem = dataSetType[j];
-                        var matchTeamId = team1Id
+                        var currentPlayItem = resList.plays[i];
                         var prevPlayItem = resList.plays[i - 1];
+
+                        var matchTeamId = team1Id;
+                        var dataTypeItem = dataSetType[j];
 
                         if (dataSetType[j].teamId) {
                             matchTeamId = team2Id
                         }
 
-                        if (playItem.team && (playItem.team.id == matchTeamId)) {
+                        if (currentPlayItem.team && (currentPlayItem.team.id == matchTeamId)) {
                             if (dataTypeItem.typeId) {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
-                                    if (playItem.type.id == dataTypeItem.typeId && playItem.scoreValue == dataTypeItem.scoreValue) {
-                                        matchEvtList.push(playItem);
-                                        result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                    if (currentPlayItem.type.id == dataTypeItem.typeId && currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
+                                        matchEvtList.push(currentPlayItem);
+                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        matchEvtList.push(playItem)
+                                        matchEvtList.push(currentPlayItem)
                                         console.log(
-                                            'sequence:',playItem.sequenceNumber, 
-                                            'teamId:',playItem.team.id, 
-                                            'typeId:',playItem.type.id, 
-                                            "scoreValue:",playItem.scoreValue,
-                                            "rotation:", dataTypeItem.rotation, 
-                                            'teamIndex:',tableIndex,
-                                            'increase:',increaseAmount,
-                                            'description:',playItem.text, 
-                                            'homeScore:',playItem.homeScore, 
-                                            'awayScore',playItem.awayScore, 
-                                            'Period:',playItem.period.displayValue, 
-                                            'Clock:',playItem.clock.displayValue, 
-                                            'compare fields:',"teanId,typeId,scoreValue")
+                                            'sequence:', currentPlayItem.sequenceNumber,
+                                            'teamId:', currentPlayItem.team.id,
+                                            'typeId:', currentPlayItem.type.id,
+                                            "scoreValue:", currentPlayItem.scoreValue,
+                                            "rotation:", dataTypeItem.rotation,
+                                            'teamIndex:', tableIndex,
+                                            'increase:', increaseAmount,
+                                            'description:', currentPlayItem.text,
+                                            'homeScore:', currentPlayItem.homeScore,
+                                            'awayScore', currentPlayItem.awayScore,
+                                            'Period:', currentPlayItem.period.displayValue,
+                                            'Clock:', currentPlayItem.clock.displayValue,
+                                            'compare fields:', "teanId,typeId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
-                                    if (playItem.type.id == dataTypeItem.typeId) {
-                                        matchEvtList.push(playItem);
-                                        result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                    if (currentPlayItem.type.id == dataTypeItem.typeId) {
+                                        matchEvtList.push(currentPlayItem);
+                                        // Dataset30
+                                        if (dataTypeItem.index == 30) {
+                                            if (currentPlayItem.clock.displayValue != prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                                                continue;
+                                            }
+                                        }
+                                        // Dataset30
+
+                                        // Dataset48
+                                        // Dataset48
+
+                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        matchEvtList.push(playItem)
+                                        matchEvtList.push(currentPlayItem)
                                         console.log(
-                                            'sequence:',playItem.sequenceNumber, 
-                                            'teamId:',playItem.team.id, 
-                                            'typeId:',playItem.type.id, 
-                                            "scoreValue:",playItem.scoreValue,
+                                            'sequence:', currentPlayItem.sequenceNumber,
+                                            'teamId:', currentPlayItem.team.id,
+                                            'typeId:', currentPlayItem.type.id,
+                                            "scoreValue:", currentPlayItem.scoreValue,
                                             "rotation:", dataTypeItem.rotation,
-                                            'teamIndex:',tableIndex, 
-                                            'increase:',increaseAmount,
-                                            'description:',playItem.text, 
-                                            'homeScore:',playItem.homeScore, 
-                                            'awayScore',playItem.awayScore, 
-                                            'Period:',playItem.period.displayValue, 
-                                            'Clock:',playItem.clock.displayValue, 
-                                            'compare fields:',"teamId, typeId")
+                                            'teamIndex:', tableIndex,
+                                            'increase:', increaseAmount,
+                                            'description:', currentPlayItem.text,
+                                            'homeScore:', currentPlayItem.homeScore,
+                                            'awayScore', currentPlayItem.awayScore,
+                                            'Period:', currentPlayItem.period.displayValue,
+                                            'Clock:', currentPlayItem.clock.displayValue,
+                                            'compare fields:', "teamId, typeId")
                                     }
                                 }
                             } else {
                                 if (dataTypeItem.scoreValue != -1) {
                                     // Compare(teamId, scoreValue)
-                                    if (playItem.scoreValue == dataTypeItem.scoreValue) {
-                                        matchEvtList.push(playItem);
-                                        result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                    if (currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
+                                        matchEvtList.push(currentPlayItem);
+                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         playIndex = i;
 
-                                        matchEvtList.push(playItem)
+                                        matchEvtList.push(currentPlayItem)
                                         console.log(
-                                        'sequence:',playItem.sequenceNumber, 
-                                        'teamId:',playItem.team.id, 
-                                        'typeId:',playItem.type.id, 
-                                        "scoreValue:",playItem.scoreValue,
-                                        "rotation:", dataTypeItem.rotation, 
-                                        'teamIndex:',tableIndex,
-                                        'increase:',increaseAmount,
-                                        'description:',playItem.text, 
-                                        'homeScore:',playItem.homeScore, 
-                                        'awayScore',playItem.awayScore, 
-                                        'Period:',playItem.period.displayValue, 
-                                        'Clock:',playItem.clock.displayValue, 
-                                        'compare fields:',"teamId,scoreValue")
+                                            'sequence:', currentPlayItem.sequenceNumber,
+                                            'teamId:', currentPlayItem.team.id,
+                                            'typeId:', currentPlayItem.type.id,
+                                            "scoreValue:", currentPlayItem.scoreValue,
+                                            "rotation:", dataTypeItem.rotation,
+                                            'teamIndex:', tableIndex,
+                                            'increase:', increaseAmount,
+                                            'description:', currentPlayItem.text,
+                                            'homeScore:', currentPlayItem.homeScore,
+                                            'awayScore', currentPlayItem.awayScore,
+                                            'Period:', currentPlayItem.period.displayValue,
+                                            'Clock:', currentPlayItem.clock.displayValue,
+                                            'compare fields:', "teamId,scoreValue")
                                     }
                                 } else {
                                     // Compare(teamId)
-                                    matchEvtList.push(playItem);
-                                    result = handleScore(playItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                    matchEvtList.push(currentPlayItem);
+                                    result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     increaseAmount = result.increaseMount;
                                     textIndex = result.textIndex;
                                     tableIndex = result.tableIndex;
                                     playIndex = i;
 
-                                    matchEvtList.push(playItem)
+                                    matchEvtList.push(currentPlayItem)
                                     console.log(
-                                        'sequence:',playItem.sequenceNumber, 
-                                        'teamId:',playItem.team.id, 
-                                        'typeId:',playItem.type.id, 
-                                        "scoreValue:",playItem.scoreValue,
-                                        "rotation:", dataTypeItem.rotation, 
-                                        'teamIndex:',tableIndex,
-                                        'increase:',increaseAmount,
-                                        'description:',playItem.text, 
-                                        'homeScore:',playItem.homeScore, 
-                                        'awayScore',playItem.awayScore, 
-                                        'Period:',playItem.period.displayValue, 
-                                        'Clock:',playItem.clock.displayValue, 
-                                        'compare fields:',"teamId")
+                                        'sequence:', currentPlayItem.sequenceNumber,
+                                        'teamId:', currentPlayItem.team.id,
+                                        'typeId:', currentPlayItem.type.id,
+                                        "scoreValue:", currentPlayItem.scoreValue,
+                                        "rotation:", dataTypeItem.rotation,
+                                        'teamIndex:', tableIndex,
+                                        'increase:', increaseAmount,
+                                        'description:', currentPlayItem.text,
+                                        'homeScore:', currentPlayItem.homeScore,
+                                        'awayScore', currentPlayItem.awayScore,
+                                        'Period:', currentPlayItem.period.displayValue,
+                                        'Clock:', currentPlayItem.clock.displayValue,
+                                        'compare fields:', "teamId")
                                 }
                             }
                         }
@@ -345,7 +357,7 @@ function EventComponent() {
                         {
                             selTextIdx == 0 && <>
                                 <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
-                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt?" +"+increaseAmt: ' +0'}</b></p><br />
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
@@ -362,7 +374,7 @@ function EventComponent() {
                         {
                             selTextIdx == 1 && <>
                                 <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
-                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt?" +"+increaseAmt: ' +0'}</b></p><br />
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
@@ -379,7 +391,7 @@ function EventComponent() {
                         {
                             selTextIdx == 2 && <>
                                 <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
-                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt?" +"+increaseAmt: ' +0'}</b></p><br />
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
@@ -396,7 +408,7 @@ function EventComponent() {
                         {
                             selTextIdx == 3 && <>
                                 <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
-                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt?" +"+increaseAmt: ' +0'}</b></p><br />
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
                             </>
                         }
                         <p className='d-inline-block'><b>score:</b></p>
