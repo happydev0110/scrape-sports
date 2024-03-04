@@ -32,6 +32,8 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
 
     if (dataTypeItem.Increase) {
         score[tableIndex] = score[tableIndex] + increaseMount;
+    } else {
+        increaseMount = 0;
     }
     
     if (dataTypeItem.rotation) {
