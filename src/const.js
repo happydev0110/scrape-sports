@@ -382,11 +382,11 @@ export const DATASET_TYPE = [
         rotation: true
     },
     {//DataSet40
-        teamId: false,
+        teamId: true,
         typeId: 62,
         scoreValue: -1,
-        Increase: false,
-        rotation: true
+        Increase: 1,
+        rotation: false
     },
     {//DataSet41
         teamId: true,
