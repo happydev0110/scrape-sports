@@ -80,8 +80,8 @@ function EventComponent() {
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 let matchEvtList = [];
 
-                console.log(team1Id, 'team1 Index')
-                console.log(team2Id, 'team2 Index')
+                console.log(team1Id, 'team1 Id')
+                // console.log(team2Id, 'team2 Index')
 
                 for (let i = 0; i < resList.plays.length; i++) {
                     // console.log(i,'Events List')
