@@ -440,7 +440,7 @@ export const DATASET_TYPE = [
     {//DataSet47
         teamId: true,
         typeId: 22,
-        scoreValue: 1,
+        scoreValue: -1,
         Increase: 1,
         rotation: false
     },
