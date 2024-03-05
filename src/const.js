@@ -534,6 +534,7 @@ export const DATASET_TYPE = [
 
 export const DATASET_TYPE1 = [
     {//DataSet1
+        no:'DS1',
         teamId: false,
         typeId: false,
         scoreValue: 3,
@@ -543,6 +544,7 @@ export const DATASET_TYPE1 = [
         rotation: false
     },
     {//DataSet2
+        no:'DS2',
         teamId: false,
         typeId: 519,
         scoreValue: -1,
@@ -550,6 +552,7 @@ export const DATASET_TYPE1 = [
         rotation: true
     },
     {//DataSet3
+        no:'DS3',
         teamId: true,
         typeId: 519,
         scoreValue: -1,
@@ -557,6 +560,7 @@ export const DATASET_TYPE1 = [
         rotation: true
     },
     {//DataSet4
+        no:'DS4',
         teamId: false,
         typeId: 574,
         scoreValue: 2,
@@ -564,6 +568,7 @@ export const DATASET_TYPE1 = [
         rotation: false
     },
     {//DataSet5
+        no:'DS5',
         teamId: true,
         typeId: 598,
         scoreValue: -1,
@@ -571,6 +576,7 @@ export const DATASET_TYPE1 = [
         rotation: false
     },
     {//DataSet6
+        no:'DS6',
         teamId: false,
         typeId: 540,
         scoreValue: -1,
@@ -580,6 +586,7 @@ export const DATASET_TYPE1 = [
         rotation: false
     },
     {//DataSet7
+        no:'DS7',
         teamId: false,
         typeId: 540,
         scoreValue: -1,
@@ -589,6 +596,7 @@ export const DATASET_TYPE1 = [
         rotation: false
     },
     {//DataSet8
+        no:'DS8',
         teamId: true,
         typeId: 540,
         scoreValue: -1,
@@ -598,6 +606,7 @@ export const DATASET_TYPE1 = [
         rotation: false
     },
     {//DataSet9
+        no:'DS9',
         ncaa: 9,
         teamId: true,
         typeId: 519,
@@ -606,6 +615,7 @@ export const DATASET_TYPE1 = [
         rotation: true
     },
     {//DataSet10-1
+        no:'DS10-1',
         ncaa: 10,
         teamId: true,
         typeId: 519,
@@ -614,6 +624,7 @@ export const DATASET_TYPE1 = [
         rotation: false
     },
     {//DataSet10-2
+        no:'DS10-2',
         teamId: true,
         typeId: false,
         scoreValue: 3,

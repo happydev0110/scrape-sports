@@ -125,6 +125,7 @@ function EventComponent() {
 
                                         matchEvtList.push(currentPlayItem)
                                         console.log(
+                                            'DS_no', dataTypeItem.no,
                                             'sequence:', currentPlayItem.sequenceNumber,
                                             'team1Id:', team1Id,
                                             'teamId:', currentPlayItem.team.id,
@@ -190,6 +191,7 @@ function EventComponent() {
 
                                         matchEvtList.push(currentPlayItem)
                                         console.log(
+                                            'DS_no', dataTypeItem.no,
                                             'sequence:', currentPlayItem.sequenceNumber,
                                             'team1Id:', team1Id,
                                             'teamId:', currentPlayItem.team.id,
@@ -227,6 +229,7 @@ function EventComponent() {
 
                                         matchEvtList.push(currentPlayItem)
                                         console.log(
+                                            'DS_no', dataTypeItem.no,
                                             'sequence:', currentPlayItem.sequenceNumber,
                                             'team1Id:', team1Id,
                                             'teamId:', currentPlayItem.team.id,
@@ -260,6 +263,7 @@ function EventComponent() {
 
                                     matchEvtList.push(currentPlayItem)
                                     console.log(
+                                        'DS_no', dataTypeItem.no,
                                         'sequence:', currentPlayItem.sequenceNumber,
                                         'team1Id:', team1Id,
                                         'teamId:', currentPlayItem.team.id,
