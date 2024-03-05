@@ -532,13 +532,13 @@ export const DATASET_TYPE = [
 ]
 
 export const DATASET_TYPE1 = [
-    {//DataSet1
-        teamId: false,
-        typeId: false,
-        scoreValue: 3,
-        Increase: 3,
-        rotation: false
-    },
+    // {//DataSet1
+    //     teamId: false,
+    //     typeId: false,
+    //     scoreValue: 3,
+    //     Increase: 3,
+    //     rotation: false
+    // },
     {//DataSet2
         teamId: false,
         typeId: 519,
@@ -561,7 +561,7 @@ export const DATASET_TYPE1 = [
         rotation: false
     },
     {//DataSet5
-        teamId: false,
+        teamId: true,
         typeId: 598,
         scoreValue: -1,
         Increase: 1,
@@ -588,4 +588,25 @@ export const DATASET_TYPE1 = [
     //     Increase: 3,
     //     rotation: false
     // },
+    // {//DataSet9
+    //     teamId: false,
+    //     typeId: 0,
+    //     scoreValue: 3,
+    //     Increase: 3,
+    //     rotation: false
+    // },
+    // {//DataSet10
+    //     teamId: false,
+    //     typeId: 0,
+    //     scoreValue: 3,
+    //     Increase: 3,
+    //     rotation: false
+    // },
+    // {//DataSet11
+    //     teamId: false,
+    //     typeId: 0,
+    //     scoreValue: 3,
+    //     Increase: 3,
+    //     rotation: false
+    // }
 ]
