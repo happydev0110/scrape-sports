@@ -1,21 +1,22 @@
 export const URL = {
-    EVENT1:'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
-    EVENT:'https://www.espn.com/nba/schedule',
+    EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+    EVENT_SCHEDULE: 'https://www.espn.com/nba/schedule',
+    
     BASKETBALL: "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary",
 
     NCAA_EVENT: "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary",
-    NCAA_SCORE_BOARD: "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard" 
-    
+    NCAA_SCORE_BOARD: "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
+
 }
 
 export const SPORTS_CATEGORY = [
     {
-        label:'NBA',
-        value:1,
+        label: 'NBA',
+        value: 1,
     },
     {
-        label:'NCAA',
-        value:2,
+        label: 'NCAA',
+        value: 2,
     }
 ]
 
@@ -310,9 +311,9 @@ export const DATASET_TYPE = [
     },
     {//DataSet30
         index: 30,
-        noMatchList:[96,116,115,150,118,138,149],
+        noMatchList: [96, 116, 115, 150, 118, 138, 149],
         description: true,//prev Description
-        teamId: true, 
+        teamId: true,
         typeId: 44,
         scoreValue: -1,
         Increase: 2,
@@ -532,13 +533,15 @@ export const DATASET_TYPE = [
 ]
 
 export const DATASET_TYPE1 = [
-    // {//DataSet1
-    //     teamId: false,
-    //     typeId: false,
-    //     scoreValue: 3,
-    //     Increase: 3,
-    //     rotation: false
-    // },
+    {//DataSet1
+        teamId: false,
+        typeId: false,
+        scoreValue: 3,
+        scoringPlayStatus: true,
+        scoringPlay: true,
+        Increase: 3,
+        rotation: false
+    },
     {//DataSet2
         teamId: false,
         typeId: 519,
@@ -567,46 +570,56 @@ export const DATASET_TYPE1 = [
         Increase: 1,
         rotation: false
     },
-    // {//DataSet6
-    //     teamId: false,
-    //     typeId: 0,
-    //     scoreValue: 3,
-    //     Increase: 3,
-    //     rotation: false
-    // },
-    // {//DataSet7
-    //     teamId: false,
-    //     typeId: 0,
-    //     scoreValue: 3,
-    //     Increase: 3,
-    //     rotation: false
-    // },
-    // {//DataSet8
-    //     teamId: false,
-    //     typeId: 0,
-    //     scoreValue: 3,
-    //     Increase: 3,
-    //     rotation: false
-    // },
-    // {//DataSet9
-    //     teamId: false,
-    //     typeId: 0,
-    //     scoreValue: 3,
-    //     Increase: 3,
-    //     rotation: false
-    // },
-    // {//DataSet10
-    //     teamId: false,
-    //     typeId: 0,
-    //     scoreValue: 3,
-    //     Increase: 3,
-    //     rotation: false
-    // },
-    // {//DataSet11
-    //     teamId: false,
-    //     typeId: 0,
-    //     scoreValue: 3,
-    //     Increase: 3,
-    //     rotation: false
-    // }
+    {//DataSet6
+        teamId: false,
+        typeId: 540,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay: true,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet7
+        teamId: false,
+        typeId: 540,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay: false,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet8
+        teamId: true,
+        typeId: 540,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay: false,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet9
+        ncaa: 9,
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: true
+    },
+    {//DataSet10-1
+        ncaa: 10,
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: false
+    },
+    {//DataSet10-2
+        teamId: true,
+        typeId: false,
+        scoreValue: 3,
+        scoringPlayStatus: true,
+        scoringPlay: false,
+        Increase: 1,
+        rotation: false
+    }
 ]

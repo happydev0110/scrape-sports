@@ -32,7 +32,7 @@ function EventComponent() {
 
     // Get Total Event
     useEffect(() => {
-        axios.get(URL.EVENT1,
+        axios.get(URL.EVENT,
         ).then((response) => {
             setEvents(response.data.events);
         }).catch((err) => {
@@ -109,6 +109,12 @@ function EventComponent() {
                             if (dataTypeItem.typeId) {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
+                                    if (dataTypeItem.scoringPlayStatus) {
+                                        if(currentPlayItem.scoringPlay != dataTypeItem.scoringPlay){
+                                            continue;
+                                        }
+                                    }
+
                                     if (currentPlayItem.type.id == dataTypeItem.typeId && currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
                                         matchEvtList.push(currentPlayItem);
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
@@ -124,6 +130,7 @@ function EventComponent() {
                                             'teamId:', currentPlayItem.team.id,
                                             'typeId:', currentPlayItem.type.id,
                                             "scoreValue:", currentPlayItem.scoreValue,
+                                            'scoringPlay', currentPlayItem.scoringPlay,
                                             "rotation:", dataTypeItem.rotation,
                                             'teamIndex:', tableIndex,
                                             'increase:', increaseAmount,
@@ -136,23 +143,44 @@ function EventComponent() {
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
+                                    
                                     if (currentPlayItem.type.id == dataTypeItem.typeId) {
-                                        matchEvtList.push(currentPlayItem);
-                                        // Dataset30
+                                        // scoringPlayStatus(NCAA)
+                                        if (dataTypeItem.scoringPlayStatus) {
+                                            if(currentPlayItem.scoringPlay != dataTypeItem.scoringPlay){
+                                                continue;
+                                            }   
+                                        }
+
+                                        // DS9-NCAA
+                                        if(dataTypeItem.ncaa === 9){
+                                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 2) {
+                                                continue;
+                                            }
+                                        }
+
+                                        // DS10-NCAA
+                                        if(dataTypeItem.ncaa === 10){
+                                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 3) {
+                                                continue;
+                                            }
+                                        }
+                                        
+                                        // DS30-NBA
                                         if (dataTypeItem.index === 30) {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
                                                 continue;
                                             }
                                         }
-                                        // Dataset30
 
-                                        // Dataset48
+                                        // DS48-NBA
                                         if (dataTypeItem.index === 48) {
                                             if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
                                                 continue;
                                             }
                                         }
-                                        // Dataset48
+
+                                        matchEvtList.push(currentPlayItem);
 
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
@@ -167,6 +195,7 @@ function EventComponent() {
                                             'teamId:', currentPlayItem.team.id,
                                             'typeId:', currentPlayItem.type.id,
                                             "scoreValue:", currentPlayItem.scoreValue,
+                                            'scoringPlay', currentPlayItem.scoringPlay,
                                             "rotation:", dataTypeItem.rotation,
                                             'teamIndex:', tableIndex,
                                             'increase:', increaseAmount,
@@ -181,7 +210,14 @@ function EventComponent() {
                             } else {
                                 if (dataTypeItem.scoreValue != -1) {
                                     // Compare(teamId, scoreValue)
+                                    
                                     if (currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
+                                        if (dataTypeItem.scoringPlayStatus) {
+                                            if(currentPlayItem.scoringPlay != dataTypeItem.scoringPlay){
+                                                continue;
+                                            }    
+                                        }
+
                                         matchEvtList.push(currentPlayItem);
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
@@ -196,6 +232,7 @@ function EventComponent() {
                                             'teamId:', currentPlayItem.team.id,
                                             'typeId:', currentPlayItem.type.id,
                                             "scoreValue:", currentPlayItem.scoreValue,
+                                            'scoringPlay', currentPlayItem.scoringPlay,
                                             "rotation:", dataTypeItem.rotation,
                                             'teamIndex:', tableIndex,
                                             'increase:', increaseAmount,
@@ -208,6 +245,12 @@ function EventComponent() {
                                     }
                                 } else {
                                     // Compare(teamId)
+                                    if (dataTypeItem.scoringPlayStatus) {
+                                        if(currentPlayItem.scoringPlay != dataTypeItem.scoringPlay){
+                                            continue;
+                                        }    
+                                    }
+
                                     matchEvtList.push(currentPlayItem);
                                     result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     increaseAmount = result.increaseMount;
@@ -222,6 +265,7 @@ function EventComponent() {
                                         'teamId:', currentPlayItem.team.id,
                                         'typeId:', currentPlayItem.type.id,
                                         "scoreValue:", currentPlayItem.scoreValue,
+                                        'scoringPlay', currentPlayItem.scoringPlay,
                                         "rotation:", dataTypeItem.rotation,
                                         'teamIndex:', tableIndex,
                                         'increase:', increaseAmount,
@@ -366,8 +410,8 @@ function EventComponent() {
                 <div className='col-md-6'>
                 </div>
             </div>
-            {/* Team Part */}
-            <div className='row py-3'>
+            {/* Team Section */}
+            <div className='row pb-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team1:</h5>
@@ -386,7 +430,7 @@ function EventComponent() {
                     </div>
                 </div>
             </div>
-            <div className='row py-3'>
+            <div className='row pb-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team2:</h5>
@@ -405,7 +449,7 @@ function EventComponent() {
                     </div>
                 </div>
             </div>
-            <div className='row py-3'>
+            <div className='row pb-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team3:</h5>
@@ -424,7 +468,7 @@ function EventComponent() {
                     </div>
                 </div>
             </div>
-            <div className='row py-3'>
+            <div className='row pb-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
                         <h5 className='d-inline-block'>Team4:</h5>
