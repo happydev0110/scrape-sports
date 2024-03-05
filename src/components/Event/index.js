@@ -139,8 +139,8 @@ function EventComponent() {
                                         // Dataset30
 
                                         // Dataset48
-                                        if(dataTypeItem.index === 48){
-                                            if(currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue){
+                                        if (dataTypeItem.index === 48) {
+                                            if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
                                                 continue;
                                             }
                                         }
@@ -365,68 +365,64 @@ function EventComponent() {
             <div className='row py-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Team1</h5>
-                    </div>
-                    <div className={selTblIdx == 0 ? 'border border-danger p-3' : 'border p-3'}>
-                        {
-                            selTextIdx == 0 && <>
-                                <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
-                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
-                            </>
-                        }
-                        <p className='d-inline-block'><b>score:</b></p>
+                        <h5 className='d-inline-block'>Team1:</h5>
                         <p className='d-inline-block px-3'>{tableScore[0]}</p>
                     </div>
+                    <div className={selTblIdx == 0 ? 'border border-danger border-3 p-3' : 'border p-3'}>
+                        {
+                            selTextIdx == 0 && <>
+                                {/* <img className='d-inline-block' src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} /> */}
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
+                            </>
+                        }
+                    </div>
                 </div>
             </div>
             <div className='row py-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Team2</h5>
-                    </div>
-                    <div className={selTblIdx == 1 ? 'border border-danger p-3' : 'border p-3'}>
-                        {
-                            selTextIdx == 1 && <>
-                                <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
-                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
-                            </>
-                        }
-                        <p className='d-inline-block'><b>score:</b></p>
+                        <h5 className='d-inline-block'>Team2:</h5>
                         <p className='d-inline-block px-3'>{tableScore[1]}</p>
                     </div>
+                    <div className={selTblIdx == 1 ? 'border border-danger border-3 p-3' : 'border p-3'}>
+                        {
+                            selTextIdx == 1 && <>
+                                {/* <img className='d-inline-block' src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} /> */}
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
+                            </>
+                        }
+                    </div>
                 </div>
             </div>
             <div className='row py-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Team3</h5>
-                    </div>
-                    <div className={selTblIdx == 2 ? 'border border-danger p-3' : 'border p-3'}>
-                        {
-                            selTextIdx == 2 && <>
-                                <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
-                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
-                            </>
-                        }
-                        <p className='d-inline-block'><b>score:</b></p>
+                        <h5 className='d-inline-block'>Team3:</h5>
                         <p className='d-inline-block px-3'>{tableScore[2]}</p>
                     </div>
+                    <div className={selTblIdx == 2 ? 'border border-danger border-3 p-3' : 'border p-3'}>
+                        {
+                            selTextIdx == 2 && <>
+                                {/* <img className='d-inline-block' src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} /> */}
+                                <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
+                            </>
+                        }
+                    </div>
                 </div>
             </div>
             <div className='row py-3'>
                 <div className='col-md-12'>
                     <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Team4</h5>
+                        <h5 className='d-inline-block'>Team4:</h5>
+                        <p className='d-inline-block px-3'>{tableScore[3]}</p>
                     </div>
-                    <div className={selTblIdx == 3 ? 'border border-danger p-3' : 'border p-3'}>
+                    <div className={selTblIdx == 3 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                         {
                             selTextIdx == 3 && <>
-                                <p className='d-inline-block'><b className='text-danger'>Last Play:</b></p>
+                                {/* <img className='d-inline-block' src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} /> */}
                                 <p className='d-inline-block px-3'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
                             </>
                         }
-                        <p className='d-inline-block'><b>score:</b></p>
-                        <p className='d-inline-block px-3'>{tableScore[3]}</p>
                     </div>
                 </div>
             </div>
