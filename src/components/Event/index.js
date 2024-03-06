@@ -80,6 +80,7 @@ function EventComponent() {
                 let team1Id = resList.boxscore.teams[team1Idx].team.id;
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 let matchEvtList = [];
+                var currentPlayItem,prevPlayItem;
 
                 console.log(team1Id, 'team1 Id')
                 // console.log(team2Id, 'team2 Index')
@@ -88,8 +89,8 @@ function EventComponent() {
                     // console.log(i,'Events List')
                     for (let j = 0; j < dataSetType.length; j++) {
                         // console.log(j, 'Dataset_type')
-                        var currentPlayItem = resList.plays[i];
-                        var prevPlayItem = resList.plays[i - 1];
+                        currentPlayItem = resList.plays[i];
+                        prevPlayItem = resList.plays[i - 1];
 
                         var matchTeamId = team1Id;
                         var selectedTeamIdx = 0;
@@ -100,31 +101,32 @@ function EventComponent() {
                         }
 
                         if (currentPlayItem.team && (currentPlayItem.team.id == matchTeamId)) {
-                            // For Logos
-                            if (team1Id == currentPlayItem.team.id) {
-                                selectedTeamIdx = team1Idx;
-                            } else {
-                                selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
-                            }
-
                             if (dataTypeItem.typeId) {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
                                     if (dataTypeItem.scoringPlayStatus) {
-                                        if(currentPlayItem.scoringPlay != dataTypeItem.scoringPlay){
+                                        if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
                                             continue;
                                         }
                                     }
 
                                     if (currentPlayItem.type.id == dataTypeItem.typeId && currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
+                                        
                                         matchEvtList.push(currentPlayItem);
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
+                                        // For Logos
+                                        if (team1Id == currentPlayItem.team.id) {
+                                            console.log(team1Idx,'team1Id select')
+                                            selectedTeamIdx = team1Idx;
+                                        } else {
+                                            console.log((parseInt(team1Idx) + 1) % 2,'team2Id select')
+                                            selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                        }
                                         // playIndex = i;
 
-                                        matchEvtList.push(currentPlayItem)
                                         console.log(
                                             'DS_NO:', dataTypeItem.no,
                                             'sequence:', currentPlayItem.sequenceNumber,
@@ -145,29 +147,29 @@ function EventComponent() {
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
-                                    
+
                                     if (currentPlayItem.type.id == dataTypeItem.typeId) {
                                         // scoringPlayStatus(NCAA)
                                         if (dataTypeItem.scoringPlayStatus) {
-                                            if(currentPlayItem.scoringPlay != dataTypeItem.scoringPlay){
+                                            if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
                                                 continue;
-                                            }   
+                                            }
                                         }
 
                                         // DS9-NCAA
-                                        if(dataTypeItem.ncaa === 9){
+                                        if (dataTypeItem.ncaa === 9) {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 2) {
                                                 continue;
                                             }
                                         }
 
                                         // DS10-NCAA
-                                        if(dataTypeItem.ncaa === 10){
+                                        if (dataTypeItem.ncaa === 10) {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 3) {
                                                 continue;
                                             }
                                         }
-                                        
+
                                         // DS30-NBA
                                         if (dataTypeItem.index === 30) {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
@@ -182,15 +184,23 @@ function EventComponent() {
                                             }
                                         }
 
+                                        
                                         matchEvtList.push(currentPlayItem);
-
+                                        
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
+                                        // For Logos
+                                        if (team1Id == currentPlayItem.team.id) {
+                                            console.log(team1Idx,'team1Id select')
+                                            selectedTeamIdx = team1Idx;
+                                        } else {
+                                            console.log((parseInt(team1Idx) + 1) % 2,'team2Id select')
+                                            selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                        }
                                         // playIndex = i;
 
-                                        matchEvtList.push(currentPlayItem)
                                         console.log(
                                             'DS_NO:', dataTypeItem.no,
                                             'sequence:', currentPlayItem.sequenceNumber,
@@ -213,22 +223,30 @@ function EventComponent() {
                             } else {
                                 if (dataTypeItem.scoreValue != -1) {
                                     // Compare(teamId, scoreValue)
-                                    
+
                                     if (currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
                                         if (dataTypeItem.scoringPlayStatus) {
-                                            if(currentPlayItem.scoringPlay != dataTypeItem.scoringPlay){
+                                            if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
                                                 continue;
-                                            }    
+                                            }
                                         }
 
+                                        
                                         matchEvtList.push(currentPlayItem);
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
+                                        // For Logos
+                                        if (team1Id == currentPlayItem.team.id) {
+                                            console.log(team1Idx,'team1Id select')
+                                            selectedTeamIdx = team1Idx;
+                                        } else {
+                                            console.log((parseInt(team1Idx) + 1) % 2,'team2Id select')
+                                            selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                        }
                                         // playIndex = i;
 
-                                        matchEvtList.push(currentPlayItem)
                                         console.log(
                                             'DS_NO:', dataTypeItem.no,
                                             'sequence:', currentPlayItem.sequenceNumber,
@@ -250,19 +268,27 @@ function EventComponent() {
                                 } else {
                                     // Compare(teamId)
                                     if (dataTypeItem.scoringPlayStatus) {
-                                        if(currentPlayItem.scoringPlay != dataTypeItem.scoringPlay){
+                                        if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
                                             continue;
-                                        }    
+                                        }
                                     }
 
+                                    
                                     matchEvtList.push(currentPlayItem);
                                     result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     increaseAmount = result.increaseMount;
                                     textIndex = result.textIndex;
                                     tableIndex = result.tableIndex;
+                                    // For Logos
+                                    if (team1Id == currentPlayItem.team.id) {
+                                        console.log(team1Idx,'team1Id select')
+                                        selectedTeamIdx = team1Idx;
+                                    } else {
+                                        console.log((parseInt(team1Idx) + 1) % 2,'team2Id select')
+                                        selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                    }
                                     // playIndex = i;
 
-                                    matchEvtList.push(currentPlayItem)
                                     console.log(
                                         'DS_NO:', dataTypeItem.no,
                                         'sequence:', currentPlayItem.sequenceNumber,
@@ -287,6 +313,7 @@ function EventComponent() {
                 }
 
                 if (result) {
+                    // console.log(selectedTeamIdx, 'team logo Index ')
                     setSelTeamIdx(selectedTeamIdx)
                     setTableScore(result.score);
                     setSelTextIdx(textIndex);
