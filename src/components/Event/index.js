@@ -100,10 +100,11 @@ function EventComponent() {
                         }
 
                         if (currentPlayItem.team && (currentPlayItem.team.id == matchTeamId)) {
-                            if (matchTeamId == currentPlayItem.team.id) {
-                                selectedTeamIdx = 0;
+                            // For Logos
+                            if (team1Id == currentPlayItem.team.id) {
+                                selectedTeamIdx = team1Idx;
                             } else {
-                                selectedTeamIdx = 1;
+                                selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                             }
 
                             if (dataTypeItem.typeId) {
