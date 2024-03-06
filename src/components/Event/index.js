@@ -80,7 +80,9 @@ function EventComponent() {
                 let team1Id = resList.boxscore.teams[team1Idx].team.id;
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 let matchEvtList = [];
-                var currentPlayItem,prevPlayItem;
+                let currentPlayItem,prevPlayItem;
+                let selectedTeamIdx = 0;
+                let matchTeamId = team1Id;
 
                 console.log(team1Id, 'team1 Id')
                 // console.log(team2Id, 'team2 Index')
@@ -91,16 +93,15 @@ function EventComponent() {
                         // console.log(j, 'Dataset_type')
                         currentPlayItem = resList.plays[i];
                         prevPlayItem = resList.plays[i - 1];
-
-                        var matchTeamId = team1Id;
-                        var selectedTeamIdx = 0;
+                        
                         var dataTypeItem = dataSetType[j];
-
+                        
                         if (dataSetType[j].teamId) {
                             matchTeamId = team2Id
                         }
-
+                        
                         if (currentPlayItem.team && (currentPlayItem.team.id == matchTeamId)) {
+
                             if (dataTypeItem.typeId) {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
@@ -314,6 +315,8 @@ function EventComponent() {
 
                 if (result) {
                     // console.log(selectedTeamIdx, 'team logo Index ')
+                    // console.log(currentPlayItem)
+                    // console.log(selectedTeamIdx,'result Team Idx')
                     setSelTeamIdx(selectedTeamIdx)
                     setTableScore(result.score);
                     setSelTextIdx(textIndex);
@@ -338,6 +341,7 @@ function EventComponent() {
         }
     }
 
+    // console.log(selTeamIdx,'render Team Idx')
     return (
         <>
             <div className='row'>
