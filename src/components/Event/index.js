@@ -119,7 +119,7 @@ function EventComponent() {
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         // For Logos
-                                        if (team1Id == currentPlayItem.team.id) {
+                                        if (team1Id == matchTeamId) {
                                             console.log(team1Idx,'team1Id select')
                                             selectedTeamIdx = team1Idx;
                                         } else {
@@ -193,7 +193,7 @@ function EventComponent() {
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         // For Logos
-                                        if (team1Id == currentPlayItem.team.id) {
+                                        if (team1Id == matchTeamId) {
                                             console.log(team1Idx,'team1Id select')
                                             selectedTeamIdx = team1Idx;
                                         } else {
@@ -239,7 +239,7 @@ function EventComponent() {
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
                                         // For Logos
-                                        if (team1Id == currentPlayItem.team.id) {
+                                        if (team1Id == matchTeamId) {
                                             console.log(team1Idx,'team1Id select')
                                             selectedTeamIdx = team1Idx;
                                         } else {
@@ -281,7 +281,7 @@ function EventComponent() {
                                     textIndex = result.textIndex;
                                     tableIndex = result.tableIndex;
                                     // For Logos
-                                    if (team1Id == currentPlayItem.team.id) {
+                                    if (team1Id == matchTeamId) {
                                         console.log(team1Idx,'team1Id select')
                                         selectedTeamIdx = team1Idx;
                                     } else {
