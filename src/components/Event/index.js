@@ -80,28 +80,27 @@ function EventComponent() {
                 let team1Id = resList.boxscore.teams[team1Idx].team.id;
                 let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 let matchEvtList = [];
-                let currentPlayItem,prevPlayItem;
                 let selectedTeamIdx = 0;
-                let matchTeamId = team1Id;
-
+                
                 console.log(team1Id, 'team1 Id')
                 // console.log(team2Id, 'team2 Index')
-
+                
                 for (let i = 0; i < resList.plays.length; i++) {
                     // console.log(i,'Events List')
                     for (let j = 0; j < dataSetType.length; j++) {
                         // console.log(j, 'Dataset_type')
-                        currentPlayItem = resList.plays[i];
-                        prevPlayItem = resList.plays[i - 1];
+                        var currentPlayItem = resList.plays[i];
+                        var prevPlayItem = resList.plays[i - 1];
+                        var matchTeamId = team1Id;
                         
                         var dataTypeItem = dataSetType[j];
                         
-                        if (dataSetType[j].teamId) {
+                        if (dataTypeItem.teamId) {
                             matchTeamId = team2Id
+                            // console.log(matchTeamId, 'match TeamId-> team2Id')
                         }
                         
                         if (currentPlayItem.team && (currentPlayItem.team.id == matchTeamId)) {
-
                             if (dataTypeItem.typeId) {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
@@ -120,10 +119,10 @@ function EventComponent() {
                                         tableIndex = result.tableIndex;
                                         // For Logos
                                         if (team1Id == matchTeamId) {
-                                            console.log(team1Idx,'team1Id select')
+                                            console.log(team1Idx,'team1 Logo')
                                             selectedTeamIdx = team1Idx;
                                         } else {
-                                            console.log((parseInt(team1Idx) + 1) % 2,'team2Id select')
+                                            console.log((parseInt(team1Idx) + 1) % 2,'team2 Logo')
                                             selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                         }
                                         // playIndex = i;
@@ -194,10 +193,10 @@ function EventComponent() {
                                         tableIndex = result.tableIndex;
                                         // For Logos
                                         if (team1Id == matchTeamId) {
-                                            console.log(team1Idx,'team1Id select')
+                                            console.log(team1Idx,'team1 Logo')
                                             selectedTeamIdx = team1Idx;
                                         } else {
-                                            console.log((parseInt(team1Idx) + 1) % 2,'team2Id select')
+                                            console.log((parseInt(team1Idx) + 1) % 2,'team2 Logo')
                                             selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                         }
                                         // playIndex = i;
@@ -240,10 +239,10 @@ function EventComponent() {
                                         tableIndex = result.tableIndex;
                                         // For Logos
                                         if (team1Id == matchTeamId) {
-                                            console.log(team1Idx,'team1Id select')
+                                            console.log(team1Idx,'team1 Logo')
                                             selectedTeamIdx = team1Idx;
                                         } else {
-                                            console.log((parseInt(team1Idx) + 1) % 2,'team2Id select')
+                                            console.log((parseInt(team1Idx) + 1) % 2,'team2 logo')
                                             selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                         }
                                         // playIndex = i;
@@ -282,10 +281,10 @@ function EventComponent() {
                                     tableIndex = result.tableIndex;
                                     // For Logos
                                     if (team1Id == matchTeamId) {
-                                        console.log(team1Idx,'team1Id select')
+                                        console.log(team1Idx,'team1 Logo')
                                         selectedTeamIdx = team1Idx;
                                     } else {
-                                        console.log((parseInt(team1Idx) + 1) % 2,'team2Id select')
+                                        console.log((parseInt(team1Idx) + 1) % 2,'team2 Logo')
                                         selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                     }
                                     // playIndex = i;
