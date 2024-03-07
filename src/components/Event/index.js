@@ -185,6 +185,13 @@ function EventComponent() {
                                         }
                                     }
 
+                                    // NHL-DS2
+                                    if (dataTypeItem.no === 'NHL-DS2') {
+                                        if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official')) {
+                                            continue;
+                                        }
+                                    }
+
                                     // NHL-DS4
                                     if (dataTypeItem.no === 'NHL-DS4') {
                                         if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !currentPlayItem.text.includes('Fighting') || !prevPlayItem.text.includes('Fighting') || currentPlayItem.team.id !== prevPlayItem.team.id) {
