@@ -2,13 +2,14 @@ export const URL = {
     NBA_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
     NCAA_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
     NHL_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
+    SOCCER_TODAY_EVENT: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
     // EVENT_SCHEDULE: 'https://www.espn.com/nba/schedule',
     
     // Event API
     NBA: "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary",
     NCAA: "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary",
     NHL:"https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary",
-
+    SOCCER: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary"
     // NCAA_SCORE_BOARD: "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
 
 }
@@ -25,6 +26,10 @@ export const SPORTS_CATEGORY = [
     {
         label: 'NHL',
         value: 'NHL',
+    },
+    {
+        label: 'SOCCER',
+        value: 'SOCCER',
     },
 ]
 
@@ -76,6 +81,8 @@ export const INTERVAL_TIME = [
     teamId: (false:team1, true:team2)
     typeId: (false: 'No Compare', Int: 'Compare')
     scoreValue: (-1: 'No Compare', Int: 'Compare')
+    scoringPlayStatus: (false: 'No compare',true: 'compare')
+    scoringPlay: (true, false)
     Increase: (false: 'No Increase', Int: 'Increase', -1: previous event Increase)
     roataion: (false: 'No Rotation', true: 'Rotation')
 */
@@ -706,6 +713,16 @@ export const NCAA_DS = [
         scoringPlay: false,
         Increase: 1,
         rotation: false
+    },
+    {//DataSet11
+        no: 'NCAA-DS11',
+        teamId: true,
+        typeId: 540,
+        scoreValue: 3,
+        scoringPlayStatus: true,
+        scoringPlay:true,
+        Increase: false,
+        rotation: false
     }
 ]
 
@@ -800,8 +817,236 @@ export const NHL_DS = [
     },
 ]
 
+export const SOCCER_DS = [
+    {//DataSet1
+        no: 'SOCCER-DS1',
+        teamId: false,
+        typeId: 122,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet2
+        no: 'SOCCER-DS2',
+        teamId: true,
+        typeId: 122,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet3
+        no: 'SOCCER-DS3',
+        teamId: false,
+        typeId: 68,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet4
+        no: 'SOCCER-DS4',
+        teamId: true,
+        typeId: 68,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet5
+        no: 'SOCCER-DS5',
+        teamId: false,
+        typeId: 95,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: true
+    },
+    {//DataSet6
+        no: 'SOCCER-DS6',
+        teamId: true,
+        typeId: 95,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet7
+        no: 'SOCCER-DS7',
+        teamId: false,
+        typeId: 66,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet8
+        no: 'SOCCER-DS8',
+        teamId: true,
+        typeId: 66,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet9
+        no: 'SOCCER-DS9',
+        teamId: false,
+        typeId: 106,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: true
+    },
+    {//DataSet10
+        no: 'SOCCER-DS10',
+        teamId: true,
+        typeId: 106,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet11
+        no: 'SOCCER-DS11',
+        teamId: false,
+        typeId: 137,
+        scoreValue: -1,
+        Increase: 4,
+        rotation: true
+    },
+    {//DataSet12
+        no: 'SOCCER-DS12',
+        teamId: true,
+        typeId: 137,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet13
+        no: 'SOCCER-DS13',
+        teamId: false,
+        typeId: 70,
+        scoreValue: -1,
+        Increase: 4,
+        rotation: true
+    },
+    {//DataSet14
+        no: 'SOCCER-DS14',
+        teamId: true,
+        typeId: 70,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet15
+        no: 'SOCCER-DS15',
+        teamId: false,
+        typeId: 173,
+        scoreValue: -1,
+        Increase: 4,
+        rotation: true
+    },
+    {//DataSet16
+        no: 'SOCCER-DS16',
+        teamId: true,
+        typeId: 173,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet17
+        no: 'SOCCER-DS17',
+        teamId: false,
+        typeId: 97,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet18
+        no: 'SOCCER-DS18',
+        teamId: true,
+        typeId: 97,
+        scoreValue: -1,
+        Increase: 4,
+        rotation: true
+    },
+    {//DataSet19
+        no: 'SOCCER-DS19',
+        teamId: false,
+        typeId: 98,
+        scoreValue: -1,
+        Increase: 4,
+        rotation: true
+    },
+    {//DataSet20
+        no: 'SOCCER-DS20',
+        teamId: true,
+        typeId: 98,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    // {//DataSet21
+    //     no: 'SOCCER-DS21',
+    //     teamId: false,
+    //     typeId: 98,
+    //     scoreValue: -1,
+    //     Increase: 4,
+    //     rotation: true
+    // },
+    {//DataSet22
+        no: 'SOCCER-DS22',
+        teamId: false,
+        typeId: 114,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: true
+    },
+    {//DataSet23
+        no: 'SOCCER-DS23',
+        teamId: false,
+        typeId: 114,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    // {//DataSet24
+    //     no: 'SOCCER-DS24',
+    //     teamId: false,
+    //     typeId: 114,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet25
+    //     no: 'SOCCER-DS25',
+    //     teamId: false,
+    //     typeId: 114,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet26
+    //     no: 'SOCCER-DS26',
+    //     teamId: false,
+    //     typeId: 114,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet27
+    //     no: 'SOCCER-DS27',
+    //     teamId: false,
+    //     typeId: 114,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    {//DataSet28
+        no: 'SOCCER-DS28',
+        teamId: false,
+        typeId: 136,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+]
+
 export const DATASET_TYPE_CATEGORY = {
     NBA: NBA_DS,
     NCAA: NCAA_DS,
-    NHL: NHL_DS
+    NHL: NHL_DS,
+    SOCCER: SOCCER_DS
 }

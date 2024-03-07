@@ -60,6 +60,9 @@ function EventComponent() {
         dataSetType = DATASET_TYPE_CATEGORY[sportCategory];
         apiUrl = URL[sportCategory];
 
+        // console.log(dataSetType,'dataType')
+        // console.log(apiUrl,'api url')
+
         axios.get(apiUrl,
             {
                 params: {
@@ -150,6 +153,7 @@ function EventComponent() {
                             } else {
                                 // Compare(teamId, typeId)
                                 if (currentPlayItem.type.id == dataTypeItem.typeId) {
+                                    console.log('Soccer data');
                                     // scoringPlayStatus(NCAA)
                                     if (dataTypeItem.scoringPlayStatus) {
                                         if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
