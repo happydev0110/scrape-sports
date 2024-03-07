@@ -187,7 +187,7 @@ function EventComponent() {
 
                                     // NHL-DS2
                                     if (dataTypeItem.no === 'NHL-DS2') {
-                                        if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official')) {
+                                        if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge')) {
                                             continue;
                                         }
                                     }
