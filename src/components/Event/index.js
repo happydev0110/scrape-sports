@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Filter from '../../layouts/Filter';
 
-import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY, DATASET_TYPE, DATASET_TYPE1 } from '../../const.js';
+import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY } from '../../const.js';
 import { handleScore } from '../../func.js';
 
 function EventComponent() {
@@ -32,13 +32,15 @@ function EventComponent() {
 
     // Get Total Event
     useEffect(() => {
-        axios.get(URL.NBA_TODAY_EVENT,
+        let apiUrl = URL[sportCategory+'_TODAY_EVENT'];
+
+        axios.get(apiUrl,
         ).then((response) => {
             setEvents(response.data.events);
         }).catch((err) => {
             console.log(err);
         });
-    }, [])
+    }, [sportCategory])
 
     // Get Event List
     useEffect(() => {
@@ -53,7 +55,7 @@ function EventComponent() {
     }, [eventId, intervalTime, team1Idx, sportCategory])
 
     const fetchEventPlay = async () => {
-        let dataSetType, apiUrl;
+        let dataSetType, apiUrl, resList;
 
         dataSetType = DATASET_TYPE_CATEGORY[sportCategory];
         apiUrl = URL[sportCategory];
@@ -66,7 +68,7 @@ function EventComponent() {
             }
         ).then((response) => {
             setPlayList(response.data);
-            var resList = response.data;
+            resList = response.data;
 
             if (team1Idx != -1 && resList.plays) {
                 var score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
@@ -379,12 +381,12 @@ function EventComponent() {
                         label='Today Event'
                         columns={{ label: "name", value: "id" }}
                         list={events ? events : []}
-                        disabled={sportCategory !== 'NBA'}
+                        // disabled={sportCategory !== 'NBA'}
                         handleChange={(id) => {
                             setEventId(id);
-                            setTeam1Idx(-1);
-                            setTeam2Name('');
-                            setPlayList([])
+                            // setTeam1Idx(-1);
+                            // setTeam2Name('');
+                            // setPlayList([])
                         }}
                     />
                 </div>

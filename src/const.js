@@ -1,6 +1,7 @@
 export const URL = {
     NBA_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
-    
+    NCAA_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
+    NHL_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
     // EVENT_SCHEDULE: 'https://www.espn.com/nba/schedule',
     
     // Event API
@@ -763,7 +764,7 @@ export const NHL_DS = [
         typeId: 509,
         scoreValue: -1,
         Increase: false,
-        rotation: true
+        rotation: false
     },
     {//DataSet7
         no: 'NHL-DS7',
