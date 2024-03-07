@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Filter from '../../layouts/Filter';
 
-import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE, DATASET_TYPE1 } from '../../const.js';
+import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY, DATASET_TYPE, DATASET_TYPE1 } from '../../const.js';
 import { handleScore } from '../../func.js';
 
 function EventComponent() {
@@ -13,7 +13,7 @@ function EventComponent() {
 
     const [eventId, setEventId] = useState(-1);
     const [gameId, setGameId] = useState('');
-    const [sportCategory, setSportCategory] = useState(1);
+    const [sportCategory, setSportCategory] = useState('NBA');
 
     const [time, setTime] = useState();
     const [team1Idx, setTeam1Idx] = useState(-1);
@@ -32,7 +32,7 @@ function EventComponent() {
 
     // Get Total Event
     useEffect(() => {
-        axios.get(URL.EVENT,
+        axios.get(URL.NBA_TODAY_EVENT,
         ).then((response) => {
             setEvents(response.data.events);
         }).catch((err) => {
@@ -50,17 +50,13 @@ function EventComponent() {
         } else {
             setPlayList([])
         }
-    }, [eventId, intervalTime, team1Idx])
+    }, [eventId, intervalTime, team1Idx, sportCategory])
 
     const fetchEventPlay = async () => {
+        let dataSetType, apiUrl;
 
-        let dataSetType = DATASET_TYPE;
-        let apiUrl = URL.BASKETBALL;
-
-        if (sportCategory == 2) {
-            dataSetType = DATASET_TYPE1;
-            apiUrl = URL.NCAA_EVENT;
-        }
+        dataSetType = DATASET_TYPE_CATEGORY[sportCategory];
+        apiUrl = URL[sportCategory];
 
         axios.get(apiUrl,
             {
@@ -73,14 +69,14 @@ function EventComponent() {
             var resList = response.data;
 
             if (team1Idx != -1 && resList.plays) {
-                let score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
+                var score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
                 // let playIndex = 0;
-                let result;
+                var result;
 
-                let team1Id = resList.boxscore.teams[team1Idx].team.id;
-                let team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                let matchEvtList = [];
-                let selectedTeamIdx = 0;
+                var team1Id = resList.boxscore.teams[team1Idx].team.id;
+                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                var matchEvtList = [];
+                var selectedTeamIdx = 0;
                 
                 console.log(team1Id, 'team1 Id')
                 // console.log(team2Id, 'team2 Index')
@@ -91,16 +87,16 @@ function EventComponent() {
                         // console.log(j, 'Dataset_type')
                         var currentPlayItem = resList.plays[i];
                         var prevPlayItem = resList.plays[i - 1];
-                        var matchTeamId = team1Id;
                         
                         var dataTypeItem = dataSetType[j];
+                        var matchTeamId = team1Id;
                         
                         if (dataTypeItem.teamId) {
                             matchTeamId = team2Id
-                            // console.log(matchTeamId, 'match TeamId-> team2Id')
                         }
                         
                         if (currentPlayItem.team && (currentPlayItem.team.id == matchTeamId)) {
+                            if(dataTypeItem.no === 'DS1') console.log(dataTypeItem.teamId,matchTeamId,'DS1 matchTeamId')
                             if (dataTypeItem.typeId) {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
@@ -147,7 +143,6 @@ function EventComponent() {
                                     }
                                 } else {
                                     // Compare(teamId, typeId)
-
                                     if (currentPlayItem.type.id == dataTypeItem.typeId) {
                                         // scoringPlayStatus(NCAA)
                                         if (dataTypeItem.scoringPlayStatus) {
@@ -157,33 +152,46 @@ function EventComponent() {
                                         }
 
                                         // DS9-NCAA
-                                        if (dataTypeItem.ncaa === 9) {
+                                        if (dataTypeItem.no === 'NCAA-DS9') {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 2) {
                                                 continue;
                                             }
                                         }
 
                                         // DS10-NCAA
-                                        if (dataTypeItem.ncaa === 10) {
+                                        if (dataTypeItem.no === 'NCAA-DS10-1') {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 3) {
                                                 continue;
                                             }
                                         }
 
                                         // DS30-NBA
-                                        if (dataTypeItem.index === 30) {
+                                        if (dataTypeItem.no === 'NBA-DS30') {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
                                                 continue;
                                             }
                                         }
 
                                         // DS48-NBA
-                                        if (dataTypeItem.index === 48) {
+                                        if (dataTypeItem.no === 'NBA-DS48') {
                                             if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
                                                 continue;
                                             }
                                         }
 
+                                        // NHL-DS4
+                                        if(dataTypeItem.no === 'NHL-DS4'){
+                                            if(currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !currentPlayItem.text.includes('Fighting') || !prevPlayItem.text.includes('Fighting') || currentPlayItem.team.id !== prevPlayItem.team.id ){
+                                                continue;
+                                            }
+                                        }
+
+                                        // NHL-DS5, NHL-DS6 
+                                        if(dataTypeItem.no === 'NHL-DS5' || dataTypeItem.no === 'NHL-DS6'){
+                                            if(currentPlayItem.text.includes('Fighting')){
+                                                continue;
+                                            }
+                                        }
                                         
                                         matchEvtList.push(currentPlayItem);
                                         
@@ -223,14 +231,12 @@ function EventComponent() {
                             } else {
                                 if (dataTypeItem.scoreValue != -1) {
                                     // Compare(teamId, scoreValue)
-
                                     if (currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
                                         if (dataTypeItem.scoringPlayStatus) {
                                             if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
                                                 continue;
                                             }
                                         }
-
                                         
                                         matchEvtList.push(currentPlayItem);
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
@@ -349,7 +355,8 @@ function EventComponent() {
                     <select className="form-select form-select-sm"
                         value={sportCategory}
                         onChange={evt => {
-                            setSportCategory(evt.target.value)
+                            setSportCategory(evt.target.value);
+
                         }}
                     >
                         {
@@ -368,7 +375,7 @@ function EventComponent() {
                         label='Today Event'
                         columns={{ label: "name", value: "id" }}
                         list={events ? events : []}
-                        disabled={sportCategory == 2}
+                        disabled={sportCategory !== 'NBA'}
                         handleChange={(id) => {
                             setEventId(id);
                             setTeam1Idx(-1);
