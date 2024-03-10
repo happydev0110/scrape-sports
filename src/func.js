@@ -63,3 +63,45 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         awayScore
     }
 }
+
+export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem) => {
+    let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
+    let increaseMount = dataTypeItem.Increase;
+
+    if (dataTypeItem.Increase == -1) {
+        increaseMount = prevPlayItem.scoreValue    
+    }
+
+    if (dataTypeItem.Increase) {
+        score[tableIndex] = score[tableIndex] + increaseMount;
+    } else {
+        increaseMount = 0;
+    }
+    
+    if (dataTypeItem.rotation) {
+        tableIndex = tableIndex + 1;
+        tableIndex = tableIndex % 4;
+    }
+    
+    description = playItem.text;
+    
+    if(dataTypeItem.description){
+        description = prevPlayItem.text;
+    }
+    
+    // sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
+    homeScore = playItem.homeScore;
+    awayScore = playItem.awayScore;
+    
+    // console.log(score,'handleScore')
+    return{
+        textIndex,
+        tableIndex,
+        increaseMount,
+        sequenceTime,
+        score,
+        description,
+        homeScore,
+        awayScore
+    }
+}

@@ -3,13 +3,16 @@ export const URL = {
     NCAA_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
     NHL_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
     SOCCER_TODAY_EVENT: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+
     // EVENT_SCHEDULE: 'https://www.espn.com/nba/schedule',
     
     // Event API
     NBA: "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary",
     NCAA: "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary",
     NHL:"https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary",
-    SOCCER: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary"
+    SOCCER1: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary",
+
+    SOCCER:'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/summary'
     // NCAA_SCORE_BOARD: "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
 
 }
@@ -83,7 +86,7 @@ export const INTERVAL_TIME = [
     scoreValue: (-1: 'No Compare', Int: 'Compare')
     scoringPlayStatus: (false: 'No compare',true: 'compare')
     scoringPlay: (true, false)
-    Increase: (false: 'No Increase', Int: 'Increase', -1: previous event Increase)
+    Increase: (false: 'No Increase', Int: 'Increase', -1: previous event scoreValue Increase)
     roataion: (false: 'No Rotation', true: 'Rotation')
 */
 export const NBA_DS = [
@@ -820,7 +823,7 @@ export const NHL_DS = [
 export const SOCCER_DS = [
     {//DataSet1
         no: 'SOCCER-DS1',
-        teamId: false,
+        teamId: 1,
         typeId: 122,
         scoreValue: -1,
         Increase: false,
@@ -828,7 +831,7 @@ export const SOCCER_DS = [
     },
     {//DataSet2
         no: 'SOCCER-DS2',
-        teamId: true,
+        teamId: 2,
         typeId: 122,
         scoreValue: -1,
         Increase: 1,
@@ -836,7 +839,7 @@ export const SOCCER_DS = [
     },
     {//DataSet3
         no: 'SOCCER-DS3',
-        teamId: false,
+        teamId: 1,
         typeId: 68,
         scoreValue: -1,
         Increase: false,
@@ -844,7 +847,7 @@ export const SOCCER_DS = [
     },
     {//DataSet4
         no: 'SOCCER-DS4',
-        teamId: true,
+        teamId: 2,
         typeId: 68,
         scoreValue: -1,
         Increase: 1,
@@ -852,7 +855,7 @@ export const SOCCER_DS = [
     },
     {//DataSet5
         no: 'SOCCER-DS5',
-        teamId: false,
+        teamId: 1,
         typeId: 95,
         scoreValue: -1,
         Increase: 3,
@@ -860,7 +863,7 @@ export const SOCCER_DS = [
     },
     {//DataSet6
         no: 'SOCCER-DS6',
-        teamId: true,
+        teamId: 2,
         typeId: 95,
         scoreValue: -1,
         Increase: false,
@@ -868,7 +871,7 @@ export const SOCCER_DS = [
     },
     {//DataSet7
         no: 'SOCCER-DS7',
-        teamId: false,
+        teamId: 1,
         typeId: 66,
         scoreValue: -1,
         Increase: false,
@@ -876,7 +879,7 @@ export const SOCCER_DS = [
     },
     {//DataSet8
         no: 'SOCCER-DS8',
-        teamId: true,
+        teamId: 2,
         typeId: 66,
         scoreValue: -1,
         Increase: 1,
@@ -884,7 +887,7 @@ export const SOCCER_DS = [
     },
     {//DataSet9
         no: 'SOCCER-DS9',
-        teamId: false,
+        teamId: 1,
         typeId: 106,
         scoreValue: -1,
         Increase: 3,
@@ -892,7 +895,7 @@ export const SOCCER_DS = [
     },
     {//DataSet10
         no: 'SOCCER-DS10',
-        teamId: true,
+        teamId: 2,
         typeId: 106,
         scoreValue: -1,
         Increase: false,
@@ -900,7 +903,7 @@ export const SOCCER_DS = [
     },
     {//DataSet11
         no: 'SOCCER-DS11',
-        teamId: false,
+        teamId: 1,
         typeId: 137,
         scoreValue: -1,
         Increase: 4,
@@ -908,7 +911,7 @@ export const SOCCER_DS = [
     },
     {//DataSet12
         no: 'SOCCER-DS12',
-        teamId: true,
+        teamId: 2,
         typeId: 137,
         scoreValue: -1,
         Increase: false,
@@ -916,7 +919,7 @@ export const SOCCER_DS = [
     },
     {//DataSet13
         no: 'SOCCER-DS13',
-        teamId: false,
+        teamId: 1,
         typeId: 70,
         scoreValue: -1,
         Increase: 4,
@@ -924,7 +927,7 @@ export const SOCCER_DS = [
     },
     {//DataSet14
         no: 'SOCCER-DS14',
-        teamId: true,
+        teamId: 2,
         typeId: 70,
         scoreValue: -1,
         Increase: false,
@@ -932,7 +935,7 @@ export const SOCCER_DS = [
     },
     {//DataSet15
         no: 'SOCCER-DS15',
-        teamId: false,
+        teamId: 1,
         typeId: 173,
         scoreValue: -1,
         Increase: 4,
@@ -940,7 +943,7 @@ export const SOCCER_DS = [
     },
     {//DataSet16
         no: 'SOCCER-DS16',
-        teamId: true,
+        teamId: 2,
         typeId: 173,
         scoreValue: -1,
         Increase: false,
@@ -948,7 +951,7 @@ export const SOCCER_DS = [
     },
     {//DataSet17
         no: 'SOCCER-DS17',
-        teamId: false,
+        teamId: 1,
         typeId: 97,
         scoreValue: -1,
         Increase: false,
@@ -956,7 +959,7 @@ export const SOCCER_DS = [
     },
     {//DataSet18
         no: 'SOCCER-DS18',
-        teamId: true,
+        teamId: 2,
         typeId: 97,
         scoreValue: -1,
         Increase: 4,
@@ -964,7 +967,7 @@ export const SOCCER_DS = [
     },
     {//DataSet19
         no: 'SOCCER-DS19',
-        teamId: false,
+        teamId: 1,
         typeId: 98,
         scoreValue: -1,
         Increase: 4,
@@ -972,7 +975,7 @@ export const SOCCER_DS = [
     },
     {//DataSet20
         no: 'SOCCER-DS20',
-        teamId: true,
+        teamId: 2,
         typeId: 98,
         scoreValue: -1,
         Increase: false,
@@ -980,7 +983,7 @@ export const SOCCER_DS = [
     },
     // {//DataSet21
     //     no: 'SOCCER-DS21',
-    //     teamId: false,
+    //     teamId: 1,
     //     typeId: 98,
     //     scoreValue: -1,
     //     Increase: 4,
@@ -988,7 +991,7 @@ export const SOCCER_DS = [
     // },
     {//DataSet22
         no: 'SOCCER-DS22',
-        teamId: false,
+        teamId: 1,
         typeId: 114,
         scoreValue: -1,
         Increase: 3,
@@ -996,7 +999,7 @@ export const SOCCER_DS = [
     },
     {//DataSet23
         no: 'SOCCER-DS23',
-        teamId: false,
+        teamId: 1,
         typeId: 114,
         scoreValue: -1,
         Increase: false,
@@ -1004,7 +1007,7 @@ export const SOCCER_DS = [
     },
     // {//DataSet24
     //     no: 'SOCCER-DS24',
-    //     teamId: false,
+    //     teamId: 1,
     //     typeId: 114,
     //     scoreValue: -1,
     //     Increase: false,
@@ -1012,7 +1015,7 @@ export const SOCCER_DS = [
     // },
     // {//DataSet25
     //     no: 'SOCCER-DS25',
-    //     teamId: false,
+    //     teamId: 1,
     //     typeId: 114,
     //     scoreValue: -1,
     //     Increase: false,
@@ -1020,7 +1023,7 @@ export const SOCCER_DS = [
     // },
     // {//DataSet26
     //     no: 'SOCCER-DS26',
-    //     teamId: false,
+    //     teamId: 1,
     //     typeId: 114,
     //     scoreValue: -1,
     //     Increase: false,
@@ -1028,7 +1031,7 @@ export const SOCCER_DS = [
     // },
     // {//DataSet27
     //     no: 'SOCCER-DS27',
-    //     teamId: false,
+    //     teamId: 1,
     //     typeId: 114,
     //     scoreValue: -1,
     //     Increase: false,
@@ -1036,7 +1039,7 @@ export const SOCCER_DS = [
     // },
     {//DataSet28
         no: 'SOCCER-DS28',
-        teamId: false,
+        teamId: 1,
         typeId: 136,
         scoreValue: -1,
         Increase: 1,
