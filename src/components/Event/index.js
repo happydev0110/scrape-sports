@@ -92,7 +92,7 @@ function EventComponent() {
 
             // console.log(sportCategory)
             if (sportCategory == 'SOCCER') {
-                // console.log('SOCCER')
+                console.log('Soccer DS')
                 for (let i = 0; i < resList.commentary.length; i++) {
                     // console.log(i,'Events List')
                     for (let j = 0; j < dataSetType.length; j++) {
@@ -110,7 +110,6 @@ function EventComponent() {
                         var dataTypeItem = dataSetType[j];
                         var matchTeamId = team1Id;
 
-                        // console.log('team Item')
                         if (currentPlayItem.play) {
                             // console.log(currentPlayItem,"playItem")
                             if(currentPlayItem.play.team){
@@ -136,10 +135,30 @@ function EventComponent() {
                                 // }
                             }   
 
+                            // console.log('team play Item')
                             result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                             increaseAmount = result.increaseMount;
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
+                            // console.log(result,'paly result')
+                            // console.log('score play list')
+                            console.log(
+                                'DS_NO:', dataTypeItem.no,
+                                'sequence:', currentPlayItem.sequence,
+                                'team1Name:', team1Name,
+                                'team1Name In DS:', currentPlayItem.play.team.displayName,
+                                'typeId:', currentPlayItem.play.type.id,
+                                // "scoreValue:", currentPlayItem.scoreValue,
+                                // 'scoringPlay', currentPlayItem.scoringPlay,
+                                // "rotation:", dataTypeItem.rotation,
+                                // 'teamIndex:', tableIndex,
+                                // 'increase:', increaseAmount,
+                                // 'description:', result.description,
+                                // 'homeScore:', currentPlayItem.homeScore,
+                                // 'awayScore', currentPlayItem.awayScore,
+                                // 'Period:', currentPlayItem.period.displayValue,
+                                // 'Clock:', currentPlayItem.clock.displayValue
+                            )
 
                         }
                     }

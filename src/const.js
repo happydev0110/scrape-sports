@@ -981,14 +981,14 @@ export const SOCCER_DS = [
         Increase: false,
         rotation: true
     },
-    // {//DataSet21
-    //     no: 'SOCCER-DS21',
-    //     teamId: 1,
-    //     typeId: 98,
-    //     scoreValue: -1,
-    //     Increase: 4,
-    //     rotation: true
-    // },
+    {//DataSet21
+        no: 'SOCCER-DS21',
+        teamId: 1,
+        typeId: 117,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
     {//DataSet22
         no: 'SOCCER-DS22',
         teamId: 1,
