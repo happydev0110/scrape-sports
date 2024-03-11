@@ -90,19 +90,13 @@ function EventComponent() {
 
             var score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
 
-            // console.log(sportCategory)
             if (sportCategory == 'SOCCER') {
-                console.log('Soccer DS')
                 for (let i = 0; i < resList.commentary.length; i++) {
-                    // console.log(i,'Events List')
                     for (let j = 0; j < dataSetType.length; j++) {
-                        // console.log(j, 'Dataset_type')
                         var team1Id = resList.boxscore.teams[team1Idx].team.id;
                         var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                         var team1Name = resList.boxscore.teams[team1Idx].team.name;
                         var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-
-                        // console.log(team1Id, team1Name, 'team1 Info')
 
                         var currentPlayItem = resList.commentary[i];
                         var prevPlayItem = resList.commentary[i - 1];
@@ -111,16 +105,73 @@ function EventComponent() {
                         var matchTeamId = team1Id;
 
                         if (currentPlayItem.play) {
-                            // console.log(currentPlayItem,"playItem")
-                            if(currentPlayItem.play.team){
-                                if(dataTypeItem.teamId){
-                                    // console.log(team1Name,'team1Name');
-                                    // console.log(currentPlayItem.play.team.displayName,'playItem')
 
-                                    if (currentPlayItem.play.team.displayName != team1Name) {
-                                        continue;
-                                    }
-                                }   
+                            // SOCCER-DS9
+                            if(dataTypeItem.no == 'SOCCER-DS9'){
+                                if(currentPlayItem.text.indexOf('Goal') !== -1 || currentPlayItem.text.indexOf('OVERTURNED') === -1){
+                                    continue;
+                                }
+
+                                if(currentPlayItem.play.type.text != 'Own Goal' || currentPlayItem.play.type.text != 'Goal-Volley'){
+                                    continue;
+                                }
+
+                            }
+
+                            // SOCCER-DS10
+                            if(dataTypeItem.no === 'SOCCER-DS10'){
+                                if(currentPlayItem.text.indexOf('Goal') !== -1 || currentPlayItem.text.indexOf('OVERTURNED') === -1){
+                                    continue;
+                                }
+
+                                if(currentPlayItem.play.type.text != 'Goal-Volley'){
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS11
+                            if (dataTypeItem.no === 'SOCCER-DS11') {
+                                if(currentPlayItem.text.indexOf('Attempt saved') !== -1 || currentPlayItem.text.indexOf(team1Name) !== -1){
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS12
+                            if (dataTypeItem.no === 'SOCCER-DS12') {
+                                if(currentPlayItem.text.indexOf('Attempt saved') !== -1 || currentPlayItem.text.indexOf(team2Name) !== -1){
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS14
+                            if (dataTypeItem.no === 'SOCCER-DS14') {
+                                if(currentPlayItem.text.indexOf('corner') !== -1 || currentPlayItem.text.indexOf(team1Name) !== -1){
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS15
+                            if (dataTypeItem.no === 'SOCCER-DS15') {
+                                if(currentPlayItem.text.indexOf('corner') !== -1 || currentPlayItem.text.indexOf(team2Name) !== -1){
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS17
+                            if (dataTypeItem.no === 'SOCCER-DS17') {
+                                if(currentPlayItem.text.indexOf('OVERTURNED') !== -1){
+                                    continue;
+                                }
+                            }
+
+                            if(dataTypeItem.teamId !== -1){
+                                if(currentPlayItem.play.team){
+                                    if(dataTypeItem.teamId){
+                                        if (currentPlayItem.play.team.displayName != team1Name) {
+                                            continue;
+                                        }
+                                    }   
+                                }
                             }
     
                             if(dataTypeItem.typeId){

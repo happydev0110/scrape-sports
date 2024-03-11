@@ -81,7 +81,7 @@ export const INTERVAL_TIME = [
 
 /*
     no: (String)
-    teamId: (false:team1, true:team2)
+    teamId: (-1:'No Compare' false:team1, true:team2)
     typeId: (false: 'No Compare', Int: 'Compare')
     scoreValue: (-1: 'No Compare', Int: 'Compare')
     scoringPlayStatus: (false: 'No compare',true: 'compare')
@@ -853,22 +853,6 @@ export const SOCCER_DS = [
         Increase: 1,
         rotation: false
     },
-    {//DataSet5
-        no: 'SOCCER-DS5',
-        teamId: 1,
-        typeId: 95,
-        scoreValue: -1,
-        Increase: 3,
-        rotation: true
-    },
-    {//DataSet6
-        no: 'SOCCER-DS6',
-        teamId: 2,
-        typeId: 95,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
     {//DataSet7
         no: 'SOCCER-DS7',
         teamId: 1,
@@ -888,15 +872,15 @@ export const SOCCER_DS = [
     {//DataSet9
         no: 'SOCCER-DS9',
         teamId: 1,
-        typeId: 106,
+        typeId: false,
         scoreValue: -1,
-        Increase: 3,
+        Increase: 4,
         rotation: true
     },
     {//DataSet10
         no: 'SOCCER-DS10',
         teamId: 2,
-        typeId: 106,
+        typeId: false,
         scoreValue: -1,
         Increase: false,
         rotation: true
@@ -904,83 +888,55 @@ export const SOCCER_DS = [
     {//DataSet11
         no: 'SOCCER-DS11',
         teamId: 1,
-        typeId: 137,
+        typeId: false,
         scoreValue: -1,
-        Increase: 4,
+        Increase: 3,
         rotation: true
     },
     {//DataSet12
         no: 'SOCCER-DS12',
         teamId: 2,
-        typeId: 137,
+        typeId: false,
         scoreValue: -1,
         Increase: false,
-        rotation: true
-    },
-    {//DataSet13
-        no: 'SOCCER-DS13',
-        teamId: 1,
-        typeId: 70,
-        scoreValue: -1,
-        Increase: 4,
         rotation: true
     },
     {//DataSet14
         no: 'SOCCER-DS14',
-        teamId: 2,
-        typeId: 70,
+        teamId: -1,
+        typeId: false,
         scoreValue: -1,
-        Increase: false,
+        Increase: 3,
         rotation: true
     },
     {//DataSet15
         no: 'SOCCER-DS15',
-        teamId: 1,
-        typeId: 173,
+        teamId: -1,
+        typeId: false,
         scoreValue: -1,
-        Increase: 4,
+        Increase: false,
         rotation: true
     },
     {//DataSet16
         no: 'SOCCER-DS16',
-        teamId: 2,
-        typeId: 173,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet17
-        no: 'SOCCER-DS17',
         teamId: 1,
-        typeId: 97,
+        typeId: 136,
         scoreValue: -1,
-        Increase: false,
-        rotation: true
+        Increase: 1,
+        rotation: false
     },
-    {//DataSet18
-        no: 'SOCCER-DS18',
-        teamId: 2,
-        typeId: 97,
-        scoreValue: -1,
-        Increase: 4,
-        rotation: true
-    },
-    {//DataSet19
-        no: 'SOCCER-DS19',
-        teamId: 1,
-        typeId: 98,
-        scoreValue: -1,
-        Increase: 4,
-        rotation: true
-    },
-    {//DataSet20
-        no: 'SOCCER-DS20',
-        teamId: 2,
-        typeId: 98,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
+    
+    //Not complete 
+    // {//DataSet17
+    //     no: 'SOCCER-DS17',
+    //     teamId: -1,
+    //     typeId: -1,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: false
+    // },
+    // Not complete
+
     {//DataSet21
         no: 'SOCCER-DS21',
         teamId: 1,
@@ -999,52 +955,12 @@ export const SOCCER_DS = [
     },
     {//DataSet23
         no: 'SOCCER-DS23',
-        teamId: 1,
+        teamId: 2,
         typeId: 114,
         scoreValue: -1,
         Increase: false,
         rotation: true
-    },
-    // {//DataSet24
-    //     no: 'SOCCER-DS24',
-    //     teamId: 1,
-    //     typeId: 114,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
-    // {//DataSet25
-    //     no: 'SOCCER-DS25',
-    //     teamId: 1,
-    //     typeId: 114,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
-    // {//DataSet26
-    //     no: 'SOCCER-DS26',
-    //     teamId: 1,
-    //     typeId: 114,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
-    // {//DataSet27
-    //     no: 'SOCCER-DS27',
-    //     teamId: 1,
-    //     typeId: 114,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
-    {//DataSet28
-        no: 'SOCCER-DS28',
-        teamId: 1,
-        typeId: 136,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: false
-    },
+    }
 ]
 
 export const DATASET_TYPE_CATEGORY = {
