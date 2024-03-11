@@ -64,7 +64,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     }
 }
 
-export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem) => {
+export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name) => {
     let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
     let increaseMount = dataTypeItem.Increase;
 
@@ -89,12 +89,12 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
         description = prevPlayItem.text;
     }
     
-    // sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
+    sequenceTime = playItem.time.displayValue;
     // homeScore = playItem.homeScore;
     // awayScore = playItem.awayScore;
 
-    homeScore = 0;
-    awayScore = 0;
+    // homeScore = 0;
+    // awayScore = 0;
     
     // console.log(score,'handleScore')
     return{

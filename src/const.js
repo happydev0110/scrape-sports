@@ -823,7 +823,7 @@ export const NHL_DS = [
 export const SOCCER_DS = [
     {//DataSet1
         no: 'SOCCER-DS1',
-        teamId: 1,
+        teamId: false,
         typeId: 122,
         scoreValue: -1,
         Increase: false,
@@ -831,7 +831,7 @@ export const SOCCER_DS = [
     },
     {//DataSet2
         no: 'SOCCER-DS2',
-        teamId: 2,
+        teamId: true,
         typeId: 122,
         scoreValue: -1,
         Increase: 1,
@@ -839,7 +839,7 @@ export const SOCCER_DS = [
     },
     {//DataSet3
         no: 'SOCCER-DS3',
-        teamId: 1,
+        teamId: false,
         typeId: 68,
         scoreValue: -1,
         Increase: false,
@@ -847,7 +847,7 @@ export const SOCCER_DS = [
     },
     {//DataSet4
         no: 'SOCCER-DS4',
-        teamId: 2,
+        teamId: true,
         typeId: 68,
         scoreValue: -1,
         Increase: 1,
@@ -855,7 +855,7 @@ export const SOCCER_DS = [
     },
     {//DataSet7
         no: 'SOCCER-DS7',
-        teamId: 1,
+        teamId: false,
         typeId: 66,
         scoreValue: -1,
         Increase: false,
@@ -863,7 +863,7 @@ export const SOCCER_DS = [
     },
     {//DataSet8
         no: 'SOCCER-DS8',
-        teamId: 2,
+        teamId: true,
         typeId: 66,
         scoreValue: -1,
         Increase: 1,
@@ -871,62 +871,63 @@ export const SOCCER_DS = [
     },
     {//DataSet9
         no: 'SOCCER-DS9',
-        teamId: 1,
+        teamId: false,
         typeId: false,
         scoreValue: -1,
         Increase: 4,
         rotation: true
     },
-    {//DataSet10
-        no: 'SOCCER-DS10',
-        teamId: 2,
-        typeId: false,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet11
-        no: 'SOCCER-DS11',
-        teamId: 1,
-        typeId: false,
-        scoreValue: -1,
-        Increase: 3,
-        rotation: true
-    },
-    {//DataSet12
-        no: 'SOCCER-DS12',
-        teamId: 2,
-        typeId: false,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet14
-        no: 'SOCCER-DS14',
-        teamId: -1,
-        typeId: false,
-        scoreValue: -1,
-        Increase: 3,
-        rotation: true
-    },
-    {//DataSet15
-        no: 'SOCCER-DS15',
-        teamId: -1,
-        typeId: false,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet16
-        no: 'SOCCER-DS16',
-        teamId: 1,
-        typeId: 136,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: false
-    },
+    // {//DataSet10
+    //     no: 'SOCCER-DS10',
+    //     teamId: true,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet11
+    //     no: 'SOCCER-DS11',
+    //     teamId: false,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: 3,
+    //     rotation: true
+    // },
+
+    // {//DataSet12
+    //     no: 'SOCCER-DS12',
+    //     teamId: true,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet14
+    //     no: 'SOCCER-DS14',
+    //     teamId: -1,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: 3,
+    //     rotation: true
+    // },
+    // {//DataSet15
+    //     no: 'SOCCER-DS15',
+    //     teamId: -1,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet16
+    //     no: 'SOCCER-DS16',
+    //     teamId: false,
+    //     typeId: 136,
+    //     scoreValue: -1,
+    //     Increase: 1,
+    //     rotation: false
+    // },
     
-    //Not complete 
+    // Not complete 
     // {//DataSet17
     //     no: 'SOCCER-DS17',
     //     teamId: -1,
@@ -939,7 +940,7 @@ export const SOCCER_DS = [
 
     {//DataSet21
         no: 'SOCCER-DS21',
-        teamId: 1,
+        teamId: false,
         typeId: 117,
         scoreValue: -1,
         Increase: false,
@@ -947,7 +948,7 @@ export const SOCCER_DS = [
     },
     {//DataSet22
         no: 'SOCCER-DS22',
-        teamId: 1,
+        teamId: false,
         typeId: 114,
         scoreValue: -1,
         Increase: 3,
@@ -955,7 +956,7 @@ export const SOCCER_DS = [
     },
     {//DataSet23
         no: 'SOCCER-DS23',
-        teamId: 2,
+        teamId: true,
         typeId: 114,
         scoreValue: -1,
         Increase: false,

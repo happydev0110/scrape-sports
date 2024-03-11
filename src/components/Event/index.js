@@ -32,7 +32,7 @@ function EventComponent() {
 
     // Get Total Event
     useEffect(() => {
-        let apiUrl = URL[sportCategory+'_TODAY_EVENT'];
+        let apiUrl = URL[sportCategory + '_TODAY_EVENT'];
 
         axios.get(apiUrl,
         ).then((response) => {
@@ -78,7 +78,7 @@ function EventComponent() {
 
             // console.log(resList.boxscore.teams[team1Idx],"team ID")
 
-            if(resList.boxscore.teams[team1Idx]){
+            if (resList.boxscore.teams[team1Idx]) {
                 var team1Id = resList.boxscore.teams[team1Idx].team.id;
                 var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 var team1Name = resList.boxscore.teams[team1Idx].team.name;
@@ -91,12 +91,14 @@ function EventComponent() {
             var score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
 
             if (sportCategory == 'SOCCER') {
+                console.log('SOCCER DS START')
                 for (let i = 0; i < resList.commentary.length; i++) {
                     for (let j = 0; j < dataSetType.length; j++) {
                         var team1Id = resList.boxscore.teams[team1Idx].team.id;
                         var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                         var team1Name = resList.boxscore.teams[team1Idx].team.name;
                         var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+                        var team1Score, team2Score = 0;
 
                         var currentPlayItem = resList.commentary[i];
                         var prevPlayItem = resList.commentary[i - 1];
@@ -105,112 +107,137 @@ function EventComponent() {
                         var matchTeamId = team1Id;
 
                         if (currentPlayItem.play) {
-
                             // SOCCER-DS9
-                            if(dataTypeItem.no == 'SOCCER-DS9'){
-                                if(currentPlayItem.text.indexOf('Goal') !== -1 || currentPlayItem.text.indexOf('OVERTURNED') === -1){
+                            if (dataTypeItem.no === 'SOCCER-DS9') {
+                                if (currentPlayItem.text.indexOf('Goal') == -1) {
+                                    continue;
+                                } else {
+                                    let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
+                                    let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
+                                    if(team1NameIdx !== -1 && team2NameIdx !== -1){
+                                        team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx+team1Name.length+1, team1NameIdx+team1Name.length+3));
+                                        team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx+team2Name.length+1, team2NameIdx+team2Name.length+3));
+
+                                        console.log(currentPlayItem.text.slice(team1NameIdx, team1NameIdx+team1Name.length+3))
+                                    }
+                                }
+
+                                if (currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
                                     continue;
                                 }
 
-                                if(currentPlayItem.play.type.text != 'Own Goal' || currentPlayItem.play.type.text != 'Goal-Volley'){
+                                if (currentPlayItem.play) {
+                                    if (currentPlayItem.play.type.text !== 'Own Goal' || currentPlayItem.play.type.text !== 'Goal-Volley') {
+                                        continue;
+                                    }
+                                } else {
                                     continue;
                                 }
-
                             }
 
                             // SOCCER-DS10
-                            if(dataTypeItem.no === 'SOCCER-DS10'){
-                                if(currentPlayItem.text.indexOf('Goal') !== -1 || currentPlayItem.text.indexOf('OVERTURNED') === -1){
+                            if (dataTypeItem.no === 'SOCCER-DS10') {
+                                if (currentPlayItem.text.indexOf('Goal') === -1) {
                                     continue;
                                 }
 
-                                if(currentPlayItem.play.type.text != 'Goal-Volley'){
+                                if (currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
                                     continue;
+                                }
+
+                                if (currentPlayItem.play) {
+                                    if (currentPlayItem.play.type.text !== 'Goal-Volley') {
+                                        continue;
+                                    }
                                 }
                             }
 
                             // SOCCER-DS11
                             if (dataTypeItem.no === 'SOCCER-DS11') {
-                                if(currentPlayItem.text.indexOf('Attempt saved') !== -1 || currentPlayItem.text.indexOf(team1Name) !== -1){
+                                if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
                                     continue;
                                 }
                             }
 
                             // SOCCER-DS12
                             if (dataTypeItem.no === 'SOCCER-DS12') {
-                                if(currentPlayItem.text.indexOf('Attempt saved') !== -1 || currentPlayItem.text.indexOf(team2Name) !== -1){
+                                if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
                                     continue;
                                 }
                             }
 
                             // SOCCER-DS14
                             if (dataTypeItem.no === 'SOCCER-DS14') {
-                                if(currentPlayItem.text.indexOf('corner') !== -1 || currentPlayItem.text.indexOf(team1Name) !== -1){
+                                if (currentPlayItem.text.indexOf('corner') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
                                     continue;
                                 }
                             }
 
                             // SOCCER-DS15
                             if (dataTypeItem.no === 'SOCCER-DS15') {
-                                if(currentPlayItem.text.indexOf('corner') !== -1 || currentPlayItem.text.indexOf(team2Name) !== -1){
+                                if (currentPlayItem.text.indexOf('corner') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
                                     continue;
                                 }
                             }
 
                             // SOCCER-DS17
                             if (dataTypeItem.no === 'SOCCER-DS17') {
-                                if(currentPlayItem.text.indexOf('OVERTURNED') !== -1){
+                                if (currentPlayItem.text.indexOf('OVERTURNED') === -1) {
                                     continue;
                                 }
                             }
 
-                            if(dataTypeItem.teamId !== -1){
-                                if(currentPlayItem.play.team){
-                                    if(dataTypeItem.teamId){
+                            // Compare TeamId
+                            if (dataTypeItem.teamId !== -1) {
+                                if (currentPlayItem.play.team) {
+                                    if (dataTypeItem.teamId) {
+                                        if (currentPlayItem.play.team.displayName != team2Name) {
+                                            continue;
+                                        }
+                                    } else {
                                         if (currentPlayItem.play.team.displayName != team1Name) {
                                             continue;
                                         }
-                                    }   
+                                    }
                                 }
                             }
-    
-                            if(dataTypeItem.typeId){
+
+                            // Compare TypeId
+                            if (dataTypeItem.typeId) {
                                 if (dataTypeItem.typeId != currentPlayItem.play.type.id) {
                                     continue;
                                 }
-                            }   
-                            
-                            if(dataTypeItem.scoreValue !== -1){
+                            }
+
+                            if (dataTypeItem.scoreValue !== -1) {
                                 // if(dataTypeItem.scoreValue != currentPlayItem.play.score){
                                 //     continue;
                                 // }
-                            }   
+                            }
 
-                            // console.log('team play Item')
-                            result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                            result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                             increaseAmount = result.increaseMount;
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
-                            // console.log(result,'paly result')
-                            // console.log('score play list')
-                            console.log(
-                                'DS_NO:', dataTypeItem.no,
-                                'sequence:', currentPlayItem.sequence,
-                                'team1Name:', team1Name,
-                                'team1Name In DS:', currentPlayItem.play.team.displayName,
-                                'typeId:', currentPlayItem.play.type.id,
-                                // "scoreValue:", currentPlayItem.scoreValue,
-                                // 'scoringPlay', currentPlayItem.scoringPlay,
-                                // "rotation:", dataTypeItem.rotation,
-                                // 'teamIndex:', tableIndex,
-                                // 'increase:', increaseAmount,
-                                // 'description:', result.description,
-                                // 'homeScore:', currentPlayItem.homeScore,
-                                // 'awayScore', currentPlayItem.awayScore,
-                                // 'Period:', currentPlayItem.period.displayValue,
-                                // 'Clock:', currentPlayItem.clock.displayValue
-                            )
 
+                            // For Logos
+                            if(currentPlayItem.play){
+                                if (currentPlayItem.play.team.displayName === team1Name) {
+                                    selectedTeamIdx = team1Idx;
+                                } else {
+                                    selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                }
+                            }
+
+                            // console.log(
+                            //     'DS_NO:', dataTypeItem.no,
+                            //     'sequence:', currentPlayItem.sequence,
+                            //     'team1Name:', team1Name,
+                            //     'teamName In DS:', currentPlayItem.play.team.displayName,
+                            //     'typeId:', currentPlayItem.play.type.id,
+                            //     'description:', currentPlayItem.text,
+                            //     'increase:', dataTypeItem.Increase,
+                            // )
                         }
                     }
                 }
@@ -223,15 +250,21 @@ function EventComponent() {
                     setIncreaseAmt(increaseAmount);
                     setDescription(result.description);
                     setTime(result.sequenceTime);
-                    setHomeScore(result.homeScore);
-                    setAwayScore(result.awayScore);
+                }
+
+                if(team1Idx === 1){
+                    setHomeScore(team1Score);
+                    setAwayScore(team2Score);
+                } else {
+                    setHomeScore(team2Score);
+                    setAwayScore(team1Score);
                 }
             } else {
                 if (team1Idx != -1 && resList.plays) {
                     // let playIndex = 0;
                     console.log(team1Id, 'team1 Id')
                     // console.log(team2Id, 'team2 Index')
-    
+
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
                         for (let j = 0; j < dataSetType.length; j++) {
@@ -240,25 +273,25 @@ function EventComponent() {
                             var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                             var team1Name = resList.boxscore.teams[team1Idx].team.name;
                             var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-                            
+
                             // console.log(team1Id, team1Name, 'team1 Info')
 
                             var currentPlayItem = resList.plays[i];
                             var prevPlayItem = resList.plays[i - 1];
-    
+
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
-    
+
                             if (dataTypeItem.teamId !== -1) {
                                 if (dataTypeItem.teamId) {
                                     matchTeamId = team2Id
                                 }
-    
+
                                 if (currentPlayItem.team && (currentPlayItem.team.id != matchTeamId)) {
                                     continue;
                                 }
                             }
-    
+
                             if (dataTypeItem.typeId) {
                                 if (dataTypeItem.scoreValue != -1) {
                                     //Compare(teamId, typeId, scoreValue)
@@ -267,9 +300,9 @@ function EventComponent() {
                                             continue;
                                         }
                                     }
-    
+
                                     if (currentPlayItem.type.id == dataTypeItem.typeId && currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
-    
+
                                         matchEvtList.push(currentPlayItem);
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
@@ -284,7 +317,7 @@ function EventComponent() {
                                             selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                         }
                                         // playIndex = i;
-    
+
                                         console.log(
                                             'DS_NO:', dataTypeItem.no,
                                             'sequence:', currentPlayItem.sequenceNumber,
@@ -312,58 +345,58 @@ function EventComponent() {
                                                 continue;
                                             }
                                         }
-    
+
                                         // DS9-NCAA
                                         if (dataTypeItem.no === 'NCAA-DS9') {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 2) {
                                                 continue;
                                             }
                                         }
-    
+
                                         // DS10-NCAA
                                         if (dataTypeItem.no === 'NCAA-DS10-1') {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 3) {
                                                 continue;
                                             }
                                         }
-    
+
                                         // DS30-NBA
                                         if (dataTypeItem.no === 'NBA-DS30') {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
                                                 continue;
                                             }
                                         }
-    
+
                                         // DS48-NBA
                                         if (dataTypeItem.no === 'NBA-DS48') {
                                             if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
                                                 continue;
                                             }
                                         }
-    
+
                                         // NHL-DS2
                                         if (dataTypeItem.no === 'NHL-DS2') {
                                             if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge')) {
                                                 continue;
                                             }
                                         }
-    
+
                                         // NHL-DS4
                                         if (dataTypeItem.no === 'NHL-DS4') {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !currentPlayItem.text.includes('Fighting') || !prevPlayItem.text.includes('Fighting') || currentPlayItem.team.id !== prevPlayItem.team.id) {
                                                 continue;
                                             }
                                         }
-    
+
                                         // NHL-DS5, NHL-DS6 
                                         if (dataTypeItem.no === 'NHL-DS5' || dataTypeItem.no === 'NHL-DS6') {
                                             if (currentPlayItem.text.includes('Fighting')) {
                                                 continue;
                                             }
                                         }
-    
+
                                         matchEvtList.push(currentPlayItem);
-    
+
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
@@ -377,7 +410,7 @@ function EventComponent() {
                                             selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                         }
                                         // playIndex = i;
-    
+
                                         // console.log(result.description,'result')
                                         console.log(
                                             'DS_NO:', dataTypeItem.no,
@@ -407,7 +440,7 @@ function EventComponent() {
                                                 continue;
                                             }
                                         }
-    
+
                                         matchEvtList.push(currentPlayItem);
                                         result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                         increaseAmount = result.increaseMount;
@@ -422,7 +455,7 @@ function EventComponent() {
                                             selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                         }
                                         // playIndex = i;
-    
+
                                         console.log(
                                             'DS_NO:', dataTypeItem.no,
                                             'sequence:', currentPlayItem.sequenceNumber,
@@ -448,8 +481,8 @@ function EventComponent() {
                                             continue;
                                         }
                                     }
-    
-    
+
+
                                     matchEvtList.push(currentPlayItem);
                                     result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
                                     increaseAmount = result.increaseMount;
@@ -464,7 +497,7 @@ function EventComponent() {
                                         selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                     }
                                     // playIndex = i;
-    
+
                                     console.log(
                                         'DS_NO:', dataTypeItem.no,
                                         'sequence:', currentPlayItem.sequenceNumber,
@@ -486,7 +519,7 @@ function EventComponent() {
                             }
                         }
                     }
-    
+
                     if (result) {
                         // console.log(selectedTeamIdx, 'team logo Index ')
                         // console.log(currentPlayItem)
