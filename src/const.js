@@ -877,65 +877,65 @@ export const SOCCER_DS = [
         Increase: 4,
         rotation: true
     },
-    // {//DataSet10
-    //     no: 'SOCCER-DS10',
-    //     teamId: true,
-    //     typeId: false,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
-    // {//DataSet11
-    //     no: 'SOCCER-DS11',
-    //     teamId: false,
-    //     typeId: false,
-    //     scoreValue: -1,
-    //     Increase: 3,
-    //     rotation: true
-    // },
+    {//DataSet10
+        no: 'SOCCER-DS10',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet11
+        no: 'SOCCER-DS11',
+        teamId: false,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: true
+    },
 
-    // {//DataSet12
-    //     no: 'SOCCER-DS12',
-    //     teamId: true,
-    //     typeId: false,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
-    // {//DataSet14
-    //     no: 'SOCCER-DS14',
-    //     teamId: -1,
-    //     typeId: false,
-    //     scoreValue: -1,
-    //     Increase: 3,
-    //     rotation: true
-    // },
-    // {//DataSet15
-    //     no: 'SOCCER-DS15',
-    //     teamId: -1,
-    //     typeId: false,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
-    // {//DataSet16
-    //     no: 'SOCCER-DS16',
-    //     teamId: false,
-    //     typeId: 136,
-    //     scoreValue: -1,
-    //     Increase: 1,
-    //     rotation: false
-    // },
+    {//DataSet12
+        no: 'SOCCER-DS12',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet14
+        no: 'SOCCER-DS14',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: true
+    },
+    {//DataSet15
+        no: 'SOCCER-DS15',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet16
+        no: 'SOCCER-DS16',
+        teamId: false,
+        typeId: 136,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
     
     // Not complete 
-    // {//DataSet17
-    //     no: 'SOCCER-DS17',
-    //     teamId: -1,
-    //     typeId: -1,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: false
-    // },
+    {//DataSet17
+        no: 'SOCCER-DS17',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
     // Not complete
 
     {//DataSet21

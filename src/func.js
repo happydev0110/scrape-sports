@@ -14,10 +14,10 @@ export const formatDate = (date) => {
 
     if (month < 10) {
         // console.log(year.toString() + '0' + month.toString() + day.toString(), 'date format')
-        return(year.toString() + '0' + month.toString() + day.toString());
+        return (year.toString() + '0' + month.toString() + day.toString());
     } else {
         // console.log(year.toString() + month.toString() + day.toString(), 'date format')
-        return(year.toString() + month.toString() + day.toString())
+        return (year.toString() + month.toString() + day.toString())
     }
     // }
 }
@@ -27,7 +27,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     let increaseMount = dataTypeItem.Increase;
 
     if (dataTypeItem.Increase == -1) {
-        increaseMount = prevPlayItem.scoreValue    
+        increaseMount = prevPlayItem.scoreValue
     }
 
     if (dataTypeItem.Increase) {
@@ -35,24 +35,24 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     } else {
         increaseMount = 0;
     }
-    
+
     if (dataTypeItem.rotation) {
         tableIndex = tableIndex + 1;
         tableIndex = tableIndex % 4;
     }
-    
+
     description = playItem.text;
-    
-    if(dataTypeItem.description){
+
+    if (dataTypeItem.description) {
         description = prevPlayItem.text;
     }
-    
+
     sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
     homeScore = playItem.homeScore;
     awayScore = playItem.awayScore;
-    
+
     // console.log(score,'handleScore')
-    return{
+    return {
         textIndex,
         tableIndex,
         increaseMount,
@@ -69,7 +69,7 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
     let increaseMount = dataTypeItem.Increase;
 
     if (dataTypeItem.Increase == -1) {
-        increaseMount = prevPlayItem.scoreValue    
+        increaseMount = prevPlayItem.scoreValue
     }
 
     if (dataTypeItem.Increase) {
@@ -77,27 +77,53 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
     } else {
         increaseMount = 0;
     }
-    
+
     if (dataTypeItem.rotation) {
         tableIndex = tableIndex + 1;
         tableIndex = tableIndex % 4;
     }
-    
+
     description = playItem.text;
-    
-    if(dataTypeItem.description){
+
+    switch (dataTypeItem.no) {
+        case 'SOCCER-DS9':
+            description = playItem.play.type.text
+            break;
+        case 'SOCCER-DS10':
+            description = playItem.play.type.text
+            break;
+        case 'SOCCER-DS11':
+            description = 'Shot on target'
+            break;
+        case 'SOCCER-DS12':
+            description = 'Shot on target'
+            break;
+        case 'SOCCER-DS14':
+            description = team1Name + ' earns a coner'
+            break;
+        case 'SOCCER-DS15':
+            description = team2Name + ' earns a coner'
+            break;
+        case 'SOCCER-DS21':
+            description = playItem.play.shortText
+            break;
+        default:
+            break;
+    }
+
+    if (dataTypeItem.description) {
         description = prevPlayItem.text;
     }
-    
+
     sequenceTime = playItem.time.displayValue;
     // homeScore = playItem.homeScore;
     // awayScore = playItem.awayScore;
 
     // homeScore = 0;
     // awayScore = 0;
-    
+
     // console.log(score,'handleScore')
-    return{
+    return {
         textIndex,
         tableIndex,
         increaseMount,

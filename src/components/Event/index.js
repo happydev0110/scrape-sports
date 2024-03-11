@@ -117,8 +117,6 @@ function EventComponent() {
                                     if(team1NameIdx !== -1 && team2NameIdx !== -1){
                                         team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx+team1Name.length+1, team1NameIdx+team1Name.length+3));
                                         team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx+team2Name.length+1, team2NameIdx+team2Name.length+3));
-
-                                        console.log(currentPlayItem.text.slice(team1NameIdx, team1NameIdx+team1Name.length+3))
                                     }
                                 }
 
@@ -229,15 +227,15 @@ function EventComponent() {
                                 }
                             }
 
-                            // console.log(
-                            //     'DS_NO:', dataTypeItem.no,
-                            //     'sequence:', currentPlayItem.sequence,
-                            //     'team1Name:', team1Name,
-                            //     'teamName In DS:', currentPlayItem.play.team.displayName,
-                            //     'typeId:', currentPlayItem.play.type.id,
-                            //     'description:', currentPlayItem.text,
-                            //     'increase:', dataTypeItem.Increase,
-                            // )
+                            console.log(
+                                'DS_NO:', dataTypeItem.no,
+                                'sequence:', currentPlayItem.sequence,
+                                'team1Name:', team1Name,
+                                'teamName In DS:', currentPlayItem.play.team.displayName,
+                                'typeId:', currentPlayItem.play.type.id,
+                                'description:', currentPlayItem.text,
+                                'increase:', dataTypeItem.Increase,
+                            )
                         }
                     }
                 }
