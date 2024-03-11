@@ -231,10 +231,11 @@ function EventComponent() {
                                 'DS_NO:', dataTypeItem.no,
                                 'sequence:', currentPlayItem.sequence,
                                 'team1Name:', team1Name,
-                                'teamName In DS:', currentPlayItem.play.team.displayName,
+                                'currentTeam:', currentPlayItem.play.team.displayName,
                                 'typeId:', currentPlayItem.play.type.id,
                                 'description:', currentPlayItem.text,
                                 'increase:', dataTypeItem.Increase,
+                                'rotation:', dataTypeItem.rotation,
                             )
                         }
                     }
