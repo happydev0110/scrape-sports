@@ -238,10 +238,10 @@ function EventComponent() {
                                 'rotation:', dataTypeItem.rotation,
                             )
                             console.log(
-                                'team1:', result.score[0],
-                                'team2:', result.score[1],
-                                'team3:', result.score[2],
-                                'team4:', result.score[3]
+                                'teamIndex0:', result.score[0],
+                                'teamIndex1:', result.score[1],
+                                'teamIndex2:', result.score[2],
+                                'teamIndex3:', result.score[3]
                             )
                         }
                     }
