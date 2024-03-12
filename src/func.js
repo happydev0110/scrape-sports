@@ -87,16 +87,16 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
 
     switch (dataTypeItem.no) {
         case 'SOCCER-DS9':
-            description = playItem.play.type.text
+            description = 'Goal! ' + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS10':
-            description = playItem.play.type.text
+            description = 'Goal! ' + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS11':
-            description = 'Shot on target'
+            description = 'Shot on target ' + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS12':
-            description = 'Shot on target'
+            description = 'Shot on target ' + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS14':
             description = team1Name + ' earns a coner'

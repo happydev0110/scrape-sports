@@ -821,90 +821,90 @@ export const NHL_DS = [
 ]
 
 export const SOCCER_DS = [
-    {//DataSet1
-        no: 'SOCCER-DS1',
-        teamId: false,
-        typeId: 122,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet2
-        no: 'SOCCER-DS2',
-        teamId: true,
-        typeId: 122,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: false
-    },
-    {//DataSet3
-        no: 'SOCCER-DS3',
-        teamId: false,
-        typeId: 68,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet4
-        no: 'SOCCER-DS4',
-        teamId: true,
-        typeId: 68,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: false
-    },
-    {//DataSet7
-        no: 'SOCCER-DS7',
-        teamId: false,
-        typeId: 66,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet8
-        no: 'SOCCER-DS8',
-        teamId: true,
-        typeId: 66,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: false
-    },
-    {//DataSet9
-        no: 'SOCCER-DS9',
-        teamId: false,
-        typeId: false,
-        scoreValue: -1,
-        Increase: 4,
-        rotation: true
-    },
-    {//DataSet10
-        no: 'SOCCER-DS10',
-        teamId: true,
-        typeId: false,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet11
-        no: 'SOCCER-DS11',
-        teamId: false,
-        typeId: false,
-        scoreValue: -1,
-        Increase: 3,
-        rotation: true
-    },
+    // {//DataSet1
+    //     no: 'SOCCER-DS1',
+    //     teamId: false,
+    //     typeId: 122,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet2
+    //     no: 'SOCCER-DS2',
+    //     teamId: true,
+    //     typeId: 122,
+    //     scoreValue: -1,
+    //     Increase: 1,
+    //     rotation: false
+    // },
+    // {//DataSet3
+    //     no: 'SOCCER-DS3',
+    //     teamId: false,
+    //     typeId: 68,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet4
+    //     no: 'SOCCER-DS4',
+    //     teamId: true,
+    //     typeId: 68,
+    //     scoreValue: -1,
+    //     Increase: 1,
+    //     rotation: false
+    // },
+    // {//DataSet7
+    //     no: 'SOCCER-DS7',
+    //     teamId: false,
+    //     typeId: 66,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet8
+    //     no: 'SOCCER-DS8',
+    //     teamId: true,
+    //     typeId: 66,
+    //     scoreValue: -1,
+    //     Increase: 1,
+    //     rotation: false
+    // },
+    // {//DataSet9
+    //     no: 'SOCCER-DS9',
+    //     teamId: false,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: 4,
+    //     rotation: true
+    // },
+    // {//DataSet10
+    //     no: 'SOCCER-DS10',
+    //     teamId: true,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet11
+    //     no: 'SOCCER-DS11',
+    //     teamId: false,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: 3,
+    //     rotation: true
+    // },
 
-    {//DataSet12
-        no: 'SOCCER-DS12',
-        teamId: true,
-        typeId: false,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
+    // {//DataSet12
+    //     no: 'SOCCER-DS12',
+    //     teamId: true,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
     {//DataSet14
         no: 'SOCCER-DS14',
-        teamId: -1,
+        teamId: 2,
         typeId: false,
         scoreValue: -1,
         Increase: 3,
@@ -912,56 +912,56 @@ export const SOCCER_DS = [
     },
     {//DataSet15
         no: 'SOCCER-DS15',
-        teamId: -1,
+        teamId: 2,
         typeId: false,
         scoreValue: -1,
         Increase: false,
         rotation: true
     },
-    {//DataSet16
-        no: 'SOCCER-DS16',
-        teamId: false,
-        typeId: 136,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: false
-    },
+    // {//DataSet16
+    //     no: 'SOCCER-DS16',
+    //     teamId: false,
+    //     typeId: 136,
+    //     scoreValue: -1,
+    //     Increase: 1,
+    //     rotation: false
+    // },
     
-    // Not complete 
-    {//DataSet17
-        no: 'SOCCER-DS17',
-        teamId: -1,
-        typeId: false,
-        scoreValue: -1,
-        Increase: false,
-        rotation: false
-    },
-    // Not complete
+    // // Not complete 
+    // {//DataSet17
+    //     no: 'SOCCER-DS17',
+    //     teamId: -1,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: false
+    // },
+    // // Not complete
 
-    {//DataSet21
-        no: 'SOCCER-DS21',
-        teamId: false,
-        typeId: 117,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet22
-        no: 'SOCCER-DS22',
-        teamId: false,
-        typeId: 114,
-        scoreValue: -1,
-        Increase: 3,
-        rotation: true
-    },
-    {//DataSet23
-        no: 'SOCCER-DS23',
-        teamId: true,
-        typeId: 114,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    }
+    // {//DataSet21
+    //     no: 'SOCCER-DS21',
+    //     teamId: false,
+    //     typeId: 117,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
+    // {//DataSet22
+    //     no: 'SOCCER-DS22',
+    //     teamId: false,
+    //     typeId: 114,
+    //     scoreValue: -1,
+    //     Increase: 3,
+    //     rotation: true
+    // },
+    // {//DataSet23
+    //     no: 'SOCCER-DS23',
+    //     teamId: true,
+    //     typeId: 114,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // }
 ]
 
 export const DATASET_TYPE_CATEGORY = {
