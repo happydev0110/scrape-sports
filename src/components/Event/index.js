@@ -114,9 +114,9 @@ function EventComponent() {
                                 } else {
                                     let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
                                     let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
-                                    if(team1NameIdx !== -1 && team2NameIdx !== -1){
-                                        team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx+team1Name.length+1, team1NameIdx+team1Name.length+3));
-                                        team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx+team2Name.length+1, team2NameIdx+team2Name.length+3));
+                                    if (team1NameIdx !== -1 && team2NameIdx !== -1) {
+                                        team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3));
+                                        team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3));
                                     }
                                 }
 
@@ -219,7 +219,7 @@ function EventComponent() {
                             tableIndex = result.tableIndex;
 
                             // For Logos
-                            if(currentPlayItem.play){
+                            if (currentPlayItem.play) {
                                 if (currentPlayItem.play.team.displayName === team1Name) {
                                     selectedTeamIdx = team1Idx;
                                 } else {
@@ -236,6 +236,8 @@ function EventComponent() {
                                 'description:', currentPlayItem.text,
                                 'increase:', dataTypeItem.Increase,
                                 'rotation:', dataTypeItem.rotation,
+                            )
+                            console.log(
                                 'team1:', result.score[0],
                                 'team2:', result.score[1],
                                 'team3:', result.score[2],
@@ -255,7 +257,7 @@ function EventComponent() {
                     setTime(result.sequenceTime);
                 }
 
-                if(team1Idx === 1){
+                if (team1Idx === 1) {
                     setHomeScore(team1Score);
                     setAwayScore(team2Score);
                 } else {
