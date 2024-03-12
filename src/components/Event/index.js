@@ -236,10 +236,10 @@ function EventComponent() {
                                 'description:', currentPlayItem.text,
                                 'increase:', dataTypeItem.Increase,
                                 'rotation:', dataTypeItem.rotation,
-                                'team1:', tableScore[0],
-                                'team2:', tableScore[1],
-                                'team3:', tableScore[2],
-                                'team4:', tableScore[3]
+                                'team1:', result.score[0],
+                                'team2:', result.score[1],
+                                'team3:', result.score[2],
+                                'team4:', result.score[3]
                             )
                         }
                     }
