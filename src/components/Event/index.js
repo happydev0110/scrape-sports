@@ -109,7 +109,7 @@ function EventComponent() {
                         if (currentPlayItem.play) {
                             // SOCCER-DS9
                             if (dataTypeItem.no === 'SOCCER-DS9') {
-                                if (currentPlayItem.text.indexOf('Goal') === -1) {
+                                if (currentPlayItem.text.indexOf('Goal') == -1) {
                                     continue;
                                 } else {
                                     let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
@@ -166,15 +166,14 @@ function EventComponent() {
 
                             // SOCCER-DS14
                             if (dataTypeItem.no === 'SOCCER-DS14') {
-                                if (currentPlayItem.text.indexOf('Corner') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
+                                if (currentPlayItem.text.indexOf('corner') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
                                     continue;
                                 }
-
                             }
 
                             // SOCCER-DS15
                             if (dataTypeItem.no === 'SOCCER-DS15') {
-                                if (currentPlayItem.text.indexOf('Corner') === -1 || currentPlayItem.text.indexOf('goal') !== -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
+                                if (currentPlayItem.text.indexOf('corner') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
                                     continue;
                                 }
                             }
@@ -234,7 +233,7 @@ function EventComponent() {
                                 'team1Name:', team1Name,
                                 'currentTeam:', currentPlayItem.play.team.displayName,
                                 'typeId:', currentPlayItem.play.type.id,
-                                'description:', result.description,
+                                'description:', currentPlayItem.text,
                                 'increase:', dataTypeItem.Increase,
                                 'rotation:', dataTypeItem.rotation,
                             )
