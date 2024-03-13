@@ -408,7 +408,7 @@ function EventComponent() {
 
                                         // NCAA-DS12
                                         if (dataTypeItem.no === 'NCAA-DS12') {
-                                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574) {
+                                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id != 574) {
                                                 continue;
                                             }
                                         }
