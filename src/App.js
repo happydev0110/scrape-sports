@@ -10,8 +10,7 @@ function App() {
   return (
     <>
       <div className="p-2 bg-primary text-white text-left">
-        <h1>EventDashboard</h1>
-        {/* <p>Resize this responsive page to see the effect!</p> */}
+        <h1>EventGame</h1>
       </div>
       {/* <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
         <div className="container-fluid">
