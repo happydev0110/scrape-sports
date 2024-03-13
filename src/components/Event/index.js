@@ -112,6 +112,20 @@ function EventComponent() {
                         var matchTeamId = team1Id;
 
                         if (currentPlayItem.play) {
+                            // SOCCER-DS7
+                            if (dataTypeItem.no === 'SOCCER-DS7') {
+                                if(currentPlayItem.text.indexOf('Foul by') === -1){
+                                    continue;
+                                }
+                            }   
+
+                            // SOCCER-DS8
+                            if (dataTypeItem.no === 'SOCCER-DS8') {
+                                if(currentPlayItem.text.indexOf('Foul by') === -1){
+                                    continue;
+                                }
+                            }
+
                             // SOCCER-DS9
                             if (dataTypeItem.no === 'SOCCER-DS9') {
                                 if (currentPlayItem.text.indexOf('Goal!') === -1) {

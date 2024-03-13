@@ -86,6 +86,12 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
     description = playItem.text;
 
     switch (dataTypeItem.no) {
+        case 'SOCCER-DS7':
+            description = 'Foul by ' + team1Name + playItem.play.participants[0].athlete.displayName
+            break;
+        case 'SOCCER-DS8':
+            description = 'Foul by ' + team2Name + playItem.play.participants[0].athlete.displayName
+            break;
         case 'SOCCER-DS9':
             description = 'Goal! ' + playItem.play.participants[0].athlete.displayName
             break;

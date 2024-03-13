@@ -19,7 +19,6 @@ function Filter({ handleChange, indexValue, columns, label, list, disabled }) {
             <label className="form-label" style={{ float: "left" }}>{label && label}</label>
             <select className="form-select form-select-sm"
                 value={id}
-                // defaultValue={}
                 onChange={setValue}
                 disabled={disabled}
             >
