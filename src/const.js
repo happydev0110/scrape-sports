@@ -904,7 +904,7 @@ export const SOCCER_DS = [
     },
     {//DataSet14
         no: 'SOCCER-DS14',
-        teamId: 2,
+        teamId: false,
         typeId: false,
         scoreValue: -1,
         Increase: 3,
@@ -912,7 +912,7 @@ export const SOCCER_DS = [
     },
     {//DataSet15
         no: 'SOCCER-DS15',
-        teamId: 2,
+        teamId: true,
         typeId: false,
         scoreValue: -1,
         Increase: false,
