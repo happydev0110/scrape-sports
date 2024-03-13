@@ -6,6 +6,8 @@ import Filter from '../../layouts/Filter';
 import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY } from '../../const.js';
 import { handleScore, handleSoccerScore } from '../../func.js';
 
+import ScoreBoardComp from './scoreBoard.js';
+
 function EventComponent() {
     const [events, setEvents] = useState([]);
     const [playList, setPlayList] = useState([]);
@@ -29,6 +31,9 @@ function EventComponent() {
     const [description, setDescription] = useState('');
 
     const [tableScore, setTableScore] = useState([0, 0, 0, 0]);
+
+    // Tab Index
+    const [tabStatus, setTabStatus] = useState(true);
 
     // Get Total Event
     useEffect(() => {
@@ -109,14 +114,16 @@ function EventComponent() {
                         if (currentPlayItem.play) {
                             // SOCCER-DS9
                             if (dataTypeItem.no === 'SOCCER-DS9') {
-                                if (currentPlayItem.text.indexOf('Goal') == -1) {
+                                if (currentPlayItem.text.indexOf('Goal!') === -1) {
                                     continue;
                                 } else {
                                     let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
                                     let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
                                     if (team1NameIdx !== -1 && team2NameIdx !== -1) {
-                                        team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3));
-                                        team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3));
+                                        // console.log(parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim()), 'team1Score')
+                                        // console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
+                                        team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim());
+                                        team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim());
                                     }
                                 }
 
@@ -124,18 +131,18 @@ function EventComponent() {
                                     continue;
                                 }
 
-                                if (currentPlayItem.play) {
-                                    if (currentPlayItem.play.type.text !== 'Own Goal' || currentPlayItem.play.type.text !== 'Goal-Volley') {
-                                        continue;
-                                    }
-                                } else {
-                                    continue;
-                                }
+                                // if (currentPlayItem.play) {
+                                //     if (currentPlayItem.play.type.text !== 'Own Goal' || currentPlayItem.play.type.text !== 'Goal-Volley') {
+                                //         continue;
+                                //     }
+                                // } else {
+                                //     continue;
+                                // }
                             }
 
                             // SOCCER-DS10
                             if (dataTypeItem.no === 'SOCCER-DS10') {
-                                if (currentPlayItem.text.indexOf('Goal') === -1) {
+                                if (currentPlayItem.text.indexOf('Goal!') === -1) {
                                     continue;
                                 }
 
@@ -143,11 +150,11 @@ function EventComponent() {
                                     continue;
                                 }
 
-                                if (currentPlayItem.play) {
-                                    if (currentPlayItem.play.type.text !== 'Goal-Volley') {
-                                        continue;
-                                    }
-                                }
+                                // if (currentPlayItem.play) {
+                                //     if (currentPlayItem.play.type.text !== 'Goal-Volley') {
+                                //         continue;
+                                //     }
+                                // }
                             }
 
                             // SOCCER-DS11
@@ -166,14 +173,14 @@ function EventComponent() {
 
                             // SOCCER-DS14
                             if (dataTypeItem.no === 'SOCCER-DS14') {
-                                if (currentPlayItem.text.indexOf('Coner,') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
+                                if (currentPlayItem.text.indexOf('Coner') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
                                     continue;
                                 }
                             }
 
                             // SOCCER-DS15
                             if (dataTypeItem.no === 'SOCCER-DS15') {
-                                if (currentPlayItem.text.indexOf('Coner,') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
+                                if (currentPlayItem.text.indexOf('Coner') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
                                     continue;
                                 }
                             }
@@ -181,6 +188,20 @@ function EventComponent() {
                             // SOCCER-DS17
                             if (dataTypeItem.no === 'SOCCER-DS17') {
                                 if (currentPlayItem.text.indexOf('OVERTURNED') === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS24
+                            if (dataTypeItem.no === 'SOCCER-DS24') {
+                                if (currentPlayItem.text.indexOf('Own Goal') === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS25
+                            if (dataTypeItem.no === 'SOCCER-DS25') {
+                                if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
                                     continue;
                                 }
                             }
@@ -555,189 +576,114 @@ function EventComponent() {
         }
     }
 
+    const handleTab = () => {
+        setTabStatus(!tabStatus);
+    }
+
     // console.log(selTeamIdx,'render Team Idx')
     return (
         <>
-            <div className='row'>
-                <div className='col-md-2'>
-                    <label className="form-label" style={{ float: "left" }}>Sports Category</label>
-                    <select className="form-select form-select-sm"
-                        value={sportCategory}
-                        onChange={evt => {
-                            setSportCategory(evt.target.value);
+            {
+                tabStatus && <>
+                    <div className='row'>
+                        <div className='col-md-2'>
+                            <label className="form-label" style={{ float: "left" }}>Sports Category</label>
+                            <select className="form-select form-select-sm"
+                                value={sportCategory}
+                                onChange={evt => {
+                                    setSportCategory(evt.target.value);
 
-                        }}
-                    >
-                        {
-                            SPORTS_CATEGORY.map((item, index) => {
-                                return (
-                                    <option key={index} value={item.value}>{item.label}</option>
-                                )
-                            })
-                        }
-                    </select>
-                </div>
-            </div>
-            <div className='row my-3'>
-                <div className='col-md-3'>
-                    <Filter
-                        label='Today Event'
-                        columns={{ label: "name", value: "id" }}
-                        list={events ? events : []}
-                        // disabled={sportCategory !== 'NBA'}
-                        handleChange={(id) => {
-                            setEventId(id);
-                            // setTeam1Idx(-1);
-                            // setTeam2Name('');
-                            // setPlayList([])
-                        }}
-                    />
-                </div>
-                <div className='col-md-3'>
-                    <label className="form-label">Random GameId</label><br />
-                    <div className="input-group">
-                        <input type="text" className="form-control form-control-sm" placeholder="Game Id"
-                            value={gameId}
-                            onChange={(evt) => { setGameId(evt.target.value) }}
-                        />
-                        <button className="btn btn-success btn-sm" onClick={handleEvent}>Start</button>
+                                }}
+                            >
+                                {
+                                    SPORTS_CATEGORY.map((item, index) => {
+                                        return (
+                                            <option key={index} value={item.value}>{item.label}</option>
+                                        )
+                                    })
+                                }
+                            </select>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className='row my-3'>
-                <div className='col-md-2'>
-                    <label className="form-label" style={{ float: "left" }}>Team1</label>
-                    <select className="form-select form-select-sm"
-                        value={team1Idx}
-                        onChange={evt => {
-                            setTeam1Idx(evt.target.value)
-                            setTeam2Name(evt.target.value != -1 && playList.boxscore.teams[(parseInt(evt.target.value) + 1) % 2].team.name)
-                        }}
-                    >
-                        <option value={-1}>Choose One</option>
-                        {
-                            playList.boxscore && playList.boxscore.teams.map((item, index) => {
-                                return (
-                                    <option key={index} value={index}>{item.team.name}</option>
-                                )
-                            })
-                        }
-                    </select>
-                </div>
-                <div className='col-md-2'>
-                    <label className="form-label">Team2</label>
-                    <input type="text" value={team2Name} className="form-control form-control-sm" disabled />
-                </div>
-                <div className='col-md-2'>
-                    <Filter
-                        label='Interval Rate'
-                        columns={{ label: "label", value: "value" }}
-                        list={INTERVAL_TIME}
-                        handleChange={(time) => { setIntervalTime(time) }}
-                    />
-                </div>
-            </div>
-            <div className='row py-2'>
-                <div className='col-md-2'>
-                    {
-                        eventId != -1 && team1Idx != -1 &&
-                        <>
-                            <div className='d-inline-block'>
-                                <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
-                                <p className='px-2 d-inline-block'><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
+                    <div className='row my-3'>
+                        <div className='col-md-3'>
+                            <Filter
+                                label='Today Event'
+                                columns={{ label: "name", value: "id" }}
+                                list={events ? events : []}
+                                // disabled={sportCategory !== 'NBA'}
+                                handleChange={(id) => {
+                                    setEventId(id);
+                                    // setTeam1Idx(-1);
+                                    // setTeam2Name('');
+                                    // setPlayList([])
+                                }}
+                            />
+                        </div>
+                        <div className='col-md-3'>
+                            <label className="form-label">Random GameId</label><br />
+                            <div className="input-group">
+                                <input type="text" className="form-control form-control-sm" placeholder="Game Id"
+                                    value={gameId}
+                                    onChange={(evt) => { setGameId(evt.target.value) }}
+                                />
+                                <button className="btn btn-success btn-sm" onClick={handleEvent}>Start</button>
                             </div>
-                            <div className='d-inline-block'>
-                                <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
-                                <p className='px-2 d-inline-block'><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
-                            </div>
-                            <div className='d-inline-block'>
-                                <p className='d-inline-block px-5'>{time}</p>
-                            </div>
-                        </>
-                    }
-                </div>
-            </div>
-            <div className='row pb-2'>
-                <div className='col-md-6'>
-                </div>
-            </div>
-            {/* Team Section */}
-            <div className='row pb-3'>
-                <div className='col-md-12'>
-                    <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Team1:</h5>
-                        <p className='d-inline-block px-3'>{tableScore[0]}</p>
+                        </div>
                     </div>
-                    <div className={selTblIdx == 0 ? 'border border-danger border-3 p-3' : 'border p-3'}>
-                        {
-                            selTextIdx == 0 && <>
+                    <div className='row mt-3'>
+                        <div className='col-md-2'>
+                            <label className="form-label" style={{ float: "left" }}>Team1</label>
+                            <select className="form-select form-select-sm"
+                                value={team1Idx}
+                                onChange={evt => {
+                                    setTeam1Idx(evt.target.value)
+                                    setTeam2Name(evt.target.value != -1 && playList.boxscore.teams[(parseInt(evt.target.value) + 1) % 2].team.name)
+                                }}
+                            >
+                                <option value={-1}>Choose One</option>
                                 {
-                                    selTeamIdx != -1 &&
-                                    <img className='d-inline-block' src={playList.boxscore.teams[selTeamIdx].team.logo} style={{ width: 30, height: 30 }} />
+                                    playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                        return (
+                                            <option key={index} value={index}>{item.team.name}</option>
+                                        )
+                                    })
                                 }
-                                <p className='d-inline-block'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
-                            </>
-                        }
+                            </select>
+                        </div>
+                        <div className='col-md-2'>
+                            <label className="form-label">Team2</label>
+                            <input type="text" value={team2Name} className="form-control form-control-sm" disabled />
+                        </div>
+                        <div className='col-md-2'>
+                            <Filter
+                                label='Interval Rate'
+                                columns={{ label: "label", value: "value" }}
+                                list={INTERVAL_TIME}
+                                handleChange={(time) => { setIntervalTime(time) }}
+                            />
+                        </div>
                     </div>
-                </div>
+                </>
+            }
+            <div className='text-center mt-3'>
+                <button className='btn btn-primary' onClick={handleTab}>{tabStatus ? 'Go To Game' : 'Go To Dashboard'}</button>
             </div>
-            <div className='row pb-3'>
-                <div className='col-md-12'>
-                    <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Team2:</h5>
-                        <p className='d-inline-block px-3'>{tableScore[1]}</p>
-                    </div>
-                    <div className={selTblIdx == 1 ? 'border border-danger border-3 p-3' : 'border p-3'}>
-                        {
-                            selTextIdx == 1 && <>
-                                {
-                                    selTeamIdx != -1 &&
-                                    <img className='d-inline-block' src={playList.boxscore.teams[selTeamIdx].team.logo} style={{ width: 30, height: 30 }} />
-                                }
-                                <p className='d-inline-block'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
-                            </>
-                        }
-                    </div>
-                </div>
-            </div>
-            <div className='row pb-3'>
-                <div className='col-md-12'>
-                    <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Team3:</h5>
-                        <p className='d-inline-block px-3'>{tableScore[2]}</p>
-                    </div>
-                    <div className={selTblIdx == 2 ? 'border border-danger border-3 p-3' : 'border p-3'}>
-                        {
-                            selTextIdx == 2 && <>
-                                {
-                                    selTeamIdx != -1 &&
-                                    <img className='d-inline-block' src={playList.boxscore.teams[selTeamIdx].team.logo} style={{ width: 30, height: 30 }} />
-                                }
-                                <p className='d-inline-block'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
-                            </>
-                        }
-                    </div>
-                </div>
-            </div>
-            <div className='row pb-3'>
-                <div className='col-md-12'>
-                    <div className='float-left d-inline-block'>
-                        <h5 className='d-inline-block'>Team4:</h5>
-                        <p className='d-inline-block px-3'>{tableScore[3]}</p>
-                    </div>
-                    <div className={selTblIdx == 3 ? 'border border-danger border-3 p-3' : 'border p-3'}>
-                        {
-                            selTextIdx == 3 && <>
-                                {
-                                    selTeamIdx != -1 &&
-                                    <img className='d-inline-block' src={playList.boxscore.teams[selTeamIdx].team.logo} style={{ width: 30, height: 30 }} />
-                                }
-                                <p className='d-inline-block'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt : ' +0'}</b></p><br />
-                            </>
-                        }
-                    </div>
-                </div>
-            </div>
+            <ScoreBoardComp
+                tabStatus={tabStatus}
+                eventId={eventId}
+                team1Idx={team1Idx}
+                playList={playList}
+                awayScore={awayScore}
+                homeScore={homeScore}
+                time={time}
+                tableScore={tableScore}
+                selTblIdx={selTblIdx}
+                description={description}
+                increaseAmt={increaseAmt}
+                selTeamIdx={selTeamIdx}
+                selTextIdx={selTextIdx}
+            />
         </>
     );
 }

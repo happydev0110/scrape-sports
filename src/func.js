@@ -107,6 +107,12 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
         case 'SOCCER-DS21':
             description = playItem.play.shortText
             break;
+        case 'SOCCER-DS24':
+            description = 'Own Goal ' + playItem.play.participants[0].athlete.displayName
+            break;
+        case 'SOCCER-DS25':
+            description = 'Own Goal ' + playItem.play.participants[0].athlete.displayName
+            break;
         default:
             break;
     }

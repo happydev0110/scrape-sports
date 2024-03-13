@@ -961,7 +961,23 @@ export const SOCCER_DS = [
         scoreValue: -1,
         Increase: false,
         rotation: true
-    }
+    },
+    {//DataSet24
+        no: 'SOCCER-DS24',
+        teamId: false,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 4,
+        rotation: true
+    },
+    {//DataSet25
+        no: 'SOCCER-DS25',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
 ]
 
 export const DATASET_TYPE_CATEGORY = {
