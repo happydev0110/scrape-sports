@@ -420,6 +420,13 @@ function EventComponent() {
                                             }
                                         }
 
+                                        // NCAA-DS13
+                                        if (dataTypeItem.no === 'NCAA-DS13') {
+                                            if (!prevPlayItem.scoringPlay || currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue) {
+                                                continue;
+                                            }
+                                        }
+
                                         // DS30-NBA
                                         if (dataTypeItem.no === 'NBA-DS30') {
                                             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {

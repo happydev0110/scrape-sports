@@ -734,6 +734,14 @@ export const NCAA_DS = [
         scoreValue: -1,
         Increase: 3,
         rotation: true
+    },
+    {//DataSet13
+        no: 'NCAA-DS13',
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: true
     }
 ]
 
