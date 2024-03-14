@@ -617,124 +617,124 @@ export const NBA_DS = [
 ]
 
 export const NCAA_DS = [
-    // {//DataSet1
-    //     no: 'NCAA-DS1',
-    //     teamId: false,
-    //     typeId: false,
-    //     scoreValue: 3,
-    //     scoringPlayStatus: true,
-    //     scoringPlay: true,
-    //     Increase: 3,
-    //     rotation: false
-    // },
-    // {//DataSet2
-    //     no: 'NCAA-DS2',
-    //     teamId: false,
-    //     typeId: 519,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
-    // {//DataSet3
-    //     no: 'NCAA-DS3',
-    //     teamId: true,
-    //     typeId: 519,
-    //     scoreValue: -1,
-    //     Increase: 2,
-    //     rotation: true
-    // },
-    // {//DataSet4
-    //     no: 'NCAA-DS4',
-    //     teamId: false,
-    //     typeId: 574,
-    //     scoreValue: 2,
-    //     Increase: 2,
-    //     rotation: false
-    // },
-    // {//DataSet5
-    //     no: 'NCAA-DS5',
-    //     teamId: true,
-    //     typeId: 598,
-    //     scoreValue: -1,
-    //     Increase: 1,
-    //     rotation: false
-    // },
-    // {//DataSet6
-    //     no: 'NCAA-DS6',
-    //     teamId: false,
-    //     typeId: 540,
-    //     scoreValue: -1,
-    //     scoringPlayStatus: true,
-    //     scoringPlay: true,
-    //     Increase: 1,
-    //     rotation: false
-    // },
-    // {//DataSet7
-    //     no: 'NCAA-DS7',
-    //     teamId: false,
-    //     typeId: 540,
-    //     scoreValue: -1,
-    //     scoringPlayStatus: true,
-    //     scoringPlay: false,
-    //     Increase: false,
-    //     rotation: false
-    // },
-    // {//DataSet8
-    //     no: 'NCAA-DS8',
-    //     teamId: true,
-    //     typeId: 540,
-    //     scoreValue: -1,
-    //     scoringPlayStatus: true,
-    //     scoringPlay: false,
-    //     Increase: 1,
-    //     rotation: false
-    // },
-    // {//DataSet9
-    //     no: 'NCAA-DS9',
-    //     // ncaa: 9,
-    //     teamId: true,
-    //     typeId: 519,
-    //     scoreValue: -1,
-    //     Increase: 3,
-    //     rotation: true
-    // },
-    // {//DataSet10-1
-    //     no: 'NCAA-DS10-1',
-    //     // ncaa: 10,
-    //     teamId: true,
-    //     typeId: 519,
-    //     scoreValue: -1,
-    //     Increase: 3,
-    //     rotation: false
-    // },
-    // {//DataSet10-2
-    //     no: 'NCAA-DS10-2',
-    //     teamId: true,
-    //     typeId: false,
-    //     scoreValue: 3,
-    //     scoringPlayStatus: true,
-    //     scoringPlay: false,
-    //     Increase: 1,
-    //     rotation: false
-    // },
-    // {//DataSet11
-    //     no: 'NCAA-DS11',
-    //     teamId: true,
-    //     typeId: 540,
-    //     scoreValue: -1,
-    //     scoringPlayStatus: true,
-    //     scoringPlay:true,
-    //     Increase: false,
-    //     rotation: false
-    // },
-    // {//DataSet12
-    //     no: 'NCAA-DS12',
-    //     teamId: true,
-    //     typeId: 519,
-    //     scoreValue: -1,
-    //     Increase: 3,
-    //     rotation: true
-    // },
+    {//DataSet1
+        no: 'NCAA-DS1',
+        teamId: false,
+        typeId: false,
+        scoreValue: 3,
+        scoringPlayStatus: true,
+        scoringPlay: true,
+        Increase: 3,
+        rotation: false
+    },
+    {//DataSet2
+        no: 'NCAA-DS2',
+        teamId: false,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet3
+        no: 'NCAA-DS3',
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: true
+    },
+    {//DataSet4
+        no: 'NCAA-DS4',
+        teamId: false,
+        typeId: 574,
+        scoreValue: 2,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet5
+        no: 'NCAA-DS5',
+        teamId: true,
+        typeId: 598,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet6
+        no: 'NCAA-DS6',
+        teamId: false,
+        typeId: 540,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay: true,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet7
+        no: 'NCAA-DS7',
+        teamId: false,
+        typeId: 540,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay: false,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet8
+        no: 'NCAA-DS8',
+        teamId: true,
+        typeId: 540,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay: false,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet9
+        no: 'NCAA-DS9',
+        // ncaa: 9,
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: true
+    },
+    {//DataSet10-1
+        no: 'NCAA-DS10-1',
+        // ncaa: 10,
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: false
+    },
+    {//DataSet10-2
+        no: 'NCAA-DS10-2',
+        teamId: true,
+        typeId: false,
+        scoreValue: 3,
+        scoringPlayStatus: true,
+        scoringPlay: false,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet11
+        no: 'NCAA-DS11',
+        teamId: true,
+        typeId: 540,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay:true,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet12
+        no: 'NCAA-DS12',
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: true
+    },
     {//DataSet13
         no: 'NCAA-DS13',
         teamId: true,
