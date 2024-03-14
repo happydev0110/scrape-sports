@@ -721,7 +721,7 @@ export const NCAA_DS = [
         no: 'NCAA-DS11',
         teamId: true,
         typeId: 540,
-        scoreValue: 3,
+        scoreValue: -1,
         scoringPlayStatus: true,
         scoringPlay:true,
         Increase: false,
