@@ -22,7 +22,7 @@ export const formatDate = (date) => {
     // }
 }
 
-export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem) => {
+export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name) => {
     let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
     let increaseMount = dataTypeItem.Increase;
 
@@ -42,6 +42,17 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     }
 
     description = playItem.text;
+
+    switch (dataTypeItem.no) {
+        case 'NCAA-DS9':
+            description = 'And 1 Basket!'
+            break;
+        case 'NCAA-DS12':
+            description = 'And 1 Basket!'
+            break;
+        default:
+            break;
+    }
 
     if (dataTypeItem.description) {
         description = prevPlayItem.text;

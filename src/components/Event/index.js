@@ -344,7 +344,7 @@ function EventComponent() {
                                     if (currentPlayItem.type.id == dataTypeItem.typeId && currentPlayItem.scoreValue == dataTypeItem.scoreValue) {
 
                                         matchEvtList.push(currentPlayItem);
-                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
@@ -450,7 +450,7 @@ function EventComponent() {
 
                                         matchEvtList.push(currentPlayItem);
 
-                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
@@ -495,7 +495,7 @@ function EventComponent() {
                                         }
 
                                         matchEvtList.push(currentPlayItem);
-                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                                         increaseAmount = result.increaseMount;
                                         textIndex = result.textIndex;
                                         tableIndex = result.tableIndex;
@@ -537,7 +537,7 @@ function EventComponent() {
 
 
                                     matchEvtList.push(currentPlayItem);
-                                    result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem);
+                                    result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                                     increaseAmount = result.increaseMount;
                                     textIndex = result.textIndex;
                                     tableIndex = result.tableIndex;
