@@ -422,7 +422,7 @@ function EventComponent() {
 
                                         // NCAA-DS13
                                         if (dataTypeItem.no === 'NCAA-DS13') {
-                                            if (!prevPlayItem.scoringPlay || currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue) {
+                                            if (!prevPlayItem.scoringPlay || currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
                                                 continue;
                                             }
                                         }
