@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function ScoreBoard(props) {
-    const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx } = props;
+    const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList } = props;
     return (
         <>
             {
@@ -31,7 +31,7 @@ export default function ScoreBoard(props) {
                         </div>
                     </div>
                     {/* Team Section */}
-                    <div className='row pb-3'>
+                    {/* <div className='row pb-3'>
                         <div className='col-md-12'>
                             <div className={selTblIdx == 0 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center'>
@@ -103,6 +103,98 @@ export default function ScoreBoard(props) {
                                         }
                                         <p className='d-inline-block'>{description}<b className='text-danger'>{increaseAmt ? " +" + increaseAmt + " " + time : ' +0 ' + time}</b></p><br />
                                     </>
+                                }
+                            </div>
+                        </div>
+                    </div> */}
+                    <div className='row pb-3'>
+                        <div className='col-md-12'>
+                            <div className={selTblIdx == 0 ? 'border border-danger border-3 p-3' : 'border p-3'}>
+                                <div className='float-left text-center'>
+                                    <h5 className='d-inline-block text-bold bg-primary text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 25 }}>1</h5>
+                                    <p className='d-inline-block px-3'>{tableScore[0]}</p>
+                                </div>
+                                {
+                                    selTextIdx == 0 && historyList.map((item, index) => {
+                                        return (
+                                            <>
+                                                {
+                                                    selTeamIdx != -1 &&
+                                                    <img className='d-inline-block' src={playList.boxscore.teams[item.teamIdx].team.logo} style={{ width: 30, height: 30 }} />
+                                                }
+                                                <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                            </>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row pb-3'>
+                        <div className='col-md-12'>
+                            <div className={selTblIdx == 1 ? 'border border-danger border-3 p-3' : 'border p-3'}>
+                                <div className='float-left text-center'>
+                                    <h5 className='d-inline-block text-bold bg-primary text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 25 }}>2</h5>
+                                    <p className='d-inline-block px-3'>{tableScore[1]}</p>
+                                </div>
+                                {
+                                    selTextIdx == 1 && historyList.map((item, index) => {
+                                        return (
+                                            <>
+                                                {
+                                                    selTeamIdx != -1 &&
+                                                    <img className='d-inline-block' src={playList.boxscore.teams[item.teamIdx].team.logo} style={{ width: 30, height: 30 }} />
+                                                }
+                                                <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                            </>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row pb-3'>
+                        <div className='col-md-12'>
+                            <div className={selTblIdx == 2 ? 'border border-danger border-3 p-3' : 'border p-3'}>
+                                <div className='float-left text-center'>
+                                    <h5 className='d-inline-block text-bold bg-primary text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 25 }}>3</h5>
+                                    <p className='d-inline-block px-3'>{tableScore[2]}</p>
+                                </div>
+                                {
+                                    selTextIdx == 2 && historyList.map((item, index) => {
+                                        return (
+                                            <>
+                                                {
+                                                    selTeamIdx != -1 &&
+                                                    <img className='d-inline-block' src={playList.boxscore.teams[item.teamIdx].team.logo} style={{ width: 30, height: 30 }} />
+                                                }
+                                                <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                            </>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div className='row pb-3'>
+                        <div className='col-md-12'>
+                            <div className={selTblIdx == 3 ? 'border border-danger border-3 p-3' : 'border p-3'}>
+                                <div className='float-left text-center'>
+                                    <h5 className='d-inline-block text-bold bg-primary text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 25 }}>4</h5>
+                                    <p className='d-inline-block px-3'>{tableScore[3]}</p>
+                                </div>
+                                {
+                                    selTextIdx == 3 && historyList.map((item, index) => {
+                                        return (
+                                            <>
+                                                {
+                                                    selTeamIdx != -1 &&
+                                                    <img className='d-inline-block' src={playList.boxscore.teams[item.teamIdx].team.logo} style={{ width: 30, height: 30 }} />
+                                                }
+                                                <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                            </>
+                                        )
+                                    })
                                 }
                             </div>
                         </div>

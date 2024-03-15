@@ -26,8 +26,6 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
     let increaseMount = dataTypeItem.Increase;
 
-    let itemList = []
-    
     if (dataTypeItem.Increase == -1) {
         increaseMount = prevPlayItem.scoreValue
     }
