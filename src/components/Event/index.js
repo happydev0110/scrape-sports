@@ -29,7 +29,7 @@ function EventComponent() {
     const [selTextIdx, setSelTextIdx] = useState(-1);
     const [selTblIdx, setSelTblIdx] = useState(-1);
     const [description, setDescription] = useState('');
-    const [historyList, setHistoryList] = useState([]);
+    const [historyList, setHistoryList] = useState([[],[],[],[]]);
 
     const [tableScore, setTableScore] = useState([0, 0, 0, 0]);
 
@@ -436,6 +436,8 @@ function EventComponent() {
 
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
+                            hisList = historyList;
+
                             // For Logos
                             if (team1Id == matchTeamId) {
                                 // console.log(team1Idx, 'team1 Logo')
@@ -446,21 +448,20 @@ function EventComponent() {
                             }
 
                             if (tableIndex != result.tableIndex) {
-                                // console.log('no same')
-                                hisList = [];
-                            } 
-
-                            hisList.push({
-                                no: dataTypeItem.no,
-                                seq: currentPlayItem.sequenceNumber,
-                                teamId: currentPlayItem.team.id,
-                                teamIdx: selectedTeamIdx,
-                                score: result.score[tableIndex],
-                                description: result.description,
-                                increase: result.increaseMount,
-                                time: currentPlayItem.clock.displayValue
-                            });
-
+                                hisList[tableIndex] = [];
+                            } else {
+                                hisList[textIndex].push({
+                                    no: dataTypeItem.no,
+                                    seq: currentPlayItem.sequenceNumber,
+                                    teamId: currentPlayItem.team.id,
+                                    teamIdx: selectedTeamIdx,
+                                    score: result.score[textIndex],
+                                    description: result.description,
+                                    increase: result.increaseMount,
+                                    time: currentPlayItem.clock.displayValue
+                                });
+                            }
+                            
                             // console.log(hisList,'hisList')
                             increaseAmount = result.increaseMount;
                             textIndex = result.textIndex;

@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function ScoreBoard(props) {
     const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList } = props;
+
+    console.log(historyList,'soccer board')
     return (
         <>
             {
@@ -115,7 +117,7 @@ export default function ScoreBoard(props) {
                                     <p className='d-inline-block px-3'>{tableScore[0]}</p>
                                 </div>
                                 {
-                                    selTextIdx == 0 && historyList.reverse().map((item, index) => {
+                                    historyList[0].reverse().map((item, index) => {
                                         return (
                                             <>
                                                 {
@@ -138,7 +140,7 @@ export default function ScoreBoard(props) {
                                     <p className='d-inline-block px-3'>{tableScore[1]}</p>
                                 </div>
                                 {
-                                    selTextIdx == 1 && historyList.reverse().map((item, index) => {
+                                    historyList[1].reverse().map((item, index) => {
                                         return (
                                             <>
                                                 {
@@ -161,7 +163,7 @@ export default function ScoreBoard(props) {
                                     <p className='d-inline-block px-3'>{tableScore[2]}</p>
                                 </div>
                                 {
-                                    selTextIdx == 2 && historyList.reverse().map((item, index) => {
+                                    historyList[2].reverse().map((item, index) => {
                                         return (
                                             <>
                                                 {
@@ -184,7 +186,7 @@ export default function ScoreBoard(props) {
                                     <p className='d-inline-block px-3'>{tableScore[3]}</p>
                                 </div>
                                 {
-                                    selTextIdx == 3 && historyList.reverse().map((item, index) => {
+                                    historyList[3].reverse().map((item, index) => {
                                         return (
                                             <>
                                                 {
