@@ -448,7 +448,8 @@ function EventComponent() {
                             }
 
                             if (tableIndex != result.tableIndex) {
-                                hisList[tableIndex] = [];
+                                console.log(tableIndex,result.tableIndex,'logs')
+                                hisList[result.tableIndex] = [];
                             } else {
                                 hisList[textIndex].push({
                                     no: dataTypeItem.no,
