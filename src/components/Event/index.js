@@ -236,10 +236,6 @@ function EventComponent() {
                             }
 
                             result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
-                            increaseAmount = result.increaseMount;
-                            textIndex = result.textIndex;
-                            tableIndex = result.tableIndex;
-
                             // For Logos
                             if (currentPlayItem.play) {
                                 if (currentPlayItem.play.team.displayName === team1Name) {
@@ -248,6 +244,29 @@ function EventComponent() {
                                     selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                                 }
                             }
+
+                            console.log(result.tableIndex, tableIndex,'soccer')
+                            // if (tableIndex != result.tableIndex) {
+                            //     // console.log('no same')
+                            //     hisList = [];
+                            // } 
+                            //     // console.log('same',hisList.length)
+                            // hisList.push({
+                            //     no: dataTypeItem.no,
+                            //     seq: currentPlayItem.sequence,
+                            //     teamId: currentPlayItem.play.type.id,
+                            //     teamIdx: selectedTeamIdx,
+                            //     score: result.score[tableIndex],
+                            //     description: result.description,
+                            //     increase: dataTypeItem.Increase,
+                            //     time: currentPlayItem.clock.displayValue
+                            // });
+
+                            // console.log(hisList,'hisList log soccer')
+
+                            increaseAmount = result.increaseMount;
+                            textIndex = result.textIndex;
+                            tableIndex = result.tableIndex;
 
                             console.log(
                                 'DS_NO:', dataTypeItem.no,
@@ -429,19 +448,18 @@ function EventComponent() {
                             if (tableIndex != result.tableIndex) {
                                 // console.log('no same')
                                 hisList = [];
-                            } else {
-                                // console.log('same',hisList.length)
-                                hisList.push({
-                                    no: dataTypeItem.no,
-                                    seq: currentPlayItem.sequenceNumber,
-                                    teamId: currentPlayItem.team.id,
-                                    teamIdx: selectedTeamIdx,
-                                    score: result.score[tableIndex],
-                                    description: result.description,
-                                    increase: result.increaseMount,
-                                    time: currentPlayItem.clock.displayValue
-                                });
-                            }
+                            } 
+
+                            hisList.push({
+                                no: dataTypeItem.no,
+                                seq: currentPlayItem.sequenceNumber,
+                                teamId: currentPlayItem.team.id,
+                                teamIdx: selectedTeamIdx,
+                                score: result.score[tableIndex],
+                                description: result.description,
+                                increase: result.increaseMount,
+                                time: currentPlayItem.clock.displayValue
+                            });
 
                             // console.log(hisList,'hisList')
                             increaseAmount = result.increaseMount;

@@ -115,7 +115,7 @@ export default function ScoreBoard(props) {
                                     <p className='d-inline-block px-3'>{tableScore[0]}</p>
                                 </div>
                                 {
-                                    selTextIdx == 0 && historyList.map((item, index) => {
+                                    selTextIdx == 0 && historyList.reverse().map((item, index) => {
                                         return (
                                             <>
                                                 {
@@ -138,7 +138,7 @@ export default function ScoreBoard(props) {
                                     <p className='d-inline-block px-3'>{tableScore[1]}</p>
                                 </div>
                                 {
-                                    selTextIdx == 1 && historyList.map((item, index) => {
+                                    selTextIdx == 1 && historyList.reverse().map((item, index) => {
                                         return (
                                             <>
                                                 {
@@ -161,7 +161,7 @@ export default function ScoreBoard(props) {
                                     <p className='d-inline-block px-3'>{tableScore[2]}</p>
                                 </div>
                                 {
-                                    selTextIdx == 2 && historyList.map((item, index) => {
+                                    selTextIdx == 2 && historyList.reverse().map((item, index) => {
                                         return (
                                             <>
                                                 {
@@ -184,7 +184,7 @@ export default function ScoreBoard(props) {
                                     <p className='d-inline-block px-3'>{tableScore[3]}</p>
                                 </div>
                                 {
-                                    selTextIdx == 3 && historyList.map((item, index) => {
+                                    selTextIdx == 3 && historyList.reverse().map((item, index) => {
                                         return (
                                             <>
                                                 {
