@@ -3,7 +3,7 @@ import React from 'react';
 export default function ScoreBoard(props) {
     const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList } = props;
 
-    console.log(historyList,'soccer board')
+    // console.log(historyList,'soccer board')
     return (
         <>
             {

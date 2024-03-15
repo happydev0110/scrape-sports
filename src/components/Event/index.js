@@ -98,6 +98,8 @@ function EventComponent() {
 
             if (sportCategory == 'SOCCER') {
                 console.log('SOCCER DS START')
+                let hisList = [];
+
                 for (let i = 0; i < resList.commentary.length; i++) {
                     for (let j = 0; j < dataSetType.length; j++) {
                         var team1Id = resList.boxscore.teams[team1Idx].team.id;
@@ -236,6 +238,7 @@ function EventComponent() {
                             }
 
                             result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
+                            hisList = historyList;
                             // For Logos
                             if (currentPlayItem.play) {
                                 if (currentPlayItem.play.team.displayName === team1Name) {
@@ -245,45 +248,45 @@ function EventComponent() {
                                 }
                             }
 
-                            console.log(result.tableIndex, tableIndex,'soccer')
-                            // if (tableIndex != result.tableIndex) {
-                            //     // console.log('no same')
-                            //     hisList = [];
-                            // } 
-                            //     // console.log('same',hisList.length)
-                            // hisList.push({
-                            //     no: dataTypeItem.no,
-                            //     seq: currentPlayItem.sequence,
-                            //     teamId: currentPlayItem.play.type.id,
-                            //     teamIdx: selectedTeamIdx,
-                            //     score: result.score[tableIndex],
-                            //     description: result.description,
-                            //     increase: dataTypeItem.Increase,
-                            //     time: currentPlayItem.clock.displayValue
-                            // });
-
-                            // console.log(hisList,'hisList log soccer')
+                            // console.log(result.tableIndex, result.textIndex,'soccer')
+                            if (tableIndex != result.tableIndex) {
+                                // console.log(tableIndex,result.tableIndex,'logs')
+                                // console.log('no match')
+                                hisList[result.tableIndex] = [];
+                            } else {
+                                console.log('match', result.textIndex, hisList)
+                                hisList[result.textIndex].push({
+                                    no: dataTypeItem.no,
+                                    seq: currentPlayItem.sequence,
+                                    teamId: currentPlayItem.team.id,
+                                    teamIdx: selectedTeamIdx,
+                                    score: result.score[result.textIndex],
+                                    description: result.description,
+                                    increase: result.increaseMount,
+                                    time: currentPlayItem.clock.displayValue
+                                });
+                            }
 
                             increaseAmount = result.increaseMount;
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
-                            console.log(
-                                'DS_NO:', dataTypeItem.no,
-                                'sequence:', currentPlayItem.sequence,
-                                'team1Name:', team1Name,
-                                'currentTeam:', currentPlayItem.play.team.displayName,
-                                'typeId:', currentPlayItem.play.type.id,
-                                'description:', result.description,
-                                'increase:', dataTypeItem.Increase,
-                                'rotation:', dataTypeItem.rotation,
-                            )
-                            console.log(
-                                'teamIndex0:', result.score[0],
-                                'teamIndex1:', result.score[1],
-                                'teamIndex2:', result.score[2],
-                                'teamIndex3:', result.score[3]
-                            )
+                            // console.log(
+                            //     'DS_NO:', dataTypeItem.no,
+                            //     'sequence:', currentPlayItem.sequence,
+                            //     'team1Name:', team1Name,
+                            //     'currentTeam:', currentPlayItem.play.team.displayName,
+                            //     'typeId:', currentPlayItem.play.type.id,
+                            //     'description:', result.description,
+                            //     'increase:', dataTypeItem.Increase,
+                            //     'rotation:', dataTypeItem.rotation,
+                            // )
+                            // console.log(
+                            //     'teamIndex0:', result.score[0],
+                            //     'teamIndex1:', result.score[1],
+                            //     'teamIndex2:', result.score[2],
+                            //     'teamIndex3:', result.score[3]
+                            // )
                         }
                     }
                 }
@@ -296,6 +299,7 @@ function EventComponent() {
                     setIncreaseAmt(increaseAmount);
                     setDescription(result.description);
                     setTime(result.sequenceTime);
+                    setHistoryList(hisList);
                 }
 
                 if (team1Idx === 1) {
@@ -310,7 +314,7 @@ function EventComponent() {
                     // let playIndex = 0;
                     console.log(team1Id, 'team1 Id')
                     // console.log(team2Id, 'team2 Index')
-                    var hisList = [];
+                    let hisList = [];
 
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
@@ -448,7 +452,7 @@ function EventComponent() {
                             }
 
                             if (tableIndex != result.tableIndex) {
-                                console.log(tableIndex,result.tableIndex,'logs')
+                                // console.log(tableIndex,result.tableIndex,'logs')
                                 hisList[result.tableIndex] = [];
                             } else {
                                 hisList[result.textIndex].push({
@@ -478,6 +482,8 @@ function EventComponent() {
                                 "scoreValue:", currentPlayItem.scoreValue,
                                 'scoringPlay', currentPlayItem.scoringPlay,
                                 "rotation:", dataTypeItem.rotation,
+                                'textIdx:', textIndex,
+                                'tableIdx:', tableIndex,
                                 'teamIndex:', tableIndex,
                                 'increase:', increaseAmount,
                                 'description:', result.description,
