@@ -253,8 +253,17 @@ function EventComponent() {
                                 // console.log(tableIndex,result.tableIndex,'logs')
                                 // console.log('no match')
                                 hisList[result.tableIndex] = [];
+                                hisList[result.textIndex].push({
+                                    no: dataTypeItem.no,
+                                    seq: currentPlayItem.sequence,
+                                    teamId: currentPlayItem.team.id,
+                                    teamIdx: selectedTeamIdx,
+                                    score: result.score[result.textIndex],
+                                    description: result.description,
+                                    increase: result.increaseMount,
+                                    time: currentPlayItem.clock.displayValue
+                                });
                             } else {
-                                console.log('match', result.textIndex, hisList)
                                 hisList[result.textIndex].push({
                                     no: dataTypeItem.no,
                                     seq: currentPlayItem.sequence,
@@ -281,12 +290,12 @@ function EventComponent() {
                             //     'increase:', dataTypeItem.Increase,
                             //     'rotation:', dataTypeItem.rotation,
                             // )
-                            // console.log(
-                            //     'teamIndex0:', result.score[0],
-                            //     'teamIndex1:', result.score[1],
-                            //     'teamIndex2:', result.score[2],
-                            //     'teamIndex3:', result.score[3]
-                            // )
+                            console.log(
+                                'teamIndex0:', result.score[0],
+                                'teamIndex1:', result.score[1],
+                                'teamIndex2:', result.score[2],
+                                'teamIndex3:', result.score[3]
+                            )
                         }
                     }
                 }
@@ -454,6 +463,16 @@ function EventComponent() {
                             if (tableIndex != result.tableIndex) {
                                 // console.log(tableIndex,result.tableIndex,'logs')
                                 hisList[result.tableIndex] = [];
+                                hisList[result.textIndex].push({
+                                    no: dataTypeItem.no,
+                                    seq: currentPlayItem.sequenceNumber,
+                                    teamId: currentPlayItem.team.id,
+                                    teamIdx: selectedTeamIdx,
+                                    score: result.score[result.textIndex],
+                                    description: result.description,
+                                    increase: result.increaseMount,
+                                    time: currentPlayItem.clock.displayValue
+                                });
                             } else {
                                 hisList[result.textIndex].push({
                                     no: dataTypeItem.no,
