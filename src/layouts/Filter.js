@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-function Filter({ handleChange, indexValue, columns, label, list, disabled }) {
+function Filter({ handleChange, indexValue, columns, label, list, disabled, value }) {
     const [id, setId] = useState(-1);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function Filter({ handleChange, indexValue, columns, label, list, disabled }) {
         <div>
             <label className="form-label" style={{ float: "left" }}>{label && label}</label>
             <select className="form-select form-select-sm"
-                value={id}
+                value={value}
                 onChange={setValue}
                 disabled={disabled}
             >

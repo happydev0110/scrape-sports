@@ -451,12 +451,12 @@ function EventComponent() {
                                 console.log(tableIndex,result.tableIndex,'logs')
                                 hisList[result.tableIndex] = [];
                             } else {
-                                hisList[textIndex].push({
+                                hisList[result.textIndex].push({
                                     no: dataTypeItem.no,
                                     seq: currentPlayItem.sequenceNumber,
                                     teamId: currentPlayItem.team.id,
                                     teamIdx: selectedTeamIdx,
-                                    score: result.score[textIndex],
+                                    score: result.score[result.textIndex],
                                     description: result.description,
                                     increase: result.increaseMount,
                                     time: currentPlayItem.clock.displayValue
@@ -556,6 +556,7 @@ function EventComponent() {
                                 label='Today Event'
                                 columns={{ label: "name", value: "id" }}
                                 list={events ? events : []}
+                                value={eventId}
                                 // disabled={sportCategory !== 'NBA'}
                                 handleChange={(id) => {
                                     setEventId(id);
