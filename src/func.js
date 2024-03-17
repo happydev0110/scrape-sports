@@ -49,6 +49,12 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NCAA-DS1':
             description = 'Three Point Basket!'
             break;
+        case 'NCAA-DS2':
+            description = 'Foul. Rotate Turns'
+            break;
+        case 'NCAA-DS3':
+            description = 'Foul. Rotate Turns'
+            break;
         case 'NCAA-DS4':
             description = 'Dunk!!!'
             break;
@@ -83,7 +89,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         description = prevPlayItem.text;
     }
 
-    console.log(description,'Func')
+    // console.log(description,'Func')
 
     sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
     homeScore = playItem.homeScore;
