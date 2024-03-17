@@ -46,6 +46,29 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     description = playItem.text;
 
     switch (dataTypeItem.no) {
+        case 'NCAA-DS1':
+            description = 'Three Point Basket!'
+            break;
+        case 'NCAA-DS4':
+            description = 'Dunk!!!'
+            break;
+        case 'NCAA-DS6':
+            description = 'Made Free Throw'
+            break;
+        case 'NCAA-DS7':
+            description = 'Missed Free Throw'
+            break;
+        case 'NCAA-DS8':
+            description = 'Missed Free Throw'
+            break;
+        case 'NCAA-DS10-2':
+            description = 'Three Point Miss'
+            break;
+        case 'NCAA-DS11':
+            description = 'Free Throw Made'
+            break;
+
+        // Previous 
         case 'NCAA-DS9':
             description = 'And 1 Basket!'
             break;
@@ -59,6 +82,8 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     if (dataTypeItem.description) {
         description = prevPlayItem.text;
     }
+
+    console.log(description,'Func')
 
     sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
     homeScore = playItem.homeScore;

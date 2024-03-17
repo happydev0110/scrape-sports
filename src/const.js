@@ -698,15 +698,15 @@ export const NCAA_DS = [
         Increase: 3,
         rotation: true
     },
-    {//DataSet10-1
-        no: 'NCAA-DS10-1',
-        // ncaa: 10,
-        teamId: true,
-        typeId: 519,
-        scoreValue: -1,
-        Increase: 3,
-        rotation: false
-    },
+    // {//DataSet10-1
+    //     no: 'NCAA-DS10-1',
+    //     // ncaa: 10,
+    //     teamId: true,
+    //     typeId: 519,
+    //     scoreValue: -1,
+    //     Increase: 3,
+    //     rotation: false
+    // },
     {//DataSet10-2
         no: 'NCAA-DS10-2',
         teamId: true,
@@ -772,7 +772,7 @@ export const NHL_DS = [
     },
     {//DataSet4
         no: 'NHL-DS4',
-        teamId: false,
+        teamId: -1,
         typeId: 509,
         scoreValue: -1,
         Increase: false,
