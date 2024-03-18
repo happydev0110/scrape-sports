@@ -250,7 +250,6 @@ function EventComponent() {
                             // console.log(result.tableIndex, result.textIndex,'soccer')
                             if (tableIndex != result.tableIndex) {
                                 // console.log(tableIndex,result.tableIndex,'logs')
-                                // console.log('no match')
                                 hisList[result.tableIndex] = [];
                                 hisList[result.textIndex].push({
                                     no: dataTypeItem.no,
@@ -452,6 +451,7 @@ function EventComponent() {
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                             hisList = historyList;
 
+                            console.log(result, 'result')
                             // For Logos
                             if (team1Id == matchTeamId) {
                                 // console.log(team1Idx, 'team1 Logo')
@@ -499,7 +499,7 @@ function EventComponent() {
                                 'awayScore', currentPlayItem.awayScore,
                                 'Period:', currentPlayItem.period.displayValue,
                                 'Clock:', currentPlayItem.clock.displayValue,
-                                'hisList:', hisList,
+                                // 'hisList:', hisList,
                             )
                         }
                     }
