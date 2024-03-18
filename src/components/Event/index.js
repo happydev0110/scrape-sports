@@ -258,6 +258,11 @@ function EventComponent() {
                             }
                         }
 
+                        // if don't have team check, set default default log
+                        if (dataTypeItem.teamId === -1) {
+                            selectedTeamIdx = -1
+                        }
+
                         // console.log(i, 'result')
                         // console.log(result,'soccer')
                         if (tableIndex != result.tableIndex) {
@@ -464,6 +469,12 @@ function EventComponent() {
                                 selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                             }
 
+
+                            // If don't team check, set default team logo
+                            if(dataTypeItem.teamId === -1){
+                                selectedTeamIdx = -1
+                            }
+
                             if (tableIndex != result.tableIndex) {
                                 hisList[result.tableIndex] = [];
                             } 
@@ -484,7 +495,7 @@ function EventComponent() {
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
-                            // // playIndex = i;
+                            // playIndex = i;
                             console.log(
                                 'DS_NO:', dataTypeItem.no,
                                 'sequence:', currentPlayItem.sequenceNumber,
@@ -493,6 +504,7 @@ function EventComponent() {
                                 'typeId:', currentPlayItem.type.id,
                                 "scoreValue:", currentPlayItem.scoreValue,
                                 'scoringPlay', currentPlayItem.scoringPlay,
+                                'selectedTeamIdx:', selectedTeamIdx,
                                 "rotation:", dataTypeItem.rotation,
                                 'textIdx:', textIndex,
                                 'tableIdx:', tableIndex,
