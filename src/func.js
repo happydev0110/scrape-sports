@@ -172,13 +172,7 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
     }
 
     sequenceTime = playItem.time.displayValue;
-    // homeScore = playItem.homeScore;
-    // awayScore = playItem.awayScore;
 
-    // homeScore = 0;
-    // awayScore = 0;
-
-    // console.log(score,'handleScore')
     return {
         textIndex,
         tableIndex,
