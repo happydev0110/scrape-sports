@@ -3,16 +3,18 @@ export const URL = {
     NCAA_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
     NHL_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
     SOCCER_TODAY_EVENT: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+    NHL2_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
 
     // EVENT_SCHEDULE: 'https://www.espn.com/nba/schedule',
-    
+
     // Event API
     NBA: "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary",
     NCAA: "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary",
-    NHL:"https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary",
+    NHL: "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary",
     SOCCER1: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary",
+    NHL2: "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary",
 
-    SOCCER:'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/summary'
+    SOCCER: 'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/summary'
     // NCAA_SCORE_BOARD: "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
 
 }
@@ -33,6 +35,10 @@ export const SPORTS_CATEGORY = [
     {
         label: 'SOCCER',
         value: 'SOCCER',
+    },
+    {
+        label: 'NHL2',
+        value: 'NHL2',
     },
 ]
 
@@ -647,13 +653,15 @@ export const NCAA_DS = [
         no: 'NCAA-DS4',
         teamId: false,
         typeId: 574,
-        scoreValue: 2,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay: true,
         Increase: 2,
         rotation: false
     },
     {//DataSet5
         no: 'NCAA-DS5',
-        teamId: true,
+        teamId: true,                           //team2
         typeId: 598,
         scoreValue: -1,
         Increase: 1,
@@ -698,15 +706,6 @@ export const NCAA_DS = [
         Increase: 3,
         rotation: true
     },
-    // {//DataSet10-1
-    //     no: 'NCAA-DS10-1',
-    //     // ncaa: 10,
-    //     teamId: true,
-    //     typeId: 519,
-    //     scoreValue: -1,
-    //     Increase: 3,
-    //     rotation: false
-    // },
     {//DataSet10-2
         no: 'NCAA-DS10-2',
         teamId: true,
@@ -723,7 +722,7 @@ export const NCAA_DS = [
         typeId: 540,
         scoreValue: -1,
         scoringPlayStatus: true,
-        scoringPlay:true,
+        scoringPlay: true,
         Increase: false,
         rotation: false
     },
@@ -773,14 +772,6 @@ export const NHL_DS = [
     {//DataSet4
         no: 'NHL-DS4',
         teamId: -1,
-        typeId: 509,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DataSet4
-        no: 'NHL-DS4',
-        teamId: true,
         typeId: 509,
         scoreValue: -1,
         Increase: false,
@@ -920,7 +911,7 @@ export const SOCCER_DS = [
     },
     {//DataSet14
         no: 'SOCCER-DS14',
-        teamId: false,
+        teamId: -1,
         typeId: false,
         scoreValue: -1,
         Increase: 3,
@@ -928,7 +919,7 @@ export const SOCCER_DS = [
     },
     {//DataSet15
         no: 'SOCCER-DS15',
-        teamId: true,
+        teamId: -1,
         typeId: false,
         scoreValue: -1,
         Increase: false,
@@ -942,7 +933,7 @@ export const SOCCER_DS = [
         Increase: 1,
         rotation: false
     },
-    
+
     // Not complete 
     {//DataSet17
         no: 'SOCCER-DS17',
@@ -996,9 +987,109 @@ export const SOCCER_DS = [
     },
 ]
 
+export const NHL2_DS = [
+    {//DataSet1
+        no: 'NHL2-DS1',
+        teamId: false,
+        typeId: 502,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet1-2
+        no: 'NHL2-DS1-2',
+        teamId: true,
+        typeId: 502,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet2
+        no: 'NHL2-DS2',
+        teamId: false,
+        typeId: 516,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet2-2
+        no: 'NHL2-DS2-2',
+        teamId: true,
+        typeId: 516,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet3
+        no: 'NHL2-DS3',
+        teamId: false,
+        typeId: 506,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet5
+        no: 'NHL2-DS5',
+        teamId: false,
+        typeId: 509,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet6
+        no: 'NHL2-DS6',
+        teamId: true,
+        typeId: 509,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet7
+        no: 'NHL2-DS7',
+        teamId: false,
+        typeId: 505,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: false
+    },
+    {//DataSet8
+        no: 'NHL2-DS8',
+        teamId: true,
+        typeId: 505,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet9
+        no: 'NHL2-DS9',
+        teamId: -1,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet10
+        no: 'NHL2-DS10',
+        teamId: true,
+        typeId: 502,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet11
+        no: 'NHL2-DS11',
+        teamId: -1,
+        typeId: 522,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+]
+
 export const DATASET_TYPE_CATEGORY = {
     NBA: NBA_DS,
     NCAA: NCAA_DS,
     NHL: NHL_DS,
-    SOCCER: SOCCER_DS
+    SOCCER: SOCCER_DS,
+    NHL2: NHL2_DS,
 }

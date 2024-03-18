@@ -58,6 +58,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NCAA-DS4':
             description = 'Dunk!!!'
             break;
+        case 'NCAA-DS5':
+            description = 'Turnover'
+            break;
         case 'NCAA-DS6':
             description = 'Made Free Throw'
             break;
@@ -73,6 +76,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NCAA-DS11':
             description = 'Free Throw Made'
             break;
+        case 'NCAA-DS13':
+            description = 'Foul Rotate Turns'
+            break;
 
         // Previous 
         case 'NCAA-DS9':
@@ -80,6 +86,43 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             break;
         case 'NCAA-DS12':
             description = 'And 1 Basket!'
+            break;
+
+        // NHL2 
+        case 'NHL2-DS1-2':
+            description = 'Wins Faceoff'
+            break;
+        case 'NHL2-DS2':
+            description = 'Stoppage. Faceoff'
+            break;
+        case 'NHL2-DS2-2':
+            description = 'Lost Faceoff. Rotate'
+            break;
+        case 'NHL2-DS3':
+            description = 'Shot!! ' + playItem.participants
+            [0].athlete.shortName
+            break;
+        case 'NHL2-DS5':
+            description = playItem.type.text + playItem.participants
+            [0].athlete.shortName
+            break;
+        case 'NHL2-DS7':
+            description = "Goal!!! " + playItem.participants
+            [0].athlete.shortName
+            break;
+        case 'NHL2-DS8':
+            description = "Goal!!! " + playItem.participants
+            [0].athlete.shortName
+            break;
+        case 'NHL2-DS9':
+            description = "End of Period"
+            break;
+        case 'NHL2-DS10':
+            description = playItem.participants
+            [0].athlete.shortName + " Wins Faceoff"
+            break;
+        case 'NHL2-DS11':
+            description = "Game Over. Thanks For Playing"
             break;
         default:
             break;

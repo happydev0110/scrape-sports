@@ -114,14 +114,6 @@ function EventComponent() {
                         var dataTypeItem = dataSetType[j];
                         var matchTeamId = team1Id;
                         
-                        if (!currentPlayItem.play) {
-                            continue;
-                        }
-
-                        if(!currentPlayItem.play.clock){
-                            continue;
-                        }
-
                         // SOCCER-DS7
                         if (dataTypeItem.no === 'SOCCER-DS7') {
                             if (currentPlayItem.text.indexOf('Foul by') === -1) {
@@ -185,6 +177,8 @@ function EventComponent() {
 
                         // SOCCER-DS14
                         if (dataTypeItem.no === 'SOCCER-DS14') {
+                            // console.log(i, currentPlayItem.text.indexOf('Corner,'),'Corner check',
+                            //             currentPlayItem.text.indexOf(team1Name),'team1Name check')
                             if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
                                 continue;
                             }
@@ -220,6 +214,10 @@ function EventComponent() {
 
                         // Compare TeamId
                         if (dataTypeItem.teamId !== -1) {
+                            if(!currentPlayItem.play){
+                                continue;
+                            }
+
                             if (currentPlayItem.play.team) {
                                 if (dataTypeItem.teamId) {
                                     if (currentPlayItem.play.team.displayName != team2Name) {
@@ -235,6 +233,10 @@ function EventComponent() {
 
                         // Compare TypeId
                         if (dataTypeItem.typeId) {
+                            if(!currentPlayItem.play){
+                                continue;
+                            }
+
                             if (dataTypeItem.typeId != currentPlayItem.play.type.id) {
                                 continue;
                             }
@@ -265,19 +267,17 @@ function EventComponent() {
 
                         // console.log(i, 'result')
                         if (tableIndex != result.tableIndex) {
-                            // console.log(tableIndex,result.tableIndex,'logs')
                             hisList[result.tableIndex] = [];
                         }
-
+                        
                         hisList[result.textIndex].push({
                             no: dataTypeItem.no,
                             seq: currentPlayItem.sequence,
-                            // teamId: currentPlayItem.team.id,
                             teamIdx: selectedTeamIdx,
                             score: result.score[result.textIndex],
                             description: result.description,
                             increase: result.increaseMount,
-                            time: currentPlayItem.play.clock.displayValue
+                            time: currentPlayItem.time.displayValue
                         });
 
                         increaseAmount = result.increaseMount;
@@ -288,8 +288,8 @@ function EventComponent() {
                             'DS_NO:', dataTypeItem.no,
                             'sequence:', currentPlayItem.sequence,
                             'team1Name:', team1Name,
-                            'currentTeam:', currentPlayItem.play.team.displayName,
-                            'typeId:', currentPlayItem.play.type.id,
+                            // 'currentTeam:', currentPlayItem.play.team.displayName,
+                            // 'typeId:', currentPlayItem.play.type.id,
                             'description:', result.description,
                             'increase:', dataTypeItem.Increase,
                             'rotation:', dataTypeItem.rotation,
@@ -346,12 +346,13 @@ function EventComponent() {
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
 
-                            // if(!currentPlayItem.team){
-                            //     continue;
-                            // }
-
+                            
                             // teamId
                             if (dataTypeItem.teamId !== -1) {
+                                if(!currentPlayItem.team){
+                                    continue;
+                                }
+                                
                                 if (dataTypeItem.teamId) {
                                     matchTeamId = team2Id
                                 }
@@ -399,13 +400,6 @@ function EventComponent() {
                                     continue;
                                 }
                             }
-
-                            // DS10-NCAA
-                            // if (dataTypeItem.no === 'NCAA-DS10-1') {
-                            //     if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 3) {
-                            //         continue;
-                            //     }
-                            // }
 
                             // NCAA-DS12
                             if (dataTypeItem.no === 'NCAA-DS12') {
@@ -461,7 +455,8 @@ function EventComponent() {
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                             hisList = historyList;
                             
-                            // // For Logos
+                            console.log('NHL2')
+                            // For Logos
                             selectedTeamIdx = team1Idx;
                             if (team1Id != matchTeamId) {
                                 // console.log((parseInt(team1Idx) + 1) % 2, 'team2 logo')
