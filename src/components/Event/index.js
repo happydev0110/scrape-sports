@@ -84,9 +84,9 @@ function EventComponent() {
             // console.log(resList.boxscore.teams[team1Idx],"team ID")
 
             if (resList.boxscore.teams[team1Idx]) {
-                var team1Id = resList.boxscore.teams[team1Idx].team.id;
-                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                var team1Name = resList.boxscore.teams[team1Idx].team.name;
+                var team1Id = resList.boxscore.teams[team1Idx].team.id;                                     //team1 ID
+                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;                 //team2 ID
+                var team1Name = resList.boxscore.teams[team1Idx].team.name;                                 //team1 Name
                 var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
             }
 
@@ -100,6 +100,7 @@ function EventComponent() {
                 let hisList = [];
 
                 for (let i = 0; i < resList.commentary.length; i++) {
+                    console.log(i, 'soccer item')
                     for (let j = 0; j < dataSetType.length; j++) {
                         var team1Id = resList.boxscore.teams[team1Idx].team.id;
                         var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
@@ -236,47 +237,40 @@ function EventComponent() {
                                 // }
                             }
 
-                            result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
-                            hisList = historyList;
-                            // For Logos
-                            if (currentPlayItem.play) {
-                                if (currentPlayItem.play.team.displayName === team1Name) {
-                                    selectedTeamIdx = team1Idx;
-                                } else {
-                                    selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
-                                }
-                            }
+                            // result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
+                            // hisList = historyList;
 
-                            // console.log(result.tableIndex, result.textIndex,'soccer')
-                            if (tableIndex != result.tableIndex) {
-                                // console.log(tableIndex,result.tableIndex,'logs')
-                                hisList[result.tableIndex] = [];
-                                hisList[result.textIndex].push({
-                                    no: dataTypeItem.no,
-                                    seq: currentPlayItem.sequence,
-                                    teamId: currentPlayItem.team.id,
-                                    teamIdx: selectedTeamIdx,
-                                    score: result.score[result.textIndex],
-                                    description: result.description,
-                                    increase: result.increaseMount,
-                                    time: currentPlayItem.clock.displayValue
-                                });
-                            } else {
-                                hisList[result.textIndex].push({
-                                    no: dataTypeItem.no,
-                                    seq: currentPlayItem.sequence,
-                                    teamId: currentPlayItem.team.id,
-                                    teamIdx: selectedTeamIdx,
-                                    score: result.score[result.textIndex],
-                                    description: result.description,
-                                    increase: result.increaseMount,
-                                    time: currentPlayItem.clock.displayValue
-                                });
-                            }
+                            console.log(i, currentPlayItem.play.team.id,'soccer result')
 
-                            increaseAmount = result.increaseMount;
-                            textIndex = result.textIndex;
-                            tableIndex = result.tableIndex;
+                            // // For Logos
+                            // if (currentPlayItem.play) {
+                            //     if (currentPlayItem.play.team.displayName === team1Name) {
+                            //         selectedTeamIdx = team1Idx;
+                            //     } else {
+                            //         selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                            //     }
+                            // }
+
+                            // // console.log(result.tableIndex, result.textIndex,'soccer')
+                            // if (tableIndex != result.tableIndex) {
+                            //     // console.log(tableIndex,result.tableIndex,'logs')
+                            //     hisList[result.tableIndex] = [];
+                            // }
+
+                            // hisList[result.textIndex].push({
+                            //     no: dataTypeItem.no,
+                            //     seq: currentPlayItem.sequence,
+                            //     teamId: currentPlayItem.team.id,
+                            //     teamIdx: selectedTeamIdx,
+                            //     score: result.score[result.textIndex],
+                            //     description: result.description,
+                            //     increase: result.increaseMount,
+                            //     time: currentPlayItem.clock.displayValue
+                            // });
+
+                            // increaseAmount = result.increaseMount;
+                            // textIndex = result.textIndex;
+                            // tableIndex = result.tableIndex;
 
                             // console.log(
                             //     'DS_NO:', dataTypeItem.no,
@@ -288,12 +282,12 @@ function EventComponent() {
                             //     'increase:', dataTypeItem.Increase,
                             //     'rotation:', dataTypeItem.rotation,
                             // )
-                            console.log(
-                                'teamIndex0:', result.score[0],
-                                'teamIndex1:', result.score[1],
-                                'teamIndex2:', result.score[2],
-                                'teamIndex3:', result.score[3]
-                            )
+                            // console.log(
+                            //     'teamIndex0:', result.score[0],
+                            //     'teamIndex1:', result.score[1],
+                            //     'teamIndex2:', result.score[2],
+                            //     'teamIndex3:', result.score[3]
+                            // )
                         }
                     }
                 }
@@ -338,6 +332,10 @@ function EventComponent() {
 
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
+
+                            if(!currentPlayItem.team){
+                                continue;
+                            }
 
                             // teamId
                             if (dataTypeItem.teamId !== -1) {
@@ -446,12 +444,10 @@ function EventComponent() {
                             }
                             // Special DS
 
-
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                             hisList = historyList;
 
-                            console.log(result, 'result')
                             // For Logos
                             if (team1Id == matchTeamId) {
                                 // console.log(team1Idx, 'team1 Logo')
