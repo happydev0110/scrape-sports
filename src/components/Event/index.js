@@ -98,6 +98,7 @@ function EventComponent() {
             if (sportCategory == 'SOCCER') {
                 console.log('SOCCER DS START')
                 let hisList = [];
+                var team1Score, team2Score = 0;
 
                 for (let i = 0; i < resList.commentary.length; i++) {
                     // console.log(i, 'soccer item')
@@ -106,7 +107,6 @@ function EventComponent() {
                         var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                         var team1Name = resList.boxscore.teams[team1Idx].team.name;
                         var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-                        var team1Score, team2Score = 0;
 
                         var currentPlayItem = resList.commentary[i];
                         var prevPlayItem = resList.commentary[i - 1];
@@ -148,6 +148,8 @@ function EventComponent() {
                                     // console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
                                     team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim());
                                     team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim())
+                                    
+                                    // console.log(team1Score, team2Score, 'team score')
                                 }
                             }
 
@@ -156,7 +158,7 @@ function EventComponent() {
                             }
                         }
 
-                        // console.log(team1Score, team2Score, 'team score')
+                        console.log(team1Score, team2Score, 'team score total')
 
                         // SOCCER-DS10
                         if (dataTypeItem.no === 'SOCCER-DS10') {
