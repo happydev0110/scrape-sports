@@ -259,9 +259,9 @@ function EventComponent() {
                         }
 
                         // if don't have team check, set default default log
-                        if (dataTypeItem.teamId === -1) {
-                            selectedTeamIdx = -1
-                        }
+                        // if (dataTypeItem.teamId === -1) {
+                        //     selectedTeamIdx = -1
+                        // }
 
                         // console.log(i, 'result')
                         if (tableIndex != result.tableIndex) {
