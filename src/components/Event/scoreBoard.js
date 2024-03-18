@@ -49,7 +49,6 @@ export default function ScoreBoard(props) {
                                                     // selTeamIdx != -1 &&
                                                     <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
                                                 }
-                                                <div>{item.teamIdx}</div>
                                                 <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
                                             </div>
                                         )
