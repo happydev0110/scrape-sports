@@ -158,8 +158,6 @@ function EventComponent() {
                             }
                         }
 
-                        console.log(team1Score, team2Score, 'team score total')
-
                         // SOCCER-DS10
                         if (dataTypeItem.no === 'SOCCER-DS10') {
                             if (currentPlayItem.text.indexOf('Goal!') === -1) {
@@ -266,7 +264,6 @@ function EventComponent() {
                         }
 
                         // console.log(i, 'result')
-                        // console.log(result,'soccer')
                         if (tableIndex != result.tableIndex) {
                             // console.log(tableIndex,result.tableIndex,'logs')
                             hisList[result.tableIndex] = [];
