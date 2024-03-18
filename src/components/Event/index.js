@@ -113,7 +113,6 @@ function EventComponent() {
 
                         var dataTypeItem = dataSetType[j];
                         var matchTeamId = team1Id;
-
                         
                         if (!currentPlayItem.play) {
                             continue;
@@ -148,7 +147,7 @@ function EventComponent() {
                                     // console.log(parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim()), 'team1Score')
                                     // console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
                                     team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim());
-                                    team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim());
+                                    team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim())
                                 }
                             }
 
@@ -156,6 +155,8 @@ function EventComponent() {
                                 continue;
                             }
                         }
+
+                        // console.log(team1Score, team2Score, 'team score')
 
                         // SOCCER-DS10
                         if (dataTypeItem.no === 'SOCCER-DS10') {
@@ -309,7 +310,8 @@ function EventComponent() {
                     setTime(result.sequenceTime);
                     setHistoryList(hisList);
                 }
-
+                
+                // console.log(team1Score, team2Score, 'score')
                 if (team1Idx === 1) {
                     setHomeScore(team1Score);
                     setAwayScore(team2Score);
@@ -340,9 +342,9 @@ function EventComponent() {
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
 
-                            if(!currentPlayItem.team){
-                                continue;
-                            }
+                            // if(!currentPlayItem.team){
+                            //     continue;
+                            // }
 
                             // teamId
                             if (dataTypeItem.teamId !== -1) {
@@ -454,12 +456,10 @@ function EventComponent() {
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                             hisList = historyList;
-
-                            // For Logos
-                            if (team1Id == matchTeamId) {
-                                // console.log(team1Idx, 'team1 Logo')
-                                selectedTeamIdx = team1Idx;
-                            } else {
+                            
+                            // // For Logos
+                            selectedTeamIdx = team1Idx;
+                            if (team1Id != matchTeamId) {
                                 // console.log((parseInt(team1Idx) + 1) % 2, 'team2 logo')
                                 selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                             }
@@ -468,10 +468,11 @@ function EventComponent() {
                                 hisList[result.tableIndex] = [];
                             } 
 
+
                             hisList[result.textIndex].push({
                                 no: dataTypeItem.no,
                                 seq: currentPlayItem.sequenceNumber,
-                                teamId: currentPlayItem.team.id,
+                                // teamId: currentPlayItem.team.id,
                                 teamIdx: selectedTeamIdx,
                                 score: result.score[result.textIndex],
                                 description: result.description,
@@ -483,12 +484,12 @@ function EventComponent() {
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
-                            // playIndex = i;
+                            // // playIndex = i;
                             console.log(
                                 'DS_NO:', dataTypeItem.no,
                                 'sequence:', currentPlayItem.sequenceNumber,
                                 'team1Id:', team1Id,
-                                'teamId:', currentPlayItem.team.id,
+                                // 'teamId:', currentPlayItem.team.id,
                                 'typeId:', currentPlayItem.type.id,
                                 "scoreValue:", currentPlayItem.scoreValue,
                                 'scoringPlay', currentPlayItem.scoringPlay,
