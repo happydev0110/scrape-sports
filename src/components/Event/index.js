@@ -539,8 +539,7 @@ function EventComponent() {
                     }
 
                     if (result) {
-                        console.log(hisList, 'history list')
-
+                        // console.log(hisList, 'history list')
                         setSelTeamIdx(selectedTeamIdx)
                         setTableScore(result.score);
                         setSelTextIdx(textIndex);
