@@ -43,13 +43,15 @@ export default function ScoreBoard(props) {
                                 {
                                     historyList[0].reverse().map((item, index) => {
                                         return (
-                                            <div key={index} className='d-inline-flex'>
-                                                {
-                                                    // selTeamIdx != -1 &&
-                                                    <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
-                                                }
-                                                <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
-                                            </div>
+                                            <>
+                                                <div key={index} className='d-inline-flex'>
+                                                    {
+                                                        // selTeamIdx != -1 &&
+                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
+                                                    }
+                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p>
+                                                </div><br />
+                                            </>
                                         )
                                     })
                                 }
@@ -66,13 +68,15 @@ export default function ScoreBoard(props) {
                                 {
                                     historyList[1].reverse().map((item, index) => {
                                         return (
-                                            <div key={index} className='d-inline-flex'>
-                                                {
-                                                    // selTeamIdx != -1 &&
-                                                    <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
-                                                }
-                                                <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
-                                            </div>
+                                            <>
+                                                <div key={index} className='d-inline-flex'>
+                                                    {
+                                                        // selTeamIdx != -1 &&
+                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
+                                                    }
+                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                                </div><br />
+                                            </>
                                         )
                                     })
                                 }
@@ -89,13 +93,15 @@ export default function ScoreBoard(props) {
                                 {
                                     historyList[2].reverse().map((item, index) => {
                                         return (
-                                            <div key={index} className='d-inline-flex'>
-                                                {
-                                                    // selTeamIdx != -1 &&
-                                                    <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
-                                                }
-                                                <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
-                                            </div>
+                                            <>
+                                                <div key={index} className='d-inline-flex'>
+                                                    {
+                                                        // selTeamIdx != -1 &&
+                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
+                                                    }
+                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                                </div><br />
+                                            </>
                                         )
                                     })
                                 }
@@ -112,13 +118,15 @@ export default function ScoreBoard(props) {
                                 {
                                     historyList[3].reverse().map((item, index) => {
                                         return (
-                                            <div key={index} className='d-inline-flex'>
-                                                {
-                                                    // selTeamIdx != -1 &&
-                                                    <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
-                                                }
-                                                <p className='d-inline-block'>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
-                                            </div>
+                                            <>
+                                                <div key={index} className='d-inline-flex'>
+                                                    {
+                                                        // selTeamIdx != -1 &&
+                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
+                                                    }
+                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                                </div><br />
+                                            </>
                                         )
                                     })
                                 }
