@@ -4,7 +4,7 @@ import axios from 'axios';
 import Filter from '../../layouts/Filter';
 
 import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY } from '../../const.js';
-import { handleScore, handleSoccerScore } from '../../func.js';
+import { handleScore, handleSoccerScore, reverseTime } from '../../func.js';
 
 import ScoreBoardComp from './scoreBoard.js';
 
@@ -329,14 +329,11 @@ function EventComponent() {
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                     console.log('Loop', resList.plays.length)
-                    // console.log(historyList, 'state history List')
                     // console.log(hisList, 'hislist in event loop')
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
-                        // console.log(resList.plays[i].sequenceNumber,resList.plays[i].type.id,'list typeId')
                         for (let j = 0; j < dataSetType.length; j++) {
                             // console.log(j,'Datatype')
-                            // console.log(j, 'Dataset_type')
                             // console.log(team1Id, 'team1Id')
                             var team1Id = resList.boxscore.teams[team1Idx].team.id;
                             var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
@@ -477,15 +474,12 @@ function EventComponent() {
                             // Special DS
 
                             matchEvtList.push(currentPlayItem);
-                            result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
+                            result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
                             hisList = historyList;
-
-                            // console.log(result, "history List")
 
                             // For Logos
                             selectedTeamIdx = team1Idx;
                             if (team1Id != matchTeamId) {
-                                // console.log((parseInt(team1Idx) + 1) % 2, 'team2 logo')
                                 selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
                             }
 
@@ -499,8 +493,7 @@ function EventComponent() {
                                 hisList[result.tableIndex] = [];
                             }
 
-                            // console.log(result, 'result')
-                            hisList[result.textIndex].push({
+                            let hisItem = {
                                 no: dataTypeItem.no,
                                 seq: currentPlayItem.sequenceNumber,
                                 // teamId: currentPlayItem.team.id,
@@ -509,7 +502,14 @@ function EventComponent() {
                                 description: result.description,
                                 increase: result.increaseMount,
                                 time: currentPlayItem.clock.displayValue
-                            });
+                            }
+
+                            if(sportCategory == 'NHL' || sportCategory == 'NHL2'){
+                                hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
+                            }
+                            
+                            // console.log(reverseTime(currentPlayItem.clock.displayValue), 'reverse time')
+                            hisList[result.textIndex].push(hisItem);
 
                             increaseAmount = result.increaseMount;
                             textIndex = result.textIndex;

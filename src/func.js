@@ -22,7 +22,26 @@ export const formatDate = (date) => {
     // }
 }
 
-export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name) => {
+export const reverseTime = (time, limitMinutes = 20) => {
+    let minutes = parseInt(time.split(':')[0]);
+    let seconds = parseInt(time.split(':')[1]);
+    let result = [0, 0]
+    if (seconds > 0) {
+        result[0] = limitMinutes - minutes - 1;
+        result[1] = 60 - seconds;
+
+        if (result[1] < 10) {
+            result[1] = '0' + result[1];
+        }
+    } else {
+        result[0] = limitMinutes - minutes;
+        result[1] = '00';
+    }
+
+    return result.join(':')
+}
+
+export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory) => {
     let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
     let increaseMount = dataTypeItem.Increase;
 
@@ -133,8 +152,12 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     }
 
     // console.log(description,'Func')
+    let timeDisplay = playItem.clock.displayValue;
+    if(sportCategory == 'NHL' || sportCategory == 'NHL2'){
+        timeDisplay = reverseTime(timeDisplay);
+    }
 
-    sequenceTime = playItem.period.displayValue + '(' + playItem.clock.displayValue + ')';
+    sequenceTime = playItem.period.displayValue + '(' + timeDisplay + ')';
     homeScore = playItem.homeScore;
     awayScore = playItem.awayScore;
 
