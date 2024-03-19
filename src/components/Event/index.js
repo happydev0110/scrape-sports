@@ -29,7 +29,7 @@ function EventComponent() {
     const [selTextIdx, setSelTextIdx] = useState(-1);
     const [selTblIdx, setSelTblIdx] = useState(-1);
     const [description, setDescription] = useState('');
-    const [historyList, setHistoryList] = useState([[],[],[],[]]);
+    const [historyList, setHistoryList] = useState([[], [], [], []]);
 
     const [tableScore, setTableScore] = useState([0, 0, 0, 0]);
 
@@ -113,7 +113,7 @@ function EventComponent() {
 
                         var dataTypeItem = dataSetType[j];
                         var matchTeamId = team1Id;
-                        
+
                         // SOCCER-DS7
                         if (dataTypeItem.no === 'SOCCER-DS7') {
                             if (currentPlayItem.text.indexOf('Foul by') === -1) {
@@ -140,7 +140,7 @@ function EventComponent() {
                                     // console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
                                     team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim());
                                     team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim())
-                                    
+
                                     // console.log(team1Score, team2Score, 'team score')
                                 }
                             }
@@ -214,7 +214,7 @@ function EventComponent() {
 
                         // Compare TeamId
                         if (dataTypeItem.teamId !== -1) {
-                            if(!currentPlayItem.play){
+                            if (!currentPlayItem.play) {
                                 continue;
                             }
 
@@ -233,7 +233,7 @@ function EventComponent() {
 
                         // Compare TypeId
                         if (dataTypeItem.typeId) {
-                            if(!currentPlayItem.play){
+                            if (!currentPlayItem.play) {
                                 continue;
                             }
 
@@ -269,7 +269,7 @@ function EventComponent() {
                         if (tableIndex != result.tableIndex) {
                             hisList[result.tableIndex] = [];
                         }
-                        
+
                         hisList[result.textIndex].push({
                             no: dataTypeItem.no,
                             seq: currentPlayItem.sequence,
@@ -314,7 +314,7 @@ function EventComponent() {
                     setTime(result.sequenceTime);
                     setHistoryList(hisList);
                 }
-                
+
                 // console.log(team1Score, team2Score, 'score')
                 if (team1Idx === 1) {
                     setHomeScore(team1Score);
@@ -326,6 +326,8 @@ function EventComponent() {
             } else {
                 if (team1Idx != -1 && resList.plays) {
                     let hisList = [];
+                    let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
+
                     console.log('Loop', resList.plays.length)
                     // console.log(historyList, 'state history List')
                     // console.log(hisList, 'hislist in event loop')
@@ -349,10 +351,10 @@ function EventComponent() {
 
                             // teamId
                             if (dataTypeItem.teamId !== -1) {
-                                if(!currentPlayItem.team){
+                                if (!currentPlayItem.team) {
                                     continue;
                                 }
-                                
+
                                 if (dataTypeItem.teamId) {
                                     matchTeamId = team2Id
                                 }
@@ -364,6 +366,15 @@ function EventComponent() {
 
                             // typeId
                             if (dataTypeItem.typeId) {
+                                if(currentPlayItem.type.id == 502){
+                                    sepcialSeq = {
+                                        id: 502,
+                                        seq: currentPlayItem.sequenceNumber,
+                                        teamId: currentPlayItem.team.id
+                                    }
+
+                                    console.log(sepcialSeq.teamId,sepcialSeq.seq, 'special seqence')
+                                }
                                 if (currentPlayItem.type.id != dataTypeItem.typeId) continue;
                             }
 
@@ -452,14 +463,14 @@ function EventComponent() {
 
                             // NHL2-DS2
                             if (dataTypeItem.no === 'NHL2-DS2') {
-                                if (prevPlayItem.type.id != 502 || prevPlayItem.team.id != team1Id) {
+                                if (sepcialSeq.teamId != team1Id) {
                                     continue;
                                 }
                             }
-                            
+
                             // NHL2-DS2-2
                             if (dataTypeItem.no === 'NHL2-DS2-2') {
-                                if (prevPlayItem.type.id != 502 || prevPlayItem.team.id != team2Id) {
+                                if (sepcialSeq.teamId != team2Id) {
                                     continue;
                                 }
                             }
@@ -468,7 +479,7 @@ function EventComponent() {
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                             hisList = historyList;
-                            
+
                             // console.log(result, "history List")
 
                             // For Logos
@@ -480,13 +491,13 @@ function EventComponent() {
 
 
                             // If don't team check, set default team logo
-                            if(dataTypeItem.teamId === -1){
+                            if (dataTypeItem.teamId === -1) {
                                 selectedTeamIdx = -1
                             }
 
                             if (tableIndex != result.tableIndex) {
                                 hisList[result.tableIndex] = [];
-                            } 
+                            }
 
                             // console.log(result, 'result')
                             hisList[result.textIndex].push({
@@ -499,7 +510,7 @@ function EventComponent() {
                                 increase: result.increaseMount,
                                 time: currentPlayItem.clock.displayValue
                             });
-                            
+
                             increaseAmount = result.increaseMount;
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
@@ -529,7 +540,7 @@ function EventComponent() {
                     }
 
                     if (result) {
-                        console.log(hisList,'history list')
+                        console.log(hisList, 'history list')
 
                         setSelTeamIdx(selectedTeamIdx)
                         setTableScore(result.score);
