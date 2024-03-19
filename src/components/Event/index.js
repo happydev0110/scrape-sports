@@ -363,14 +363,13 @@ function EventComponent() {
 
                             // typeId
                             if (dataTypeItem.typeId) {
-                                if(currentPlayItem.type.id == 502){
+                                if (currentPlayItem.type.id == 502) {
                                     sepcialSeq = {
                                         id: 502,
                                         seq: currentPlayItem.sequenceNumber,
                                         teamId: currentPlayItem.team.id
                                     }
-
-                                    console.log(sepcialSeq.teamId,sepcialSeq.seq, 'special seqence')
+                                    // console.log(sepcialSeq.teamId, sepcialSeq.seq, 'special seqence')
                                 }
                                 if (currentPlayItem.type.id != dataTypeItem.typeId) continue;
                             }
@@ -504,10 +503,10 @@ function EventComponent() {
                                 time: currentPlayItem.clock.displayValue
                             }
 
-                            if(sportCategory == 'NHL' || sportCategory == 'NHL2'){
+                            if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
                                 hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
                             }
-                            
+
                             // console.log(reverseTime(currentPlayItem.clock.displayValue), 'reverse time')
                             hisList[result.textIndex].push(hisItem);
 
@@ -515,27 +514,27 @@ function EventComponent() {
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
-                            console.log(
-                                'DS_NO:', dataTypeItem.no,
-                                'sequence:', currentPlayItem.sequenceNumber,
-                                'team1Id:', team1Id,
-                                // 'teamId:', currentPlayItem.team.id,
-                                'typeId:', currentPlayItem.type.id,
-                                "scoreValue:", currentPlayItem.scoreValue,
-                                'scoringPlay', currentPlayItem.scoringPlay,
-                                'selectedTeamIdx:', selectedTeamIdx,
-                                "rotation:", dataTypeItem.rotation,
-                                'textIdx:', textIndex,
-                                'tableIdx:', tableIndex,
-                                'teamIndex:', tableIndex,
-                                'increase:', increaseAmount,
-                                'description:', result.description,
-                                'homeScore:', currentPlayItem.homeScore,
-                                'awayScore', currentPlayItem.awayScore,
-                                'Period:', currentPlayItem.period.displayValue,
-                                'Clock:', currentPlayItem.clock.displayValue,
-                                // 'hisList:', hisList,
-                            )
+                            // console.log(
+                            //     'DS_NO:', dataTypeItem.no,
+                            //     'sequence:', currentPlayItem.sequenceNumber,
+                            //     'team1Id:', team1Id,
+                            //     // 'teamId:', currentPlayItem.team.id,
+                            //     'typeId:', currentPlayItem.type.id,
+                            //     "scoreValue:", currentPlayItem.scoreValue,
+                            //     'scoringPlay', currentPlayItem.scoringPlay,
+                            //     'selectedTeamIdx:', selectedTeamIdx,
+                            //     "rotation:", dataTypeItem.rotation,
+                            //     'textIdx:', textIndex,
+                            //     'tableIdx:', tableIndex,
+                            //     'teamIndex:', tableIndex,
+                            //     'increase:', increaseAmount,
+                            //     'description:', result.description,
+                            //     'homeScore:', currentPlayItem.homeScore,
+                            //     'awayScore', currentPlayItem.awayScore,
+                            //     'Period:', currentPlayItem.period.displayValue,
+                            //     'Clock:', currentPlayItem.clock.displayValue,
+                            //     // 'hisList:', hisList,
+                            // )
                         }
                     }
 
