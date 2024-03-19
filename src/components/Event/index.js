@@ -514,27 +514,27 @@ function EventComponent() {
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
-                            // console.log(
-                            //     'DS_NO:', dataTypeItem.no,
-                            //     'sequence:', currentPlayItem.sequenceNumber,
-                            //     'team1Id:', team1Id,
-                            //     // 'teamId:', currentPlayItem.team.id,
-                            //     'typeId:', currentPlayItem.type.id,
-                            //     "scoreValue:", currentPlayItem.scoreValue,
-                            //     'scoringPlay', currentPlayItem.scoringPlay,
-                            //     'selectedTeamIdx:', selectedTeamIdx,
-                            //     "rotation:", dataTypeItem.rotation,
-                            //     'textIdx:', textIndex,
-                            //     'tableIdx:', tableIndex,
-                            //     'teamIndex:', tableIndex,
-                            //     'increase:', increaseAmount,
-                            //     'description:', result.description,
-                            //     'homeScore:', currentPlayItem.homeScore,
-                            //     'awayScore', currentPlayItem.awayScore,
-                            //     'Period:', currentPlayItem.period.displayValue,
-                            //     'Clock:', currentPlayItem.clock.displayValue,
-                            //     // 'hisList:', hisList,
-                            // )
+                            console.log(
+                                'DS_NO:', dataTypeItem.no,
+                                'sequence:', currentPlayItem.sequenceNumber,
+                                'team1Id:', team1Id,
+                                // 'teamId:', currentPlayItem.team.id,
+                                'typeId:', currentPlayItem.type.id,
+                                "scoreValue:", currentPlayItem.scoreValue,
+                                'scoringPlay', currentPlayItem.scoringPlay,
+                                'selectedTeamIdx:', selectedTeamIdx,
+                                "rotation:", dataTypeItem.rotation,
+                                'textIdx:', textIndex,
+                                'tableIdx:', tableIndex,
+                                'teamIndex:', tableIndex,
+                                'increase:', increaseAmount,
+                                'description:', result.description,
+                                'homeScore:', currentPlayItem.homeScore,
+                                'awayScore', currentPlayItem.awayScore,
+                                'Period:', currentPlayItem.period.displayValue,
+                                'Clock:', currentPlayItem.clock.displayValue,
+                                // 'hisList:', hisList,
+                            )
                         }
                     }
 
