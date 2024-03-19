@@ -1006,7 +1006,7 @@ export const NHL2_DS = [
     },
     {//DataSet2
         no: 'NHL2-DS2',
-        teamId: false,
+        teamId: -1,
         typeId: 516,
         scoreValue: -1,
         Increase: false,
@@ -1014,7 +1014,7 @@ export const NHL2_DS = [
     },
     {//DataSet2-2
         no: 'NHL2-DS2-2',
-        teamId: true,
+        teamId: -1,
         typeId: 516,
         scoreValue: -1,
         Increase: false,
@@ -1068,14 +1068,6 @@ export const NHL2_DS = [
         Increase: false,
         rotation: false
     },
-    {//DataSet10
-        no: 'NHL2-DS10',
-        teamId: true,
-        typeId: 502,
-        scoreValue: -1,
-        Increase: false,
-        rotation: false
-    },
     {//DataSet11
         no: 'NHL2-DS11',
         teamId: -1,
@@ -1083,7 +1075,7 @@ export const NHL2_DS = [
         scoreValue: -1,
         Increase: false,
         rotation: false
-    },
+    }
 ]
 
 export const DATASET_TYPE_CATEGORY = {

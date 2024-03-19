@@ -325,16 +325,17 @@ function EventComponent() {
                 }
             } else {
                 if (team1Idx != -1 && resList.plays) {
-                    // let playIndex = 0;
-                    // console.log(team1Id, 'team1 Id')
-                    // console.log(team2Id, 'team2 Index')
                     let hisList = [];
-                    // console.log(hisList,historyList, 'hisList')
-                    console.log('Loop')
+                    console.log('Loop', resList.plays.length)
+                    // console.log(historyList, 'state history List')
+                    // console.log(hisList, 'hislist in event loop')
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
+                        // console.log(resList.plays[i].sequenceNumber,resList.plays[i].type.id,'list typeId')
                         for (let j = 0; j < dataSetType.length; j++) {
+                            // console.log(j,'Datatype')
                             // console.log(j, 'Dataset_type')
+                            // console.log(team1Id, 'team1Id')
                             var team1Id = resList.boxscore.teams[team1Idx].team.id;
                             var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                             var team1Name = resList.boxscore.teams[team1Idx].team.name;
@@ -346,7 +347,6 @@ function EventComponent() {
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
 
-                            
                             // teamId
                             if (dataTypeItem.teamId !== -1) {
                                 if(!currentPlayItem.team){
@@ -449,13 +449,28 @@ function EventComponent() {
                                     continue;
                                 }
                             }
+
+                            // NHL2-DS2
+                            if (dataTypeItem.no === 'NHL2-DS2') {
+                                if (prevPlayItem.type.id != 502 || prevPlayItem.team.id != team1Id) {
+                                    continue;
+                                }
+                            }
+                            
+                            // NHL2-DS2-2
+                            if (dataTypeItem.no === 'NHL2-DS2-2') {
+                                if (prevPlayItem.type.id != 502 || prevPlayItem.team.id != team2Id) {
+                                    continue;
+                                }
+                            }
                             // Special DS
 
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                             hisList = historyList;
                             
-                            console.log('NHL2')
+                            // console.log(result, "history List")
+
                             // For Logos
                             selectedTeamIdx = team1Idx;
                             if (team1Id != matchTeamId) {
@@ -473,7 +488,7 @@ function EventComponent() {
                                 hisList[result.tableIndex] = [];
                             } 
 
-
+                            // console.log(result, 'result')
                             hisList[result.textIndex].push({
                                 no: dataTypeItem.no,
                                 seq: currentPlayItem.sequenceNumber,
@@ -489,7 +504,6 @@ function EventComponent() {
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
-                            // playIndex = i;
                             console.log(
                                 'DS_NO:', dataTypeItem.no,
                                 'sequence:', currentPlayItem.sequenceNumber,
@@ -514,8 +528,9 @@ function EventComponent() {
                         }
                     }
 
-                    // console.log(hisList,"History List")
                     if (result) {
+                        console.log(hisList,'history list')
+
                         setSelTeamIdx(selectedTeamIdx)
                         setTableScore(result.score);
                         setSelTextIdx(textIndex);
@@ -531,7 +546,7 @@ function EventComponent() {
             }
 
         }).catch((err) => {
-            // console.log(err)
+            console.log(err)
         });
     }
 

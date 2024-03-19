@@ -46,6 +46,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     description = playItem.text;
 
     switch (dataTypeItem.no) {
+        case 'NBA-DS1':
+            description = 'Three!!! '
+            break;
         case 'NCAA-DS1':
             description = 'Three Point Basket!'
             break;
@@ -103,8 +106,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             [0].athlete.shortName
             break;
         case 'NHL2-DS5':
-            description = playItem.type.text + playItem.participants
-            [0].athlete.shortName
+            // description = playItem.type.text + playItem.participants
+            // [0].athlete.shortName
+            description = "NHL2-DS5"
             break;
         case 'NHL2-DS7':
             description = "Goal!!! " + playItem.participants
@@ -116,10 +120,6 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             break;
         case 'NHL2-DS9':
             description = "End of Period"
-            break;
-        case 'NHL2-DS10':
-            description = playItem.participants
-            [0].athlete.shortName + " Wins Faceoff"
             break;
         case 'NHL2-DS11':
             description = "Game Over. Thanks For Playing"
