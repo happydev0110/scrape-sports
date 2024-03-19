@@ -127,7 +127,8 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NHL2-DS5':
             // description = playItem.type.text + playItem.participants
             // [0].athlete.shortName
-            description = "NHL2-DS5"
+            // description = "NHL2-DS5"
+            description = playItem.type.text + " " + playItem.participants[0].athlete.shortName
             break;
         case 'NHL2-DS7':
             description = "Goal!!! " + playItem.participants
@@ -153,7 +154,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
 
     // console.log(description,'Func')
     let timeDisplay = playItem.clock.displayValue;
-    if(sportCategory == 'NHL' || sportCategory == 'NHL2'){
+    if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
         timeDisplay = reverseTime(timeDisplay);
     }
 
