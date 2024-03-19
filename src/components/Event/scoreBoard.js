@@ -9,7 +9,7 @@ export default function ScoreBoard(props) {
             {
                 !tabStatus && <>
                     <div className='row py-2'>
-                        <div className='col-md-2'>
+                        <div className='col-md-2 col-lg-12'>
                             {
                                 eventId != -1 && team1Idx != -1 &&
                                 <>
