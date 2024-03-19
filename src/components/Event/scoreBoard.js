@@ -14,6 +14,7 @@ export default function ScoreBoard(props) {
     }, [])
 
     const handleTeamShown = (index) => {
+        console.log(typeof(index),'team shown')
         switch (index) {
             case 0:
                 setShow0(!show0)
@@ -30,6 +31,11 @@ export default function ScoreBoard(props) {
             default:
                 break;
         }
+
+        console.log(show0,'show 0')
+        console.log(show1,'show 1')
+        console.log(show2,'show 2')
+        console.log(show3,'show 3')
     }
 
     // console.log(showList, 'show List')
