@@ -473,6 +473,20 @@ function EventComponent() {
                                     continue;
                                 }
                             }
+
+                            // NHL2-DS2-3
+                            if (dataTypeItem.no === 'NHL2-DS2-3') {
+                                if (sepcialSeq.teamId != team1Id) {
+                                    continue;
+                                }
+                            }
+
+                            // NHL2-DS2-4
+                            if (dataTypeItem.no === 'NHL2-DS2-4') {
+                                if (sepcialSeq.teamId != team2Id) {
+                                    continue;
+                                }
+                            }
                             // Special DS
 
                             matchEvtList.push(currentPlayItem);

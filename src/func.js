@@ -120,6 +120,12 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NHL2-DS2-2':
             description = 'Lost Faceoff. Rotate'
             break;
+        case 'NHL2-DS2-3':
+            description = 'End of Period'
+            break;
+        case 'NHL2-DS2-4':
+            description = 'Lost Faceoff. Rotate'
+            break;
         case 'NHL2-DS3':
             description = 'Shot!! ' + playItem.participants
             [0].athlete.shortName
