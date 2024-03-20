@@ -490,9 +490,8 @@ function EventComponent() {
 
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
-                            console.log(result, 'result')
                             hisList = historyList;
-                            console.log(hisList,"history List");
+                            // console.log(hisList,"history List");
 
                             // For Logos
                             selectedTeamIdx = team1Idx;

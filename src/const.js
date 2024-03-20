@@ -1,5 +1,6 @@
 export const URL = {
     NBA_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+    NBA2_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
     NCAA_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard',
     NHL_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
     SOCCER_TODAY_EVENT: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
@@ -9,6 +10,7 @@ export const URL = {
 
     // Event API
     NBA: "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary",
+    NBA2: "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/summary",
     NCAA: "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary",
     NHL: "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary",
     SOCCER1: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary",
@@ -39,6 +41,10 @@ export const SPORTS_CATEGORY = [
     {
         label: 'NHL2',
         value: 'NHL2',
+    },
+    {
+        label: 'NBA2',
+        value: 'NBA2',
     },
 ]
 
@@ -96,6 +102,533 @@ export const INTERVAL_TIME = [
     roataion: (false: 'No Rotation', true: 'Rotation')
 */
 export const NBA_DS = [
+    {//DataSet1
+        no: 'NBA-DS1',
+        teamId: false,
+        typeId: false,
+        scoreValue: 3,
+        Increase: 3,
+        rotation: false
+    },
+    {//DataSet2
+        no: 'NBA-DS2',
+        teamId: false,
+        typeId: 45,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet3
+        no: 'NBA-DS3',
+        teamId: false,
+        typeId: 44,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet5
+        no: 'NBA-DS5',
+        teamId: false,
+        typeId: 31,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet6
+        no: 'NBA-DS6',
+        teamId: false,
+        typeId: 32,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet7-1
+        no: 'NBA-DS7',
+        teamId: false,
+        typeId: 96,
+        scoreValue: 2,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet7-2
+        no: 'NBA-DS7',
+        teamId: false,
+        typeId: 116,
+        scoreValue: 2,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet7-3
+        no: 'NBA-DS7',
+        teamId: false,
+        typeId: 115,
+        scoreValue: 2,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet7-4
+        no: 'NBA-DS7',
+        teamId: false,
+        typeId: 150,
+        scoreValue: 2,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet7-6
+        no: 'NBA-DS7',
+        teamId: false,
+        typeId: 118,
+        scoreValue: 2,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet7-7
+        no: 'NBA-DS7',
+        teamId: false,
+        typeId: 138,
+        scoreValue: 2,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet7-8
+        no: 'NBA-DS7',
+        teamId: false,
+        typeId: 149,
+        scoreValue: 2,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet8
+        no: 'NBA-DS8',
+        teamId: true,
+        typeId: 102,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet9
+        no: 'NBA-DS9',
+        teamId: false,
+        typeId: 101,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet10
+        no: 'NBA-DS10',
+        teamId: false,
+        typeId: 98,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet11
+        no: 'NBA-DS11',
+        teamId: false,
+        typeId: 100,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet12
+        no: 'NBA-DS12',
+        teamId: false,
+        typeId: 101,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet13
+        no: 'NBA-DS13',
+        teamId: true,
+        typeId: 100,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet14
+        no: 'NBA-DS14',
+        teamId: true,
+        typeId: 101,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet15
+        no: 'NBA-DS15',
+        teamId: true,
+        typeId: 100,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet16
+        no: 'NBA-DS16',
+        teamId: true,
+        typeId: 98,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet17
+        no: 'NBA-DS17',
+        teamId: true,
+        typeId: 99,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet18
+        no: 'NBA-DS18',
+        teamId: true,
+        typeId: 97,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet19
+        no: 'NBA-DS19',
+        teamId: true,
+        typeId: 103,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet20
+        no: 'NBA-DS20',
+        teamId: true,
+        typeId: 90,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet21
+        no: 'NBA-DS21',
+        teamId: true,
+        typeId: 87,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet22
+        no: 'NBA-DS22',
+        teamId: true,
+        typeId: 70,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet23
+        no: 'NBA-DS23',
+        teamId: true,
+        typeId: 66,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet24
+        no: 'NBA-DS24',
+        teamId: true,
+        typeId: 71,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet25
+        no: 'NBA-DS25',
+        teamId: true,
+        typeId: 64,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet26
+        no: 'NBA-DS26',
+        teamId: false,
+        typeId: 103,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet27
+        no: 'NBA-DS27',
+        teamId: false,
+        typeId: 97,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DataSet28
+        no: 'NBA-DS28',
+        teamId: false,
+        typeId: 102,
+        scoreValue: 0,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet29
+        no: 'NBA-DS29',
+        teamId: false,
+        typeId: 102,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DataSet30
+        no: 'NBA-DS30',
+        // index: 30,
+        noMatchList: [96, 116, 115, 150, 118, 138, 149],
+        description: true,//prev Description
+        teamId: true,
+        typeId: 44,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet31
+        no: 'NBA-DS31',
+        teamId: false,
+        typeId: 97,
+        scoreValue: 0,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet32
+        no: 'NBA-DS32',
+        teamId: true,
+        typeId: 45,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet33
+        no: 'NBA-DS33',
+        teamId: false,
+        typeId: 99,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DataSet34
+        no: 'NBA-DS34',
+        teamId: false,
+        typeId: 99,
+        scoreValue: 0,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet34-2
+        no: 'NBA-DS34',
+        teamId: false,
+        typeId: 90,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet35
+        no: 'NBA-DS35',
+        teamId: false,
+        typeId: 87,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet36
+        no: 'NBA-DS36',
+        teamId: false,
+        typeId: 70,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet37
+        no: 'NBA-DS37',
+        teamId: false,
+        typeId: 66,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet38
+        no: 'NBA-DS38',
+        teamId: false,
+        typeId: 71,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet39
+        no: 'NBA-DS39',
+        teamId: false,
+        typeId: 64,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet40
+        no: 'NBA-DS40',
+        teamId: true,
+        typeId: 62,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet41
+        no: 'NBA-DS41',
+        teamId: true,
+        typeId: 63,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet42
+        no: 'NBA-DS42',
+        teamId: true,
+        typeId: 86,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet42-2
+        no: 'NBA-DS42',
+        teamId: false,
+        typeId: 86,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet43
+        no: 'NBA-DS43',
+        teamId: true,
+        typeId: 74,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet44
+        no: 'NBA-DS44',
+        teamId: false,
+        typeId: 84,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet45
+        no: 'NBA-DS45',
+        teamId: true,
+        typeId: 84,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    {//DataSet46
+        no: 'NBA-DS46',
+        teamId: false,
+        typeId: 22,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet47
+        no: 'NBA-DS47',
+        teamId: true,
+        typeId: 22,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet48
+        no: 'NBA-DS48',
+        // index: 48,
+        teamId: true,
+        typeId: 44,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet49
+        no: 'NBA-DS49',
+        teamId: true,
+        typeId: 31,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet50
+        no: 'NBA-DS50',
+        teamId: true,
+        typeId: 32,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet51
+        no: 'NBA-DS51',
+        teamId: false,
+        typeId: 104,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet52
+        no: 'NBA-DS52',
+        teamId: false,
+        typeId: 105,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DataSet53
+        no: 'NBA-DS53',
+        teamId: true,
+        typeId: 104,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet54
+        no: 'NBA-DS54',
+        teamId: true,
+        typeId: 105,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet55
+        no: 'NBA-DS55',
+        teamId: true,
+        typeId: 106,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
+    {//DataSet56
+        no: 'NBA-DS56',
+        teamId: false,
+        typeId: 106,
+        scoreValue: 1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DataSet57
+        no: 'NBA-DS57',
+        teamId: false,
+        typeId: 98,
+        scoreValue: 0,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet58
+        no: 'NBA-DS58',
+        teamId: false,
+        typeId: 105,
+        scoreValue: 0,
+        Increase: 0,
+        rotation: true
+    }
+]
+
+export const NBA2_DS = [
     {//DataSet1
         no: 'NBA-DS1',
         teamId: false,
@@ -1088,6 +1621,7 @@ export const NHL2_DS = [
 
 export const DATASET_TYPE_CATEGORY = {
     NBA: NBA_DS,
+    NBA2: NBA2_DS,
     NCAA: NCAA_DS,
     NHL: NHL_DS,
     SOCCER: SOCCER_DS,
