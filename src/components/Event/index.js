@@ -329,9 +329,9 @@ function EventComponent() {
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                     console.log('Loop', resList.plays.length)
-                    // console.log(hisList, 'hislist in event loop')
+                    console.log(hisList, 'hislist in event loop')
                     for (let i = 0; i < resList.plays.length; i++) {
-                        // console.log(i,'Events List')
+                        console.log(i,'Events List')
                         for (let j = 0; j < dataSetType.length; j++) {
                             // console.log(j,'Datatype')
                             // console.log(team1Id, 'team1Id')
@@ -371,16 +371,19 @@ function EventComponent() {
                                     }
                                     // console.log(sepcialSeq.teamId, sepcialSeq.seq, 'special seqence')
                                 }
+
                                 if (currentPlayItem.type.id != dataTypeItem.typeId) continue;
                             }
 
                             // scoreValue
                             if (dataTypeItem.scoreValue != -1) {
+                                if(!currentPlayItem.scoreValue) continue;
                                 if (currentPlayItem.scoreValue != dataTypeItem.scoreValue) continue;
                             }
 
                             // scoringPlay
                             if (dataTypeItem.scoringPlayStatus) {
+                                if(!currentPlayItem.scoringPlay) continue;
                                 if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
                                     continue;
                                 }
@@ -476,6 +479,8 @@ function EventComponent() {
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
                             hisList = historyList;
 
+                            console.log(hisList,"history List");
+
                             // For Logos
                             selectedTeamIdx = team1Idx;
                             if (team1Id != matchTeamId) {
@@ -514,27 +519,27 @@ function EventComponent() {
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
-                            // console.log(
-                            //     'DS_NO:', dataTypeItem.no,
-                            //     'sequence:', currentPlayItem.sequenceNumber,
-                            //     'team1Id:', team1Id,
-                            //     // 'teamId:', currentPlayItem.team.id,
-                            //     'typeId:', currentPlayItem.type.id,
-                            //     "scoreValue:", currentPlayItem.scoreValue,
-                            //     'scoringPlay', currentPlayItem.scoringPlay,
-                            //     'selectedTeamIdx:', selectedTeamIdx,
-                            //     "rotation:", dataTypeItem.rotation,
-                            //     'textIdx:', textIndex,
-                            //     'tableIdx:', tableIndex,
-                            //     'teamIndex:', tableIndex,
-                            //     'increase:', increaseAmount,
-                            //     'description:', result.description,
-                            //     'homeScore:', currentPlayItem.homeScore,
-                            //     'awayScore', currentPlayItem.awayScore,
-                            //     'Period:', currentPlayItem.period.displayValue,
-                            //     'Clock:', currentPlayItem.clock.displayValue,
-                            //     // 'hisList:', hisList,
-                            // )
+                            console.log(
+                                'DS_NO:', dataTypeItem.no,
+                                'sequence:', currentPlayItem.sequenceNumber,
+                                'team1Id:', team1Id,
+                                // 'teamId:', currentPlayItem.team.id,
+                                'typeId:', currentPlayItem.type.id,
+                                "scoreValue:", currentPlayItem.scoreValue,
+                                'scoringPlay', currentPlayItem.scoringPlay,
+                                'selectedTeamIdx:', selectedTeamIdx,
+                                "rotation:", dataTypeItem.rotation,
+                                'textIdx:', textIndex,
+                                'tableIdx:', tableIndex,
+                                'teamIndex:', tableIndex,
+                                'increase:', increaseAmount,
+                                'description:', result.description,
+                                'homeScore:', currentPlayItem.homeScore,
+                                'awayScore', currentPlayItem.awayScore,
+                                'Period:', currentPlayItem.period.displayValue,
+                                'Clock:', currentPlayItem.clock.displayValue,
+                                // 'hisList:', hisList,
+                            )
                         }
                     }
 
