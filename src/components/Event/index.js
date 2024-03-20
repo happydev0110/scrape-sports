@@ -383,7 +383,6 @@ function EventComponent() {
 
                             // scoringPlay
                             if (dataTypeItem.scoringPlayStatus) {
-                                if(!currentPlayItem.scoringPlay) continue;
                                 if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
                                     continue;
                                 }
@@ -491,8 +490,8 @@ function EventComponent() {
 
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
+                            console.log(result, 'result')
                             hisList = historyList;
-
                             console.log(hisList,"history List");
 
                             // For Logos

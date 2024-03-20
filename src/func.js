@@ -131,10 +131,11 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             [0].athlete.shortName
             break;
         case 'NHL2-DS5':
-            // description = playItem.type.text + playItem.participants
-            // [0].athlete.shortName
-            // description = "NHL2-DS5"
-            description = playItem.type.text + " " + playItem.participants[0].athlete.shortName
+            if(playItem.participants){
+                description = playItem.type.text + " " + playItem.participants[0].athlete.shortName    
+            } else {
+                description = playItem.type.text
+            }
             break;
         case 'NHL2-DS7':
             description = "Goal!!! " + playItem.participants

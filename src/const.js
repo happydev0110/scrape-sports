@@ -1028,8 +1028,8 @@ export const NHL2_DS = [
         Increase: false,
         rotation: false
     },
-    {//DataSet2-3
-        no: 'NHL2-DS2-3',
+    {//DataSet2-4
+        no: 'NHL2-DS2-4',
         teamId: -1,
         typeId: 519,
         scoreValue: -1,
