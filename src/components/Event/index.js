@@ -397,11 +397,11 @@ function EventComponent() {
                             }
 
                             // DS5-NCAA
-                            if (dataTypeItem.no === 'NCAA-DS5') {
-                                if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
-                                    continue;
-                                }
-                            }
+                            // if (dataTypeItem.no === 'NCAA-DS5') {
+                            //     if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
+                            //         continue;
+                            //     }
+                            // }
 
                             // DS9-NCAA
                             if (dataTypeItem.no === 'NCAA-DS9') {
