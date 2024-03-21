@@ -112,9 +112,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
 
         // NHL
         case 'NHL-DS2':
-            description = playItem.text + 'Ends Turn'
+            description = playItem.text + ' Ends Turn'
             break;
-            
+
         // NHL2 
         case 'NHL2-DS1-2':
             description = 'Wins Faceoff'
