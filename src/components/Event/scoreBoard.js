@@ -108,7 +108,7 @@ export default function ScoreBoard(props) {
                                     }}>{show0 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
                                 {
-                                    (show0 || selTblIdx == 0) ? historyList[0].map((item, index) => {
+                                    (show0 || selTblIdx == 0) ? historyList[0].reverse().map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className='d-inline-flex'>
@@ -120,7 +120,7 @@ export default function ScoreBoard(props) {
                                                 </div><br />
                                             </>
                                         )
-                                    }) : historyList[0].slice(0, 1).map((item, index) => {
+                                    }) : historyList[0].reverse().slice(-1).map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className='d-inline-flex'>
@@ -153,7 +153,7 @@ export default function ScoreBoard(props) {
                                     }}>{show1 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
                                 {
-                                    (show1 || selTblIdx == 1) ? historyList[1].map((item, index) => {
+                                    (show1 || selTblIdx == 1) ? historyList[1].reverse().map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className='d-inline-flex'>
@@ -165,7 +165,7 @@ export default function ScoreBoard(props) {
                                                 </div><br />
                                             </>
                                         )
-                                    }) : historyList[1].slice(0, 1).map((item, index) => {
+                                    }) : historyList[1].reverse().slice(-1).map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className='d-inline-flex'>
@@ -198,7 +198,7 @@ export default function ScoreBoard(props) {
                                     }}>{show2 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
                                 {
-                                    (show2 || selTblIdx == 2) ? historyList[2].map((item, index) => {
+                                    (show2 || selTblIdx == 2) ? historyList[2].reverse().map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className='d-inline-flex'>
@@ -210,7 +210,7 @@ export default function ScoreBoard(props) {
                                                 </div><br />
                                             </>
                                         )
-                                    }) : historyList[2].slice(0, 1).map((item, index) => {
+                                    }) : historyList[2].reverse().slice(-1).map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className='d-inline-flex'>
@@ -243,7 +243,7 @@ export default function ScoreBoard(props) {
                                     }}>{show3 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
                                 {
-                                    (show3 || selTblIdx == 3) ? historyList[3].map((item, index) => {
+                                    (show3 || selTblIdx == 3) ? historyList[3].reverse().map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className='d-inline-flex'>
@@ -255,7 +255,7 @@ export default function ScoreBoard(props) {
                                                 </div><br />
                                             </>
                                         )
-                                    }) : historyList[3].slice(0, 1).map((item, index) => {
+                                    }) : historyList[3].reverse().slice(-1).map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className='d-inline-flex'>
