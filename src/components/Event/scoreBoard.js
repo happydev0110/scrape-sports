@@ -4,10 +4,10 @@ import defaultLogo from '../../assets/images/nhl_logo.png'
 export default function ScoreBoard(props) {
     const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList } = props;
 
-    const [team1Name, setTeam1Name] = useState(1);
-    const [team2Name, setTeam2Name] = useState(2);
-    const [team3Name, setTeam3Name] = useState(3);
-    const [team4Name, setTeam4Name] = useState(4);
+    const [team1Name, setTeam1Name] = useState('Team1');
+    const [team2Name, setTeam2Name] = useState('Team2');
+    const [team3Name, setTeam3Name] = useState('Team3');
+    const [team4Name, setTeam4Name] = useState('Team4');
 
     const [show0, setShow0] = useState(false);
     const [show1, setShow1] = useState(false);
