@@ -110,6 +110,11 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             description = 'And 1 Basket!'
             break;
 
+        // NHL
+        case 'NHL-DS2':
+            description = playItem.text + 'Ends Turn'
+            break;
+            
         // NHL2 
         case 'NHL2-DS1-2':
             description = 'Wins Faceoff'
@@ -131,8 +136,8 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             [0].athlete.shortName
             break;
         case 'NHL2-DS5':
-            if(playItem.participants){
-                description = playItem.type.text + " " + playItem.participants[0].athlete.shortName    
+            if (playItem.participants) {
+                description = playItem.type.text + " " + playItem.participants[0].athlete.shortName
             } else {
                 description = playItem.type.text
             }
@@ -150,6 +155,11 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             break;
         case 'NHL2-DS11':
             description = "Game Over. Thanks For Playing"
+            break;
+
+        // NBA2
+        case 'NBA2-DS1':
+            description = 'Three!!! '
             break;
         default:
             break;
