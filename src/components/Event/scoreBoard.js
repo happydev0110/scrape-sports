@@ -100,7 +100,7 @@ export default function ScoreBoard(props) {
                                         className='text-center'
                                         value={team1Name}
                                         onChange={(evt) => handleTeamName(evt, 1)}
-                                        style={{ width: 60, height: 20, border: 'none' }}
+                                        style={{ width: 80, height: 30, fontSize: 20, border: 'none' }}
                                     />
                                     <p className='d-inline-block px-3'>{tableScore[0]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
@@ -145,7 +145,7 @@ export default function ScoreBoard(props) {
                                         className='text-center'
                                         value={team2Name}
                                         onChange={(evt) => handleTeamName(evt, 2)}
-                                        style={{ width: 60, height: 20, border: 'none' }}
+                                        style={{ width: 80, height: 30, fontSize: 20, border: 'none' }}
                                     />
                                     <p className='d-inline-block px-3'>{tableScore[1]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
@@ -190,7 +190,7 @@ export default function ScoreBoard(props) {
                                         className='text-center'
                                         value={team3Name}
                                         onChange={(evt) => handleTeamName(evt, 3)}
-                                        style={{ width: 60, height: 20, border: 'none' }}
+                                        style={{ width: 80, height: 30, fontSize: 20, border: 'none' }}
                                     />
                                     <p className='d-inline-block px-3'>{tableScore[2]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
@@ -235,7 +235,7 @@ export default function ScoreBoard(props) {
                                         className='text-center'
                                         value={team4Name}
                                         onChange={(evt) => handleTeamName(evt, 4)}
-                                        style={{ width: 60, height: 20, border: 'none' }}
+                                        style={{ width: 80, height: 30, fontSize: 20, border: 'none' }}
                                     />
                                     <p className='d-inline-block px-3'>{tableScore[3]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
