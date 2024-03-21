@@ -102,7 +102,7 @@ export default function ScoreBoard(props) {
                                         onChange={(evt) => handleTeamName(evt, 1)}
                                         style={{ width: 180, height: 30, fontSize: 20, border: 'none' }}
                                     />
-                                    <p className='d-inline-block px-3'>{tableScore[0]}</p>
+                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
                                         handleTeamShown(0)
                                     }}>{show0 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
@@ -147,7 +147,7 @@ export default function ScoreBoard(props) {
                                         onChange={(evt) => handleTeamName(evt, 2)}
                                         style={{ width: 180, height: 30, fontSize: 20, border: 'none' }}
                                     />
-                                    <p className='d-inline-block px-3'>{tableScore[1]}</p>
+                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
                                         handleTeamShown(1)
                                     }}>{show1 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
@@ -192,7 +192,7 @@ export default function ScoreBoard(props) {
                                         onChange={(evt) => handleTeamName(evt, 3)}
                                         style={{ width: 180, height: 30, fontSize: 20, border: 'none' }}
                                     />
-                                    <p className='d-inline-block px-3'>{tableScore[2]}</p>
+                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
                                         handleTeamShown(2)
                                     }}>{show2 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
@@ -237,7 +237,7 @@ export default function ScoreBoard(props) {
                                         onChange={(evt) => handleTeamName(evt, 4)}
                                         style={{ width: 180, height: 30, fontSize: 20, border: 'none' }}
                                     />
-                                    <p className='d-inline-block px-3'>{tableScore[3]}</p>
+                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
                                         handleTeamShown(3)
                                     }}>{show3 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
