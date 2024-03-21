@@ -100,12 +100,12 @@ export default function ScoreBoard(props) {
                                         className='text-center'
                                         value={team1Name}
                                         onChange={(evt) => handleTeamName(evt, 1)}
-                                        style={{ width: 80, height: 30, fontSize: 20, border: 'none' }}
+                                        style={{ width: 60, height: 30, fontSize: 20, border: 'none' }}
                                     />
                                     <p className='d-inline-block px-3'>{tableScore[0]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
                                         handleTeamShown(0)
-                                    }}>{show0 ? <h5 className='d-inline-block text-bold text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18, backgroundColor: 'green' }}>+</h5> : <h5 className='d-inline-block text-bold text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18, backgroundColor: 'green' }}>-</h5>}</p>
+                                    }}>{show0 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
                                 {
                                     (show0 || selTblIdx == 0) ? historyList[0].reverse().map((item, index) => {
@@ -145,12 +145,12 @@ export default function ScoreBoard(props) {
                                         className='text-center'
                                         value={team2Name}
                                         onChange={(evt) => handleTeamName(evt, 2)}
-                                        style={{ width: 80, height: 30, fontSize: 20, border: 'none' }}
+                                        style={{ width: 60, height: 30, fontSize: 20, border: 'none' }}
                                     />
                                     <p className='d-inline-block px-3'>{tableScore[1]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
                                         handleTeamShown(1)
-                                    }}>{show1 ? <h5 className='d-inline-block text-bold text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18, backgroundColor: 'green' }}>+</h5> : <h5 className='d-inline-block text-bold text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18, backgroundColor: 'green' }}>-</h5>}</p>
+                                    }}>{show1 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
                                 {
                                     (show1 || selTblIdx == 1) ? historyList[1].reverse().map((item, index) => {
@@ -190,12 +190,12 @@ export default function ScoreBoard(props) {
                                         className='text-center'
                                         value={team3Name}
                                         onChange={(evt) => handleTeamName(evt, 3)}
-                                        style={{ width: 80, height: 30, fontSize: 20, border: 'none' }}
+                                        style={{ width: 60, height: 30, fontSize: 20, border: 'none' }}
                                     />
                                     <p className='d-inline-block px-3'>{tableScore[2]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
                                         handleTeamShown(2)
-                                    }}>{show2 ? <h5 className='d-inline-block text-bold text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18, backgroundColor: 'green' }}>+</h5> : <h5 className='d-inline-block text-bold text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18, backgroundColor: 'green' }}>-</h5>}</p>
+                                    }}>{show2 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
                                 {
                                     (show2 || selTblIdx == 2) ? historyList[2].reverse().map((item, index) => {
@@ -235,12 +235,12 @@ export default function ScoreBoard(props) {
                                         className='text-center'
                                         value={team4Name}
                                         onChange={(evt) => handleTeamName(evt, 4)}
-                                        style={{ width: 80, height: 30, fontSize: 20, border: 'none' }}
+                                        style={{ width: 60, height: 30, fontSize: 20, border: 'none' }}
                                     />
                                     <p className='d-inline-block px-3'>{tableScore[3]}</p>
                                     <p className='d-inline-block float-right text-primary' onClick={() => {
                                         handleTeamShown(3)
-                                    }}>{show3 ? <h5 className='d-inline-block text-bold text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18, backgroundColor: 'green' }}>+</h5> : <h5 className='d-inline-block text-bold text-white' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18, backgroundColor: 'green' }}>-</h5>}</p>
+                                    }}>{show3 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
                                 {
                                     (show3 || selTblIdx == 3) ? historyList[3].reverse().map((item, index) => {
