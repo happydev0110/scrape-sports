@@ -174,6 +174,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             break;
     }
 
+    // Previous Text
     if (dataTypeItem.description) {
         description = prevPlayItem.text;
     }

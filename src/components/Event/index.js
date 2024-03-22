@@ -486,6 +486,20 @@ function EventComponent() {
                                     continue;
                                 }
                             }
+
+                            // NBA2-DS20
+                            if (dataTypeItem.no === 'NBA2-DS30') {
+                                if (currentPlayItem.text.includes('Turnover') === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // NBA2-DS48
+                            if (dataTypeItem.no === 'NBA2-DS48') {
+                                if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
+                                    continue;
+                                }
+                            }
                             
                             // Special DS
 

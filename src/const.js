@@ -6,6 +6,8 @@ export const URL = {
     SOCCER_TODAY_EVENT: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
     NHL2_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
 
+    // https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary
+
     // EVENT_SCHEDULE: 'https://www.espn.com/nba/schedule',
 
     // Event API
@@ -1265,7 +1267,7 @@ export const NBA2_DS = [
     {//DS15-No Change
         no: 'NBA2-DS15',
         teamId: true,
-        typeId: 100,
+        typeId: 102,
         scoreValue: 0,
         Increase: 1,
         rotation: false
@@ -1302,14 +1304,14 @@ export const NBA2_DS = [
         Increase: 1,
         rotation: false
     },
-    // {//DS20
-    //     no: 'NBA2-DS20',
-    //     teamId: true,
-    //     typeId: false,
-    //     scoreValue: -1,
-    //     Increase: 1,
-    //     rotation: false
-    // },
+    {//DS20
+        no: 'NBA2-DS20',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
     {//DS26
         no: 'NBA2-DS26',
         teamId: false,
@@ -1350,7 +1352,7 @@ export const NBA2_DS = [
         typeId: 44,
         scoreValue: -1,
         Increase: 2,
-        rotation: yes
+        rotation: true
     },
     {//DS31
         no: 'NBA2-DS31',
@@ -1554,14 +1556,14 @@ export const NBA2_DS = [
         Increase: false,
         rotation: false
     },
-    // {//DS67
-    //     no: 'NBA2-DS67',
-    //     teamId: true,
-    //     typeId: 101,
-    //     scoreValue: 1,
-    //     Increase: false,
-    //     rotation: false
-    // },
+    {//DS67
+        no: 'NBA2-DS67',
+        teamId: true,
+        typeId: 102,
+        scoreValue: 1,
+        Increase: false,
+        rotation: false
+    },
     {//DS68
         no: 'NBA2-DS68',
         teamId: true,
