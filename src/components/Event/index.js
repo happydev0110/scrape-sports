@@ -488,7 +488,7 @@ function EventComponent() {
                             }
 
                             // NBA2-DS20
-                            if (dataTypeItem.no === 'NBA2-DS30') {
+                            if (dataTypeItem.no === 'NBA2-DS20') {
                                 if (currentPlayItem.text.includes('Turnover') === -1) {
                                     continue;
                                 }
