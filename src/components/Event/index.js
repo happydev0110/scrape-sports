@@ -489,7 +489,7 @@ function EventComponent() {
 
                             // NBA2-DS20
                             if (dataTypeItem.no === 'NBA2-DS20') {
-                                if (currentPlayItem.text.includes('Turnover') === -1) {
+                                if (!currentPlayItem.text.includes('turnover')) {
                                     continue;
                                 }
                             }
@@ -506,7 +506,7 @@ function EventComponent() {
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
                             hisList = historyList;
-                            // console.log(hisList,"history List");
+                            console.log(hisList,"history List");
 
                             // For Logos
                             selectedTeamIdx = team1Idx;
