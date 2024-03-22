@@ -396,13 +396,6 @@ function EventComponent() {
                                 }
                             }
 
-                            // DS5-NCAA
-                            // if (dataTypeItem.no === 'NCAA-DS5') {
-                            //     if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
-                            //         continue;
-                            //     }
-                            // }
-
                             // DS9-NCAA
                             if (dataTypeItem.no === 'NCAA-DS9') {
                                 if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 2) {
@@ -486,6 +479,14 @@ function EventComponent() {
                                     continue;
                                 }
                             }
+
+                            // NBA2-DS30
+                            if (dataTypeItem.no === 'NBA2-DS30') {
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                                    continue;
+                                }
+                            }
+                            
                             // Special DS
 
                             matchEvtList.push(currentPlayItem);
