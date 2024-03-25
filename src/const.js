@@ -20,7 +20,6 @@ export const URL = {
 
     SOCCER: 'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/summary'
     // NCAA_SCORE_BOARD: "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
-
 }
 
 export const SPORTS_CATEGORY = [
@@ -1545,8 +1544,6 @@ export const NBA2_DS = [
         Increase: 0,
         rotation: false
     },
-
-    // New 
     {//DS61
         no: 'NBA2-DS61',
         teamId: false,
