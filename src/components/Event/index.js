@@ -331,7 +331,7 @@ function EventComponent() {
                     console.log('Loop', resList.plays.length)
                     console.log(hisList, 'hislist in event loop')
                     for (let i = 0; i < resList.plays.length; i++) {
-                        console.log(i,'Events List')
+                        // console.log(i,'Events List')
                         for (let j = 0; j < dataSetType.length; j++) {
                             // console.log(j,'Datatype')
                             // console.log(team1Id, 'team1Id')
@@ -480,6 +480,69 @@ function EventComponent() {
                                 }
                             }
 
+                            // NBA2-DS1-2
+                            if (dataTypeItem.no === 'NBA2-DS1-2') {
+                                if (!currentPlayItem.text.includes('three point')) {
+                                    continue;
+                                }
+                            }
+
+                            // NBA2-DS1-3
+                            if (dataTypeItem.no === 'NBA2-DS1-3') {
+                                if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 22-foot')) {
+                                    continue;
+                                }
+                            }
+                            
+                            // NBA2-DS1-4
+                            if (dataTypeItem.no === 'NBA2-DS1-4') {
+                                if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 23-foot')) {
+                                    continue;
+                                }
+                            }
+                            
+                            // NBA2-DS1-5
+                            if (dataTypeItem.no === 'NBA2-DS1-5') {
+                                if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 24-foot')) {
+                                    continue;
+                                }
+                            }
+
+                            // NBA2-DS1-6
+                            if (dataTypeItem.no === 'NBA2-DS1-6') {
+                                if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 25-foot')) {
+                                    continue;
+                                }
+                            }
+
+                            // NBA2-DS1-7
+                            if (dataTypeItem.no === 'NBA2-DS1-7') {
+                                if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 26-foot')) {
+                                    continue;
+                                }
+                            }
+
+                            // NBA2-DS1-8
+                            if (dataTypeItem.no === 'NBA2-DS1-8') {
+                                if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 27-foot')) {
+                                    continue;
+                                }
+                            }
+
+                            // NBA2-DS7
+                            if (dataTypeItem.no === 'NBA2-DS7') {
+                                if (!currentPlayItem.type.text.includes('Dunk Shot') || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                                    continue;
+                                }
+                            }
+
+                            // NBA2-DS7-2
+                            if (dataTypeItem.no === 'NBA2-DS7-2') {
+                                if (!currentPlayItem.type.text.includes('Dunk Shot')) {
+                                    continue;
+                                }
+                            }
+
                             // NBA2-DS30
                             if (dataTypeItem.no === 'NBA2-DS30') {
                                 if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
@@ -489,7 +552,7 @@ function EventComponent() {
 
                             // NBA2-DS20
                             if (dataTypeItem.no === 'NBA2-DS20') {
-                                if (!currentPlayItem.text.includes('turnover')) {
+                                if (!currentPlayItem.type.text.includes('Turnover')) {
                                     continue;
                                 }
                             }

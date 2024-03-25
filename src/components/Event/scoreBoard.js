@@ -110,27 +110,27 @@ export default function ScoreBoard(props) {
                                 {
                                     (show0 || selTblIdx == 0) ? historyList[0].map((item, index) => {
                                         return (
-                                            <>
-                                                <div key={index} className='d-inline-flex'>
+                                            <div key={index}>
+                                                <div className='d-inline-flex'>
                                                     {
                                                         // selTeamIdx != -1 &&
                                                         <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
                                                     }
                                                     <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p>
                                                 </div><br />
-                                            </>
+                                            </div>
                                         )
                                     }) : historyList[0].slice(-1).map((item, index) => {
                                         return (
-                                            <>
-                                                <div key={index} className='d-inline-flex'>
+                                            <div key={index}>
+                                                <div className='d-inline-flex'>
                                                     {
                                                         // selTeamIdx != -1 &&
                                                         <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
                                                     }
                                                     <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p>
                                                 </div><br />
-                                            </>
+                                            </div>
                                         )
                                     })
                                 }
@@ -155,27 +155,27 @@ export default function ScoreBoard(props) {
                                 {
                                     (show1 || selTblIdx == 1) ? historyList[1].map((item, index) => {
                                         return (
-                                            <>
-                                                <div key={index} className='d-inline-flex'>
+                                            <div key={index}>
+                                                <div className='d-inline-flex'>
                                                     {
                                                         // selTeamIdx != -1 &&
                                                         <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
                                                     }
                                                     <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
                                                 </div><br />
-                                            </>
+                                            </div>
                                         )
                                     }) : historyList[1].slice(-1).map((item, index) => {
                                         return (
-                                            <>
-                                                <div key={index} className='d-inline-flex'>
+                                            <div key={index}>
+                                                <div className='d-inline-flex'>
                                                     {
                                                         // selTeamIdx != -1 &&
                                                         <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
                                                     }
                                                     <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p>
                                                 </div><br />
-                                            </>
+                                            </div>
                                         )
                                     })
                                 }
@@ -200,27 +200,27 @@ export default function ScoreBoard(props) {
                                 {
                                     (show2 || selTblIdx == 2) ? historyList[2].map((item, index) => {
                                         return (
-                                            <>
-                                                <div key={index} className='d-inline-flex'>
+                                            <div key={index}>
+                                                <div className='d-inline-flex'>
                                                     {
                                                         // selTeamIdx != -1 &&
                                                         <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
                                                     }
                                                     <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
                                                 </div><br />
-                                            </>
+                                            </div>
                                         )
                                     }) : historyList[2].slice(-1).map((item, index) => {
                                         return (
-                                            <>
-                                                <div key={index} className='d-inline-flex'>
+                                            <div key={index}>
+                                                <div className='d-inline-flex'>
                                                     {
                                                         // selTeamIdx != -1 &&
                                                         <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
                                                     }
                                                     <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p>
                                                 </div><br />
-                                            </>
+                                            </div>
                                         )
                                     })
                                 }
@@ -245,7 +245,7 @@ export default function ScoreBoard(props) {
                                 {
                                     (show3 || selTblIdx == 3) ? historyList[3].map((item, index) => {
                                         return (
-                                            <>
+                                            <div key={index}>
                                                 <div key={index} className='d-inline-flex'>
                                                     {
                                                         // selTeamIdx != -1 &&
@@ -253,19 +253,19 @@ export default function ScoreBoard(props) {
                                                     }
                                                     <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
                                                 </div><br />
-                                            </>
+                                            </div>
                                         )
                                     }) : historyList[3].slice(-1).map((item, index) => {
                                         return (
-                                            <>
-                                                <div key={index} className='d-inline-flex'>
+                                            <div key={index}>
+                                                <div className='d-inline-flex'>
                                                     {
                                                         // selTeamIdx != -1 &&
                                                         <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : defaultLogo} style={{ width: 30, height: 30 }} />
                                                     }
                                                     <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" +" + item.increase + " (" + item.score + ") " + item.time}</b></p>
                                                 </div><br />
-                                            </>
+                                            </div>
                                         )
                                     })
                                 }

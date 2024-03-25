@@ -378,7 +378,6 @@ export const NBA_DS = [
     },
     {//DataSet30
         no: 'NBA-DS30',
-        // index: 30,
         noMatchList: [96, 116, 115, 150, 118, 138, 149],
         description: true,//prev Description
         teamId: true,
@@ -1106,18 +1105,58 @@ export const NBA2_DS = [
     },
     {//DS1-2
         no: 'NBA2-DS1-2',
-        teamId: false,
+        teamId: true,
         typeId: false,
-        scoreValue: 3,
-        Increase: 3,
+        scoreValue: 0,
+        Increase: 1,
         rotation: false
     },
-    {//DS1
+    {//DS1-3
         no: 'NBA2-DS1-3',
-        teamId: false,
+        teamId: true,
         typeId: false,
-        scoreValue: 3,
-        Increase: 3,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DS1-4
+        no: 'NBA2-DS1-4',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DS1-5
+        no: 'NBA2-DS1-5',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DS1-6
+        no: 'NBA2-DS1-6',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DS1-7
+        no: 'NBA2-DS1-7',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
+    {//DS1-8
+        no: 'NBA2-DS1-8',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 1,
         rotation: false
     },
     {//DS2
@@ -1152,61 +1191,22 @@ export const NBA2_DS = [
         Increase: false,
         rotation: true
     },
-    {//DS7-1
+    {//DS7
         no: 'NBA2-DS7',
+        noMatchList: [96, 116, 115, 150, 118, 138, 149],
         teamId: false,
-        typeId: 96,
+        typeId: false,
         scoreValue: 2,
         Increase: 2,
         rotation: false
     },
     {//DS7-2
-        no: 'NBA2-DS7',
-        teamId: false,
-        typeId: 116,
+        no: 'NBA2-DS7-2',
+        teamId: true,
+        typeId: false,
         scoreValue: 2,
-        Increase: 2,
-        rotation: false
-    },
-    {//DS7-3
-        no: 'NBA2-DS7',
-        teamId: false,
-        typeId: 115,
-        scoreValue: 2,
-        Increase: 2,
-        rotation: false
-    },
-    {//DS7-4
-        no: 'NBA2-DS7',
-        teamId: false,
-        typeId: 150,
-        scoreValue: 2,
-        Increase: 2,
-        rotation: false
-    },
-    {//DS7-6
-        no: 'NBA2-DS7',
-        teamId: false,
-        typeId: 118,
-        scoreValue: 2,
-        Increase: 2,
-        rotation: false
-    },
-    {//DS7-7
-        no: 'NBA2-DS7',
-        teamId: false,
-        typeId: 138,
-        scoreValue: 2,
-        Increase: 2,
-        rotation: false
-    },
-    {//DS7-8
-        no: 'NBA2-DS7',
-        teamId: false,
-        typeId: 149,
-        scoreValue: 2,
-        Increase: 2,
-        rotation: false
+        Increase: false,
+        rotation: true
     },
     {//DS8-No change
         no: 'NBA2-DS8',
@@ -1351,7 +1351,7 @@ export const NBA2_DS = [
         teamId: true,
         typeId: 44,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS31
