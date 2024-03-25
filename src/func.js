@@ -3,6 +3,13 @@ export const isValidDate = (dateString) => {
     return !isNaN(dateObject) && dateString.trim() !== '';
 }
 
+export const changeTeamIdx = (index) => {
+    let idx = index;
+    idx = (index + 1) % 2;
+
+    return idx;
+}
+
 export const formatDate = (date) => {
     var year, month, day = '';
     // if (isValidDate(date)) {
@@ -96,7 +103,10 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             description = 'Three Point Miss'
             break;
         case 'NCAA-DS11':
-            description = 'Free Throw Made'
+            description = 'Made Free Throw'
+            break;
+        case 'NCAA-DS12':
+            description = 'And 1 Basket!'
             break;
         case 'NCAA-DS13':
             description = 'Foul Rotate Turns'

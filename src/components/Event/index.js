@@ -579,7 +579,7 @@ function EventComponent() {
 
                             // NBA2-DS72
                             if (dataTypeItem.no === 'NBA2-DS72') {
-                                if (!currentPlayItem.type.text.includes('blocks')) {
+                                if (!currentPlayItem.text.includes('blocks')) {
                                     continue;
                                 }
                             }

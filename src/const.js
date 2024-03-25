@@ -629,7 +629,6 @@ export const NBA_DS = [
     }
 ]
 
-
 export const NCAA_DS = [
     {//DataSet1
         no: 'NCAA-DS1',
@@ -739,7 +738,7 @@ export const NCAA_DS = [
         teamId: true,
         typeId: 519,
         scoreValue: -1,
-        Increase: 3,
+        Increase: 1,
         rotation: true
     },
     {//DataSet13
@@ -749,7 +748,39 @@ export const NCAA_DS = [
         scoreValue: -1,
         Increase: 2,
         rotation: true
-    }
+    },
+    {//DataSet14-1
+        no: 'NCAA-DS14-1',
+        teamId: false,
+        typeId: 521,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet14-2
+        no: 'NCAA-DS14-2',
+        teamId: false,
+        typeId: 521,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet15
+        no: 'NCAA-DS15',
+        teamId: true,
+        typeId: 574,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DataSet16
+        no: 'NCAA-DS16',
+        teamId: false,
+        typeId: 618,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
 ]
 
 export const NHL_DS = [
@@ -1394,14 +1425,14 @@ export const NBA2_DS = [
         Increase: false,
         rotation: false
     },
-    // {//DS44
-    //     no: 'NBA2-DS44',
-    //     teamId: false,
-    //     typeId: 42,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
+    {//DS44
+        no: 'NBA2-DS44',
+        teamId: false,
+        typeId: 42,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
     {//DS45
         no: 'NBA2-DS45',
         teamId: true,
