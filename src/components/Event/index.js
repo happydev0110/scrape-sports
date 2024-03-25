@@ -544,7 +544,7 @@ function EventComponent() {
 
                             // NBA2-DS20
                             if (dataTypeItem.no === 'NBA2-DS20') {
-                                if (!currentPlayItem.type.id == 84 || !currentPlayItem.type.text.includes('Turnover')) {
+                                if (currentPlayItem.type.id == 84 || !currentPlayItem.type.text.includes('Turnover')) {
                                     continue;
                                 }
                             }
