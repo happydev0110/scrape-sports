@@ -1626,7 +1626,7 @@ export const NBA2_DS = [
     },
     {//DS72
         no: 'NBA2-DS72',
-        teamId: false,
+        teamId: true,
         typeId: false,
         scoreValue: -1,
         Increase: 1,

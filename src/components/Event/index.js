@@ -647,14 +647,13 @@ function EventComponent() {
                                     'awayScore', currentPlayItem.awayScore,
                                     'Period:', currentPlayItem.period.displayValue,
                                     'Clock:', currentPlayItem.clock.displayValue,
-                                    // 'hisList:', hisList,
                                 )
                             } else {
                                 console.log(
                                     'DS_NO:', dataTypeItem.no,
                                     'sequence:', currentPlayItem.sequenceNumber,
                                     'team1Id:', team1Id,
-                                    // 'teamId:', currentPlayItem.team.id,
+                                    'teamId:', 'No team',
                                     'typeId:', currentPlayItem.type.id,
                                     "scoreValue:", currentPlayItem.scoreValue,
                                     'scoringPlay', currentPlayItem.scoringPlay,
@@ -669,7 +668,6 @@ function EventComponent() {
                                     'awayScore', currentPlayItem.awayScore,
                                     'Period:', currentPlayItem.period.displayValue,
                                     'Clock:', currentPlayItem.clock.displayValue,
-                                    // 'hisList:', hisList,
                                 )
                             }
                         }
