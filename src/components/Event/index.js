@@ -542,9 +542,23 @@ function EventComponent() {
                                 }
                             }
 
+                            // NBA2-DS20
+                            if (dataTypeItem.no === 'NBA2-DS20') {
+                                if (!currentPlayItem.type.id == 84 || !currentPlayItem.type.text.includes('Turnover')) {
+                                    continue;
+                                }
+                            }
+
                             // NBA2-DS30
                             if (dataTypeItem.no === 'NBA2-DS30') {
                                 if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                                    continue;
+                                }
+                            }
+
+                            // NBA2-DS30-2
+                            if (dataTypeItem.no === 'NBA2-DS30-2') {
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !prevPlayItem.type.text.includes('Dunk Shot')) {
                                     continue;
                                 }
                             }
@@ -562,7 +576,13 @@ function EventComponent() {
                                     continue;
                                 }
                             }
-                            
+
+                            // NBA2-DS72
+                            if (dataTypeItem.no === 'NBA2-DS72') {
+                                if (!currentPlayItem.type.text.includes('blocks')) {
+                                    continue;
+                                }
+                            }
                             // Special DS
 
                             matchEvtList.push(currentPlayItem);

@@ -167,6 +167,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NBA2-DS7-2':
             description = playItem.type.text
             break;
+        case 'NBA2-DS30':
+            description = 'And 1 Basket!!!'
+            break;
         case 'NBA2-DS45':
             description = 'Offensive Foul'
             break;

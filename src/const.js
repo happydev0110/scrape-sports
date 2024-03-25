@@ -1354,6 +1354,14 @@ export const NBA2_DS = [
         Increase: 3,
         rotation: true
     },
+    {//DS30-2
+        no: 'NBA2-DS30-2',
+        teamId: true,
+        typeId: 44,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
     {//DS31
         no: 'NBA2-DS31',
         teamId: false,
@@ -1386,14 +1394,14 @@ export const NBA2_DS = [
         Increase: false,
         rotation: false
     },
-    {//DS44
-        no: 'NBA2-DS44',
-        teamId: false,
-        typeId: 84,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
+    // {//DS44
+    //     no: 'NBA2-DS44',
+    //     teamId: false,
+    //     typeId: 42,
+    //     scoreValue: -1,
+    //     Increase: false,
+    //     rotation: true
+    // },
     {//DS45
         no: 'NBA2-DS45',
         teamId: true,
@@ -1586,6 +1594,14 @@ export const NBA2_DS = [
         typeId: 103,
         scoreValue: 1,
         Increase: false,
+        rotation: false
+    },
+    {//DS72
+        no: 'NBA2-DS72',
+        teamId: false,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 1,
         rotation: false
     },
 ]
