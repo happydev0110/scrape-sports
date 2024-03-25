@@ -1346,7 +1346,7 @@ export const NBA2_DS = [
     },
     {//DS30
         no: 'NBA2-DS30',
-        noMatchList: [96, 116, 115, 150, 141, 118, 138, 149],
+        noMatchList: [96, 116, 115, 150, 141, 118, 138, 149, 117],
         description: true,//prev Description
         teamId: true,
         typeId: 44,
