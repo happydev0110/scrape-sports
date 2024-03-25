@@ -552,22 +552,14 @@ function EventComponent() {
                             // NBA2-DS30
                             if (dataTypeItem.no === 'NBA2-DS30') {
                                 console.log(dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id),'team match')
-                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id !== matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
-                                    continue;
-                                }
-
-                                if(prevPlayItem.scoreValue != 2){
-                                    continue
-                                }
-
-                                if(prevPlayItem.type.text.includes('Dunk shot')){
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1 || prevPlayItem.type.text.includes('Dunk shot')) {
                                     continue;
                                 }
                             }
 
                             // NBA2-DS30-2
                             if (dataTypeItem.no === 'NBA2-DS30-2') {
-                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !prevPlayItem.type.text.includes('Dunk Shot')) {
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !prevPlayItem.type.text.includes('Dunk shot')) {
                                     continue;
                                 }
                             }
