@@ -331,7 +331,7 @@ function EventComponent() {
                     console.log('Loop', resList.plays.length)
                     // console.log(hisList, 'hislist in event loop')
                     for (let i = 0; i < resList.plays.length; i++) {
-                        console.log(i,'Events List')
+                        // console.log(i,'Events List')
                         for (let j = 0; j < dataSetType.length; j++) {
                             // console.log(j,'Datatype')
                             // console.log(team1Id, 'team1Id')
@@ -348,7 +348,7 @@ function EventComponent() {
 
                             // teamId
                             if (dataTypeItem.teamId !== -1) {
-                                if (!currentPlayItem.team) {
+                                if (currentPlayItem.team === undefined) {
                                     continue;
                                 }
 
@@ -369,7 +369,6 @@ function EventComponent() {
                                         seq: currentPlayItem.sequenceNumber,
                                         teamId: currentPlayItem.team.id
                                     }
-                                    // console.log(sepcialSeq.teamId, sepcialSeq.seq, 'special seqence')
                                 }
 
                                 if (currentPlayItem.type.id != dataTypeItem.typeId) continue;
@@ -377,7 +376,7 @@ function EventComponent() {
 
                             // scoreValue
                             if (dataTypeItem.scoreValue != -1) {
-                                if(!currentPlayItem.scoreValue) continue;
+                                if(currentPlayItem.scoreValue === undefined) continue;
                                 if (currentPlayItem.scoreValue != dataTypeItem.scoreValue) continue;
                             }
 
