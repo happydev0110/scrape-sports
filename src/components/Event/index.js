@@ -551,7 +551,8 @@ function EventComponent() {
 
                             // NBA2-DS30
                             if (dataTypeItem.no === 'NBA2-DS30') {
-                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                                console.log(dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id),'team match')
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id !== team1Id || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
                                     continue;
                                 }
                             }
