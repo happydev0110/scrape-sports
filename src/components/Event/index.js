@@ -329,9 +329,9 @@ function EventComponent() {
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                     console.log('Loop', resList.plays.length)
-                    console.log(hisList, 'hislist in event loop')
+                    // console.log(hisList, 'hislist in event loop')
                     for (let i = 0; i < resList.plays.length; i++) {
-                        // console.log(i,'Events List')
+                        console.log(i,'Events List')
                         for (let j = 0; j < dataSetType.length; j++) {
                             // console.log(j,'Datatype')
                             // console.log(team1Id, 'team1Id')
@@ -569,7 +569,7 @@ function EventComponent() {
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
                             hisList = historyList;
-                            console.log(hisList,"history List");
+                            // console.log(hisList,"history List");
 
                             // For Logos
                             selectedTeamIdx = team1Idx;
