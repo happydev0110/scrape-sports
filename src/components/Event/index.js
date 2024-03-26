@@ -555,26 +555,17 @@ function EventComponent() {
 
                             // NBA2-DS30
                             if (dataTypeItem.no === 'NBA2-DS30') {
-                                // console.log(dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id),'team match')
-                                // console.log(prevEventItem.sequenceNumber, 'Previous Event Sequence')
-                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1 || !prevEventItem.type.text.includes('Dunk shot')) {
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1 || prevPlayItem.type.text.includes('Dunk Shot')) {
                                     continue;
                                 }
                             }
 
                             // NBA2-DS30-2
                             if (dataTypeItem.no === 'NBA2-DS30-2') {
-                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevEventItem.type.text.includes('Dunk shot')) {
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !prevPlayItem.type.text.includes('Dunk Shot')) {
                                     continue;
                                 }
                             }
-
-                            // // NBA2-DS20
-                            // if (dataTypeItem.no === 'NBA2-DS20') {
-                            //     if (!currentPlayItem.type.text.includes('Turnover')) {
-                            //         continue;
-                            //     }
-                            // }
 
                             // NBA2-DS48
                             if (dataTypeItem.no === 'NBA2-DS48') {
