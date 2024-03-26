@@ -111,6 +111,8 @@ function EventComponent() {
                         var currentPlayItem = resList.commentary[i];
                         var prevPlayItem = resList.commentary[i - 1];
 
+                        var prevEventItem;
+
                         var dataTypeItem = dataSetType[j];
                         var matchTeamId = team1Id;
 
@@ -250,7 +252,7 @@ function EventComponent() {
 
                         result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                         hisList = historyList;
-
+                        
                         // For Logos
                         if (currentPlayItem.play) {
                             if (currentPlayItem.play.team.displayName === team1Name) {
@@ -283,6 +285,7 @@ function EventComponent() {
                         increaseAmount = result.increaseMount;
                         textIndex = result.textIndex;
                         tableIndex = result.tableIndex;
+                        prevEventItem = currentPlayItem;
 
                         console.log(
                             'DS_NO:', dataTypeItem.no,
@@ -342,6 +345,7 @@ function EventComponent() {
 
                             var currentPlayItem = resList.plays[i];
                             var prevPlayItem = resList.plays[i - 1];
+                            var prevEventItem;
 
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
@@ -551,15 +555,16 @@ function EventComponent() {
 
                             // NBA2-DS30
                             if (dataTypeItem.no === 'NBA2-DS30') {
-                                console.log(dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id),'team match')
-                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1 || prevPlayItem.type.text.includes('Dunk shot')) {
+                                // console.log(dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id),'team match')
+                                // console.log(prevEventItem.sequenceNumber, 'Previous Event Sequence')
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1 || !prevEventItem.type.text.includes('Dunk shot')) {
                                     continue;
                                 }
                             }
 
                             // NBA2-DS30-2
                             if (dataTypeItem.no === 'NBA2-DS30-2') {
-                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !prevPlayItem.type.text.includes('Dunk shot')) {
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevEventItem.type.text.includes('Dunk shot')) {
                                     continue;
                                 }
                             }
@@ -628,6 +633,8 @@ function EventComponent() {
                             increaseAmount = result.increaseMount;
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
+                            prevEventItem = currentPlayItem;
+
                             if(currentPlayItem.team){
                                 console.log(
                                     'DS_NO:', dataTypeItem.no,
