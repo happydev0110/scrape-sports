@@ -7,7 +7,6 @@ export const URL = {
     NHL2_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
 
     // https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary
-
     // EVENT_SCHEDULE: 'https://www.espn.com/nba/schedule',
 
     // Event API
@@ -92,6 +91,24 @@ export const INTERVAL_TIME = [
     }
 ]
 
+export const TEAM_LIST = [
+    {
+        label: 'Team1',
+        value: 0,
+    },
+    {
+        label: 'Team2',
+        value: 1,
+    },
+    {
+        label: 'Team3',
+        value: 2,
+    },
+    {
+        label: 'Team4',
+        value: 3,
+    },
+]
 /*
     no: (String)
     teamId: (-1:'No Compare' false:team1, true:team2)

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import defaultLogo from '../../assets/images/nhl_logo.png'
+import defaultLogo from '../../assets/images/nhl_logo.png';
+
+import { TEAM_LIST } from "../../const";
 
 export default function ScoreBoard(props) {
     const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList } = props;
@@ -35,16 +37,9 @@ export default function ScoreBoard(props) {
             default:
                 break;
         }
-
-        // console.log(show0,'show 0')
-        // console.log(show1,'show 1')
-        // console.log(show2,'show 2')
-        // console.log(show3,'show 3')
     }
 
     const handleTeamName = (evt, index) => {
-        // console.log(evt, 'evt')
-        // console.log(index, 'index')
         switch (index) {
             case 1:
                 setTeam1Name(evt.target.value)
@@ -67,6 +62,44 @@ export default function ScoreBoard(props) {
         <>
             {
                 !tabStatus && <>
+                <div className='row'>
+                    <div className='col-6'>
+                        <label className="form-label" style={{ float: "left" }}>Team1</label>
+                        <select className="form-select form-select-sm"
+                            value={team1Idx}
+                            onChange={evt => {
+                                console.log('')
+                                // setTeam1Idx(evt.target.value)
+                            }}
+                        >
+                            {
+                                TEAM_LIST.map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.value}>{item.label}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+                    <div className='col-6'>
+                        <label className="form-label" style={{ float: "left" }}>Team1</label>
+                        <select className="form-select form-select-sm"
+                            value={team1Idx}
+                            onChange={evt => {
+                                console.log('')
+                                // setTeam1Idx(evt.target.value)
+                            }}
+                        >
+                            {
+                                TEAM_LIST.map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.value}>{item.label}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+                </div>
                     <div className='row py-2'>
                         <div className='col-md-2 col-lg-12'>
                             {
