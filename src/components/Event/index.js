@@ -392,11 +392,14 @@ function EventComponent() {
                             }
 
                             // Special DS
+                            // DS2-NCAA
+                            if (dataTypeItem.no === 'NCAA-DS2') {
+                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
+                                if (currentPlayItem.text.includes('made Dunk')) continue;
+                            }
                             // DS3-NCAA
                             if (dataTypeItem.no === 'NCAA-DS3') {
-                                if (prevPlayItem === undefined) continue;
-                                if (prevPlayItem.scoreValue === undefined) continue;
-                                if (prevPlayItem.scoreValue != 0) continue;
+                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
                             }
 
                             // DS9-NCAA

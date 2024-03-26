@@ -66,9 +66,9 @@ export default function ScoreBoard(props) {
                     <div className='col-6'>
                         <label className="form-label" style={{ float: "left" }}>Team1</label>
                         <select className="form-select form-select-sm"
-                            value={team1Idx}
+                            // value={team1Idx}
                             onChange={evt => {
-                                console.log('')
+                                // console.log('')
                                 // setTeam1Idx(evt.target.value)
                             }}
                         >
@@ -84,7 +84,7 @@ export default function ScoreBoard(props) {
                     <div className='col-6'>
                         <label className="form-label" style={{ float: "left" }}>Team1</label>
                         <select className="form-select form-select-sm"
-                            value={team1Idx}
+                            // value={team1Idx}
                             onChange={evt => {
                                 console.log('')
                                 // setTeam1Idx(evt.target.value)
