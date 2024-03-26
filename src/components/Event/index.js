@@ -564,12 +564,12 @@ function EventComponent() {
                                 }
                             }
 
-                            // NBA2-DS20
-                            if (dataTypeItem.no === 'NBA2-DS20') {
-                                if (!currentPlayItem.type.text.includes('Turnover')) {
-                                    continue;
-                                }
-                            }
+                            // // NBA2-DS20
+                            // if (dataTypeItem.no === 'NBA2-DS20') {
+                            //     if (!currentPlayItem.type.text.includes('Turnover')) {
+                            //         continue;
+                            //     }
+                            // }
 
                             // NBA2-DS48
                             if (dataTypeItem.no === 'NBA2-DS48') {
