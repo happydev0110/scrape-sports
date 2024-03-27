@@ -4,17 +4,20 @@ import defaultLogo from '../../assets/images/nhl_logo.png';
 import { TEAM_LIST } from "../../const";
 
 export default function ScoreBoard(props) {
-    const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList } = props;
+    const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList, timeList } = props;
 
     const [team1Name, setTeam1Name] = useState('Team1');
     const [team2Name, setTeam2Name] = useState('Team2');
     const [team3Name, setTeam3Name] = useState('Team3');
     const [team4Name, setTeam4Name] = useState('Team4');
-
+    
     const [show0, setShow0] = useState(false);
     const [show1, setShow1] = useState(false);
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
+    
+    const [selectedTeam, setSelectedTeam] = useState(0);
+    const [startTime, setStartTime] = useState('');
 
     useEffect(() => {
         handleTeamShown(selTblIdx)
@@ -66,12 +69,12 @@ export default function ScoreBoard(props) {
                     <div className='col-6'>
                         <label className="form-label" style={{ float: "left" }}>Team</label>
                         <select className="form-select form-select-sm"
-                            // value={team1Idx}
+                            value={selectedTeam}
                             onChange={evt => {
-                                // console.log('')
-                                // setTeam1Idx(evt.target.value)
+                                setSelectedTeam(evt.target.value);
                             }}
                         >
+                            {/* <option value={-1}>Choose One</option> */}
                             {
                                 TEAM_LIST.map((item, index) => {
                                     return (
@@ -84,14 +87,14 @@ export default function ScoreBoard(props) {
                     <div className='col-6'>
                         <label className="form-label" style={{ float: "left" }}>Time</label>
                         <select className="form-select form-select-sm"
-                            // value={team1Idx}
+                            value={startTime}
                             onChange={evt => {
-                                console.log('')
-                                // setTeam1Idx(evt.target.value)
+                                setStartTime(evt.target.value)
                             }}
                         >
+                            <option value={-1}>Choose One</option>
                             {
-                                TEAM_LIST.map((item, index) => {
+                                timeList[selectedTeam].map((item, index) => {
                                     return (
                                         <option key={index} value={item.value}>{item.label}</option>
                                     )
