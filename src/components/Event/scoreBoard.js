@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import defaultLogo from '../../assets/images/nhl_logo.png';
 
-import { TEAM_LIST } from "../../const";
+// import { TEAM_LIST } from "../../const";
 
 export default function ScoreBoard(props) {
     const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList, timeList } = props;
@@ -10,14 +10,13 @@ export default function ScoreBoard(props) {
     const [team2Name, setTeam2Name] = useState('Team2');
     const [team3Name, setTeam3Name] = useState('Team3');
     const [team4Name, setTeam4Name] = useState('Team4');
-    
+
     const [show0, setShow0] = useState(false);
     const [show1, setShow1] = useState(false);
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
+
     
-    const [selectedTeam, setSelectedTeam] = useState(0);
-    const [startTime, setStartTime] = useState('');
 
     useEffect(() => {
         handleTeamShown(selTblIdx)
@@ -65,44 +64,6 @@ export default function ScoreBoard(props) {
         <>
             {
                 !tabStatus && <>
-                <div className='row'>
-                    <div className='col-6'>
-                        <label className="form-label" style={{ float: "left" }}>Team</label>
-                        <select className="form-select form-select-sm"
-                            value={selectedTeam}
-                            onChange={evt => {
-                                setSelectedTeam(evt.target.value);
-                            }}
-                        >
-                            {/* <option value={-1}>Choose One</option> */}
-                            {
-                                TEAM_LIST.map((item, index) => {
-                                    return (
-                                        <option key={index} value={item.value}>{item.label}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div>
-                    <div className='col-6'>
-                        <label className="form-label" style={{ float: "left" }}>Time</label>
-                        <select className="form-select form-select-sm"
-                            value={startTime}
-                            onChange={evt => {
-                                setStartTime(evt.target.value)
-                            }}
-                        >
-                            <option value={-1}>Choose One</option>
-                            {
-                                timeList[selectedTeam].map((item, index) => {
-                                    return (
-                                        <option key={index} value={item.value}>{item.label}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div>
-                </div>
                     <div className='row py-2'>
                         <div className='col-md-2 col-lg-12'>
                             {

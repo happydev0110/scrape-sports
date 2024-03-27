@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Filter from '../../layouts/Filter';
 
-import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY } from '../../const.js';
+import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY, TEAM_LIST } from '../../const.js';
 import { changeTeamIdx, handleScore, handleSoccerScore, reverseTime } from '../../func.js';
 
 import ScoreBoardComp from './scoreBoard.js';
@@ -32,6 +32,9 @@ function EventComponent() {
     const [historyList, setHistoryList] = useState([[], [], [], []]);
     const [timeList, setTimeList] = useState([[], [], [], []]);
 
+    const [selectedTeamTime, setSelectedTeamTime] = useState(0);
+    const [startTime, setStartTime] = useState(-1);
+
     const [tableScore, setTableScore] = useState([0, 0, 0, 0]);
 
     // Tab Index
@@ -59,7 +62,7 @@ function EventComponent() {
         } else {
             setPlayList([])
         }
-    }, [eventId, intervalTime, team1Idx, sportCategory])
+    }, [eventId, intervalTime, team1Idx, sportCategory, startTime])
 
     const fetchEventPlay = async () => {
         let dataSetType, apiUrl, resList;
@@ -330,24 +333,28 @@ function EventComponent() {
             } else {
                 if (team1Idx != -1 && resList.plays) {
                     let hisList = [];
-                    let timerList = [[],[],[],[]];
+                    let timerList = [[], [], [], []];
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                     console.log('Loop', resList.plays.length)
+                    console.log(startTime, 'start Time')
                     // console.log(hisList, 'hislist in event loop')
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
+                        var currentPlayItem = resList.plays[i];
+                        var prevPlayItem = resList.plays[i - 1];
+                        if (startTime != -1) {
+                            if (parseInt(currentPlayItem.sequenceNumber) < parseInt(startTime)) {
+                                continue;
+                            }
+                        }
                         for (let j = 0; j < dataSetType.length; j++) {
                             // console.log(j,'Datatype')
-                            // console.log(team1Id, 'team1Id')
                             var team1Id = resList.boxscore.teams[team1Idx].team.id;
                             var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                             var team1Name = resList.boxscore.teams[team1Idx].team.name;
                             var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-
-                            var currentPlayItem = resList.plays[i];
-                            var prevPlayItem = resList.plays[i - 1];
-                            var prevEventItem;
+                            // var prevEventItem;
 
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
@@ -597,8 +604,8 @@ function EventComponent() {
                             hisList = historyList;
                             // console.log(hisList,"history List");
 
-                            if(dataTypeItem.rotation){
-                                let time = currentPlayItem.period.displayValue +' '+ currentPlayItem.clock.displayValue;
+                            if (dataTypeItem.rotation) {
+                                let time = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue;
                                 let sequence = currentPlayItem.sequenceNumber;
                                 timerList[result.textIndex].push({
                                     label: time,
@@ -633,9 +640,9 @@ function EventComponent() {
                                 time: currentPlayItem.clock.displayValue
                             }
 
-                            if (dataTypeItem.logoReverse){
+                            if (dataTypeItem.logoReverse) {
                                 hisItem.teamIdx = changeTeamIdx(selectedTeamIdx);
-                            } 
+                            }
 
                             if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
                                 hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
@@ -649,49 +656,49 @@ function EventComponent() {
                             tableIndex = result.tableIndex;
                             prevEventItem = currentPlayItem;
 
-                            if (currentPlayItem.team) {
-                                console.log(
-                                    'DS_NO:', dataTypeItem.no,
-                                    'sequence:', currentPlayItem.sequenceNumber,
-                                    'team1Id:', team1Id,
-                                    'teamId:', currentPlayItem.team.id,
-                                    'typeId:', currentPlayItem.type.id,
-                                    "scoreValue:", currentPlayItem.scoreValue,
-                                    'scoringPlay', currentPlayItem.scoringPlay,
-                                    'selectedTeamIdx:', selectedTeamIdx,
-                                    "rotation:", dataTypeItem.rotation,
-                                    'textIdx:', textIndex,
-                                    'tableIdx:', tableIndex,
-                                    'teamIndex:', tableIndex,
-                                    'increase:', increaseAmount,
-                                    'description:', result.description,
-                                    'homeScore:', currentPlayItem.homeScore,
-                                    'awayScore', currentPlayItem.awayScore,
-                                    'Period:', currentPlayItem.period.displayValue,
-                                    'Clock:', currentPlayItem.clock.displayValue,
-                                )
-                            } else {
-                                console.log(
-                                    'DS_NO:', dataTypeItem.no,
-                                    'sequence:', currentPlayItem.sequenceNumber,
-                                    'team1Id:', team1Id,
-                                    'teamId:', 'No team',
-                                    'typeId:', currentPlayItem.type.id,
-                                    "scoreValue:", currentPlayItem.scoreValue,
-                                    'scoringPlay', currentPlayItem.scoringPlay,
-                                    'selectedTeamIdx:', selectedTeamIdx,
-                                    "rotation:", dataTypeItem.rotation,
-                                    'textIdx:', textIndex,
-                                    'tableIdx:', tableIndex,
-                                    'teamIndex:', tableIndex,
-                                    'increase:', increaseAmount,
-                                    'description:', result.description,
-                                    'homeScore:', currentPlayItem.homeScore,
-                                    'awayScore', currentPlayItem.awayScore,
-                                    'Period:', currentPlayItem.period.displayValue,
-                                    'Clock:', currentPlayItem.clock.displayValue,
-                                )
-                            }
+                            // if (currentPlayItem.team) {
+                            //     console.log(
+                            //         'DS_NO:', dataTypeItem.no,
+                            //         'sequence:', currentPlayItem.sequenceNumber,
+                            //         'team1Id:', team1Id,
+                            //         'teamId:', currentPlayItem.team.id,
+                            //         'typeId:', currentPlayItem.type.id,
+                            //         "scoreValue:", currentPlayItem.scoreValue,
+                            //         'scoringPlay', currentPlayItem.scoringPlay,
+                            //         'selectedTeamIdx:', selectedTeamIdx,
+                            //         "rotation:", dataTypeItem.rotation,
+                            //         'textIdx:', textIndex,
+                            //         'tableIdx:', tableIndex,
+                            //         'teamIndex:', tableIndex,
+                            //         'increase:', increaseAmount,
+                            //         'description:', result.description,
+                            //         'homeScore:', currentPlayItem.homeScore,
+                            //         'awayScore', currentPlayItem.awayScore,
+                            //         'Period:', currentPlayItem.period.displayValue,
+                            //         'Clock:', currentPlayItem.clock.displayValue,
+                            //     )
+                            // } else {
+                            //     console.log(
+                            //         'DS_NO:', dataTypeItem.no,
+                            //         'sequence:', currentPlayItem.sequenceNumber,
+                            //         'team1Id:', team1Id,
+                            //         'teamId:', 'No team',
+                            //         'typeId:', currentPlayItem.type.id,
+                            //         "scoreValue:", currentPlayItem.scoreValue,
+                            //         'scoringPlay', currentPlayItem.scoringPlay,
+                            //         'selectedTeamIdx:', selectedTeamIdx,
+                            //         "rotation:", dataTypeItem.rotation,
+                            //         'textIdx:', textIndex,
+                            //         'tableIdx:', tableIndex,
+                            //         'teamIndex:', tableIndex,
+                            //         'increase:', increaseAmount,
+                            //         'description:', result.description,
+                            //         'homeScore:', currentPlayItem.homeScore,
+                            //         'awayScore', currentPlayItem.awayScore,
+                            //         'Period:', currentPlayItem.period.displayValue,
+                            //         'Clock:', currentPlayItem.clock.displayValue,
+                            //     )
+                            // }
                         }
                     }
 
@@ -707,7 +714,9 @@ function EventComponent() {
                         setHomeScore(result.homeScore);
                         setAwayScore(result.awayScore);
                         setHistoryList(hisList);
-                        setTimeList(timerList);
+                        if(startTime == -1){
+                            setTimeList(timerList);
+                        }
                     }
                 }
             }
@@ -819,6 +828,47 @@ function EventComponent() {
             <div className='text-center mt-3'>
                 <button className='btn btn-primary' onClick={handleTab}>{tabStatus ? 'Go To Game' : 'Go To Dashboard'}</button>
             </div>
+            {
+                !tabStatus && <div className='row'>
+                    <div className='col-6'>
+                        <label className="form-label" style={{ float: "left" }}>Team</label>
+                        <select className="form-select form-select-sm"
+                            value={selectedTeamTime}
+                            onChange={evt => {
+                                // console.log(evt.target.value, 'start time')
+                                setSelectedTeamTime(evt.target.value);
+                            }}
+                        >
+                            {
+                                TEAM_LIST.map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.value}>{item.label}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+                    <div className='col-6'>
+                        <label className="form-label" style={{ float: "left" }}>Time</label>
+                        <select className="form-select form-select-sm"
+                            value={startTime}
+                            onChange={evt => {
+                                // console.log(evt.target.value, 'start time')
+                                setStartTime(evt.target.value);
+                            }}
+                        >
+                            <option value={-1}>Choose One</option>
+                            {
+                                timeList[selectedTeamTime].map((item, index) => {
+                                    return (
+                                        <option key={index} value={item.value}>{item.label}</option>
+                                    )
+                                })
+                            }
+                        </select>
+                    </div>
+                </div>
+            }
             <ScoreBoardComp
                 tabStatus={tabStatus}
                 eventId={eventId}
