@@ -118,6 +118,7 @@ export const TEAM_LIST = [
     scoringPlay: (true, false)
     Increase: (false: 'No Increase', Int: 'Increase', -1: previous event scoreValue Increase)
     roataion: (false: 'No Rotation', true: 'Rotation')
+    logoReverse: (false: 'No Change', true: 'Next Logo')
 */
 export const NBA_DS = [
     {//DataSet1
@@ -1645,6 +1646,7 @@ export const NBA2_DS = [
         no: 'NBA2-DS72',
         teamId: true,
         typeId: false,
+        logoReverse: true, 
         scoreValue: -1,
         Increase: 1,
         rotation: false

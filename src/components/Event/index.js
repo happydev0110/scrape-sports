@@ -4,7 +4,7 @@ import axios from 'axios';
 import Filter from '../../layouts/Filter';
 
 import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY } from '../../const.js';
-import { handleScore, handleSoccerScore, reverseTime } from '../../func.js';
+import { changeTeamIdx, handleScore, handleSoccerScore, reverseTime } from '../../func.js';
 
 import ScoreBoardComp from './scoreBoard.js';
 
@@ -621,6 +621,11 @@ function EventComponent() {
                                 increase: result.increaseMount,
                                 time: currentPlayItem.clock.displayValue
                             }
+
+                            if (dataTypeItem.logoReverse){
+                                console.log(selectedTeamIdx,'teamIdx')
+                                hisItem.teamIdx = changeTeamIdx(selectedTeamIdx);
+                            } 
 
                             if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
                                 hisItem.time = reverseTime(currentPlayItem.clock.displayValue);

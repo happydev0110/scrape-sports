@@ -64,7 +64,7 @@ export default function ScoreBoard(props) {
                 !tabStatus && <>
                 <div className='row'>
                     <div className='col-6'>
-                        <label className="form-label" style={{ float: "left" }}>Team1</label>
+                        <label className="form-label" style={{ float: "left" }}>Team</label>
                         <select className="form-select form-select-sm"
                             // value={team1Idx}
                             onChange={evt => {
@@ -82,7 +82,7 @@ export default function ScoreBoard(props) {
                         </select>
                     </div>
                     <div className='col-6'>
-                        <label className="form-label" style={{ float: "left" }}>Team1</label>
+                        <label className="form-label" style={{ float: "left" }}>Time</label>
                         <select className="form-select form-select-sm"
                             // value={team1Idx}
                             onChange={evt => {
