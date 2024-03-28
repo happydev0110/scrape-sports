@@ -411,7 +411,6 @@ function EventComponent() {
                         if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
                             hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
                         }
-
                         // console.log(reverseTime(currentPlayItem.clock.displayValue), 'reverse time')
                         hisList[result.textIndex].push(hisItem);
 
@@ -440,6 +439,7 @@ function EventComponent() {
                                 'awayScore', currentPlayItem.awayScore,
                                 'Period:', currentPlayItem.period.displayValue,
                                 'Clock:', currentPlayItem.clock.displayValue,
+                                'Wallclock:', currentPlayItem.wallclock,
                             )
                         } else {
                             console.log(
@@ -461,10 +461,13 @@ function EventComponent() {
                                 'awayScore', currentPlayItem.awayScore,
                                 'Period:', currentPlayItem.period.displayValue,
                                 'Clock:', currentPlayItem.clock.displayValue,
+                                'Wallclock:', currentPlayItem.wallclock,
                             )
                         }
 
-                        await new Promise(resolve => setTimeout(resolve, getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock)));
+                        const timer = await new Promise(resolve => setTimeout(resolve, getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock)));
+
+                        clearTimeout(timer);
 
                         if (result) {
                             // console.log(hisList, 'history list')
@@ -487,10 +490,6 @@ function EventComponent() {
                     i++;
                     console.log(i, 'loop')
                 } while (i < resList.plays.length);
-                // for (let i = 0; i < resList.plays.length; i++) {
-                // console.log(i,'Events List')
-                // }
-
             }
         }
     }
@@ -1263,6 +1262,7 @@ function EventComponent() {
                             <Filter
                                 label='Interval Rate'
                                 columns={{ label: "label", value: "value" }}
+                                value={intervalTime}
                                 list={INTERVAL_TIME}
                                 handleChange={(time) => { setIntervalTime(time) }}
                             />
