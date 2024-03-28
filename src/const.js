@@ -1445,7 +1445,7 @@ export const NBA2_DS = [
     {//DS44
         no: 'NBA2-DS44',
         teamId: false,
-        typeId: 42,
+        typeId: 84,
         scoreValue: -1,
         Increase: false,
         rotation: true
@@ -1455,7 +1455,7 @@ export const NBA2_DS = [
         teamId: true,
         typeId: 84,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS46

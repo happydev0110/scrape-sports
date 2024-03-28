@@ -29,6 +29,7 @@ function EventComponent() {
     const [selTextIdx, setSelTextIdx] = useState(-1);
     const [selTblIdx, setSelTblIdx] = useState(-1);
     const [description, setDescription] = useState('');
+
     const [historyList, setHistoryList] = useState([[], [], [], []]);
     const [timeList, setTimeList] = useState([[], [], [], []]);
 
@@ -56,13 +57,21 @@ function EventComponent() {
     useEffect(() => {
         if (eventId != -1) {
             const interval = setInterval(() => {
-                fetchEventPlay();
+                if(startTime != -1){
+                    goToPlay()
+                } else {
+                    fetchEventPlay();
+                }
             }, intervalTime * 1000);
             return () => clearInterval(interval);
         } else {
             setPlayList([])
         }
     }, [eventId, intervalTime, team1Idx, sportCategory, startTime])
+
+    const goToPlay = () => {
+        console.log('Go To play')
+    }
 
     const fetchEventPlay = async () => {
         let dataSetType, apiUrl, resList;
@@ -406,6 +415,7 @@ function EventComponent() {
                                 if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
                                 if (currentPlayItem.text.includes('made Dunk')) continue;
                             }
+
                             // DS3-NCAA
                             if (dataTypeItem.no === 'NCAA-DS3') {
                                 if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
