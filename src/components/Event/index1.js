@@ -70,10 +70,20 @@ function EventComponent() {
     }, [eventId, intervalTime, team1Idx, sportCategory, startTime])
 
     const goToPlay = async () => {
+        // getDuraton(resList.plays[0].wallclock, resList.plays[1].wallclock);
+        // for (let i = 0; i < 10; i++) {
+        //     await new Promise(resolve => setTimeout(resolve, i * 1000)); // Delay each iteration
+        //     // console.log(i); // Output the current iteration value after delay
+        // }
+
         let dataSetType, resList;
+
         resList = playList;
         dataSetType = DATASET_TYPE_CATEGORY[sportCategory];
+
         var result;
+        // var team1Id,team2Id,team1Name,team2Name;
+        // console.log(resList.boxscore.teams[team1Idx],"team ID")
 
         if (resList.boxscore.teams[team1Idx]) {
             var team1Id = resList.boxscore.teams[team1Idx].team.id;                                     //team1 ID
@@ -84,415 +94,399 @@ function EventComponent() {
 
         var matchEvtList = [];
         var selectedTeamIdx = 0;
+
         var score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
 
-        if (sportCategory == 'SOCCER') {
-            console.log('SOCCER DS START')
-          
-        } else {
-            if (team1Idx != -1 && resList.plays) {
-                let hisList = [];
-                let timerList = [[], [], [], []];
-                let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
+        if (team1Idx != -1 && resList.plays) {
+            let hisList = [];
+            let timerList = [[], [], [], []];
+            let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
-                console.log('Loop', resList.plays.length)
-                console.log(startTime, 'start Time')
-                // console.log(hisList, 'hislist in event loop')
-                let i = 0;
-
-                console.log(i < resList.plays.length)
-                do {
-                    var currentPlayItem = resList.plays[i];
-                    var prevPlayItem = resList.plays[i - 1];
-                    if (startTime != -1) {
-                        if (parseInt(currentPlayItem.sequenceNumber) < parseInt(startTime)) {
-                            // break;
-                            i++;
-                        }
-                    }
-
-                    for (let j = 0; j < dataSetType.length; j++) {
-                        // console.log(j,'Datatype')
-                        var team1Id = resList.boxscore.teams[team1Idx].team.id;
-                        var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                        var team1Name = resList.boxscore.teams[team1Idx].team.name;
-                        var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-                        // var prevEventItem;
-
-                        var dataTypeItem = dataSetType[j];
-                        var matchTeamId = team1Id;
-
-                        // teamId
-                        if (dataTypeItem.teamId !== -1) {
-                            if (currentPlayItem.team === undefined) {
-                                continue;
-                            }
-
-                            if (dataTypeItem.teamId) {
-                                matchTeamId = team2Id
-                            }
-
-                            if (currentPlayItem.team && (currentPlayItem.team.id != matchTeamId)) {
-                                continue;
-                            }
-                        }
-
-                        // typeId
-                        if (dataTypeItem.typeId) {
-                            if (currentPlayItem.type.id == 502) {
-                                sepcialSeq = {
-                                    id: 502,
-                                    seq: currentPlayItem.sequenceNumber,
-                                    teamId: currentPlayItem.team.id
-                                }
-                            }
-
-                            if (currentPlayItem.type.id != dataTypeItem.typeId) continue;
-                        }
-
-                        // scoreValue
-                        if (dataTypeItem.scoreValue != -1) {
-                            if (currentPlayItem.scoreValue === undefined) continue;
-                            if (currentPlayItem.scoreValue != dataTypeItem.scoreValue) continue;
-                        }
-
-                        // scoringPlay
-                        if (dataTypeItem.scoringPlayStatus) {
-                            if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
-                                continue;
-                            }
-                        }
-
-                        // Special DS
-                        // DS2-NCAA
-                        if (dataTypeItem.no === 'NCAA-DS2') {
-                            if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
-                            if (currentPlayItem.text.includes('made Dunk')) continue;
-                        }
-
-                        // DS3-NCAA
-                        if (dataTypeItem.no === 'NCAA-DS3') {
-                            if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
-                        }
-
-                        // DS9-NCAA
-                        if (dataTypeItem.no === 'NCAA-DS9') {
-                            if (prevPlayItem === undefined || currentPlayItem.clock === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) continue;
-                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 2) {
-                                continue;
-                            }
-                        }
-
-                        // NCAA-DS12
-                        if (dataTypeItem.no === 'NCAA-DS12') {
-                            if (prevPlayItem === undefined || prevPlayItem.clock === undefined) continue;
-                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id != 574) {
-                                continue;
-                            }
-                        }
-
-                        // NCAA-DS13
-                        if (dataTypeItem.no === 'NCAA-DS13') {
-                            if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined) continue;
-                            if (!prevPlayItem.scoringPlay || currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
-                                continue;
-                            }
-                        }
-
-                        // DS30-NBA
-                        if (dataTypeItem.no === 'NBA-DS30') {
-                            if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) continue;
-                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
-                                continue;
-                            }
-                        }
-
-                        // DS48-NBA
-                        if (dataTypeItem.no === 'NBA-DS48') {
-                            if (prevPlayItem === undefined || prevPlayItem.clock === undefined) continue;
-                            if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
-                                continue;
-                            }
-                        }
-
-                        // NHL-DS2
-                        if (dataTypeItem.no === 'NHL-DS2') {
-                            if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge') || currentPlayItem.text.includes('review')) {
-                                continue;
-                            }
-                        }
-
-                        // NHL-DS4
-                        if (dataTypeItem.no === 'NHL-DS4') {
-                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !currentPlayItem.text.includes('Fighting') || !prevPlayItem.text.includes('Fighting') || currentPlayItem.team.id !== prevPlayItem.team.id) {
-                                continue;
-                            }
-                        }
-
-                        // NHL-DS5, NHL-DS6 
-                        if (dataTypeItem.no === 'NHL-DS5' || dataTypeItem.no === 'NHL-DS6') {
-                            if (currentPlayItem.text.includes('Fighting')) {
-                                continue;
-                            }
-                        }
-
-                        // NHL2-DS2
-                        if (dataTypeItem.no === 'NHL2-DS2') {
-                            if (sepcialSeq.teamId != team1Id) {
-                                continue;
-                            }
-                        }
-
-                        // NHL2-DS2-2
-                        if (dataTypeItem.no === 'NHL2-DS2-2') {
-                            if (sepcialSeq.teamId != team2Id) {
-                                continue;
-                            }
-                        }
-
-                        // NHL2-DS2-3
-                        if (dataTypeItem.no === 'NHL2-DS2-3') {
-                            if (sepcialSeq.teamId != team1Id) {
-                                continue;
-                            }
-                        }
-
-                        // NHL2-DS2-4
-                        if (dataTypeItem.no === 'NHL2-DS2-4') {
-                            if (sepcialSeq.teamId != team2Id) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS1-2
-                        if (dataTypeItem.no === 'NBA2-DS1-2') {
-                            if (!currentPlayItem.text.includes('three point')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS1-3
-                        if (dataTypeItem.no === 'NBA2-DS1-3') {
-                            if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 22-foot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS1-4
-                        if (dataTypeItem.no === 'NBA2-DS1-4') {
-                            if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 23-foot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS1-5
-                        if (dataTypeItem.no === 'NBA2-DS1-5') {
-                            if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 24-foot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS1-6
-                        if (dataTypeItem.no === 'NBA2-DS1-6') {
-                            if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 25-foot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS1-7
-                        if (dataTypeItem.no === 'NBA2-DS1-7') {
-                            if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 26-foot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS1-8
-                        if (dataTypeItem.no === 'NBA2-DS1-8') {
-                            if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 27-foot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS7
-                        if (dataTypeItem.no === 'NBA2-DS7') {
-                            if (!currentPlayItem.type.text.includes('Dunk Shot') || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS7-2
-                        if (dataTypeItem.no === 'NBA2-DS7-2') {
-                            if (!currentPlayItem.type.text.includes('Dunk Shot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS20
-                        if (dataTypeItem.no === 'NBA2-DS20') {
-                            if (currentPlayItem.type.id == 84 || !currentPlayItem.type.text.includes('Turnover')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS30
-                        if (dataTypeItem.no === 'NBA2-DS30') {
-                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1 || prevPlayItem.type.text.includes('Dunk Shot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS30-2
-                        if (dataTypeItem.no === 'NBA2-DS30-2') {
-                            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !prevPlayItem.type.text.includes('Dunk Shot')) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS48
-                        if (dataTypeItem.no === 'NBA2-DS48') {
-                            if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
-                                continue;
-                            }
-                        }
-
-                        // NBA2-DS72
-                        if (dataTypeItem.no === 'NBA2-DS72') {
-                            if (!currentPlayItem.text.includes('blocks')) {
-                                continue;
-                            }
-                        }
-                        // Special DS
-
-                        matchEvtList.push(currentPlayItem);
-                        result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
-                        hisList = historyList;
-                        // console.log(hisList,"history List");
-
-                        if (dataTypeItem.rotation) {
-                            let time = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue;
-                            let sequence = currentPlayItem.sequenceNumber;
-                            timerList[result.textIndex].push({
-                                label: time,
-                                value: sequence
-                            })
-                            // console.log(timerList,'timerList')
-                        }
-
-                        // For Logos
-                        selectedTeamIdx = team1Idx;
-                        if (team1Id != matchTeamId) {
-                            selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
-                        }
-
-                        // If don't team check, set default team logo
-                        if (dataTypeItem.teamId === -1) {
-                            selectedTeamIdx = -1
-                        }
-
-                        if (tableIndex != result.tableIndex) {
-                            hisList[result.tableIndex] = [];
-                        }
-
-                        let hisItem = {
-                            no: dataTypeItem.no,
-                            seq: currentPlayItem.sequenceNumber,
-                            // teamId: currentPlayItem.team.id,
-                            teamIdx: selectedTeamIdx,
-                            score: result.score[result.textIndex],
-                            description: result.description,
-                            increase: result.increaseMount,
-                            time: currentPlayItem.clock.displayValue
-                        }
-
-                        if (dataTypeItem.logoReverse) {
-                            hisItem.teamIdx = changeTeamIdx(selectedTeamIdx);
-                        }
-
-                        if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
-                            hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
-                        }
-
-                        // console.log(reverseTime(currentPlayItem.clock.displayValue), 'reverse time')
-                        hisList[result.textIndex].push(hisItem);
-
-                        increaseAmount = result.increaseMount;
-                        textIndex = result.textIndex;
-                        tableIndex = result.tableIndex;
-                        // prevEventItem = currentPlayItem;
-
-                        if (currentPlayItem.team) {
-                            console.log(
-                                'DS_NO:', dataTypeItem.no,
-                                'sequence:', currentPlayItem.sequenceNumber,
-                                'team1Id:', team1Id,
-                                'teamId:', currentPlayItem.team.id,
-                                'typeId:', currentPlayItem.type.id,
-                                "scoreValue:", currentPlayItem.scoreValue,
-                                'scoringPlay', currentPlayItem.scoringPlay,
-                                'selectedTeamIdx:', selectedTeamIdx,
-                                "rotation:", dataTypeItem.rotation,
-                                'textIdx:', textIndex,
-                                'tableIdx:', tableIndex,
-                                'teamIndex:', tableIndex,
-                                'increase:', increaseAmount,
-                                'description:', result.description,
-                                'homeScore:', currentPlayItem.homeScore,
-                                'awayScore', currentPlayItem.awayScore,
-                                'Period:', currentPlayItem.period.displayValue,
-                                'Clock:', currentPlayItem.clock.displayValue,
-                            )
-                        } else {
-                            console.log(
-                                'DS_NO:', dataTypeItem.no,
-                                'sequence:', currentPlayItem.sequenceNumber,
-                                'team1Id:', team1Id,
-                                'teamId:', 'No team',
-                                'typeId:', currentPlayItem.type.id,
-                                "scoreValue:", currentPlayItem.scoreValue,
-                                'scoringPlay', currentPlayItem.scoringPlay,
-                                'selectedTeamIdx:', selectedTeamIdx,
-                                "rotation:", dataTypeItem.rotation,
-                                'textIdx:', textIndex,
-                                'tableIdx:', tableIndex,
-                                'teamIndex:', tableIndex,
-                                'increase:', increaseAmount,
-                                'description:', result.description,
-                                'homeScore:', currentPlayItem.homeScore,
-                                'awayScore', currentPlayItem.awayScore,
-                                'Period:', currentPlayItem.period.displayValue,
-                                'Clock:', currentPlayItem.clock.displayValue,
-                            )
-                        }
-
-                        await new Promise(resolve => setTimeout(resolve, getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock)));
-
-                        if (result) {
-                            // console.log(hisList, 'history list')
-                            setSelTeamIdx(selectedTeamIdx)
-                            setTableScore(result.score);
-                            setSelTextIdx(textIndex);
-                            setSelTblIdx(tableIndex);
-                            setIncreaseAmt(increaseAmount);
-                            setDescription(result.description);
-                            setTime(result.sequenceTime);
-                            setHomeScore(result.homeScore);
-                            setAwayScore(result.awayScore);
-                            setHistoryList(hisList);
-                            if (startTime == -1) {
-                                setTimeList(timerList);
-                            }
-                        }
-                    }
-
-                    i++;
-                    console.log(i, 'loop')
-                } while (i < resList.plays.length);
-                // for (let i = 0; i < resList.plays.length; i++) {
+            console.log('Loop', resList.plays.length)
+            console.log(startTime, 'start Time')
+            // console.log(hisList, 'hislist in event loop')
+            for (let i = 0; i < resList.plays.length; i++) {
                 // console.log(i,'Events List')
-                // }
+                var currentPlayItem = resList.plays[i];
+                var prevPlayItem = resList.plays[i - 1];
+                if (startTime != -1) {
+                    if (parseInt(currentPlayItem.sequenceNumber) < parseInt(startTime)) {
+                        continue;
+                    }
+                }
+                for (let j = 0; j < dataSetType.length; j++) {
+                    // console.log(j,'Datatype')
+                    var team1Id = resList.boxscore.teams[team1Idx].team.id;
+                    var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                    var team1Name = resList.boxscore.teams[team1Idx].team.name;
+                    var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+                    // var prevEventItem;
 
+                    var dataTypeItem = dataSetType[j];
+                    var matchTeamId = team1Id;
+
+                    // teamId
+                    if (dataTypeItem.teamId !== -1) {
+                        if (currentPlayItem.team === undefined) {
+                            continue;
+                        }
+
+                        if (dataTypeItem.teamId) {
+                            matchTeamId = team2Id
+                        }
+
+                        if (currentPlayItem.team && (currentPlayItem.team.id != matchTeamId)) {
+                            continue;
+                        }
+                    }
+
+                    // typeId
+                    if (dataTypeItem.typeId) {
+                        if (currentPlayItem.type.id == 502) {
+                            sepcialSeq = {
+                                id: 502,
+                                seq: currentPlayItem.sequenceNumber,
+                                teamId: currentPlayItem.team.id
+                            }
+                        }
+
+                        if (currentPlayItem.type.id != dataTypeItem.typeId) continue;
+                    }
+
+                    // scoreValue
+                    if (dataTypeItem.scoreValue != -1) {
+                        if (currentPlayItem.scoreValue === undefined) continue;
+                        if (currentPlayItem.scoreValue != dataTypeItem.scoreValue) continue;
+                    }
+
+                    // scoringPlay
+                    if (dataTypeItem.scoringPlayStatus) {
+                        if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
+                            continue;
+                        }
+                    }
+
+                    // Special DS
+                    // DS2-NCAA
+                    if (dataTypeItem.no === 'NCAA-DS2') {
+                        if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
+                        if (currentPlayItem.text.includes('made Dunk')) continue;
+                    }
+
+                    // DS3-NCAA
+                    if (dataTypeItem.no === 'NCAA-DS3') {
+                        if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
+                    }
+
+                    // DS9-NCAA
+                    if (dataTypeItem.no === 'NCAA-DS9') {
+                        if (prevPlayItem === undefined || currentPlayItem.clock === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) continue;
+                        if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id == 574 || prevPlayItem.scoreValue != 2) {
+                            continue;
+                        }
+                    }
+
+                    // NCAA-DS12
+                    if (dataTypeItem.no === 'NCAA-DS12') {
+                        if (prevPlayItem === undefined || prevPlayItem.clock === undefined) continue;
+                        if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.type.id != 574) {
+                            continue;
+                        }
+                    }
+
+                    // NCAA-DS13
+                    if (dataTypeItem.no === 'NCAA-DS13') {
+                        if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined) continue;
+                        if (!prevPlayItem.scoringPlay || currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
+                            continue;
+                        }
+                    }
+
+                    // DS30-NBA
+                    if (dataTypeItem.no === 'NBA-DS30') {
+                        if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) continue;
+                        if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                            continue;
+                        }
+                    }
+
+                    // DS48-NBA
+                    if (dataTypeItem.no === 'NBA-DS48') {
+                        if (prevPlayItem === undefined || prevPlayItem.clock === undefined) continue;
+                        if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
+                            continue;
+                        }
+                    }
+
+                    // NHL-DS2
+                    if (dataTypeItem.no === 'NHL-DS2') {
+                        if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge') || currentPlayItem.text.includes('review')) {
+                            continue;
+                        }
+                    }
+
+                    // NHL-DS4
+                    if (dataTypeItem.no === 'NHL-DS4') {
+                        if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !currentPlayItem.text.includes('Fighting') || !prevPlayItem.text.includes('Fighting') || currentPlayItem.team.id !== prevPlayItem.team.id) {
+                            continue;
+                        }
+                    }
+
+                    // NHL-DS5, NHL-DS6 
+                    if (dataTypeItem.no === 'NHL-DS5' || dataTypeItem.no === 'NHL-DS6') {
+                        if (currentPlayItem.text.includes('Fighting')) {
+                            continue;
+                        }
+                    }
+
+                    // NHL2-DS2
+                    if (dataTypeItem.no === 'NHL2-DS2') {
+                        if (sepcialSeq.teamId != team1Id) {
+                            continue;
+                        }
+                    }
+
+                    // NHL2-DS2-2
+                    if (dataTypeItem.no === 'NHL2-DS2-2') {
+                        if (sepcialSeq.teamId != team2Id) {
+                            continue;
+                        }
+                    }
+
+                    // NHL2-DS2-3
+                    if (dataTypeItem.no === 'NHL2-DS2-3') {
+                        if (sepcialSeq.teamId != team1Id) {
+                            continue;
+                        }
+                    }
+
+                    // NHL2-DS2-4
+                    if (dataTypeItem.no === 'NHL2-DS2-4') {
+                        if (sepcialSeq.teamId != team2Id) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS1-2
+                    if (dataTypeItem.no === 'NBA2-DS1-2') {
+                        if (!currentPlayItem.text.includes('three point')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS1-3
+                    if (dataTypeItem.no === 'NBA2-DS1-3') {
+                        if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 22-foot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS1-4
+                    if (dataTypeItem.no === 'NBA2-DS1-4') {
+                        if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 23-foot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS1-5
+                    if (dataTypeItem.no === 'NBA2-DS1-5') {
+                        if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 24-foot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS1-6
+                    if (dataTypeItem.no === 'NBA2-DS1-6') {
+                        if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 25-foot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS1-7
+                    if (dataTypeItem.no === 'NBA2-DS1-7') {
+                        if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 26-foot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS1-8
+                    if (dataTypeItem.no === 'NBA2-DS1-8') {
+                        if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 27-foot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS7
+                    if (dataTypeItem.no === 'NBA2-DS7') {
+                        if (!currentPlayItem.type.text.includes('Dunk Shot') || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS7-2
+                    if (dataTypeItem.no === 'NBA2-DS7-2') {
+                        if (!currentPlayItem.type.text.includes('Dunk Shot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS20
+                    if (dataTypeItem.no === 'NBA2-DS20') {
+                        if (currentPlayItem.type.id == 84 || !currentPlayItem.type.text.includes('Turnover')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS30
+                    if (dataTypeItem.no === 'NBA2-DS30') {
+                        if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1 || prevPlayItem.type.text.includes('Dunk Shot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS30-2
+                    if (dataTypeItem.no === 'NBA2-DS30-2') {
+                        if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || !prevPlayItem.type.text.includes('Dunk Shot')) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS48
+                    if (dataTypeItem.no === 'NBA2-DS48') {
+                        if (currentPlayItem.clock.displayValue === prevPlayItem.clock.displayValue) {
+                            continue;
+                        }
+                    }
+
+                    // NBA2-DS72
+                    if (dataTypeItem.no === 'NBA2-DS72') {
+                        if (!currentPlayItem.text.includes('blocks')) {
+                            continue;
+                        }
+                    }
+                    // Special DS
+
+                    matchEvtList.push(currentPlayItem);
+                    result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
+                    hisList = historyList;
+                    // console.log(hisList,"history List");
+
+                    if (dataTypeItem.rotation) {
+                        let time = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue;
+                        let sequence = currentPlayItem.sequenceNumber;
+                        timerList[result.textIndex].push({
+                            label: time,
+                            value: sequence
+                        })
+                        // console.log(timerList,'timerList')
+                    }
+
+                    // For Logos
+                    selectedTeamIdx = team1Idx;
+                    if (team1Id != matchTeamId) {
+                        selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                    }
+
+                    // If don't team check, set default team logo
+                    if (dataTypeItem.teamId === -1) {
+                        selectedTeamIdx = -1
+                    }
+
+                    if (tableIndex != result.tableIndex) {
+                        hisList[result.tableIndex] = [];
+                    }
+
+                    let hisItem = {
+                        no: dataTypeItem.no,
+                        seq: currentPlayItem.sequenceNumber,
+                        // teamId: currentPlayItem.team.id,
+                        teamIdx: selectedTeamIdx,
+                        score: result.score[result.textIndex],
+                        description: result.description,
+                        increase: result.increaseMount,
+                        time: currentPlayItem.clock.displayValue
+                    }
+
+                    if (dataTypeItem.logoReverse) {
+                        hisItem.teamIdx = changeTeamIdx(selectedTeamIdx);
+                    }
+
+                    if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
+                        hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
+                    }
+
+                    // console.log(reverseTime(currentPlayItem.clock.displayValue), 'reverse time')
+                    hisList[result.textIndex].push(hisItem);
+
+                    increaseAmount = result.increaseMount;
+                    textIndex = result.textIndex;
+                    tableIndex = result.tableIndex;
+                    // prevEventItem = currentPlayItem;
+
+                    if (currentPlayItem.team) {
+                        console.log(
+                            'DS_NO:', dataTypeItem.no,
+                            'sequence:', currentPlayItem.sequenceNumber,
+                            'team1Id:', team1Id,
+                            'teamId:', currentPlayItem.team.id,
+                            'typeId:', currentPlayItem.type.id,
+                            "scoreValue:", currentPlayItem.scoreValue,
+                            'scoringPlay', currentPlayItem.scoringPlay,
+                            'selectedTeamIdx:', selectedTeamIdx,
+                            "rotation:", dataTypeItem.rotation,
+                            'textIdx:', textIndex,
+                            'tableIdx:', tableIndex,
+                            'teamIndex:', tableIndex,
+                            'increase:', increaseAmount,
+                            'description:', result.description,
+                            'homeScore:', currentPlayItem.homeScore,
+                            'awayScore', currentPlayItem.awayScore,
+                            'Period:', currentPlayItem.period.displayValue,
+                            'Clock:', currentPlayItem.clock.displayValue,
+                        )
+                    } else {
+                        console.log(
+                            'DS_NO:', dataTypeItem.no,
+                            'sequence:', currentPlayItem.sequenceNumber,
+                            'team1Id:', team1Id,
+                            'teamId:', 'No team',
+                            'typeId:', currentPlayItem.type.id,
+                            "scoreValue:", currentPlayItem.scoreValue,
+                            'scoringPlay', currentPlayItem.scoringPlay,
+                            'selectedTeamIdx:', selectedTeamIdx,
+                            "rotation:", dataTypeItem.rotation,
+                            'textIdx:', textIndex,
+                            'tableIdx:', tableIndex,
+                            'teamIndex:', tableIndex,
+                            'increase:', increaseAmount,
+                            'description:', result.description,
+                            'homeScore:', currentPlayItem.homeScore,
+                            'awayScore', currentPlayItem.awayScore,
+                            'Period:', currentPlayItem.period.displayValue,
+                            'Clock:', currentPlayItem.clock.displayValue,
+                        )
+                    }
+                }
+            }
+
+            if (result) {
+                // console.log(hisList, 'history list')
+                setSelTeamIdx(selectedTeamIdx)
+                setTableScore(result.score);
+                setSelTextIdx(textIndex);
+                setSelTblIdx(tableIndex);
+                setIncreaseAmt(increaseAmount);
+                setDescription(result.description);
+                setTime(result.sequenceTime);
+                setHomeScore(result.homeScore);
+                setAwayScore(result.awayScore);
+                setHistoryList(hisList);
+                if (startTime == -1) {
+                    setTimeList(timerList);
+                }
             }
         }
+
     }
 
     const fetchEventPlay = async () => {
@@ -1300,7 +1294,9 @@ function EventComponent() {
                             onChange={evt => {
                                 // console.log(evt.target.value, 'start time')
                                 setStartTime(evt.target.value);
-                                setInitial();
+                                if(evt.target.value != -1){
+                                    setInitial();
+                                }
                             }}
                         >
                             <option value={-1}>Choose One</option>

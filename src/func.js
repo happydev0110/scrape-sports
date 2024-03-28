@@ -10,6 +10,13 @@ export const changeTeamIdx = (index) => {
     return idx;
 }
 
+export const getDuraton = (start, end) => {
+    // console.log(start, 'start wallClock')
+    // console.log(end, 'end wallClock')
+    console.log(new Date(end) - new Date(start), 'start Date')
+    return new Date(end) - new Date(start)
+}
+
 export const formatDate = (date) => {
     var year, month, day = '';
     // if (isValidDate(date)) {
