@@ -426,8 +426,9 @@ function EventComponent() {
                                 'team1Id:', team1Id,
                                 'teamId:', currentPlayItem.team.id,
                                 'typeId:', currentPlayItem.type.id,
-                                "scoreValue:", currentPlayItem.scoreValue,
-                                'scoringPlay', currentPlayItem.scoringPlay,
+                                // "scoreValue:", currentPlayItem.scoreValue,
+                                // 'scoringPlay', currentPlayItem.scoringPlay,
+                                'Wallclock:', currentPlayItem.wallclock,
                                 'selectedTeamIdx:', selectedTeamIdx,
                                 "rotation:", dataTypeItem.rotation,
                                 'textIdx:', textIndex,
@@ -439,7 +440,6 @@ function EventComponent() {
                                 'awayScore', currentPlayItem.awayScore,
                                 'Period:', currentPlayItem.period.displayValue,
                                 'Clock:', currentPlayItem.clock.displayValue,
-                                'Wallclock:', currentPlayItem.wallclock,
                             )
                         } else {
                             console.log(
@@ -448,8 +448,9 @@ function EventComponent() {
                                 'team1Id:', team1Id,
                                 'teamId:', 'No team',
                                 'typeId:', currentPlayItem.type.id,
-                                "scoreValue:", currentPlayItem.scoreValue,
-                                'scoringPlay', currentPlayItem.scoringPlay,
+                                // "scoreValue:", currentPlayItem.scoreValue,
+                                // 'scoringPlay', currentPlayItem.scoringPlay,
+                                'Wallclock:', currentPlayItem.wallclock,
                                 'selectedTeamIdx:', selectedTeamIdx,
                                 "rotation:", dataTypeItem.rotation,
                                 'textIdx:', textIndex,
@@ -461,7 +462,6 @@ function EventComponent() {
                                 'awayScore', currentPlayItem.awayScore,
                                 'Period:', currentPlayItem.period.displayValue,
                                 'Clock:', currentPlayItem.clock.displayValue,
-                                'Wallclock:', currentPlayItem.wallclock,
                             )
                         }
 
