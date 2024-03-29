@@ -833,7 +833,7 @@ function EventComponent() {
                             // Special DS
                             // DS2-NCAA
                             if (dataTypeItem.no === 'NCAA-DS2') {
-                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue !== currentPlayItem.clock.displayValue) continue;
+                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
                                 // if (currentPlayItem.text.includes('made Dunk')) continue;
                             }
 
