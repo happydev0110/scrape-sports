@@ -659,7 +659,7 @@ export const NCAA_DS = [
     },
     {//DataSet2
         no: 'NCAA-DS2',
-        teamId: true,
+        teamId: false,
         typeId: 519,
         scoreValue: -1,
         Increase: false,

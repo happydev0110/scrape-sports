@@ -832,14 +832,14 @@ function EventComponent() {
 
                             // Special DS
                             // DS2-NCAA
-                            if (dataTypeItem.no === 'NCAA-DS2') {
-                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
-                                // if (currentPlayItem.text.includes('made Dunk')) continue;
-                            }
+                            // if (dataTypeItem.no === 'NCAA-DS2') {
+                            //     if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
+                            //     // if (currentPlayItem.text.includes('made Dunk')) continue;
+                            // }
 
                             // DS3-NCAA
                             if (dataTypeItem.no === 'NCAA-DS3') {
-                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
+                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
                             }
 
                             // DS9-NCAA
