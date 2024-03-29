@@ -88,7 +88,7 @@ function EventComponent() {
 
         if (sportCategory == 'SOCCER') {
             console.log('SOCCER DS START')
-          
+
         } else {
             if (team1Idx != -1 && resList.plays) {
                 let hisList = [];
@@ -166,8 +166,8 @@ function EventComponent() {
                         // Special DS
                         // DS2-NCAA
                         if (dataTypeItem.no === 'NCAA-DS2') {
-                            if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
-                            if (currentPlayItem.text.includes('made Dunk')) continue;
+                            if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue !== currentPlayItem.clock.displayValue) continue;
+                            // if (currentPlayItem.text.includes('made Dunk')) continue;
                         }
 
                         // DS3-NCAA
@@ -833,8 +833,8 @@ function EventComponent() {
                             // Special DS
                             // DS2-NCAA
                             if (dataTypeItem.no === 'NCAA-DS2') {
-                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
-                                if (currentPlayItem.text.includes('made Dunk')) continue;
+                                if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue !== currentPlayItem.clock.displayValue) continue;
+                                // if (currentPlayItem.text.includes('made Dunk')) continue;
                             }
 
                             // DS3-NCAA
