@@ -678,8 +678,8 @@ export const NCAA_DS = [
         teamId: true,
         typeId: 519,
         scoreValue: -1,
-        scoringPlayStatus: true,
-        scoringPlay: true,
+        // scoringPlayStatus: true,
+        // scoringPlay: true,
         Increase: 2,
         rotation: true
     },
