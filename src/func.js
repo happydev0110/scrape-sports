@@ -91,6 +91,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NCAA-DS3':
             description = 'Foul. Rotate Turns'
             break;
+        case 'NCAA-DS3-2':
+            description = 'Foul. Rotate Turns'
+            break;
         case 'NCAA-DS4':
             description = 'Dunk!!!'
             break;

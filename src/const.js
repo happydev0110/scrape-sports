@@ -673,6 +673,16 @@ export const NCAA_DS = [
         Increase: 2,
         rotation: true
     },
+    {//DataSet3-2
+        no: 'NCAA-DS3-2',
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        scoringPlayStatus: true,
+        scoringPlay: true,
+        Increase: 2,
+        rotation: true
+    },
     {//DataSet4
         no: 'NCAA-DS4',
         teamId: false,
@@ -722,6 +732,14 @@ export const NCAA_DS = [
         Increase: 3,
         rotation: true
     },
+    {//DataSet10
+        no: 'NCAA-DS10',
+        teamId: true,
+        typeId: 519,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: true
+    },
     {//DataSet10-2
         no: 'NCAA-DS10-2',
         teamId: true,
@@ -747,7 +765,7 @@ export const NCAA_DS = [
         teamId: true,
         typeId: 519,
         scoreValue: -1,
-        Increase: 1,
+        Increase: 2,
         rotation: true
     },
     {//DataSet13

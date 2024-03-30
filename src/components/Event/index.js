@@ -842,6 +842,19 @@ function EventComponent() {
                                 if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
                             }
 
+                            // NCAA-DS3-2
+                            if (dataTypeItem.no === 'NCAA-DS3-2') {
+                                if (prevPlayItem === undefined || prevPlayItem.clock.displayValue != currentPlayItem.clock.displayValue) continue;
+                            }
+
+                            // NCAA-DS10
+                            if (dataTypeItem.no === 'NCAA-DS10') {
+                                if (prevPlayItem === undefined || currentPlayItem.clock === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) continue;
+                                if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 3) {
+                                    continue;
+                                }
+                            }
+
                             // DS9-NCAA
                             if (dataTypeItem.no === 'NCAA-DS9') {
                                 if (prevPlayItem === undefined || currentPlayItem.clock === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) continue;
