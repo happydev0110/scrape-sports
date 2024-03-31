@@ -844,7 +844,7 @@ function EventComponent() {
 
                             // NCAA-DS3-2
                             if (dataTypeItem.no === 'NCAA-DS3-2') {
-                                if (prevPlayItem.clock.displayValue != currentPlayItem.clock.displayValue || prevPlayItem.scoringPlay === undefined || prevPlayItem === true) continue;
+                                if (prevPlayItem.clock.displayValue != currentPlayItem.clock.displayValue || prevPlayItem.scoringPlay === undefined || prevPlayItem.scoringPlay === true) continue;
                             }
 
                             // NCAA-DS10
