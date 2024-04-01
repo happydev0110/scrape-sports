@@ -16,8 +16,6 @@ export default function ScoreBoard(props) {
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
 
-    
-
     useEffect(() => {
         handleTeamShown(selTblIdx)
     }, [])

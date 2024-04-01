@@ -537,10 +537,12 @@ function EventComponent() {
                 for (let i = 0; i < resList.commentary.length; i++) {
                     // console.log(i, 'soccer item')
                     for (let j = 0; j < dataSetType.length; j++) {
-                        var team1Id = resList.boxscore.teams[team1Idx].team.id;
-                        var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                        var team1Name = resList.boxscore.teams[team1Idx].team.name;
-                        var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+                        if(team1Idx != -1){
+                            var team1Id = resList.boxscore.teams[team1Idx].team.id;
+                            var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                            var team1Name = resList.boxscore.teams[team1Idx].team.name;
+                            var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+                        }
 
                         var currentPlayItem = resList.commentary[i];
                         var prevPlayItem = resList.commentary[i - 1];
@@ -569,11 +571,19 @@ function EventComponent() {
                             if (currentPlayItem.text.indexOf('Goal!') === -1) {
                                 continue;
                             } else {
+
                                 let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
                                 let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
+
+                                if(team1NameIdx == -1) team1NameIdx = currentPlayItem.text.indexOf(team1Name.replace('&','and'));
+                                if(team2NameIdx == -1) team2NameIdx = currentPlayItem.text.indexOf(team2Name.replace('&','and'));
+
+                                console.log(team1NameIdx, team2NameIdx, team2Name.replace('&','and'),'get Score')
                                 if (team1NameIdx !== -1 && team2NameIdx !== -1) {
-                                    // console.log(parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim()), 'team1Score')
-                                    // console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
+
+                                    console.log(parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim()), 'team1Score')
+                                    console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
+
                                     team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim());
                                     team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim())
 
@@ -717,7 +727,7 @@ function EventComponent() {
                         }
 
                         if (dataTypeItem.logo !== undefined) {
-                            historyItem = team1Idx;
+                            historyItem.teamIdx = team1Idx;
                             if (dataTypeItem.log == 2) historyItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
                         }
 
