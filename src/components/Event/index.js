@@ -537,7 +537,7 @@ function EventComponent() {
                 for (let i = 0; i < resList.commentary.length; i++) {
                     // console.log(i, 'soccer item')
                     for (let j = 0; j < dataSetType.length; j++) {
-                        if(team1Idx != -1){
+                        if (team1Idx != -1) {
                             var team1Id = resList.boxscore.teams[team1Idx].team.id;
                             var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                             var team1Name = resList.boxscore.teams[team1Idx].team.name;
@@ -575,10 +575,10 @@ function EventComponent() {
                                 let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
                                 let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
 
-                                if(team1NameIdx == -1) team1NameIdx = currentPlayItem.text.indexOf(team1Name.replace('&','and'));
-                                if(team2NameIdx == -1) team2NameIdx = currentPlayItem.text.indexOf(team2Name.replace('&','and'));
+                                if (team1NameIdx == -1) team1NameIdx = currentPlayItem.text.indexOf(team1Name.replace('&', 'and'));
+                                if (team2NameIdx == -1) team2NameIdx = currentPlayItem.text.indexOf(team2Name.replace('&', 'and'));
 
-                                console.log(team1NameIdx, team2NameIdx, team2Name.replace('&','and'),'get Score')
+                                console.log(team1NameIdx, team2NameIdx, team2Name.replace('&', 'and'), 'get Score')
                                 if (team1NameIdx !== -1 && team2NameIdx !== -1) {
 
                                     console.log(parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim()), 'team1Score')
@@ -1159,6 +1159,7 @@ function EventComponent() {
                                     'awayScore', currentPlayItem.awayScore,
                                     'Period:', currentPlayItem.period.displayValue,
                                     'Clock:', currentPlayItem.clock.displayValue,
+                                    'WallClock', currentPlayItem.wallclock
                                 )
                             }
                         }
