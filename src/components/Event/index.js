@@ -104,6 +104,8 @@ function EventComponent() {
                 do {
                     var currentPlayItem = resList.plays[i];
                     var prevPlayItem = resList.plays[i - 1];
+                    var prevEventItem = undefined;
+
                     if (startTime != -1) {
                         if (parseInt(currentPlayItem.sequenceNumber) < parseInt(startTime)) {
                             // break;
@@ -417,7 +419,6 @@ function EventComponent() {
                         increaseAmount = result.increaseMount;
                         textIndex = result.textIndex;
                         tableIndex = result.tableIndex;
-                        // prevEventItem = currentPlayItem;
 
                         if (currentPlayItem.team) {
                             console.log(
@@ -467,7 +468,9 @@ function EventComponent() {
                             )
                         }
 
-                        const timer = await new Promise(resolve => setTimeout(resolve, getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock)));
+                        let duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
+                        if(prevEventItem === undefined) duration = 0;
+                        const timer = await new Promise(resolve => setTimeout(resolve, duration));
 
                         clearTimeout(timer);
 
@@ -486,6 +489,7 @@ function EventComponent() {
                             if (startTime == -1) {
                                 setTimeList(timerList);
                             }
+                            prevEventItem = currentPlayItem;
                         }
                     }
 
@@ -728,9 +732,9 @@ function EventComponent() {
                             time: currentPlayItem.time.displayValue
                         }
 
-                        if (dataTypeItem.logo !== undefined) {
+                        if (dataTypeItem.logo) {
                             historyItem.teamIdx = team1Idx;
-                            if (dataTypeItem.log == 2) historyItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
+                            if (dataTypeItem.logo == 2) historyItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
                         }
 
                         hisList[result.textIndex].push(historyItem);
@@ -1183,6 +1187,8 @@ function EventComponent() {
                         if (startTime == -1) {
                             setTimeList(timerList);
                         }
+
+                        prevEventItem = currentPlayItem;
                     }
                 }
             }
