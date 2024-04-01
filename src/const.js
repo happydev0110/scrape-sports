@@ -979,6 +979,7 @@ export const SOCCER_DS = [
         no: 'SOCCER-DS14',
         teamId: -1,
         typeId: false,
+        logo: 1,
         scoreValue: -1,
         Increase: 3,
         rotation: true
@@ -988,6 +989,7 @@ export const SOCCER_DS = [
         teamId: -1,
         typeId: false,
         scoreValue: -1,
+        logo: 2,
         Increase: false,
         rotation: true
     },

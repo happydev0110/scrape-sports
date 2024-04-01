@@ -706,7 +706,7 @@ function EventComponent() {
                             hisList[result.tableIndex] = [];
                         }
 
-                        hisList[result.textIndex].push({
+                        let historyItem = {
                             no: dataTypeItem.no,
                             seq: currentPlayItem.sequence,
                             teamIdx: selectedTeamIdx,
@@ -714,7 +714,15 @@ function EventComponent() {
                             description: result.description,
                             increase: result.increaseMount,
                             time: currentPlayItem.time.displayValue
-                        });
+                        }
+
+                        if (dataTypeItem.logo !== undefined) {
+                            historyItem = team1Idx;
+                            if (dataTypeItem.log == 2) historyItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
+                        }
+
+                        hisList[result.textIndex].push();
+
 
                         increaseAmount = result.increaseMount;
                         textIndex = result.textIndex;
