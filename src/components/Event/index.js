@@ -721,7 +721,7 @@ function EventComponent() {
                             if (dataTypeItem.log == 2) historyItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
                         }
 
-                        hisList[result.textIndex].push();
+                        hisList[result.textIndex].push(historyItem);
 
 
                         increaseAmount = result.increaseMount;
