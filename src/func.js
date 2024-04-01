@@ -11,10 +11,12 @@ export const changeTeamIdx = (index) => {
 }
 
 export const getDuraton = (start, end) => {
-    // console.log(start, 'start wallClock')
-    // console.log(end, 'end wallClock')
-    console.log(new Date(end) - new Date(start), 'start Date')
     return new Date(end) - new Date(start)
+}
+
+export const delayTimer = (duration) => {
+    const timer = new Promise(resolve => setTimeout(resolve, duration));
+    // clearTimeout(timer);
 }
 
 export const formatDate = (date) => {
@@ -34,6 +36,10 @@ export const formatDate = (date) => {
         return (year.toString() + month.toString() + day.toString())
     }
     // }
+}
+
+export const findSeqIndex = (list, seq) => {
+    return list.findIndex(obj => obj.sequenceNumber === seq);
 }
 
 export const reverseTime = (time, limitMinutes = 20) => {
