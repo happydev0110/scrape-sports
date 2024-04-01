@@ -740,12 +740,12 @@ function EventComponent() {
                             'rotation:', dataTypeItem.rotation,
                             // 'historyList:', hisList
                         )
-                        console.log(
-                            'teamIndex0:', result.score[0],
-                            'teamIndex1:', result.score[1],
-                            'teamIndex2:', result.score[2],
-                            'teamIndex3:', result.score[3]
-                        )
+                        // console.log(
+                        //     'teamIndex0:', result.score[0],
+                        //     'teamIndex1:', result.score[1],
+                        //     'teamIndex2:', result.score[2],
+                        //     'teamIndex3:', result.score[3]
+                        // )
                     }
                 }
 
