@@ -440,6 +440,7 @@ function EventComponent() {
                                 'awayScore', currentPlayItem.awayScore,
                                 'Period:', currentPlayItem.period.displayValue,
                                 'Clock:', currentPlayItem.clock.displayValue,
+                                'WallClock', currentPlayItem.wallclock
                             )
                         } else {
                             console.log(
@@ -462,6 +463,7 @@ function EventComponent() {
                                 'awayScore', currentPlayItem.awayScore,
                                 'Period:', currentPlayItem.period.displayValue,
                                 'Clock:', currentPlayItem.clock.displayValue,
+                                'WallClock', currentPlayItem.wallclock
                             )
                         }
 
@@ -1138,6 +1140,7 @@ function EventComponent() {
                                     'awayScore', currentPlayItem.awayScore,
                                     'Period:', currentPlayItem.period.displayValue,
                                     'Clock:', currentPlayItem.clock.displayValue,
+                                    'WallClock', currentPlayItem.wallclock
                                 )
                             } else {
                                 console.log(
