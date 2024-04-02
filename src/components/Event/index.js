@@ -112,8 +112,8 @@ function EventComponent() {
                         let duration = 0;
                         if (prevEventItem) {
                             duration = getDuraton(prevEventItem.wallclock, currentPlayItem.wallclock);
-                            console.log(prevEventItem, 'prevEvent')
-                            console.log(duration, 'duraion')
+                            // console.log(prevEventItem, 'prevEvent')
+                            console.log(duration / 1000, 'duraion')
                         }
 
                         setTimeout(() => {
@@ -370,18 +370,6 @@ function EventComponent() {
                                     }
                                 }
                                 // Special DS
-
-                                // let duration = 0;
-                                // if (prevEventItem) {
-                                //     duration = getDuraton(prevEventItem.wallclock, currentPlayItem.wallclock);
-                                //     console.log(prevEventItem, 'prevEvent')
-                                // }
-
-                                // console.log(i, 'loop')
-                                console.log(duration, 'duration')
-
-                                // const timer = await new Promise(resolve => setTimeout(resolve, duration));
-                                // clearTimeout(timer);
 
                                 matchEvtList.push(currentPlayItem);
                                 result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
@@ -791,8 +779,15 @@ function EventComponent() {
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                     console.log('Loop', resList.plays.length)
-                    // console.log(startTime, 'start Time')
-                    // console.log(hisList, 'hislist in event loop')
+                    for (let i = 1; i < 5; i++) {
+                        let idx = resList.plays.findIndex(item => item.period.number === i);
+                        if (idx != -1) {
+                            timerList[0].push({
+                                label: resList.plays[idx].period.displayValue + ' ' + resList.plays[idx].clock.displayValue,
+                                value: resList.plays[idx].sequenceNumber
+                            })
+                        }
+                    }
 
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
@@ -1075,15 +1070,17 @@ function EventComponent() {
                             hisList = historyList;
                             // console.log(hisList,"history List");
 
-                            if (dataTypeItem.rotation) {
-                                let time = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue;
-                                let sequence = currentPlayItem.sequenceNumber;
-                                timerList[result.textIndex].push({
-                                    label: time,
-                                    value: sequence
-                                })
-                                // console.log(timerList,'timerList')
-                            }
+                            // if (dataTypeItem.rotation) {
+                            //     let time = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue;
+                            //     let sequence = currentPlayItem.sequenceNumber;
+                            //     let list = [];
+
+
+                            // timerList[result.textIndex].push({
+                            //     label: time,
+                            //     value: sequence
+                            // })
+                            // }
 
                             // For Logos
                             selectedTeamIdx = team1Idx;
@@ -1352,6 +1349,9 @@ function EventComponent() {
                                 })
                             }
                         </select>
+                    </div>
+                    <div className='col-6 mt-4 pt-2'>
+                        <button className='btn btn-primary btn-sm' onClick={() => { setStartTime(-1) }}>Go To Real Time</button>
                     </div>
                 </div>
             }
