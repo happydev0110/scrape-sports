@@ -111,7 +111,7 @@ function EventComponent() {
 
                         let duration = 0;
                         if (prevEventItem) {
-                            duration = getDuraton(prevEventItem.wallclock, currentPlayItem.wallclock);
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
                             // console.log(prevEventItem, 'prevEvent')
                             console.log(duration / 1000, 'duraion')
                         }
