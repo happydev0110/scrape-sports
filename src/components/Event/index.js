@@ -114,8 +114,8 @@ function EventComponent() {
 
                         let duration = 0;
                         if (prevEventItem) {
-                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock) / 10;
-                            console.log(duration / 1000, 'duraion')
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
+                            // console.log(duration / 1000, 'duraion')
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
