@@ -41,6 +41,8 @@ function EventComponent() {
     // Tab Index
     const [tabStatus, setTabStatus] = useState(true);
 
+    const [timeOut, setTimeOut] = useState(null);
+
     // Get Total Event
     useEffect(() => {
         let apiUrl = URL[sportCategory + '_TODAY_EVENT'];
@@ -91,17 +93,18 @@ function EventComponent() {
         } else {
             if (team1Idx != -1 && resList.plays) {
                 let hisList = [];
-                let timerList = [[], [], [], []];
+                // let timerList = [[], [], [], []];
                 let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                 console.log('Loop', resList.plays.length)
                 console.log(startTime, 'start Time')
                 // console.log(hisList, 'hislist in event loop')
                 let i = 0;
+                let selectedSeqIdx = 0;
                 let prevEventItem;
 
                 if (startTime != -1) {
-                    i = findSeqIndex(resList.plays, startTime);
+                    selectedSeqIdx = findSeqIndex(resList.plays, startTime);
                 }
 
                 function loop() {
@@ -111,12 +114,13 @@ function EventComponent() {
 
                         let duration = 0;
                         if (prevEventItem) {
-                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
-                            // console.log(prevEventItem, 'prevEvent')
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock) / 10;
                             console.log(duration / 1000, 'duraion')
                         }
 
-                        setTimeout(() => {
+                        if (startTime == -1 || i < selectedSeqIdx) duration = 0;
+
+                        var TimeOut = setTimeout(() => {
                             console.log(i, 'do while')
 
                             for (let j = 0; j < dataSetType.length; j++) {
@@ -483,6 +487,8 @@ function EventComponent() {
                             i++;
                             loop(); // Call loop function recursively after delay
                         }, duration);
+
+                        setTimeOut(TimeOut);
                     }
                 }
 
@@ -776,18 +782,21 @@ function EventComponent() {
                 if (team1Idx != -1 && resList.plays) {
                     let hisList = [];
                     let timerList = [[], [], [], []];
+                    let quarter = 1;
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                     console.log('Loop', resList.plays.length)
-                    for (let i = 1; i < 5; i++) {
-                        let idx = resList.plays.findIndex(item => item.period.number === i);
-                        if (idx != -1) {
-                            timerList[0].push({
-                                label: resList.plays[idx].period.displayValue + ' ' + resList.plays[idx].clock.displayValue,
-                                value: resList.plays[idx].sequenceNumber
-                            })
-                        }
-                    }
+
+                    // Add Time List
+                    // for (let i = 1; i < 5; i++) {
+                    //     let idx = resList.plays.findIndex(item => item.period.number === i);
+                    //     if (idx != -1) {
+                    //         timerList[0].push({
+                    //             label: resList.plays[idx].period.displayValue + ' ' + resList.plays[idx].clock.displayValue,
+                    //             value: resList.plays[idx].sequenceNumber
+                    //         })
+                    //     }
+                    // }
 
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
@@ -853,12 +862,6 @@ function EventComponent() {
                             }
 
                             // Special DS
-                            // DS2-NCAA
-                            // if (dataTypeItem.no === 'NCAA-DS2') {
-                            //     if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
-                            //     // if (currentPlayItem.text.includes('made Dunk')) continue;
-                            // }
-
                             // DS3-NCAA
                             if (dataTypeItem.no === 'NCAA-DS3') {
                                 if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
@@ -1123,6 +1126,17 @@ function EventComponent() {
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
+                            // Add First DS in Quater to timerList
+                            if (quarter < 5) {
+                                if(currentPlayItem.period.number == quarter){
+                                    timerList[0].push({
+                                        label: currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue,
+                                        value: currentPlayItem.sequenceNumber
+                                    })
+                                    quarter++;
+                                }
+                            }
+                            
                             if (currentPlayItem.team) {
                                 console.log(
                                     'DS_NO:', dataTypeItem.no,
@@ -1231,7 +1245,6 @@ function EventComponent() {
                                 value={sportCategory}
                                 onChange={evt => {
                                     setSportCategory(evt.target.value);
-
                                 }}
                             >
                                 {
@@ -1312,32 +1325,15 @@ function EventComponent() {
             </div>
             {
                 !tabStatus && <div className='row'>
-                    {/* <div className='col-6'>
-                        <label className="form-label" style={{ float: "left" }}>Team</label>
-                        <select className="form-select form-select-sm"
-                            value={selectedTeamTime}
-                            onChange={evt => {
-                                // console.log(evt.target.value, 'start time')
-                                setSelectedTeamTime(evt.target.value);
-                            }}
-                        >
-                            {
-                                TEAM_LIST.map((item, index) => {
-                                    return (
-                                        <option key={index} value={item.value}>{item.label}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div> */}
                     <div className='col-6'>
                         <label className="form-label" style={{ float: "left" }}>Time</label>
                         <select className="form-select form-select-sm"
                             value={startTime}
                             onChange={evt => {
-                                // console.log(evt.target.value, 'start time')
                                 setStartTime(evt.target.value);
                                 setInitial();
+                                clearTimeout(timeOut);
+                                setTimeOut(null);
                             }}
                         >
                             <option value={-1}>Choose One</option>
@@ -1370,7 +1366,6 @@ function EventComponent() {
                 selTeamIdx={selTeamIdx}
                 selTextIdx={selTextIdx}
                 historyList={historyList}
-                timeList={timeList}
             />
         </>
     );
