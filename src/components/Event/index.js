@@ -4,7 +4,7 @@ import axios from 'axios';
 import Filter from '../../layouts/Filter';
 
 import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY, TEAM_LIST } from '../../const.js';
-import { changeTeamIdx, handleScore, handleSoccerScore, reverseTime, getDuraton, findSeqIndex } from '../../func.js';
+import { changeTeamIdx, handleScore, handleSoccerScore, reverseTime, getDuraton, findSeqIndex, findSoccerSeqIndex } from '../../func.js';
 
 import ScoreBoardComp from './scoreBoard.js';
 
@@ -40,6 +40,8 @@ function EventComponent() {
 
     // Tab Index
     const [tabStatus, setTabStatus] = useState(true);
+
+    const [timeOut, setTimeOut] = useState(null);
 
     // Get Total Event
     useEffect(() => {
@@ -88,20 +90,314 @@ function EventComponent() {
 
         if (sportCategory == 'SOCCER') {
             console.log('SOCCER DS START')
+            let hisList = [];
+            let team1Score, team2Score = 0;
+            let quarter = 1;
+            let timerList = [[], [], [], []];
+
+            let i = 0;
+            let selectedSeqIdx = 0;
+            let prevEventItem;
+
+            if (startTime != -1) {
+                selectedSeqIdx = findSoccerSeqIndex(resList.commentary, startTime);
+            }
+
+            function loop() {
+                if (i < resList.commentary.length) {
+
+                    var currentPlayItem = resList.commentary[i];
+                    var prevPlayItem = resList.commentary[i - 1];
+
+                    let duration = 0;
+
+                    if (prevPlayItem) {
+                        if (!prevPlayItem || !prevPlayItem.play || !currentPlayItem.play) {
+                            duration = 0;
+                        } else {
+                            duration = getDuraton(prevPlayItem.play.wallclock, currentPlayItem.play.wallclock);
+                        }
+                        console.log(duration / 1000, i, 'duraion')
+                    }
+
+                    if (startTime == -1 || i < selectedSeqIdx) duration = 0;
+
+                    var TimeOut = setTimeout(() => {
+                        // console.log(i, 'do while')
+
+                        for (let j = 0; j < dataSetType.length; j++) {
+                            if (team1Idx != -1) {
+                                var team1Id = resList.boxscore.teams[team1Idx].team.id;
+                                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                                var team1Name = resList.boxscore.teams[team1Idx].team.name;
+                                var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+                            }
+
+                            var dataTypeItem = dataSetType[j];
+                            var matchTeamId = team1Id;
+
+                            // SOCCER-DS7
+                            if (dataTypeItem.no === 'SOCCER-DS7') {
+                                if (currentPlayItem.text.indexOf('Foul by') === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS8
+                            if (dataTypeItem.no === 'SOCCER-DS8') {
+                                if (currentPlayItem.text.indexOf('Foul by') === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS9
+                            if (dataTypeItem.no === 'SOCCER-DS9') {
+                                if (currentPlayItem.text.indexOf('Goal!') === -1) {
+                                    continue;
+                                } else {
+
+                                    let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
+                                    let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
+
+                                    if (team1NameIdx == -1) team1NameIdx = currentPlayItem.text.indexOf(team1Name.replace('&', 'and'));
+                                    if (team2NameIdx == -1) team2NameIdx = currentPlayItem.text.indexOf(team2Name.replace('&', 'and'));
+
+                                    // console.log(team1NameIdx, team2NameIdx, team2Name.replace('&', 'and'), 'get Score')
+                                    if (team1NameIdx !== -1 && team2NameIdx !== -1) {
+                                        // console.log(parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim()), 'team1Score')
+                                        // console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
+                                        team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim());
+                                        team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim())
+                                    }
+                                }
+
+                                if (currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS10
+                            if (dataTypeItem.no === 'SOCCER-DS10') {
+                                if (currentPlayItem.text.indexOf('Goal!') === -1) {
+                                    continue;
+                                }
+
+                                if (currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS11
+                            if (dataTypeItem.no === 'SOCCER-DS11') {
+                                if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS12
+                            if (dataTypeItem.no === 'SOCCER-DS12') {
+                                if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS14
+                            if (dataTypeItem.no === 'SOCCER-DS14') {
+                                // console.log(i, currentPlayItem.text.indexOf('Corner,'),'Corner check',
+                                //             currentPlayItem.text.indexOf(team1Name),'team1Name check')
+                                if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS15
+                            if (dataTypeItem.no === 'SOCCER-DS15') {
+                                if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS17
+                            if (dataTypeItem.no === 'SOCCER-DS17') {
+                                if (currentPlayItem.text.indexOf('OVERTURNED') === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS24
+                            if (dataTypeItem.no === 'SOCCER-DS24') {
+                                if (currentPlayItem.text.indexOf('Own Goal') === -1) {
+                                    continue;
+                                }
+                            }
+
+                            // SOCCER-DS25
+                            if (dataTypeItem.no === 'SOCCER-DS25') {
+                                if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                                    continue;
+                                }
+                            }
+
+                            // Compare TeamId
+                            if (dataTypeItem.teamId !== -1) {
+                                if (!currentPlayItem.play) {
+                                    continue;
+                                }
+
+                                if (currentPlayItem.play.team) {
+                                    if (dataTypeItem.teamId) {
+                                        if (currentPlayItem.play.team.displayName != team2Name) {
+                                            continue;
+                                        }
+                                    } else {
+                                        if (currentPlayItem.play.team.displayName != team1Name) {
+                                            continue;
+                                        }
+                                    }
+                                }
+                            }
+
+                            // Compare TypeId
+                            if (dataTypeItem.typeId) {
+                                if (!currentPlayItem.play) {
+                                    continue;
+                                }
+
+                                if (dataTypeItem.typeId != currentPlayItem.play.type.id) {
+                                    continue;
+                                }
+                            }
+
+                            if (dataTypeItem.scoreValue !== -1) {
+                                // if(dataTypeItem.scoreValue != currentPlayItem.play.score){
+                                //     continue;
+                                // }
+                            }
+
+                            result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
+                            hisList = historyList;
+
+                            // For Logos
+                            if (currentPlayItem.play) {
+                                if (currentPlayItem.play.team.displayName === team1Name) {
+                                    selectedTeamIdx = team1Idx;
+                                } else {
+                                    selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                }
+                            }
+
+                            // if don't have team check, set default default log
+                            // if (dataTypeItem.teamId === -1) {
+                            //     selectedTeamIdx = -1
+                            // }
+
+                            // console.log(i, 'result')
+                            if (tableIndex != result.tableIndex) {
+                                hisList[result.tableIndex] = [];
+                            }
+
+                            let historyItem = {
+                                no: dataTypeItem.no,
+                                seq: currentPlayItem.sequence,
+                                teamIdx: selectedTeamIdx,
+                                score: result.score[result.textIndex],
+                                description: result.description,
+                                increase: result.increaseMount,
+                                time: currentPlayItem.time.displayValue
+                            }
+
+                            if (dataTypeItem.logo) {
+                                historyItem.teamIdx = team1Idx;
+                                if (dataTypeItem.logo == 2) historyItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
+                            }
+
+                            hisList[result.textIndex].push(historyItem);
+
+                            increaseAmount = result.increaseMount;
+                            textIndex = result.textIndex;
+                            tableIndex = result.tableIndex;
+                            prevEventItem = currentPlayItem;
+
+                            // Add First DS in Quater to timerList
+                            if (quarter < 5) {
+                                if (currentPlayItem.play) {
+                                    if (currentPlayItem.play.period) {
+                                        if (currentPlayItem.play.period.number == quarter) {
+                                            timerList[0].push({
+                                                label: quarter + "st (" + currentPlayItem.play.clock.displayValue + ")",
+                                                value: currentPlayItem.sequence
+                                            })
+                                            quarter++;
+                                        }
+                                    }
+                                }
+                            }
+
+                            console.log(
+                                'DS_NO:', dataTypeItem.no,
+                                'sequence:', currentPlayItem.sequence,
+                                'team1Name:', team1Name,
+                                // 'currentTeam:', currentPlayItem.play.team.displayName,
+                                // 'typeId:', currentPlayItem.play.type.id,
+                                'description:', result.description,
+                                'increase:', dataTypeItem.Increase,
+                                'rotation:', dataTypeItem.rotation,
+                                // 'historyList:', hisList
+                            )
+                            // console.log(
+                            //     'teamIndex0:', result.score[0],
+                            //     'teamIndex1:', result.score[1],
+                            //     'teamIndex2:', result.score[2],
+                            //     'teamIndex3:', result.score[3]
+                            // )
+                            if (result) {
+                                setSelTeamIdx(selectedTeamIdx)
+                                setTableScore(result.score);
+                                setSelTextIdx(textIndex);
+                                setSelTblIdx(tableIndex);
+                                setIncreaseAmt(increaseAmount);
+                                setDescription(result.description);
+                                setTime(result.sequenceTime);
+                                setHistoryList(hisList);
+                                if (startTime == -1) {
+                                    setTimeList(timerList);
+                                }
+                            }
+
+                            // console.log(team1Score, team2Score, 'score')
+                            if (team1Idx === 1) {
+                                setHomeScore(team1Score);
+                                setAwayScore(team2Score);
+                            } else {
+                                setHomeScore(team2Score);
+                                setAwayScore(team1Score);
+                            }
+                        }
+                        i++;
+                        loop(); // Call loop function recursively after delay
+                    }, duration);
+
+                    setTimeOut(TimeOut);
+                }
+            }
+
+            loop();
+
         } else {
             if (team1Idx != -1 && resList.plays) {
                 let hisList = [];
-                let timerList = [[], [], [], []];
+                // let timerList = [[], [], [], []];
                 let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                 console.log('Loop', resList.plays.length)
                 console.log(startTime, 'start Time')
                 // console.log(hisList, 'hislist in event loop')
                 let i = 0;
+                let selectedSeqIdx = 0;
                 let prevEventItem;
 
                 if (startTime != -1) {
-                    i = findSeqIndex(resList.plays, startTime);
+                    selectedSeqIdx = findSeqIndex(resList.plays, startTime);
                 }
 
                 function loop() {
@@ -110,13 +406,14 @@ function EventComponent() {
                         var prevPlayItem = resList.plays[i - 1];
 
                         let duration = 0;
-                        if (prevEventItem) {
-                            duration = getDuraton(prevEventItem.wallclock, currentPlayItem.wallclock);
-                            // console.log(prevEventItem, 'prevEvent')
-                            console.log(duration / 1000, 'duraion')
+                        if (prevPlayItem) {
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
+                            // console.log(duration / 1000, 'duraion')
                         }
 
-                        setTimeout(() => {
+                        if (startTime == -1 || i < selectedSeqIdx) duration = 0;
+
+                        var TimeOut = setTimeout(() => {
                             console.log(i, 'do while')
 
                             for (let j = 0; j < dataSetType.length; j++) {
@@ -483,6 +780,8 @@ function EventComponent() {
                             i++;
                             loop(); // Call loop function recursively after delay
                         }, duration);
+
+                        setTimeOut(TimeOut);
                     }
                 }
 
@@ -527,6 +826,8 @@ function EventComponent() {
                 console.log('SOCCER DS START')
                 let hisList = [];
                 var team1Score, team2Score = 0;
+                let quarter = 1;
+                let timerList = [[], [], [], []];
 
                 for (let i = 0; i < resList.commentary.length; i++) {
                     // console.log(i, 'soccer item')
@@ -572,16 +873,12 @@ function EventComponent() {
                                 if (team1NameIdx == -1) team1NameIdx = currentPlayItem.text.indexOf(team1Name.replace('&', 'and'));
                                 if (team2NameIdx == -1) team2NameIdx = currentPlayItem.text.indexOf(team2Name.replace('&', 'and'));
 
-                                console.log(team1NameIdx, team2NameIdx, team2Name.replace('&', 'and'), 'get Score')
+                                // console.log(team1NameIdx, team2NameIdx, team2Name.replace('&', 'and'), 'get Score')
                                 if (team1NameIdx !== -1 && team2NameIdx !== -1) {
-
-                                    console.log(parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim()), 'team1Score')
-                                    console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
-
+                                    // console.log(parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim()), 'team1Score')
+                                    // console.log(parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim()), 'team2Score')
                                     team1Score = parseInt(currentPlayItem.text.slice(team1NameIdx + team1Name.length + 1, team1NameIdx + team1Name.length + 3).trim());
                                     team2Score = parseInt(currentPlayItem.text.slice(team2NameIdx + team2Name.length + 1, team2NameIdx + team2Name.length + 3).trim())
-
-                                    // console.log(team1Score, team2Score, 'team score')
                                 }
                             }
 
@@ -727,11 +1024,25 @@ function EventComponent() {
 
                         hisList[result.textIndex].push(historyItem);
 
-
                         increaseAmount = result.increaseMount;
                         textIndex = result.textIndex;
                         tableIndex = result.tableIndex;
                         prevEventItem = currentPlayItem;
+
+                        // Add First DS in Quater to timerList
+                        if (quarter < 5) {
+                            if (currentPlayItem.play) {
+                                if (currentPlayItem.play.period) {
+                                    if (currentPlayItem.play.period.number == quarter) {
+                                        timerList[0].push({
+                                            label: quarter + "st (" + currentPlayItem.play.clock.displayValue + ")",
+                                            value: currentPlayItem.sequence
+                                        })
+                                        quarter++;
+                                    }
+                                }
+                            }
+                        }
 
                         console.log(
                             'DS_NO:', dataTypeItem.no,
@@ -762,6 +1073,9 @@ function EventComponent() {
                     setDescription(result.description);
                     setTime(result.sequenceTime);
                     setHistoryList(hisList);
+                    if (startTime == -1) {
+                        setTimeList(timerList);
+                    }
                 }
 
                 // console.log(team1Score, team2Score, 'score')
@@ -776,18 +1090,10 @@ function EventComponent() {
                 if (team1Idx != -1 && resList.plays) {
                     let hisList = [];
                     let timerList = [[], [], [], []];
+                    let quarter = 1;
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                     console.log('Loop', resList.plays.length)
-                    for (let i = 1; i < 5; i++) {
-                        let idx = resList.plays.findIndex(item => item.period.number === i);
-                        if (idx != -1) {
-                            timerList[0].push({
-                                label: resList.plays[idx].period.displayValue + ' ' + resList.plays[idx].clock.displayValue,
-                                value: resList.plays[idx].sequenceNumber
-                            })
-                        }
-                    }
 
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
@@ -853,12 +1159,6 @@ function EventComponent() {
                             }
 
                             // Special DS
-                            // DS2-NCAA
-                            // if (dataTypeItem.no === 'NCAA-DS2') {
-                            //     if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
-                            //     // if (currentPlayItem.text.includes('made Dunk')) continue;
-                            // }
-
                             // DS3-NCAA
                             if (dataTypeItem.no === 'NCAA-DS3') {
                                 if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
@@ -1123,6 +1423,17 @@ function EventComponent() {
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
 
+                            // Add First DS in Quater to timerList
+                            if (quarter < 5) {
+                                if (currentPlayItem.period.number == quarter) {
+                                    timerList[0].push({
+                                        label: currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue,
+                                        value: currentPlayItem.sequenceNumber
+                                    })
+                                    quarter++;
+                                }
+                            }
+
                             if (currentPlayItem.team) {
                                 console.log(
                                     'DS_NO:', dataTypeItem.no,
@@ -1231,7 +1542,6 @@ function EventComponent() {
                                 value={sportCategory}
                                 onChange={evt => {
                                     setSportCategory(evt.target.value);
-
                                 }}
                             >
                                 {
@@ -1312,32 +1622,15 @@ function EventComponent() {
             </div>
             {
                 !tabStatus && <div className='row'>
-                    {/* <div className='col-6'>
-                        <label className="form-label" style={{ float: "left" }}>Team</label>
-                        <select className="form-select form-select-sm"
-                            value={selectedTeamTime}
-                            onChange={evt => {
-                                // console.log(evt.target.value, 'start time')
-                                setSelectedTeamTime(evt.target.value);
-                            }}
-                        >
-                            {
-                                TEAM_LIST.map((item, index) => {
-                                    return (
-                                        <option key={index} value={item.value}>{item.label}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                    </div> */}
                     <div className='col-6'>
                         <label className="form-label" style={{ float: "left" }}>Time</label>
                         <select className="form-select form-select-sm"
                             value={startTime}
                             onChange={evt => {
-                                // console.log(evt.target.value, 'start time')
                                 setStartTime(evt.target.value);
                                 setInitial();
+                                clearTimeout(timeOut);
+                                setTimeOut(null);
                             }}
                         >
                             <option value={-1}>Choose One</option>
@@ -1370,7 +1663,6 @@ function EventComponent() {
                 selTeamIdx={selTeamIdx}
                 selTextIdx={selTextIdx}
                 historyList={historyList}
-                timeList={timeList}
             />
         </>
     );

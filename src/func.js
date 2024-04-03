@@ -42,6 +42,10 @@ export const findSeqIndex = (list, seq) => {
     return list.findIndex(obj => obj.sequenceNumber === seq);
 }
 
+export const findSoccerSeqIndex = (list, seq) => {
+    return list.findIndex(obj => obj.sequence == seq);
+}
+
 export const reverseTime = (time, limitMinutes = 20) => {
     let minutes = parseInt(time.split(':')[0]);
     let seconds = parseInt(time.split(':')[1]);
