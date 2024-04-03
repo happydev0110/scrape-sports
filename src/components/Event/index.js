@@ -893,8 +893,8 @@ function EventComponent() {
                                 let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
                                 let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
 
-                                if (team1NameIdx == -1) team1NameIdx = currentPlayItem.text.indexOf(team1Name.replace('&', 'and'));
-                                if (team2NameIdx == -1) team2NameIdx = currentPlayItem.text.indexOf(team2Name.replace('&', 'and'));
+                                if (team1NameIdx == -1) team1NameIdx = currentPlayItem.text.indexOf(team1Name);
+                                if (team2NameIdx == -1) team2NameIdx = currentPlayItem.text.indexOf(team2Name);
 
                                 // console.log(team1NameIdx, team2NameIdx, team2Name.replace('&', 'and'), 'get Score')
                                 if (team1NameIdx !== -1 && team2NameIdx !== -1) {
