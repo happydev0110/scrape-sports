@@ -99,6 +99,21 @@ function EventComponent() {
             let selectedSeqIdx = 0;
             let prevEventItem;
 
+            if (team1Idx != -1) {
+                var team1Id = resList.boxscore.teams[team1Idx].team.id;
+                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                var team1Name = resList.boxscore.teams[team1Idx].team.name;
+                var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+
+                if (team1Name.includes('&')) {
+                    team1Name = team1Name.replace('&','and');
+                }
+
+                if (team2Name.includes('&')) {
+                    team2Name = team2Name.replace('&','and');
+                }
+            }
+
             if (startTime != -1) {
                 selectedSeqIdx = findSoccerSeqIndex(resList.commentary, startTime);
             }
@@ -122,16 +137,11 @@ function EventComponent() {
 
                     if (startTime == -1 || i < selectedSeqIdx) duration = 0;
 
+
                     var TimeOut = setTimeout(() => {
                         // console.log(i, 'do while')
 
                         for (let j = 0; j < dataSetType.length; j++) {
-                            if (team1Idx != -1) {
-                                var team1Id = resList.boxscore.teams[team1Idx].team.id;
-                                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                                var team1Name = resList.boxscore.teams[team1Idx].team.name;
-                                var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-                            }
 
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
@@ -395,6 +405,17 @@ function EventComponent() {
                 let i = 0;
                 let selectedSeqIdx = 0;
                 let prevEventItem;
+                var team1Id = resList.boxscore.teams[team1Idx].team.id;
+                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                var team1Name = resList.boxscore.teams[team1Idx].team.name;
+                var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+
+                if (team1Name.includes('&')) {
+                    team1Name = team1Name.replace('&','and');
+                }
+                if (team2Name.includes('&')) {
+                    team2Name = team2Name.replace('&','and');
+                }
 
                 if (startTime != -1) {
                     selectedSeqIdx = findSeqIndex(resList.plays, startTime);
@@ -413,15 +434,12 @@ function EventComponent() {
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
 
+
                         var TimeOut = setTimeout(() => {
                             console.log(i, 'do while')
 
                             for (let j = 0; j < dataSetType.length; j++) {
                                 // console.log(j,'Datatype')
-                                var team1Id = resList.boxscore.teams[team1Idx].team.id;
-                                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                                var team1Name = resList.boxscore.teams[team1Idx].team.name;
-                                var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
                                 // var prevEventItem;
 
                                 var dataTypeItem = dataSetType[j];
@@ -815,6 +833,14 @@ function EventComponent() {
                 var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;                 //team2 ID
                 var team1Name = resList.boxscore.teams[team1Idx].team.name;                                 //team1 Name
                 var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+
+                if (team1Name.includes('&')) {
+                    team1Name = team1Name.replace('&','and');
+                }
+
+                if (team2Name.includes('&')) {
+                    team2Name = team2Name.replace('&','and');
+                }
             }
 
             var matchEvtList = [];
@@ -829,15 +855,16 @@ function EventComponent() {
                 let quarter = 1;
                 let timerList = [[], [], [], []];
 
+                // if (team1Idx != -1) {
+                //     var team1Id = resList.boxscore.teams[team1Idx].team.id;
+                //     var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                //     var team1Name = resList.boxscore.teams[team1Idx].team.name;
+                //     var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+                // }
+
                 for (let i = 0; i < resList.commentary.length; i++) {
                     // console.log(i, 'soccer item')
                     for (let j = 0; j < dataSetType.length; j++) {
-                        if (team1Idx != -1) {
-                            var team1Id = resList.boxscore.teams[team1Idx].team.id;
-                            var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                            var team1Name = resList.boxscore.teams[team1Idx].team.name;
-                            var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-                        }
 
                         var currentPlayItem = resList.commentary[i];
                         var prevPlayItem = resList.commentary[i - 1];
@@ -1092,6 +1119,10 @@ function EventComponent() {
                     let timerList = [[], [], [], []];
                     let quarter = 1;
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
+                    // var team1Id = resList.boxscore.teams[team1Idx].team.id;
+                    // var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
+                    // var team1Name = resList.boxscore.teams[team1Idx].team.name;
+                    // var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
 
                     console.log('Loop', resList.plays.length)
 
@@ -1108,10 +1139,6 @@ function EventComponent() {
 
                         for (let j = 0; j < dataSetType.length; j++) {
                             // console.log(j,'Datatype')
-                            var team1Id = resList.boxscore.teams[team1Idx].team.id;
-                            var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                            var team1Name = resList.boxscore.teams[team1Idx].team.name;
-                            var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
                             // var prevEventItem;
 
                             var dataTypeItem = dataSetType[j];
@@ -1369,18 +1396,6 @@ function EventComponent() {
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
                             hisList = historyList;
                             // console.log(hisList,"history List");
-
-                            // if (dataTypeItem.rotation) {
-                            //     let time = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue;
-                            //     let sequence = currentPlayItem.sequenceNumber;
-                            //     let list = [];
-
-
-                            // timerList[result.textIndex].push({
-                            //     label: time,
-                            //     value: sequence
-                            // })
-                            // }
 
                             // For Logos
                             selectedTeamIdx = team1Idx;

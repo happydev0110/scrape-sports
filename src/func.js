@@ -279,10 +279,10 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
             description = 'Goal! ' + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS11':
-            description = 'Shot on target ' + playItem.play.participants[0].athlete.displayName
+            // description = 'Shot on target ' + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS12':
-            description = 'Shot on target ' + playItem.play.participants[0].athlete.displayName
+            // description = 'Shot on target ' + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS14':
             description = team1Name + ' earns a coner'
