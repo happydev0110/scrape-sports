@@ -82,6 +82,14 @@ function EventComponent() {
             var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;                 //team2 ID
             var team1Name = resList.boxscore.teams[team1Idx].team.name;                                 //team1 Name
             var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+
+            if (team1Name.includes('&')) {
+                team1Name = team1Name.replace('&','and');
+            }
+
+            if (team2Name.includes('&')) {
+                team2Name = team2Name.replace('&','and');
+            }
         }
 
         var matchEvtList = [];
@@ -99,21 +107,6 @@ function EventComponent() {
             let selectedSeqIdx = 0;
             let prevEventItem;
 
-            if (team1Idx != -1) {
-                var team1Id = resList.boxscore.teams[team1Idx].team.id;
-                var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
-                var team1Name = resList.boxscore.teams[team1Idx].team.name;
-                var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-
-                if (team1Name.includes('&')) {
-                    team1Name = team1Name.replace('&','and');
-                }
-
-                if (team2Name.includes('&')) {
-                    team2Name = team2Name.replace('&','and');
-                }
-            }
-
             if (startTime != -1) {
                 selectedSeqIdx = findSoccerSeqIndex(resList.commentary, startTime);
             }
@@ -127,13 +120,16 @@ function EventComponent() {
                     let duration = 0;
 
                     if (prevPlayItem) {
-                        if (!prevPlayItem || !prevPlayItem.play || !currentPlayItem.play) {
-                            duration = 0;
-                        } else {
-                            duration = getDuraton(prevPlayItem.play.wallclock, currentPlayItem.play.wallclock);
-                        }
+                        // if (!prevPlayItem || !prevPlayItem.play || !currentPlayItem.play) {
+                        //     duration = 0;
+                        // } else {
+                        //     duration = getDuraton(prevPlayItem.play.wallclock, currentPlayItem.play.wallclock);
+                        // }
+
+                        duration = (currentPlayItem.time.value - prevPlayItem.time.value) * 1000;
                         console.log(duration / 1000, i, 'duraion')
                     }
+                    
 
                     if (startTime == -1 || i < selectedSeqIdx) duration = 0;
 
