@@ -350,6 +350,8 @@ function EventComponent() {
                                 'description:', result.description,
                                 'increase:', dataTypeItem.Increase,
                                 'rotation:', dataTypeItem.rotation,
+                                'time value:', dataTypeItem.time.value,
+                                'time displayValue:', dataTypeItem.time.displayValue,
                                 // 'historyList:', hisList
                             )
                             // console.log(
@@ -381,7 +383,9 @@ function EventComponent() {
                                 setAwayScore(team1Score);
                             }
                         }
+
                         i++;
+                        clearTimeout(TimeOut);
                         loop(); // Call loop function recursively after delay
                     }, duration);
 
@@ -419,6 +423,7 @@ function EventComponent() {
                     selectedSeqIdx = findSeqIndex(resList.plays, startTime);
                 }
 
+
                 function loop() {
                     if (i < resList.plays.length) {
                         var currentPlayItem = resList.plays[i];
@@ -427,10 +432,9 @@ function EventComponent() {
                         let duration = 0;
                         if (prevPlayItem) {
                             duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
-                            // console.log(duration / 1000, 'duraion')
                         }
-
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
+                        console.log(duration / 1000, 'duraion')
 
 
                         var TimeOut = setTimeout(() => {
@@ -485,15 +489,22 @@ function EventComponent() {
                                 }
 
                                 // Special DS
-                                // DS2-NCAA
-                                if (dataTypeItem.no === 'NCAA-DS2') {
-                                    if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue !== currentPlayItem.clock.displayValue) continue;
-                                    // if (currentPlayItem.text.includes('made Dunk')) continue;
-                                }
-
                                 // DS3-NCAA
                                 if (dataTypeItem.no === 'NCAA-DS3') {
-                                    if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0) continue;
+                                    if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) continue;
+                                }
+
+                                // NCAA-DS3-2
+                                if (dataTypeItem.no === 'NCAA-DS3-2') {
+                                    if (prevPlayItem.clock.displayValue != currentPlayItem.clock.displayValue || prevPlayItem.scoringPlay === undefined || prevPlayItem.scoringPlay === true) continue;
+                                }
+
+                                // NCAA-DS10
+                                if (dataTypeItem.no === 'NCAA-DS10') {
+                                    if (prevPlayItem === undefined || currentPlayItem.clock === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) continue;
+                                    if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 3) {
+                                        continue;
+                                    }
                                 }
 
                                 // DS9-NCAA
@@ -794,6 +805,7 @@ function EventComponent() {
                             }
 
                             i++;
+                            clearTimeout(TimeOut);
                             loop(); // Call loop function recursively after delay
                         }, duration);
 
@@ -1078,6 +1090,8 @@ function EventComponent() {
                             'description:', result.description,
                             'increase:', dataTypeItem.Increase,
                             'rotation:', dataTypeItem.rotation,
+                            'time value:', dataTypeItem.time.value,
+                            'time displayValue:', dataTypeItem.time.displayValue,
                             // 'historyList:', hisList
                         )
                         // console.log(
