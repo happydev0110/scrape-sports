@@ -130,8 +130,12 @@ function EventComponent() {
                         // console.log(currentPlayItem.time, 'time')
                         if (currentPlayItem.time.displayValue.indexOf('+') != -1) {
                             // console.log(parseInt(currentPlayItem.time.displayValue.slice(currentPlayItem.time.displayValue.indexOf('+') + 1, currentPlayItem.time.displayValue.length)))
-                            let second = parseInt(currentPlayItem.time.displayValue.slice(currentPlayItem.time.displayValue.indexOf('+') + 1, currentPlayItem.time.displayValue.length));
-                            duration = second * 60 * 1000;
+                            let prevSecond = 0;
+                            let currentSecond = parseInt(currentPlayItem.time.displayValue.slice(currentPlayItem.time.displayValue.indexOf('+') + 1, currentPlayItem.time.displayValue.length));
+                            if (currentPlayItem.time.displayValue.indexOf('+') != -1) {
+                                prevSecond = parseInt(prevPlayItem.time.displayValue.slice(prevPlayItem.time.displayValue.indexOf('+') + 1, prevPlayItem.time.displayValue.length));
+                            }
+                            duration = (currentSecond - prevSecond) * 60 * 1000;
                         }
                     }
 
