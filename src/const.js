@@ -786,7 +786,7 @@ export const NCAA_DS = [
     },
     {//DataSet14-2
         no: 'NCAA-DS14-2',
-        teamId: false,
+        teamId: true,
         typeId: 521,
         scoreValue: -1,
         Increase: false,

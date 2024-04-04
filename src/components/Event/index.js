@@ -121,7 +121,6 @@ function EventComponent() {
 
                     if (prevPlayItem) {
                         duration = (currentPlayItem.time.value - prevPlayItem.time.value) * 1000;
-                        // duration = 1
                     }
 
                     if (duration <= 0) duration = 1000;
