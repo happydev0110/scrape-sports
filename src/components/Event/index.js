@@ -84,11 +84,11 @@ function EventComponent() {
             var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
 
             if (team1Name.includes('&')) {
-                team1Name = team1Name.replace('&','and');
+                team1Name = team1Name.replace('&', 'and');
             }
 
             if (team2Name.includes('&')) {
-                team2Name = team2Name.replace('&','and');
+                team2Name = team2Name.replace('&', 'and');
             }
         }
 
@@ -120,23 +120,26 @@ function EventComponent() {
                     let duration = 0;
 
                     if (prevPlayItem) {
-                        // if (!prevPlayItem || !prevPlayItem.play || !currentPlayItem.play) {
-                        //     duration = 0;
-                        // } else {
-                        //     duration = getDuraton(prevPlayItem.play.wallclock, currentPlayItem.play.wallclock);
-                        // }
-
                         duration = (currentPlayItem.time.value - prevPlayItem.time.value) * 1000;
-                        console.log(duration / 1000, i, 'duraion')
+                        // duration = 1
                     }
-                    
+
+                    if (duration <= 0) duration = 1000;
+                    console.log(duration / 1000, i, 'duraion')
+
+                    if (currentPlayItem.time.value == 2700 || currentPlayItem.time.value == 5400) {
+                        // console.log(currentPlayItem.time, 'time')
+                        if (currentPlayItem.time.displayValue.indexOf('+') != -1) {
+                            // console.log(parseInt(currentPlayItem.time.displayValue.slice(currentPlayItem.time.displayValue.indexOf('+') + 1, currentPlayItem.time.displayValue.length)))
+                            let second = parseInt(currentPlayItem.time.displayValue.slice(currentPlayItem.time.displayValue.indexOf('+') + 1, currentPlayItem.time.displayValue.length));
+                            duration = second * 60 * 1000;
+                        }
+                    }
 
                     if (startTime == -1 || i < selectedSeqIdx) duration = 0;
 
-
                     var TimeOut = setTimeout(() => {
                         // console.log(i, 'do while')
-
                         for (let j = 0; j < dataSetType.length; j++) {
 
                             var dataTypeItem = dataSetType[j];
@@ -407,10 +410,10 @@ function EventComponent() {
                 var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
 
                 if (team1Name.includes('&')) {
-                    team1Name = team1Name.replace('&','and');
+                    team1Name = team1Name.replace('&', 'and');
                 }
                 if (team2Name.includes('&')) {
-                    team2Name = team2Name.replace('&','and');
+                    team2Name = team2Name.replace('&', 'and');
                 }
 
                 if (startTime != -1) {
@@ -831,11 +834,11 @@ function EventComponent() {
                 var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
 
                 if (team1Name.includes('&')) {
-                    team1Name = team1Name.replace('&','and');
+                    team1Name = team1Name.replace('&', 'and');
                 }
 
                 if (team2Name.includes('&')) {
-                    team2Name = team2Name.replace('&','and');
+                    team2Name = team2Name.replace('&', 'and');
                 }
             }
 
