@@ -95,15 +95,15 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NCAA-DS1':
             description = 'Three Point Basket!'
             break;
-        case 'NCAA-DS2':
-            description = 'Foul. Rotate Turns'
-            break;
-        case 'NCAA-DS3':
-            description = 'Foul. Rotate Turns'
-            break;
-        case 'NCAA-DS3-2':
-            description = 'Foul. Rotate Turns'
-            break;
+        // case 'NCAA-DS2':
+        //     description = 'Foul. Rotate Turns'
+        //     break;
+        // case 'NCAA-DS3':
+        //     description = 'Foul. Rotate Turns'
+        //     break;
+        // case 'NCAA-DS3-2':
+        //     description = 'Foul. Rotate Turns'
+        //     break;
         case 'NCAA-DS4':
             description = 'Dunk!!!'
             break;
@@ -119,6 +119,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NCAA-DS8':
             description = 'Missed Free Throw'
             break;
+        case 'NCAA-DS9':
+            description = 'And 1 Basket!'
+            break;
         case 'NCAA-DS10-2':
             description = 'Three Point Miss'
             break;
@@ -128,16 +131,8 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NCAA-DS12':
             description = 'And 1 Basket!'
             break;
-        case 'NCAA-DS13':
-            description = 'Foul Rotate Turns'
-            break;
-
-        // Previous 
-        case 'NCAA-DS9':
-            description = 'And 1 Basket!'
-            break;
-        case 'NCAA-DS12':
-            description = 'And 1 Basket!'
+        case 'NCAA-DS15':
+            description = 'Dunk!! End Turn'
             break;
 
         // NHL
