@@ -124,8 +124,7 @@ function EventComponent() {
                     }
 
                     if (duration <= 0) duration = 1000;
-                    console.log(duration / 1000, i, 'duraion')
-
+                    
                     if (currentPlayItem.time.value == 2700 || currentPlayItem.time.value == 5400) {
                         // console.log(currentPlayItem.time, 'time')
                         if (currentPlayItem.time.displayValue.indexOf('+') != -1) {
@@ -138,8 +137,9 @@ function EventComponent() {
                             duration = (currentSecond - prevSecond) * 60 * 1000;
                         }
                     }
-
+                    
                     if (startTime == -1 || i < selectedSeqIdx) duration = 0;
+                    console.log(duration / 1000, i, 'duraion')
 
                     var TimeOut = setTimeout(() => {
                         // console.log(i, 'do while')
@@ -354,10 +354,13 @@ function EventComponent() {
                                 'description:', result.description,
                                 'increase:', dataTypeItem.Increase,
                                 'rotation:', dataTypeItem.rotation,
-                                'time value:', dataTypeItem.time.value,
-                                'time displayValue:', dataTypeItem.time.displayValue,
+                                'time value:', currentPlayItem.time.value,
+                                'time displayValue:', currentPlayItem.time.displayValue,
                                 // 'historyList:', hisList
                             )
+
+
+
                             // console.log(
                             //     'teamIndex0:', result.score[0],
                             //     'teamIndex1:', result.score[1],
