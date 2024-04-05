@@ -1094,8 +1094,8 @@ function EventComponent() {
                             'description:', result.description,
                             'increase:', dataTypeItem.Increase,
                             'rotation:', dataTypeItem.rotation,
-                            'time value:', dataTypeItem.time.value,
-                            'time displayValue:', dataTypeItem.time.displayValue,
+                            'time value:', currentPlayItem.time.value,
+                            'time displayValue:', currentPlayItem.time.displayValue,
                             // 'historyList:', hisList
                         )
                         // console.log(
