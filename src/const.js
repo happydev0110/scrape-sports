@@ -796,9 +796,11 @@ export const NCAA_DS = [
         no: 'NCAA-DS15',
         teamId: true,
         typeId: 574,
+        scoringPlayStatus: true,
+        scoringPlay: true,
         scoreValue: -1,
         Increase: false,
-        rotation: true
+        rotation: false
     },
     {//DataSet16
         no: 'NCAA-DS16',
@@ -1658,7 +1660,7 @@ export const NBA2_DS = [
         no: 'NBA2-DS72',
         teamId: true,
         typeId: false,
-        logoReverse: true, 
+        logoReverse: true,
         scoreValue: -1,
         Increase: 1,
         rotation: false
