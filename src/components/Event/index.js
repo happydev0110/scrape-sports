@@ -450,7 +450,7 @@ function EventComponent() {
                             //     duration = 0;
                             // } else {
                             // }
-                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock) / 10;
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
