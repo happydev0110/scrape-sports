@@ -1104,7 +1104,7 @@ function EventComponent() {
             {
                 tabStatus && <>
                     <div className='row'>
-                        <div className='col-md-2'>
+                        <div className='col-md-12'>
                             <label className="form-label" style={{ float: "left" }}>Sports Category</label>
                             <select className="form-select form-select-sm"
                                 value={sportCategory}
@@ -1123,7 +1123,7 @@ function EventComponent() {
                         </div>
                     </div>
                     <div className='row my-3'>
-                        <div className='col-md-3'>
+                        <div className='col-md-12 mb-5'>
                             <Filter
                                 label='Today Event'
                                 columns={{ label: "name", value: "id" }}
@@ -1138,19 +1138,7 @@ function EventComponent() {
                                 }}
                             />
                         </div>
-                        <div className='col-md-3'>
-                            <label className="form-label">Random GameId</label><br />
-                            <div className="input-group">
-                                <input type="text" className="form-control form-control-sm" placeholder="Game Id"
-                                    value={gameId}
-                                    onChange={(evt) => { setGameId(evt.target.value) }}
-                                />
-                                <button className="btn btn-success btn-sm" onClick={handleEvent}>Ok</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='row mt-3'>
-                        <div className='col-md-2'>
+                        <div className='col-md-12 mt-3'>
                             <label className="form-label" style={{ float: "left" }}>Team1</label>
                             <select className="form-select form-select-sm"
                                 value={team1Idx}
@@ -1169,11 +1157,24 @@ function EventComponent() {
                                 }
                             </select>
                         </div>
-                        <div className='col-md-2'>
+                        <div className='col-md-12 mb-5'>
                             <label className="form-label">Team2</label>
                             <input type="text" value={team2Name} className="form-control form-control-sm" disabled />
                         </div>
-                        <div className='col-md-2'>
+                        <div className='text-center mt-3 mb-2'>
+                            <button className='btn btn-primary' onClick={handleTab}>Go To Game</button>
+                        </div>
+                        <div className='col-md-12'>
+                            <label className="form-label">Random GameId</label><br />
+                            <div className="input-group">
+                                <input type="text" className="form-control form-control-sm" placeholder="Game Id"
+                                    value={gameId}
+                                    onChange={(evt) => { setGameId(evt.target.value) }}
+                                />
+                                <button className="btn btn-success btn-sm" onClick={handleEvent}>Ok</button>
+                            </div>
+                        </div>
+                        <div className='col-md-12'>
                             <Filter
                                 label='Interval Rate'
                                 columns={{ label: "label", value: "value" }}
@@ -1183,13 +1184,15 @@ function EventComponent() {
                             />
                         </div>
                     </div>
+
                 </>
             }
-            <div className='text-center mt-3'>
-                <button className='btn btn-primary' onClick={handleTab}>{tabStatus ? 'Go To Game' : 'Go To Dashboard'}</button>
-            </div>
+
             {
                 !tabStatus && <div className='row'>
+                    <div className='text-center mt-3'>
+                        <button className='btn btn-primary' onClick={handleTab}>Go To Dashboard</button>
+                    </div>
                     <div className='col-6 mt-4 pt-2 text-center'>
                         <button className='btn btn-primary btn-sm' onClick={() => handleDS(-1)}>Previous</button>
                     </div>
