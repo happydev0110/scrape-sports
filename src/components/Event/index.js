@@ -578,12 +578,12 @@ function EventComponent() {
                                     setLoopIndex(i);
                                 }
                             }
-                            
+
                             i++;
                             clearTimeout(TimeOut);
                             loop(); // Call loop function recursively after delay
                         }, duration);
-                        
+
                         setTimeOut(TimeOut);
                     }
                 }
