@@ -470,6 +470,11 @@ function EventComponent() {
                                     continue;
                                 }
 
+                                console.log("dataTypeItem.teamId: ", dataTypeItem.teamId);
+                                if (dataTypeItem.teamId) {
+                                    matchTeamId = team2Id;
+                                }
+
                                 // Special DS
 
                                 matchEvtList.push(currentPlayItem);
@@ -922,6 +927,10 @@ function EventComponent() {
 
                             if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq)) continue;
                             // Special DS
+                            console.log("dataTypeItem.teamId: ", dataTypeItem.teamId);
+                            if (dataTypeItem.teamId) {
+                                matchTeamId = team2Id;
+                            }
 
                             matchEvtList.push(currentPlayItem);
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);

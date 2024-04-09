@@ -13,7 +13,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
 
         if (dataTypeItem.teamId) {
-            matchTeamId = team2Id
+            matchTeamId = team2Id;
         }
 
         if (currentPlayItem.team && (currentPlayItem.team.id != matchTeamId)) {
@@ -321,8 +321,8 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
             let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
             let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
 
-            console.log(team1Name,'team1Name')
-            console.log(team2Name,'team2Name')
+            console.log(team1Name, 'team1Name')
+            console.log(team2Name, 'team2Name')
 
             if (team1NameIdx == -1) team1NameIdx = currentPlayItem.text.indexOf(team1Name.replace('&', 'and'));
             if (team2NameIdx == -1) team2NameIdx = currentPlayItem.text.indexOf(team2Name.replace('&', 'and'));
