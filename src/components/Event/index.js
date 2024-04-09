@@ -454,7 +454,7 @@ function EventComponent() {
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
-                        // console.log(duration / 1000, 'duraion')
+                        console.log(duration / 1000, 'duraion')
                         // Duration
 
                         console.log(i, 'do while')
