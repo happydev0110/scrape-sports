@@ -1145,7 +1145,7 @@ function EventComponent() {
                                     value={gameId}
                                     onChange={(evt) => { setGameId(evt.target.value) }}
                                 />
-                                <button className="btn btn-success btn-sm" onClick={handleEvent}>Start</button>
+                                <button className="btn btn-success btn-sm" onClick={handleEvent}>Ok</button>
                             </div>
                         </div>
                     </div>

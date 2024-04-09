@@ -1,7 +1,7 @@
 /*
  Status
-    false: yes
-    true: No Check
+    false: yes          (continue)
+    true: No Check      (no continue)
 */
 export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq) => {
     let status = false;
@@ -146,9 +146,9 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // NHL-DS5, NHL-DS6 
+    // NHL-DS6 
     if (dataTypeItem.no === 'NHL-DS5' || dataTypeItem.no === 'NHL-DS6') {
-        if (currentPlayItem.text.includes('Fighting')) {
+        if (currentPlayItem.text.includes('served by')) {
             status = true;
         }
     }

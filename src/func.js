@@ -136,13 +136,38 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             break;
 
         // NHL
+        case 'NHL-DS1':
+            description = playItem.participants
+            [0].athlete.shortName + ' wins faceoff'
+            break;
         case 'NHL-DS2':
             description = playItem.text + ' Ends Turn'
             break;
+        case 'NHL-DS3':
+            description = 'Shot by ' + playItem.participants[0].athlete.shortName
+            break;
+        case 'NHL-DS5':
+            description = 'Penalty. ' + playItem.participants[0].athlete.shortName
+            break;
+        case 'NHL-DS6':
+            description = 'Penalty. ' + playItem.participants[0].athlete.shortName
+            break;
+        case 'NHL-DS7':
+            description = playItem.participants[0].athlete.displayName + ' Goal'
+            break;
+        case 'NHL-DS8':
+            description = playItem.participants[0].athlete.displayName + ' Goal'
+            break;
+        case 'NHL-DS10':
+            description = playItem.participants[0].athlete.shortName + ' wins faceoff'
+            break;
 
         // NHL2 
+        case 'NHL2-DS1':
+            description = playItem.participants[0].athlete.shortName + 'Wins Faceoff'
+            break;
         case 'NHL2-DS1-2':
-            description = 'Wins Faceoff'
+            description = playItem.participants[0].athlete.shortName + 'Wins Faceoff'
             break;
         case 'NHL2-DS2':
             description = 'Stoppage. Faceoff'
