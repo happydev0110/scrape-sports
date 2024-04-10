@@ -432,7 +432,7 @@ export const NBA_DS = [
     {//DS44
         no: 'NBA2-DS44',
         teamId: false,
-        typeId: 84,
+        typeId: 42,
         scoreValue: -1,
         Increase: false,
         rotation: true

@@ -66,18 +66,11 @@ export const reverseTime = (time, limitMinutes = 20) => {
 }
 
 export const getAthleteName = (data, id) => {
-
-    console.log(data, 'list')
     let playList = [...data.players[0].statistics[0].athletes, ...data.players[1].statistics[0].athletes];
-
-    // let playList = data.players[0].statistics[0].athletes.concat(data.players[0].statistics[0].athletes);
-    console.log(playList, 'playList')
-    console.log(id, 'player id')
     let athlete = playList.find(item => { return item.athlete.id == id });
-
-    console.log(athlete, 'athlete Info')
     return athlete.athlete.displayName
 }
+
 export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory, boxScore) => {
     let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
     let increaseMount = dataTypeItem.Increase;
@@ -250,9 +243,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NBA2-DS30-3':
             description = 'And 1 Basket!'
             break;
-        case 'NBA2-DS44':
-            description = playItem.text
-            break;
+        // case 'NBA2-DS44':
+        //     description = playItem.text
+        //     break;
         case 'NBA2-DS45':
             description = 'Offensive Foul'
             break;

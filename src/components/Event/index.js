@@ -927,7 +927,7 @@ function EventComponent() {
 
                             if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq)) continue;
                             // Special DS
-                            console.log("dataTypeItem.teamId: ", dataTypeItem.teamId);
+                            // console.log("dataTypeItem.teamId: ", dataTypeItem.teamId);
                             if (dataTypeItem.teamId) {
                                 matchTeamId = team2Id;
                             }
