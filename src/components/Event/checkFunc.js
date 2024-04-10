@@ -135,6 +135,20 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
+    // NHL-DS3
+    if (dataTypeItem.no === 'NHL-DS3') {
+        if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge') || currentPlayItem.text.includes('review')) {
+            status = true;
+        }
+    }
+
+    // NHL-DS3-1
+    if (dataTypeItem.no === 'NHL-DS3-2') {
+        if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge') || currentPlayItem.text.includes('review')) {
+            status = true;
+        }
+    }
+
     // NHL-DS4
     if (dataTypeItem.no === 'NHL-DS4') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {

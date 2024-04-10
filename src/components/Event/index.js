@@ -427,6 +427,8 @@ function EventComponent() {
                 var team1Name = resList.boxscore.teams[team1Idx].team.name;
                 var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
 
+                var NHL_DS3_count = 0;
+
                 if (team1Name.includes('&')) {
                     team1Name = team1Name.replace('&', 'and');
                 }
@@ -468,6 +470,20 @@ function EventComponent() {
 
                                 if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq)) {
                                     continue;
+                                } else {
+                                    // NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
+                                    if (dataTypeItem.no === "NHL-DS3") {
+                                        NHL_DS3_count++;
+                                        if (NHL_DS3_count > 2) {
+                                            continue;
+                                        }
+                                    }
+
+                                    if (dataTypeItem.no === "NHL-DS3-1") {
+                                        if (NHL_DS3_count <= 2) {
+                                            continue;
+                                        }
+                                    }
                                 }
 
                                 console.log("dataTypeItem.teamId: ", dataTypeItem.teamId);
@@ -904,6 +920,7 @@ function EventComponent() {
                     let timerList = [[], [], [], []];
                     let quarter = 1;
                     let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
+                    let NHL_DS3_count = 0;
 
                     console.log('Loop', resList.plays.length)
 
@@ -925,7 +942,25 @@ function EventComponent() {
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
 
-                            if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq)) continue;
+                            if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq)) {
+                                continue;
+                            } else {
+                                // console.log(NHL_DS3_count,'NHL-DS3')
+                                // NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
+                                if (dataTypeItem.no === "NHL-DS3") {
+                                    NHL_DS3_count++;
+                                    if (NHL_DS3_count > 2) {
+                                        continue;
+                                    }
+                                }
+
+                                if (dataTypeItem.no === "NHL-DS3-1") {
+                                    if (NHL_DS3_count <= 2) {
+                                        continue;
+                                    }
+                                }
+                            }
+
                             // Special DS
                             // console.log("dataTypeItem.teamId: ", dataTypeItem.teamId);
                             if (dataTypeItem.teamId) {
