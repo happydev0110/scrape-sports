@@ -933,7 +933,7 @@ function EventComponent() {
                             }
 
                             matchEvtList.push(currentPlayItem);
-                            result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
+                            result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory, resList.boxscore);
                             hisList = historyList;
                             // console.log(hisList,"history List");
 
@@ -1240,6 +1240,7 @@ function EventComponent() {
                 selTeamIdx={selTeamIdx}
                 selTextIdx={selTextIdx}
                 historyList={historyList}
+                sportCategory={sportCategory}
             />
         </>
     );

@@ -274,6 +274,18 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     }
 
+    // NBA2-DS30-3
+    if (dataTypeItem.no === 'NBA2-DS30-3') {
+        if (prevPlayItem === undefined || prevPlayItem.type === undefined) {
+            status = true;
+        } else {
+            if (prevPlayItem.type.id != 9) {
+                status = true;
+            }
+        }
+
+    }
+
     // NBA2-DS48
     if (dataTypeItem.no === 'NBA2-DS48') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {
@@ -285,9 +297,34 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
+    // NBA2-DS48-2
+    if (dataTypeItem.no === 'NBA2-DS48-2') {
+        if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) {
+            status = true;
+        } else {
+            if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 0) {
+                status = true;
+            }
+        }
+    }
+
     // NBA2-DS72
     if (dataTypeItem.no === 'NBA2-DS72') {
         if (!currentPlayItem.text.includes('blocks')) {
+            status = true;
+        }
+    }
+
+    // NBA2-DS73-1
+    if (dataTypeItem.no === 'NBA2-DS73-1') {
+        if (currentPlayItem.period !== '1st Quarter' || currentPlayItem.clock.displayValue !== '12:00') {
+            status = true;
+        }
+    }
+
+    // NBA2-DS73-2
+    if (dataTypeItem.no === 'NBA2-DS73-2') {
+        if (currentPlayItem.type.text !== 'Jumpball' || currentPlayItem.clock.displayValue !== '12:00') {
             status = true;
         }
     }

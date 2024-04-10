@@ -331,14 +331,14 @@ export const NBA_DS = [
         Increase: 1,
         rotation: false
     },
-    // {//DS20
-    //     no: 'NBA2-DS20',
-    //     teamId: true,
-    //     typeId: false,
-    //     scoreValue: -1,
-    //     Increase: 1,
-    //     rotation: false
-    // },
+    {//DS19-2
+        no: 'NBA2-DS19-2',
+        teamId: false,
+        typeId: 103,
+        scoreValue: 0,
+        Increase: 1,
+        rotation: false
+    },
     {//DS26
         no: 'NBA2-DS26',
         teamId: false,
@@ -387,6 +387,14 @@ export const NBA_DS = [
         typeId: 44,
         scoreValue: -1,
         Increase: 1,
+        rotation: true
+    },
+    {//DS30-3
+        no: 'NBA2-DS30-3',
+        teamId: true,
+        typeId: 44,
+        scoreValue: -1,
+        Increase: 3,
         rotation: true
     },
     {//DS31
@@ -455,6 +463,14 @@ export const NBA_DS = [
     },
     {//DS48
         no: 'NBA2-DS48',
+        teamId: true,
+        typeId: 44,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: true
+    },
+    {//DS48-2
+        no: 'NBA2-DS48-2',
         teamId: true,
         typeId: 44,
         scoreValue: -1,
@@ -628,6 +644,38 @@ export const NBA_DS = [
         logoReverse: true,
         scoreValue: -1,
         Increase: 1,
+        rotation: false
+    },
+    {//DS73
+        no: 'NBA2-DS73-1',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DS73
+        no: 'NBA2-DS73-2',
+        teamId: true,
+        typeId: 615,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DS73
+        no: 'NBA2-DS74-1',
+        teamId: false,
+        typeId: 16,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DS73
+        no: 'NBA2-DS74-2',
+        teamId: true,
+        typeId: 16,
+        scoreValue: -1,
+        Increase: false,
         rotation: false
     },
 ]
@@ -825,6 +873,15 @@ export const NBA2_DS = [
         Increase: 1,
         rotation: false
     },
+    {//DataSet19-2
+        no: 'NBA-DS19-2',
+        teamId: false,
+        typeId: 103,
+        scoreValue: 0,
+        Increase: false,
+        rotation: false
+    },
+
     {//DataSet20
         no: 'NBA-DS20',
         teamId: true,

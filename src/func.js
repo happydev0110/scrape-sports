@@ -65,7 +65,20 @@ export const reverseTime = (time, limitMinutes = 20) => {
     return result.join(':')
 }
 
-export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory) => {
+export const getAthleteName = (data, id) => {
+
+    console.log(data, 'list')
+    let playList = [...data.players[0].statistics[0].athletes, ...data.players[1].statistics[0].athletes];
+
+    // let playList = data.players[0].statistics[0].athletes.concat(data.players[0].statistics[0].athletes);
+    console.log(playList, 'playList')
+    console.log(id, 'player id')
+    let athlete = playList.find(item => { return item.athlete.id == id });
+
+    console.log(athlete, 'athlete Info')
+    return athlete.athlete.displayName
+}
+export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory, boxScore) => {
     let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
     let increaseMount = dataTypeItem.Increase;
 
@@ -92,6 +105,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NBA-DS1':
             description = 'Three!!! '
             break;
+
         case 'NCAA-DS1':
             description = 'Three Point Basket!'
             break;
@@ -209,19 +223,35 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
 
         // NBA2
         case 'NBA2-DS1':
-            description = 'Three!!! '
+            description = '3pt Make. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
+        case 'NBA2-DS1-2':
+            description = '3pt Miss. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS1-3':
+            description = '3pt Make. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+
         case 'NBA2-DS7':
             description = playItem.type.text
             break;
         case 'NBA2-DS7-2':
             description = playItem.type.text
             break;
+        case 'NBA2-DS19-2':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
         case 'NBA2-DS30':
             description = 'And 1 Basket!!!'
             break;
         case 'NBA2-DS30-2':
             description = 'And 1 Foul!'
+            break;
+        case 'NBA2-DS30-3':
+            description = 'And 1 Basket!'
+            break;
+        case 'NBA2-DS44':
+            description = playItem.text
             break;
         case 'NBA2-DS45':
             description = 'Offensive Foul'
@@ -231,6 +261,12 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             break;
         case 'NBA2-DS63':
             description = playItem.text
+            break;
+        case 'NBA2-DS73-1':
+            description = 'Start of game'
+            break;
+        case 'NBA2-DS73-2':
+            description = 'Jumpball'
             break;
         default:
             break;
