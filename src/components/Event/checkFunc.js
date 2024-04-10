@@ -146,8 +146,30 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
+    // NHL-DS5
+    if (dataTypeItem.no === 'NHL-DS5') {
+        if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.type === undefined) {
+            status = true;
+        } else {
+            // if (currentPlayItem.text.includes('served by') || prevPlayItem.clock.displayValue === currentPlayItem.clock.displayValue || prevPlayItem.type.id != 516) {
+            //     status = true;
+            // }
+        }
+    }
+
+    // NHL-DS5-1
+    if (dataTypeItem.no === 'NHL-DS5-1') {
+        if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.type === undefined) {
+            status = true;
+        } else {
+            if (currentPlayItem.text.includes('served by') || prevPlayItem.clock.displayValue !== currentPlayItem.clock.displayValue || prevPlayItem.type.id != 516) {
+                status = true;
+            }
+        }
+    }
+
     // NHL-DS6 
-    if (dataTypeItem.no === 'NHL-DS5' || dataTypeItem.no === 'NHL-DS6') {
+    if (dataTypeItem.no === 'NHL-DS6') {
         if (currentPlayItem.text.includes('served by')) {
             status = true;
         }
