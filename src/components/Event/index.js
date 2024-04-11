@@ -655,7 +655,7 @@ function EventComponent() {
                             i++;
                             goToIndex = i;
                         }
-                        
+
                         if (duration > 0) {
                             var TimeOut = setTimeout(async () => {
                                 await handleGoTo();
@@ -1080,11 +1080,16 @@ function EventComponent() {
                             */
                             if (quarter < 5) {
                                 if (currentPlayItem.period.number == quarter) {
-                                    console.log(currentPlayItem.sequenceNumber, currentPlayItem.period.displayValue, currentPlayItem.clock, 'current time')
-                                    timerList[0].push({
+                                    let timeItem = {
                                         label: currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue,
                                         value: currentPlayItem.sequenceNumber
-                                    })
+                                    }
+
+                                    if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
+                                        timeItem.label = currentPlayItem.period.displayValue + ' ' + reverseTime(currentPlayItem.clock.displayValue);
+                                    }
+
+                                    timerList[0].push(timeItem)
                                     quarter++;
                                 }
                             }
