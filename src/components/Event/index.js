@@ -487,7 +487,7 @@ function EventComponent() {
                     selectedSeqIdx = selected;
                 }
 
-                async function loop() {
+                function loop() {
                     if (i < eventList.length) {
                         var currentPlayItem = eventList[i];
                         var prevPlayItem = eventList[i - 1];
@@ -657,13 +657,13 @@ function EventComponent() {
                         }
 
                         if (duration > 0) {
-                            var TimeOut = setTimeout(async () => {
-                                await handleGoTo();
-                                // clearTimeout(TimeOut);
+                            var TimeOut = setTimeout(() => {
+                                handleGoTo();
+                                clearTimeout(TimeOut);
                                 loop(); // Call loop function recursively after delay
                             }, duration);
                         } else {
-                            await handleGoTo();
+                            handleGoTo();
                             loop(); // Call loop function recursively after delay
                         }
 
