@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Filter from '../../layouts/Filter';
 
-import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY, TEAM_LIST } from '../../const.js';
+import { URL, SPORTS_CATEGORY, INTERVAL_TIME, DATASET_TYPE_CATEGORY } from '../../const.js';
 import { changeTeamIdx, handleScore, handleSoccerScore, reverseTime, getDuraton, findSeqIndex, findSoccerSeqIndex } from '../../func.js';
 
 import ScoreBoardComp from './scoreBoard.js';
@@ -38,7 +38,7 @@ function EventComponent() {
     const [timeList, setTimeList] = useState([[], [], [], []]);
     const [eventList, setEventList] = useState([]);
 
-    const [selectedTeamTime, setSelectedTeamTime] = useState(0);
+    // const [selectedTeamTime, setSelectedTeamTime] = useState(0);
     const [startTime, setStartTime] = useState(-1);
 
     const [tableScore, setTableScore] = useState([0, 0, 0, 0]);
@@ -48,17 +48,6 @@ function EventComponent() {
     */
     const [tabStatus, setTabStatus] = useState(true);
 
-    // const [timeOut, setTimeOut] = useState(null);
-
-    /* 
-        Pre, Next DS function
-    */
-    const [loopIndex, setLoopIndex] = useState(0);
-    const [direction, setDirection] = useState(false);
-
-    useEffect(() => {
-        console.log('useEffect run')
-    }, [])
     /* 
         Get Total Event
     */
@@ -410,22 +399,17 @@ function EventComponent() {
                         clearTimeout(timeOut);
                         loop(); // Call loop function recursively after delay
                     }, duration);
-
-                    // setTimeOut(TimeOut);
                 }
             }
-
             loop();
-
         } else {
             if (team1Idx != -1 && eventList) {
                 let hisList = [];
-                // let timerList = [[], [], [], []];
                 let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
 
                 console.log(eventList.length, 'Loop')
                 console.log(startTime, 'start Time')
-                // console.log(hisList, 'hislist in event loop')
+                console.log(historyList, 'hislist in event loop')
 
                 let i = 0;
                 let selectedSeqIdx = 0;
@@ -550,6 +534,7 @@ function EventComponent() {
                                 if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
                                     hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
                                 }
+
                                 hisList[result.textIndex].push(hisItem);
 
                                 increaseAmount = result.increaseMount;
@@ -616,7 +601,6 @@ function EventComponent() {
                                     setHomeScore(result.homeScore);
                                     setAwayScore(result.awayScore);
                                     setHistoryList(hisList);
-                                    setLoopIndex(i);
                                 }
                             }
 
@@ -637,8 +621,6 @@ function EventComponent() {
                             timeOut = null;
                             loop(); // Call loop function recursively after delay
                         }
-
-                        // setTimeOut(TimeOut);
                     }
                 }
 
@@ -1162,6 +1144,8 @@ function EventComponent() {
         setHomeScore(0);
         setAwayScore(0);
         setHistoryList([[], [], [], []]);
+        clearTimeout(timeOut);
+        timeOut = null;
     }
 
     /*
@@ -1170,12 +1154,11 @@ function EventComponent() {
             0:  No Direction
             1:  Next
     */
-    const handleDS = async (direction) => {
-        clearTimeout(timeOut);
-        timeOut = null;
+    const handleDS = (direction) => {
         goToIndex = goToIndex + direction;
         if (goToIndex < 0) goToIndex = 0;
         if (goToIndex > eventList.length) goToIndex = eventList.length - 1;
+        
         setInitial();
         goToPlay(goToIndex);
     }
@@ -1191,6 +1174,7 @@ function EventComponent() {
                                 value={sportCategory}
                                 onChange={evt => {
                                     setSportCategory(evt.target.value);
+                                    setInitial();
                                 }}
                             >
                                 {
@@ -1213,9 +1197,7 @@ function EventComponent() {
                                 // disabled={sportCategory !== 'NBA'}
                                 handleChange={(id) => {
                                     setEventId(id);
-                                    // setTeam1Idx(-1);
-                                    // setTeam2Name('');
-                                    // setPlayList([])
+                                    setInitial();
                                 }}
                             />
                         </div>
@@ -1250,7 +1232,10 @@ function EventComponent() {
                             <div className="input-group">
                                 <input type="text" className="form-control form-control-sm" placeholder="Game Id"
                                     value={gameId}
-                                    onChange={(evt) => { setGameId(evt.target.value) }}
+                                    onChange={(evt) => { 
+                                        setGameId(evt.target.value) 
+                                        setInitial()
+                                    }}
                                 />
                                 <button className="btn btn-success btn-sm" onClick={handleEvent}>Ok</button>
                             </div>
@@ -1285,10 +1270,8 @@ function EventComponent() {
                         <select className="form-select form-select-sm"
                             value={startTime}
                             onChange={evt => {
-                                clearTimeout(timeOut);
-                                timeOut = null;
-                                setStartTime(evt.target.value);
                                 setInitial();
+                                setStartTime(evt.target.value);
                             }}
                         >
                             <option value={-1}>Choose One</option>
