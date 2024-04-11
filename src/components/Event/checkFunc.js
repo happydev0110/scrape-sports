@@ -6,7 +6,9 @@
 export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq) => {
     let status = false;
 
-    // // teamId
+    /*
+        teamId
+    */
     if (dataTypeItem.teamId !== -1) {
         if (currentPlayItem.team === undefined) {
             status = true;
@@ -21,7 +23,9 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // typeId
+    /*
+        typeId
+    */
     if (dataTypeItem.typeId) {
         if (currentPlayItem.type.id == 502) {
             sepcialSeq = {
@@ -34,26 +38,30 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.type.id != dataTypeItem.typeId) status = true;
     }
 
-    // scoreValue
+    /*
+        scoreValue
+    */
     if (dataTypeItem.scoreValue != -1) {
         if (currentPlayItem.scoreValue === undefined) status = true;
         if (currentPlayItem.scoreValue != dataTypeItem.scoreValue) status = true;
     }
 
-    // scoringPlay
+    /*
+        scoringPlay
+    */
     if (dataTypeItem.scoringPlayStatus) {
         if (currentPlayItem.scoringPlay != dataTypeItem.scoringPlay) {
             status = true;
         }
     }
 
-    // Special DS
-    // DS3-NCAA
+    /*
+        Special DS
+    */
     if (dataTypeItem.no === 'NCAA-DS3') {
         if (prevPlayItem === undefined || prevPlayItem.scoreValue === undefined || prevPlayItem.scoreValue != 0 || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) status = true;
     }
 
-    // NCAA-DS3-2
     if (dataTypeItem.no === 'NCAA-DS3-2') {
         if (prevPlayItem === undefined) {
             status = true;
@@ -62,7 +70,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // DS9-NCAA
     if (dataTypeItem.no === 'NCAA-DS9') {
         if (prevPlayItem === undefined || currentPlayItem.clock === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) {
             status = true
@@ -73,7 +80,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         };
     }
 
-    // NCAA-DS10
     if (dataTypeItem.no === 'NCAA-DS10') {
         if (prevPlayItem === undefined || currentPlayItem.clock === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) {
             status = true;
@@ -84,7 +90,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // NCAA-DS12
     if (dataTypeItem.no === 'NCAA-DS12') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined) {
             status = true;
@@ -95,7 +100,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // NCAA-DS13
     if (dataTypeItem.no === 'NCAA-DS13') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined) {
             status = true;
@@ -106,7 +110,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // DS30-NBA
     if (dataTypeItem.no === 'NBA-DS30') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {
             status = true;
@@ -117,7 +120,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // DS48-NBA
     if (dataTypeItem.no === 'NBA-DS48') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined) {
             status = true;
@@ -128,14 +130,24 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // NHL-DS2
     if (dataTypeItem.no === 'NHL-DS2') {
         if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge') || currentPlayItem.text.includes('review')) {
             status = true;
         }
     }
 
-    // NHL-DS4
+    if (dataTypeItem.no === 'NHL-DS3') {
+        if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge') || currentPlayItem.text.includes('review')) {
+            status = true;
+        }
+    }
+
+    if (dataTypeItem.no === 'NHL-DS3-2') {
+        if (currentPlayItem.text.includes('Timeout') || currentPlayItem.text.includes('official') || currentPlayItem.text.includes('Challenge') || currentPlayItem.text.includes('review')) {
+            status = true;
+        }
+    }
+
     if (dataTypeItem.no === 'NHL-DS4') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {
             status = true;
@@ -146,127 +158,116 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // NHL-DS5
     if (dataTypeItem.no === 'NHL-DS5') {
-        if (prevPlayItem === undefined || prevPlayItem.clock === undefined) {
+        if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.type === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.includes('served by') || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) {
+            if (currentPlayItem.text.includes('served by') || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue || prevPlayItem.type.id != 516) {
                 status = true;
             }
         }
     }
 
-    // NHL-DS6 
+    if (dataTypeItem.no === 'NHL-DS5-1') {
+        if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.type === undefined) {
+            status = true;
+        } else {
+            if (currentPlayItem.text.includes('served by') || prevPlayItem.clock.displayValue != currentPlayItem.clock.displayValue || prevPlayItem.type.id != 516) {
+                status = true;
+            }
+        }
+    }
+
     if (dataTypeItem.no === 'NHL-DS6') {
-        if (prevPlayItem === undefined || prevPlayItem.clock === undefined) {
+        if (currentPlayItem.text.includes('served by')) {
             status = true;
-        } else {
-            if (currentPlayItem.text.includes('served by') || prevPlayItem.type.id != 516 || prevPlayItem.clock.displayValue != currentPlayItem.clock.displayValue) {
-                status = true;
-            }
         }
     }
 
-    // NHL2-DS2
     if (dataTypeItem.no === 'NHL2-DS2') {
         if (sepcialSeq.teamId != team1Id) {
             status = true;
         }
     }
 
-    // NHL2-DS2-2
     if (dataTypeItem.no === 'NHL2-DS2-2') {
         if (sepcialSeq.teamId != team2Id) {
             status = true;
         }
     }
 
-    // NHL2-DS2-3
     if (dataTypeItem.no === 'NHL2-DS2-3') {
         if (sepcialSeq.teamId != team1Id) {
             status = true;
         }
     }
 
-    // NHL2-DS2-4
     if (dataTypeItem.no === 'NHL2-DS2-4') {
         if (sepcialSeq.teamId != team2Id) {
             status = true;
         }
     }
 
-    // NBA2-DS1-2
     if (dataTypeItem.no === 'NBA2-DS1-2') {
         if (!currentPlayItem.text.includes('three point')) {
             status = true;
         }
     }
 
-    // NBA2-DS1-3
     if (dataTypeItem.no === 'NBA2-DS1-3') {
         if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 22-foot')) {
             status = true;
         }
     }
 
-    // NBA2-DS1-4
     if (dataTypeItem.no === 'NBA2-DS1-4') {
         if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 23-foot')) {
             status = true;
         }
     }
 
-    // NBA2-DS1-5
     if (dataTypeItem.no === 'NBA2-DS1-5') {
         if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 24-foot')) {
             status = true;
         }
     }
 
-    // NBA2-DS1-6
     if (dataTypeItem.no === 'NBA2-DS1-6') {
         if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 25-foot')) {
             status = true;
         }
     }
 
-    // NBA2-DS1-7
     if (dataTypeItem.no === 'NBA2-DS1-7') {
         if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 26-foot')) {
             status = true;
         }
     }
 
-    // NBA2-DS1-8
     if (dataTypeItem.no === 'NBA2-DS1-8') {
         if (currentPlayItem.text.includes('three point') || !currentPlayItem.text.includes('misses 27-foot')) {
             status = true;
         }
     }
 
-    // NBA2-DS7
     if (dataTypeItem.no === 'NBA2-DS7') {
         if (!currentPlayItem.type.text.includes('Dunk Shot') || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
             status = true;
         }
     }
 
-    // NBA2-DS7-2
     if (dataTypeItem.no === 'NBA2-DS7-2') {
         if (!currentPlayItem.type.text.includes('Dunk Shot')) {
             status = true;
         }
     }
 
-    // NBA2-DS20
     if (dataTypeItem.no === 'NBA2-DS20') {
         if (currentPlayItem.type.id == 84 || !currentPlayItem.type.text.includes('Turnover')) {
             status = true;
         }
     }
 
-    // NBA2-DS30
     if (dataTypeItem.no === 'NBA2-DS30') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {
             status = true;
@@ -277,7 +278,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // NBA2-DS30-2
     if (dataTypeItem.no === 'NBA2-DS30-2') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {
             status = true;
@@ -289,7 +289,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     }
 
-    // NBA2-DS30-3
     if (dataTypeItem.no === 'NBA2-DS30-3') {
         if (prevPlayItem === undefined || prevPlayItem.type === undefined) {
             status = true;
@@ -301,7 +300,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     }
 
-    // NBA2-DS48
     if (dataTypeItem.no === 'NBA2-DS48') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {
             status = true;
@@ -312,7 +310,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // NBA2-DS48-2
     if (dataTypeItem.no === 'NBA2-DS48-2') {
         if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoreValue === undefined) {
             status = true;
@@ -323,21 +320,18 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // NBA2-DS72
     if (dataTypeItem.no === 'NBA2-DS72') {
         if (!currentPlayItem.text.includes('blocks')) {
             status = true;
         }
     }
 
-    // NBA2-DS73-1
     if (dataTypeItem.no === 'NBA2-DS73-1') {
         if (currentPlayItem.period !== '1st Quarter' || currentPlayItem.clock.displayValue !== '12:00') {
             status = true;
         }
     }
 
-    // NBA2-DS73-2
     if (dataTypeItem.no === 'NBA2-DS73-2') {
         if (currentPlayItem.type.text !== 'Jumpball' || currentPlayItem.clock.displayValue !== '12:00') {
             status = true;

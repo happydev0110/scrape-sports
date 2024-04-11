@@ -120,7 +120,6 @@ export const TEAM_LIST = [
     roataion: (false: 'No Rotation', true: 'Rotation')
     logoReverse: (false: 'No Change', true: 'Next Logo')
 */
-
 export const NBA_DS = [
     {//DS1
         no: 'NBA2-DS1',
@@ -1406,6 +1405,14 @@ export const NHL_DS = [
         Increase: 2,
         rotation: false
     },
+    {//DataSet3
+        no: 'NHL-DS3-1',
+        teamId: false,
+        typeId: 506,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: false
+    },
     {//DataSet5
         no: 'NHL-DS5',
         teamId: false,
@@ -1414,13 +1421,13 @@ export const NHL_DS = [
         Increase: false,
         rotation: true
     },
-    {//DataSet5
+    {//DataSet5-1
         no: 'NHL-DS5-1',
         teamId: false,
         typeId: 509,
         scoreValue: -1,
         Increase: false,
-        rotation: true
+        rotation: false
     },
     {//DataSet6
         no: 'NHL-DS6',
