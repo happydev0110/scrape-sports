@@ -409,7 +409,8 @@ function EventComponent() {
 
                 console.log(eventList.length, 'Loop')
                 console.log(startTime, 'start Time')
-                console.log(historyList, 'hislist in event loop')
+                console.log(hisList,'hisList')
+                console.log(historyList, 'history list in event loop')
 
                 let i = 0;
                 let selectedSeqIdx = 0;
