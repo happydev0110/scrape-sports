@@ -10,32 +10,7 @@ import ScoreBoardComp from './scoreBoard.js';
 import { checkFunc } from './checkFunc.js';
 
 var goToIndex = 0;
-
-const getTimerList = () => {
-    const _setTimeout = window.setTimeout;
-    const _clearTimeout = window.clearTimeout;
-
-    // Create a manager for the active timers
-    const activeTimers = new Set();
-
-    // Override setTimeout to track the timer IDs
-    window.setTimeout = function (callback, delay, ...args) {
-        const timerId = _setTimeout(callback, delay, ...args);
-        activeTimers.add(timerId);
-        return timerId;
-    };
-
-    // Override clearTimeout to remove the timer IDs from the tracking
-    window.clearTimeout = function (timerId) {
-        _clearTimeout(timerId);
-        activeTimers.delete(timerId);
-    };
-
-    // Function to log or return the active timers
-    return [...activeTimers]; // Convert the Set to an Array
-    // function getActiveTimers() {
-    // }
-}
+var timeOut = null;
 
 function EventComponent() {
     const [events, setEvents] = useState([]);
@@ -73,7 +48,7 @@ function EventComponent() {
     */
     const [tabStatus, setTabStatus] = useState(true);
 
-    const [timeOut, setTimeOut] = useState(null);
+    // const [timeOut, setTimeOut] = useState(null);
 
     /* 
         Pre, Next DS function
@@ -137,7 +112,7 @@ function EventComponent() {
             }
         }
 
-        var matchEvtList = [];
+        // var matchEvtList = [];
         var selectedTeamIdx = 0;
         var score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
 
@@ -186,7 +161,7 @@ function EventComponent() {
                     if (startTime == -1 || i < selectedSeqIdx) duration = 0;
                     console.log(duration / 1000, i, 'duraion')
 
-                    var TimeOut = setTimeout(() => {
+                    timeOut = setTimeout(() => {
                         // console.log(i, 'do while')
                         for (let j = 0; j < dataSetType.length; j++) {
 
@@ -343,11 +318,6 @@ function EventComponent() {
                                 }
                             }
 
-                            // if don't have team check, set default default log
-                            // if (dataTypeItem.teamId === -1) {
-                            //     selectedTeamIdx = -1
-                            // }
-
                             // console.log(i, 'result')
                             if (tableIndex != result.tableIndex) {
                                 hisList[result.tableIndex] = [];
@@ -437,11 +407,11 @@ function EventComponent() {
                         }
 
                         i++;
-                        clearTimeout(TimeOut);
+                        clearTimeout(timeOut);
                         loop(); // Call loop function recursively after delay
                     }, duration);
 
-                    setTimeOut(TimeOut);
+                    // setTimeOut(TimeOut);
                 }
             }
 
@@ -480,10 +450,8 @@ function EventComponent() {
                 if (selected === -1) {
                     if (startTime != -1) {
                         selectedSeqIdx = findSeqIndex(eventList, startTime);
-                        // i = selectedSeqIdx;
                     }
                 } else {
-                    // i = selected;
                     selectedSeqIdx = selected;
                 }
 
@@ -497,7 +465,7 @@ function EventComponent() {
                         */
                         let duration = 0;
                         if (prevPlayItem) {
-                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock)/10;
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
@@ -657,17 +625,20 @@ function EventComponent() {
                         }
 
                         if (duration > 0) {
-                            var TimeOut = setTimeout(() => {
+                            timeOut = setTimeout(() => {
                                 handleGoTo();
-                                clearTimeout(TimeOut);
+                                clearTimeout(timeOut);
+                                timeOut = null;
                                 loop(); // Call loop function recursively after delay
                             }, duration);
                         } else {
                             handleGoTo();
+                            clearTimeout(timeOut)
+                            timeOut = null;
                             loop(); // Call loop function recursively after delay
                         }
 
-                        setTimeOut(TimeOut);
+                        // setTimeOut(TimeOut);
                     }
                 }
 
@@ -1200,10 +1171,8 @@ function EventComponent() {
             1:  Next
     */
     const handleDS = async (direction) => {
-        console.log(direction, 'handle direction');
-
         clearTimeout(timeOut);
-        setTimeOut(null);
+        timeOut = null;
         goToIndex = goToIndex + direction;
         if (goToIndex < 0) goToIndex = 0;
         if (goToIndex > eventList.length) goToIndex = eventList.length - 1;
@@ -1316,10 +1285,10 @@ function EventComponent() {
                         <select className="form-select form-select-sm"
                             value={startTime}
                             onChange={evt => {
+                                clearTimeout(timeOut);
+                                timeOut = null;
                                 setStartTime(evt.target.value);
                                 setInitial();
-                                clearTimeout(timeOut);
-                                setTimeOut(null);
                             }}
                         >
                             <option value={-1}>Choose One</option>
