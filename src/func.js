@@ -151,62 +151,30 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             description = playItem.text + ' Ends Turn'
             break;
         case 'NHL-DS3':
-            if(playItem.participants){
-                description = 'Shot by ' + playItem.participants[0].athlete.shortName
-            } else {
-                description = 'Shot by '
-            }
+            description = 'Shot by ' + playItem.participants[0].athlete.shortName
             break;
         case 'NHL-DS5':
-            if(playItem.participants){
-                description = 'Penalty. ' + playItem.participants[0].athlete.shortName
-            } else {
-                description = 'Penalty. '
-            }    
+            description = 'Penalty. ' + playItem.participants[0].athlete.shortName
             break;
         case 'NHL-DS6':
-            if(playItem.participants){
-                description = 'Penalty. ' + playItem.participants[0].athlete.shortName
-            } else {
-                description = 'Penalty. '
-            }
+            description = 'Penalty. ' + playItem.participants[0].athlete.shortName
             break;
         case 'NHL-DS7':
-            if(playItem.participants){
-                description = playItem.participants[0].athlete.displayName + ' Goal'
-            } else {
-                description = 'Goal!!!'
-            }
+            description = playItem.participants[0].athlete.displayName + ' Goal'
             break;
         case 'NHL-DS8':
-            if(playItem.participants){
-                description = playItem.participants[0].athlete.displayName + ' Goal'
-            } else {
-                description = 'Goal!!!'
-            }
+            description = playItem.participants[0].athlete.displayName + ' Goal'
             break;
         case 'NHL-DS10':
-            if(playItem.participants){
-                description = playItem.participants[0].athlete.shortName + ' wins faceoff'
-            } else {
-                description = 'wins faceoff'
-            }
+            description = playItem.participants[0].athlete.shortName + ' wins faceoff'
             break;
 
         // NHL2 
         case 'NHL2-DS1':
-            if(playItem.participants){
-                description = playItem.participants[0].athlete.shortName + ' wins faceoff'
-            } else {
-                description = 'wins faceoff'
-            }    
+            description = playItem.participants[0].athlete.shortName + ' Wins Faceoff'
             break;
         case 'NHL2-DS1-2':
-            if(playItem.participants){
-                description = playItem.participants[0].athlete.shortName + ' wins faceoff'
-            } else {
-                description = 'wins faceoff'
-            }    
+            description = playItem.participants[0].athlete.shortName + ' Wins Faceoff'
             break;
         case 'NHL2-DS2':
             description = 'Stoppage. Faceoff'
@@ -221,11 +189,8 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             description = 'Lost Faceoff. Rotate'
             break;
         case 'NHL2-DS3':
-            if(playItem.participants){
-                description = 'Shot!! ' + playItem.participants[0].athlete.shortName
-            } else {
-                description = 'Shot!!'
-            }    
+            description = 'Shot!! ' + playItem.participants
+            [0].athlete.shortName
             break;
         case 'NHL2-DS5':
             if (playItem.participants) {
@@ -235,18 +200,12 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             }
             break;
         case 'NHL2-DS7':
-            if (playItem.participants) {
-                description = "Goal!!! " + playItem.participants[0].athlete.shortName
-            } else {
-                description = "Goal!!!"
-            }
+            description = "Goal!!! " + playItem.participants
+            [0].athlete.shortName
             break;
         case 'NHL2-DS8':
-            if (playItem.participants) {
-                description = "Goal!!! " + playItem.participants[0].athlete.shortName
-            } else {
-                description = "Goal!!!"
-            }
+            description = "Goal!!! " + playItem.participants
+            [0].athlete.shortName
             break;
         case 'NHL2-DS9':
             description = "End of Period"
