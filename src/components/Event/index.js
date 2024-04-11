@@ -659,12 +659,12 @@ function EventComponent() {
                         if (duration > 0) {
                             var TimeOut = setTimeout(async () => {
                                 await handleGoTo();
-                                await clearTimeout(TimeOut);
-                                await loop(); // Call loop function recursively after delay
+                                // clearTimeout(TimeOut);
+                                loop(); // Call loop function recursively after delay
                             }, duration);
                         } else {
                             await handleGoTo();
-                            await loop(); // Call loop function recursively after delay
+                            loop(); // Call loop function recursively after delay
                         }
 
                         setTimeOut(TimeOut);
@@ -1200,17 +1200,14 @@ function EventComponent() {
             1:  Next
     */
     const handleDS = async (direction) => {
-        console.log(direction, 'handle direction')
-        const clearTimes = () => {
-            clearTimeout(timeOut);
-            setTimeOut(null);
-        }
+        console.log(direction, 'handle direction');
 
-        await clearTimes()
-
+        clearTimeout(timeOut);
+        setTimeOut(null);
         goToIndex = goToIndex + direction;
         if (goToIndex < 0) goToIndex = 0;
-        if (goToIndex > eventList.length) goToIndex = eventList.length - 1
+        if (goToIndex > eventList.length) goToIndex = eventList.length - 1;
+        setInitial();
         goToPlay(goToIndex);
     }
     // console.log(selTeamIdx,'render Team Idx')
