@@ -1413,14 +1413,6 @@ export const NHL_DS = [
         Increase: 1,
         rotation: false
     },
-    // {//DataSet4
-    //     no: 'NHL-DS4',
-    //     teamId: -1,
-    //     typeId: 509,
-    //     scoreValue: -1,
-    //     Increase: false,
-    //     rotation: true
-    // },
     {//DataSet5
         no: 'NHL-DS5',
         teamId: false,
