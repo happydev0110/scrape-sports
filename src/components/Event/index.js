@@ -981,6 +981,16 @@ function EventComponent() {
                             // Add First DS in Quater to timerList
                             if (quarter < 5) {
                                 if (currentPlayItem.period.number == quarter) {
+                                    console.log(currentPlayItem.period, currentPlayItem.clock,'timelist')
+                                    let timeItem = {
+                                        label: currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue,
+                                        value: currentPlayItem.sequenceNumber
+                                    }
+
+                                    if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
+                                        timeItem.label = currentPlayItem.period.displayValue + '' + reverseTime(currentPlayItem.clock.displayValue);
+                                    }
+                                    
                                     timerList[0].push({
                                         label: currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue,
                                         value: currentPlayItem.sequenceNumber
