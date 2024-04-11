@@ -11,6 +11,32 @@ import { checkFunc } from './checkFunc.js';
 
 var goToIndex = 0;
 
+const getTimerList = () => {
+    const _setTimeout = window.setTimeout;
+    const _clearTimeout = window.clearTimeout;
+
+    // Create a manager for the active timers
+    const activeTimers = new Set();
+
+    // Override setTimeout to track the timer IDs
+    window.setTimeout = function (callback, delay, ...args) {
+        const timerId = _setTimeout(callback, delay, ...args);
+        activeTimers.add(timerId);
+        return timerId;
+    };
+
+    // Override clearTimeout to remove the timer IDs from the tracking
+    window.clearTimeout = function (timerId) {
+        _clearTimeout(timerId);
+        activeTimers.delete(timerId);
+    };
+
+    // Function to log or return the active timers
+    return [...activeTimers]; // Convert the Set to an Array
+    // function getActiveTimers() {
+    // }
+}
+
 function EventComponent() {
     const [events, setEvents] = useState([]);
     const [playList, setPlayList] = useState([]);
@@ -56,10 +82,8 @@ function EventComponent() {
     const [direction, setDirection] = useState(false);
 
     useEffect(() => {
-        clearTimeout(timeOut);
-        setTimeout(null);
-        console.log(goToIndex,'goTo Index useEffect')
-    }, [goToIndex])
+        console.log('useEffect run')
+    }, [])
     /* 
         Get Total Event
     */
@@ -473,12 +497,12 @@ function EventComponent() {
                         */
                         let duration = 0;
                         if (prevPlayItem) {
-                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock)/10;
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
-                        console.log(duration / 1000, 'duraion')
 
+                        console.log(duration / 1000, 'duraion')
                         console.log(i, 'do while')
                         /*
                             Handle Go To Feature
@@ -511,7 +535,6 @@ function EventComponent() {
                                     }
                                 }
 
-                                console.log("dataTypeItem.teamId: ", dataTypeItem.teamId);
                                 if (dataTypeItem.teamId) {
                                     matchTeamId = team2Id;
                                 }
@@ -631,16 +654,17 @@ function EventComponent() {
 
                             i++;
                             goToIndex = i;
-                            clearTimeout(TimeOut);
-                            loop(); // Call loop function recursively after delay
                         }
-
+                        
                         if (duration > 0) {
                             var TimeOut = setTimeout(() => {
                                 handleGoTo();
+                                clearTimeout(TimeOut);
+                                loop(); // Call loop function recursively after delay
                             }, duration);
                         } else {
                             handleGoTo();
+                            loop(); // Call loop function recursively after delay
                         }
 
                         setTimeOut(TimeOut);
