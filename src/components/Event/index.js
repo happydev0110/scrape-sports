@@ -542,7 +542,7 @@ function EventComponent() {
                                 /* 
                                     Special DS
                                 */
-                                result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory);
+                                result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory, resList.boxscore);
                                 hisList = historyList;
 
                                 /* 

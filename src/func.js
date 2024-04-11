@@ -72,6 +72,7 @@ export const getAthleteName = (data, id) => {
 }
 
 export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory, boxScore) => {
+
     let description, sequenceTime, homeScore, awayScore, textIndex = tableIndex;
     let increaseMount = dataTypeItem.Increase;
 
