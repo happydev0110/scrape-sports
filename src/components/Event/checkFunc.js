@@ -3,7 +3,7 @@
     false: yes          (continue)
     true: No Check      (no continue)
 */
-export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq) => {
+export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, PREV_NHL_DS2, PREV_NHL_DS5) => {
     let status = false;
 
     // teamId
@@ -23,14 +23,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // typeId
     if (dataTypeItem.typeId) {
-        if (currentPlayItem.type.id == 502) {
-            sepcialSeq = {
-                id: 502,
-                seq: currentPlayItem.sequenceNumber,
-                teamId: currentPlayItem.team.id
-            }
-        }
-
+        if (currentPlayItem.type === undefined) status = true;
         if (currentPlayItem.type.id != dataTypeItem.typeId) status = true;
     }
 
@@ -148,10 +141,22 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // NHL-DS5
     if (dataTypeItem.no === 'NHL-DS5') {
-        if (prevPlayItem === undefined || prevPlayItem.clock === undefined) {
+        if (PREV_NHL_DS5 === undefined || PREV_NHL_DS5.clock === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.includes('served by') || prevPlayItem.clock.displayValue == currentPlayItem.clock.displayValue) {
+            if (currentPlayItem.text.includes('served by') || PREV_NHL_DS5.clock.displayValue === currentPlayItem.clock.displayValue) {
+                status = true;
+            }
+        }
+    }
+
+    // NHL-DS5-1
+    if (dataTypeItem.no === 'NHL-DS5-1') {
+        if (PREV_NHL_DS5 === undefined || PREV_NHL_DS5.clock === undefined) {
+            status = true;
+        } else {
+            // console.log(currentPlayItem, PREV_NHL_DS5,'PREV_NHL_DS5')
+            if (currentPlayItem.text.includes('served by') || PREV_NHL_DS5.clock.displayValue !== currentPlayItem.clock.displayValue) {
                 status = true;
             }
         }
@@ -170,28 +175,28 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // NHL2-DS2
     if (dataTypeItem.no === 'NHL2-DS2') {
-        if (sepcialSeq.teamId != team1Id) {
+        if (PREV_NHL_DS2.teamId != team1Id) {
             status = true;
         }
     }
 
     // NHL2-DS2-2
     if (dataTypeItem.no === 'NHL2-DS2-2') {
-        if (sepcialSeq.teamId != team2Id) {
+        if (PREV_NHL_DS2.teamId != team2Id) {
             status = true;
         }
     }
 
     // NHL2-DS2-3
     if (dataTypeItem.no === 'NHL2-DS2-3') {
-        if (sepcialSeq.teamId != team1Id) {
+        if (PREV_NHL_DS2.teamId != team1Id) {
             status = true;
         }
     }
 
     // NHL2-DS2-4
     if (dataTypeItem.no === 'NHL2-DS2-4') {
-        if (sepcialSeq.teamId != team2Id) {
+        if (PREV_NHL_DS2.teamId != team2Id) {
             status = true;
         }
     }
@@ -347,7 +352,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
     return status;
 }
 
-export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, team1Score, team2Score, matchTeamId, sepcialSeq) => {
+export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, team1Score, team2Score, matchTeamId) => {
     let status = false;
 
     // SOCCER-DS7

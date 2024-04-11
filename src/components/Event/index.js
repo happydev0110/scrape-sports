@@ -405,11 +405,13 @@ function EventComponent() {
         } else {
             if (team1Idx != -1 && eventList) {
                 let hisList = [];
-                let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
+                const PREV_NHL_DS5 = {
+                    id: 516
+                }
 
                 console.log(eventList.length, 'Loop')
                 console.log(startTime, 'start Time')
-                console.log(hisList,'hisList')
+                console.log(hisList, 'hisList')
                 console.log(historyList, 'history list in event loop')
 
                 let i = 0;
@@ -420,7 +422,7 @@ function EventComponent() {
                 var team1Name = resList.boxscore.teams[team1Idx].team.name;
                 var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
 
-                var NHL_DS3_count = 0;
+                var NHL_DS3_CNT = 0;
 
                 if (team1Name.includes('&')) {
                     team1Name = team1Name.replace('&', 'and');
@@ -468,21 +470,21 @@ function EventComponent() {
                                 var dataTypeItem = dataSetType[j];
                                 var matchTeamId = team1Id;
 
-                                if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq)) {
+                                if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId)) {
                                     continue;
                                 } else {
                                     /* 
                                         NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
                                     */
                                     if (dataTypeItem.no === "NHL-DS3") {
-                                        NHL_DS3_count++;
-                                        if (NHL_DS3_count > 2) {
+                                        NHL_DS3_CNT++;
+                                        if (NHL_DS3_CNT > 2) {
                                             continue;
                                         }
                                     }
 
                                     if (dataTypeItem.no === "NHL-DS3-1") {
-                                        if (NHL_DS3_count <= 2) {
+                                        if (NHL_DS3_CNT <= 2) {
                                             continue;
                                         }
                                     }
@@ -932,8 +934,11 @@ function EventComponent() {
                     let hisList = [];
                     let timerList = [[], [], [], []];
                     let quarter = 1;
-                    let sepcialSeq = { id: 502, seq: 0, teamId: 0 };
-                    let NHL_DS3_count = 0;
+
+                    let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
+                    let PREV_NHL_DS5 = { id: 516, seq: 0, teamId: 0 }
+
+                    let NHL_DS3_CNT = 0;
 
                     console.log('Loop', resList.plays.length)
 
@@ -942,9 +947,22 @@ function EventComponent() {
                         var currentPlayItem = resList.plays[i];
                         var prevPlayItem = resList.plays[i - 1];
 
-                        if (startTime != -1) {
-                            if (parseInt(currentPlayItem.sequenceNumber) < parseInt(startTime)) {
-                                continue;
+                        /*
+                            Special DS (NHL)
+                        */
+                        if (currentPlayItem.type.id == 502) {
+                            PREV_NHL_DS2 = {
+                                id: 502,
+                                seq: currentPlayItem.sequenceNumber,
+                                teamId: currentPlayItem.team.id
+                            }
+                        }
+
+                        if (currentPlayItem.type.id == 516) {
+                            PREV_NHL_DS5 = {
+                                id: 516,
+                                seq: currentPlayItem.sequenceNumber,
+                                clock: currentPlayItem.clock,
                             }
                         }
 
@@ -952,22 +970,26 @@ function EventComponent() {
                             // console.log(j,'Datatype')
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
-
-                            if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, sepcialSeq)) {
+                            if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, PREV_NHL_DS2, PREV_NHL_DS5)) {
                                 continue;
                             } else {
                                 /*
                                     NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
                                 */
+
+                                if (dataTypeItem.rotation) {
+                                    NHL_DS3_CNT = 0;
+                                }
+
                                 if (dataTypeItem.no === "NHL-DS3") {
-                                    NHL_DS3_count++;
-                                    if (NHL_DS3_count > 2) {
+                                    NHL_DS3_CNT++;
+                                    if (NHL_DS3_CNT > 2) {
                                         continue;
                                     }
                                 }
 
                                 if (dataTypeItem.no === "NHL-DS3-1") {
-                                    if (NHL_DS3_count <= 2) {
+                                    if (NHL_DS3_CNT <= 2) {
                                         continue;
                                     }
                                 }
@@ -1159,7 +1181,7 @@ function EventComponent() {
         goToIndex = goToIndex + direction;
         if (goToIndex < 0) goToIndex = 0;
         if (goToIndex > eventList.length) goToIndex = eventList.length - 1;
-        
+
         setInitial();
         goToPlay(goToIndex);
     }
@@ -1233,8 +1255,8 @@ function EventComponent() {
                             <div className="input-group">
                                 <input type="text" className="form-control form-control-sm" placeholder="Game Id"
                                     value={gameId}
-                                    onChange={(evt) => { 
-                                        setGameId(evt.target.value) 
+                                    onChange={(evt) => {
+                                        setGameId(evt.target.value)
                                         setInitial()
                                     }}
                                 />
