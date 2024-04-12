@@ -47,6 +47,13 @@ function EventComponent() {
         Tab Index
     */
     const [tabStatus, setTabStatus] = useState(true);
+    const [goIndex, setGoIndex] = useState(-1);
+
+    useEffect(() => {
+        if (startTime != -1 && goIndex >= 0) {
+            goToPlay(goIndex)
+        }
+    }, [goIndex])
 
     /* 
         Get Total Event
@@ -405,9 +412,6 @@ function EventComponent() {
         } else {
             if (team1Idx != -1 && eventList) {
                 let hisList = [];
-                const PREV_NHL_DS5 = {
-                    id: 516
-                }
 
                 console.log(eventList.length, 'Loop')
                 console.log(startTime, 'start Time')
@@ -422,7 +426,10 @@ function EventComponent() {
                 var team1Name = resList.boxscore.teams[team1Idx].team.name;
                 var team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
 
-                var NHL_DS3_CNT = 0;
+                let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
+                let PREV_NHL_DS5 = { id: 516, seq: 0, teamId: 0 }
+
+                let NHL_DS3_CNT = 0;
 
                 if (team1Name.includes('&')) {
                     team1Name = team1Name.replace('&', 'and');
@@ -447,6 +454,7 @@ function EventComponent() {
                         var currentPlayItem = eventList[i];
                         var prevPlayItem = eventList[i - 1];
 
+
                         /* 
                             Duration
                         */
@@ -470,12 +478,16 @@ function EventComponent() {
                                 var dataTypeItem = dataSetType[j];
                                 var matchTeamId = team1Id;
 
-                                if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId)) {
+                                if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, PREV_NHL_DS2, PREV_NHL_DS5)) {
                                     continue;
                                 } else {
                                     /* 
                                         NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
                                     */
+                                    if (dataTypeItem.rotation) {
+                                        NHL_DS3_CNT = 0;
+                                    }
+
                                     if (dataTypeItem.no === "NHL-DS3") {
                                         NHL_DS3_CNT++;
                                         if (NHL_DS3_CNT > 2) {
@@ -1179,11 +1191,19 @@ function EventComponent() {
     */
     const handleDS = (direction) => {
         goToIndex = goToIndex + direction;
-        if (goToIndex < 0) goToIndex = 0;
-        if (goToIndex > eventList.length) goToIndex = eventList.length - 1;
+        console.log(goToIndex, 'go to index')
+
+        if (goToIndex <= 0) {
+            goToIndex = 0;
+        }
+
+        if (goToIndex > eventList.length) {
+            goToIndex = eventList.length - 1;
+        }
 
         setInitial();
-        goToPlay(goToIndex);
+        setGoIndex(goToIndex);
+        // goToPlay(goToIndex);
     }
     // console.log(selTeamIdx,'render Team Idx')
     return (
