@@ -50,8 +50,8 @@ function EventComponent() {
     const [goIndex, setGoIndex] = useState(0);
 
     useEffect(() => {
+        console.log(goIndex,'goIndex state')
         if (startTime != -1 && goIndex >= 0) {
-            console.log('useEffect goToPlay')
             goToPlay(goIndex)
         }
     }, [goIndex])
@@ -1307,7 +1307,7 @@ function EventComponent() {
                         <button className='btn btn-primary' onClick={handleTab}>Go To Dashboard</button>
                     </div>
                     <div className='col-6 mt-4 pt-2 text-center'>
-                        <button className='btn btn-primary btn-sm' onClick={() => handleDS(-1)}>Previous</button>
+                        <button className='btn btn-primary btn-sm' onClick={() => handleDS(-1)} disabled={goIndex<=0}>Previous</button>
                     </div>
                     <div className='col-6 mt-4 pt-2 text-center'>
                         <button className='btn btn-primary btn-sm' onClick={() => handleDS(1)}>Next</button>
