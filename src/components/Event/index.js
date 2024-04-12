@@ -465,12 +465,15 @@ function EventComponent() {
                         let duration = 0;
                         if (prevPlayItem) {
                             duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
+
+                            if(duration === 0) duration = 1;
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
 
                         console.log(duration / 1000, 'duraion')
                         console.log(i, 'do while')
+
                         /*
                             Handle Go To Feature
                         */
