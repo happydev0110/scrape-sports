@@ -50,7 +50,7 @@ function EventComponent() {
     const [goIndex, setGoIndex] = useState(0);
 
     useEffect(() => {
-        console.log(goIndex,'goIndex state')
+        console.log(goIndex, 'goIndex state')
         if (startTime != -1 && goIndex >= 0) {
             goToPlay(goIndex)
         }
@@ -451,13 +451,31 @@ function EventComponent() {
                     selectedSeqIdx = selected;
                 }
 
-                console.log(selectedSeqIdx,'selectedSeq Index')
+                console.log(selectedSeqIdx, 'selectedSeq Index')
 
                 function loop() {
                     if (i < eventList.length) {
                         var currentPlayItem = eventList[i];
                         var prevPlayItem = eventList[i - 1];
 
+                        /*
+                            Special DS (NHL)
+                        */
+                        if (currentPlayItem.type.id == 502) {
+                            PREV_NHL_DS2 = {
+                                id: 502,
+                                seq: currentPlayItem.sequenceNumber,
+                                teamId: currentPlayItem.team.id
+                            }
+                        }
+
+                        if (currentPlayItem.type.id == 516) {
+                            PREV_NHL_DS5 = {
+                                id: 516,
+                                seq: currentPlayItem.sequenceNumber,
+                                clock: currentPlayItem.clock,
+                            }
+                        }
 
                         /* 
                             Duration
@@ -466,7 +484,7 @@ function EventComponent() {
                         if (prevPlayItem) {
                             duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
 
-                            if(duration === 0) duration = 1;
+                            if (duration === 0) duration = 1;
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
@@ -1198,16 +1216,16 @@ function EventComponent() {
     */
     const handleDS = (direction) => {
         goToIndex = goToIndex + direction;
-        
+
         if (goToIndex <= 1) {
             goToIndex = 1;
         }
-        
+
         if (goToIndex > eventList.length) {
             goToIndex = eventList.length - 1;
         }
         console.log(goToIndex, 'go to index')
-        
+
         setInitial();
         setGoIndex(goToIndex);
         // goToPlay(goToIndex);
@@ -1310,7 +1328,7 @@ function EventComponent() {
                         <button className='btn btn-primary' onClick={handleTab}>Go To Dashboard</button>
                     </div>
                     <div className='col-6 mt-4 pt-2 text-center'>
-                        <button className='btn btn-primary btn-sm' onClick={() => handleDS(-1)} disabled={goIndex<=0}>Previous</button>
+                        <button className='btn btn-primary btn-sm' onClick={() => handleDS(-1)} disabled={goIndex <= 0}>Previous</button>
                     </div>
                     <div className='col-6 mt-4 pt-2 text-center'>
                         <button className='btn btn-primary btn-sm' onClick={() => handleDS(1)}>Next</button>

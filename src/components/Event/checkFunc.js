@@ -164,10 +164,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // NHL-DS6 
     if (dataTypeItem.no === 'NHL-DS6') {
-        if (prevPlayItem === undefined || prevPlayItem.clock === undefined) {
+        if (prevPlayItem === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.includes('served by') || prevPlayItem.type.id != 516 || prevPlayItem.clock.displayValue != currentPlayItem.clock.displayValue) {
+            if (currentPlayItem.text.includes('served by')) {
                 status = true;
             }
         }
