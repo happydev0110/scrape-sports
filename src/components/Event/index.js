@@ -451,6 +451,8 @@ function EventComponent() {
                     selectedSeqIdx = selected;
                 }
 
+                console.log(selectedSeqIdx,'selectedSeq Index')
+
                 function loop() {
                     if (i < eventList.length) {
                         var currentPlayItem = eventList[i];
