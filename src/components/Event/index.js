@@ -484,7 +484,7 @@ function EventComponent() {
                         if (prevPlayItem) {
                             duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
 
-                            if (duration === 0) duration = 1;
+                            if (duration === 0) duration = 1000;
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
