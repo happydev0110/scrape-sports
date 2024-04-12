@@ -47,10 +47,11 @@ function EventComponent() {
         Tab Index
     */
     const [tabStatus, setTabStatus] = useState(true);
-    const [goIndex, setGoIndex] = useState(-1);
+    const [goIndex, setGoIndex] = useState(0);
 
     useEffect(() => {
         if (startTime != -1 && goIndex >= 0) {
+            console.log('useEffect goToPlay')
             goToPlay(goIndex)
         }
     }, [goIndex])
@@ -88,6 +89,7 @@ function EventComponent() {
     }, [eventId, intervalTime, team1Idx, sportCategory, startTime])
 
     const goToPlay = (selected = -1) => {
+        console.log(selected, 'run goToPlay')
         let dataSetType, resList;
         resList = playList;
         dataSetType = DATASET_TYPE_CATEGORY[sportCategory];
@@ -1191,16 +1193,16 @@ function EventComponent() {
     */
     const handleDS = (direction) => {
         goToIndex = goToIndex + direction;
-        console.log(goToIndex, 'go to index')
-
-        if (goToIndex <= 0) {
-            goToIndex = 0;
+        
+        if (goToIndex <= 1) {
+            goToIndex = 1;
         }
-
+        
         if (goToIndex > eventList.length) {
             goToIndex = eventList.length - 1;
         }
-
+        console.log(goToIndex, 'go to index')
+        
         setInitial();
         setGoIndex(goToIndex);
         // goToPlay(goToIndex);
