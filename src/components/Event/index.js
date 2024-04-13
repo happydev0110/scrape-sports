@@ -982,7 +982,6 @@ function EventComponent() {
                     }
                 }
 
-                // console.log(team1Score, team2Score, 'score')
                 if (team1Idx === 1) {
                     setHomeScore(team1Score);
                     setAwayScore(team2Score);
@@ -998,7 +997,8 @@ function EventComponent() {
 
                     let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
                     let PREV_NHL_DS5 = { id: 516, seq: 0, teamId: 0 }
-
+                    
+                    let NBA2_DS1_CNT = 0;
                     let NHL_DS3_CNT = 0;
 
                     console.log('Loop', resList.plays.length)
