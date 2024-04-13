@@ -180,6 +180,13 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
+    // NHL2-DS2-1
+    if (dataTypeItem.no === 'NHL2-DS2-1') {
+        if (PREV_NHL_DS2.teamId != team1Id) {
+            status = true;
+        }
+    }
+
     // NHL2-DS2-2
     if (dataTypeItem.no === 'NHL2-DS2-2') {
         if (PREV_NHL_DS2.teamId != team2Id) {
