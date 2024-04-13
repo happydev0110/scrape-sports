@@ -1034,24 +1034,47 @@ function EventComponent() {
                             if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, PREV_NHL_DS2, PREV_NHL_DS5)) {
                                 continue;
                             } else {
-                                /*
-                                    NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
-                                */
+                                if (sportCategory === 'NHL') {
+                                    /* 
+                                        NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
+                                    */
+                                    if (dataTypeItem.rotation) {
+                                        NHL_DS3_CNT = 0;
+                                    }
 
-                                if (dataTypeItem.rotation) {
-                                    NHL_DS3_CNT = 0;
-                                }
+                                    if (dataTypeItem.no === "NHL-DS3") {
+                                        NHL_DS3_CNT++;
+                                        if (NHL_DS3_CNT > 2) {
+                                            continue;
+                                        }
+                                    }
 
-                                if (dataTypeItem.no === "NHL-DS3") {
-                                    NHL_DS3_CNT++;
-                                    if (NHL_DS3_CNT > 2) {
-                                        continue;
+                                    if (dataTypeItem.no === "NHL-DS3-1") {
+                                        if (NHL_DS3_CNT <= 2) {
+                                            continue;
+                                        }
                                     }
                                 }
 
-                                if (dataTypeItem.no === "NHL-DS3-1") {
-                                    if (NHL_DS3_CNT <= 2) {
-                                        continue;
+                                if (sportCategory === 'NBA') {
+                                    /* 
+                                        NBA2_DS1 and NBA2_DS4 Logic(more than 2 times)
+                                    */
+                                    if (dataTypeItem.rotation) {
+                                        NBA2_DS1_CNT = 0;
+                                    }
+
+                                    if (dataTypeItem.no === "NBA2-DS1") {
+                                        NBA2_DS1_CNT++;
+                                        if (NBA2_DS1_CNT > 2) {
+                                            continue;
+                                        }
+                                    }
+
+                                    if (dataTypeItem.no === "NBA2-DS4") {
+                                        if (NBA2_DS1_CNT <= 2) {
+                                            continue;
+                                        }
                                     }
                                 }
                             }
