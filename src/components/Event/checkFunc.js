@@ -164,7 +164,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // NHL-DS6 
     if (dataTypeItem.no === 'NHL-DS6') {
-        if (prevPlayItem === undefined) {
+        if (prevPlayItem === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
             if (currentPlayItem.text.includes('served by')) {
@@ -259,28 +259,41 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // NBA2-DS7
     if (dataTypeItem.no === 'NBA2-DS7') {
-        if (!currentPlayItem.type.text.includes('Dunk Shot') || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
-            status = true;
+        if (currentPlayItem.type === undefined || prevPlayItem === undefined || prevPlayItem.type === undefined) {
+            status = true            
+        } else {
+            console.log(currentPlayItem.type,'currentplayItem')
+            if (!currentPlayItem.type.text.includes('Dunk Shot') || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
+                status = true;
+            }
         }
     }
 
     // NBA2-DS7-2
     if (dataTypeItem.no === 'NBA2-DS7-2') {
-        if (!currentPlayItem.type.text.includes('Dunk Shot')) {
-            status = true;
+        if (currentPlayItem.type === undefined) {
+            status = true;            
+        } else {
+            if (!currentPlayItem.type.text.includes('Dunk Shot')) {
+                status = true;
+            }
         }
     }
 
     // NBA2-DS20
     if (dataTypeItem.no === 'NBA2-DS20') {
-        if (currentPlayItem.type.id == 84 || !currentPlayItem.type.text.includes('Turnover')) {
+        if(currentPlayItem.type === undefined){
             status = true;
+        } else {
+            if (currentPlayItem.type.id == 84 || !currentPlayItem.type.text.includes('Turnover')) {
+                status = true;
+            }
         }
     }
 
     // NBA2-DS30
     if (dataTypeItem.no === 'NBA2-DS30') {
-        if (prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {
+        if (currentPlayItem.clock === undefined || prevPlayItem === undefined || prevPlayItem.clock === undefined || prevPlayItem.scoringPlay === undefined || prevPlayItem.team === undefined) {
             status = true;
         } else {
             if (currentPlayItem.clock.displayValue !== prevPlayItem.clock.displayValue || prevPlayItem.scoreValue != 2 || prevPlayItem.team.id == matchTeamId || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1 || prevPlayItem.type.text.includes('Dunk Shot')) {
@@ -337,22 +350,34 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // NBA2-DS72
     if (dataTypeItem.no === 'NBA2-DS72') {
-        if (!currentPlayItem.text.includes('blocks')) {
+        if (currentPlayItem.text === undefined) {
             status = true;
+        } else {
+            if (!currentPlayItem.text.includes('blocks')) {
+                status = true;
+            }
         }
     }
 
     // NBA2-DS73-1
     if (dataTypeItem.no === 'NBA2-DS73-1') {
-        if (currentPlayItem.period !== '1st Quarter' || currentPlayItem.clock.displayValue !== '12:00') {
-            status = true;
+        if(currentPlayItem.period === undefined || currentPlayItem.clock === undefined){
+            status = true
+        } else {
+            if (currentPlayItem.period !== '1st Quarter' || currentPlayItem.clock.displayValue !== '12:00') {
+                status = true;
+            }
         }
     }
 
     // NBA2-DS73-2
     if (dataTypeItem.no === 'NBA2-DS73-2') {
-        if (currentPlayItem.type.text !== 'Jumpball' || currentPlayItem.clock.displayValue !== '12:00') {
+        if(currentPlayItem.type === undefined || currentPlayItem.clock === undefined){
             status = true;
+        } else {
+            if (currentPlayItem.type.text !== 'Jumpball' || currentPlayItem.clock.displayValue !== '12:00') {
+                status = true;
+            }
         }
     }
 
