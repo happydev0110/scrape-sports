@@ -551,28 +551,28 @@ function EventComponent() {
                                         }
                                     }
 
-                                    
-                                if (sportCategory === 'NHL2') {
-                                    /* 
-                                        NHL2_DS2 and NBA2_DS2-1 Logic(more than 2 times)
-                                    */
-                                    // if (dataTypeItem.rotation) {
-                                    //     NHL2_DS2_CNT = 0;
-                                    // }
 
-                                    if (dataTypeItem.no === "NHL2_DS2") {
-                                        NHL2_DS2_CNT++;
-                                        if (NHL2_DS2_CNT > 2) {
-                                            continue;
+                                    if (sportCategory === 'NHL2') {
+                                        /* 
+                                            NHL2_DS2 and NBA2_DS2-1 Logic(more than 2 times)
+                                        */
+                                        // if (dataTypeItem.rotation) {
+                                        //     NHL2_DS2_CNT = 0;
+                                        // }
+
+                                        if (dataTypeItem.no === "NHL2_DS2") {
+                                            NHL2_DS2_CNT++;
+                                            if (NHL2_DS2_CNT > 2) {
+                                                continue;
+                                            }
+                                        }
+
+                                        if (dataTypeItem.no === "NHL2_DS2-1") {
+                                            if (NHL2_DS2_CNT <= 2) {
+                                                continue;
+                                            }
                                         }
                                     }
-
-                                    if (dataTypeItem.no === "NHL2_DS2-1") {
-                                        if (NHL2_DS2_CNT <= 2) {
-                                            continue;
-                                        }
-                                    }
-                                }
                                 }
 
                                 if (dataTypeItem.teamId) {
@@ -1021,7 +1021,7 @@ function EventComponent() {
 
                     let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
                     let PREV_NHL_DS5 = { id: 516, seq: 0, teamId: 0 }
-                    
+
                     let NBA2_DS1_CNT = 0;
                     let NHL_DS3_CNT = 0;
                     let NHL2_DS2_CNT = 0;
