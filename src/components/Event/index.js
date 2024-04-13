@@ -50,7 +50,6 @@ function EventComponent() {
     const [goIndex, setGoIndex] = useState(0);
 
     useEffect(() => {
-        console.log(goIndex, 'goIndex state')
         if (startTime != -1 && goIndex >= 0) {
             goToPlay(goIndex)
         }
@@ -431,6 +430,7 @@ function EventComponent() {
                 let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
                 let PREV_NHL_DS5 = { id: 516, seq: 0, teamId: 0 }
 
+                let NBA2_DS1_CNT = 0;
                 let NHL_DS3_CNT = 0;
 
                 if (team1Name.includes('&')) {
@@ -506,23 +506,47 @@ function EventComponent() {
                                 if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, PREV_NHL_DS2, PREV_NHL_DS5)) {
                                     continue;
                                 } else {
-                                    /* 
-                                        NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
-                                    */
-                                    if (dataTypeItem.rotation) {
-                                        NHL_DS3_CNT = 0;
-                                    }
+                                    if (sportCategory === 'NHL') {
+                                        /* 
+                                            NHL-DS3 and NHL-DS3-1 Logic(more than 2 times)
+                                        */
+                                        if (dataTypeItem.rotation) {
+                                            NHL_DS3_CNT = 0;
+                                        }
 
-                                    if (dataTypeItem.no === "NHL-DS3") {
-                                        NHL_DS3_CNT++;
-                                        if (NHL_DS3_CNT > 2) {
-                                            continue;
+                                        if (dataTypeItem.no === "NHL-DS3") {
+                                            NHL_DS3_CNT++;
+                                            if (NHL_DS3_CNT > 2) {
+                                                continue;
+                                            }
+                                        }
+
+                                        if (dataTypeItem.no === "NHL-DS3-1") {
+                                            if (NHL_DS3_CNT <= 2) {
+                                                continue;
+                                            }
                                         }
                                     }
 
-                                    if (dataTypeItem.no === "NHL-DS3-1") {
-                                        if (NHL_DS3_CNT <= 2) {
-                                            continue;
+                                    if (sportCategory === 'NBA') {
+                                        /* 
+                                            NBA2_DS1 and NBA2_DS4 Logic(more than 2 times)
+                                        */
+                                        if (dataTypeItem.rotation) {
+                                            NBA2_DS1_CNT = 0;
+                                        }
+
+                                        if (dataTypeItem.no === "NBA2-DS1") {
+                                            NBA2_DS1_CNT++;
+                                            if (NBA2_DS1_CNT > 2) {
+                                                continue;
+                                            }
+                                        }
+
+                                        if (dataTypeItem.no === "NBA2-DS4") {
+                                            if (NBA2_DS1_CNT <= 2) {
+                                                continue;
+                                            }
                                         }
                                     }
                                 }

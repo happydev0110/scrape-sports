@@ -271,7 +271,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             description = '3pt Miss. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
         case 'NBA2-DS1-3':
-            description = '3pt Make. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            description = '3pt Miss. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
 
         case 'NBA2-DS7':
@@ -280,8 +280,56 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NBA2-DS7-2':
             description = playItem.type.text
             break;
+        case 'NBA2-DS8':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS9':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS10':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS11':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS12':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS13':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS14':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS15':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS16':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS17':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS18':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS19':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
         case 'NBA2-DS19-2':
             description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS26':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS27':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS28':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS29':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
         case 'NBA2-DS30':
             description = 'And 1 Basket!!!'
@@ -292,17 +340,68 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NBA2-DS30-3':
             description = 'And 1 Basket!'
             break;
-        // case 'NBA2-DS44':
-        //     description = playItem.text
-        //     break;
+        case 'NBA2-DS31':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS33':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS34':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
         case 'NBA2-DS45':
             description = 'Offensive Foul'
+            break;
+        case 'NBA2-DS51':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS52':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS53':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS54':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS55':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS56':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS57':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS58':
+            description = 'Missed FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
         case 'NBA2-DS61':
             description = playItem.text
             break;
+        case 'NBA2-DS62':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
         case 'NBA2-DS63':
             description = playItem.text
+            break;
+        case 'NBA2-DS65':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS66':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS67':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS68':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS70':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'NBA2-DS71':
+            description = 'Made FT. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
         case 'NBA2-DS73-1':
             description = 'Start of game'
