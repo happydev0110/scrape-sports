@@ -262,7 +262,6 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.type === undefined || prevPlayItem === undefined || prevPlayItem.type === undefined) {
             status = true            
         } else {
-            console.log(currentPlayItem.type,'currentplayItem')
             if (!currentPlayItem.type.text.includes('Dunk Shot') || dataTypeItem.noMatchList.indexOf(prevPlayItem.type.id) !== -1) {
                 status = true;
             }
