@@ -158,6 +158,13 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
                 description = 'Shot by '
             }
             break;
+        case 'NHL-DS3-1':
+            if (playItem.participants) {
+                description = 'Shot by ' + playItem.participants[0].athlete.shortName
+            } else {
+                description = 'Shot by '
+            }
+            break;
         case 'NHL-DS5':
             if (playItem.participants) {
                 description = 'Penalty. ' + playItem.participants[0].athlete.shortName
@@ -273,7 +280,10 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NBA2-DS1-3':
             description = '3pt Miss. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
-
+        case 'NBA2-DS4':
+            description = '3pt Make. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+            
         case 'NBA2-DS7':
             description = playItem.type.text
             break;

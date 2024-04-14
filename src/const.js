@@ -298,14 +298,14 @@ export const NBA_DS = [
         Increase: 1,
         rotation: false
     },
-    {//DS15-No Change
-        no: 'NBA2-DS15',
-        teamId: true,
-        typeId: 102,
-        scoreValue: 0,
-        Increase: 1,
-        rotation: false
-    },
+    // {//DS15-No Change
+    //     no: 'NBA2-DS15',
+    //     teamId: true,
+    //     typeId: 102,
+    //     scoreValue: 0,
+    //     Increase: 1,
+    //     rotation: false
+    // },
     {//DS16
         no: 'NBA2-DS16',
         teamId: true,
