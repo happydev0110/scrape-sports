@@ -274,14 +274,6 @@ export const NBA_DS = [
         Increase: 1,
         rotation: false
     },
-    // {//DS12-No Change
-    //     no: 'NBA2-DS12',
-    //     teamId: false,
-    //     typeId: 101,
-    //     scoreValue: 1,
-    //     Increase: 1,
-    //     rotation: false
-    // },
     {//DS13-No Change
         no: 'NBA2-DS13',
         teamId: true,
