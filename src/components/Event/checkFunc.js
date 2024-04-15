@@ -535,7 +535,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+            if (currentPlayItem.text.indexOf('Delay in match') === -1) {
                 status = true;
             }
         }
@@ -546,7 +546,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+            if (currentPlayItem.text.indexOf('Delay over.') === -1) {
                 status = true;
             }
         }
@@ -557,7 +557,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+            if (currentPlayItem.text.indexOf('First Half begins.') === -1) {
                 status = true;
             }
         }
@@ -568,7 +568,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+            if (currentPlayItem.text.indexOf('Second Half begins') === -1) {
                 status = true;
             }
         }
@@ -579,7 +579,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+            if (currentPlayItem.text.indexOf('First Half ends,') === -1) {
                 status = true;
             }
         }
@@ -590,7 +590,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+            if (currentPlayItem.text.indexOf('Match ends,') === -1) {
                 status = true;
             }
         }
