@@ -458,7 +458,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
+            if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.toLowerCase().indexOf(team1Name.toLowerCase()) === -1) {
                 status = true;
             }
         }
@@ -469,7 +469,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
+            if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.toLowerCase().indexOf(team2Name.toLowerCase()) === -1) {
                 status = true;
             }
         }
@@ -491,7 +491,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if(currentPlayItem.text === undefined){
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.indexOf(team2Name) === -1) {
+            if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.toLowerCase().indexOf(team2Name.toLowerCase()) === -1) {
                 status = true;
             }
         }
