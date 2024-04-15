@@ -184,10 +184,14 @@ function EventComponent() {
     
                                 // For Logos
                                 if (currentPlayItem.play) {
-                                    if (currentPlayItem.play.team.displayName === team1Name) {
-                                        selectedTeamIdx = team1Idx;
+                                    if(currentPlayItem.play.team === undefined){
+                                        selectedTeamIdx = -1
                                     } else {
-                                        selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                        if (currentPlayItem.play.team.displayName === team1Name) {
+                                            selectedTeamIdx = team1Idx;
+                                        } else {
+                                            selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                        }
                                     }
                                 }
     
