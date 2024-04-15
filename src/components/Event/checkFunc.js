@@ -477,12 +477,10 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
 
     // SOCCER-DS14
     if (dataTypeItem.no === 'SOCCER-DS14') {
-        // console.log(i, currentPlayItem.text.indexOf('Corner,'),'Corner check',
-        //             currentPlayItem.text.indexOf(team1Name),'team1Name check')
         if (currentPlayItem.text === undefined) {
             status = true;            
         } else {
-            if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.indexOf(team1Name) === -1) {
+            if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.toLowerCase().indexOf(team1Name.toLowerCase()) === -1) {
                 status = true;
             }
         }
@@ -523,6 +521,72 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
 
     // SOCCER-DS25
     if (dataTypeItem.no === 'SOCCER-DS25') {
+        if(currentPlayItem.text === undefined){
+            status = true;
+        } else {
+            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                status = true;
+            }
+        }
+    }
+
+    // SOCCER-DS27-1
+    if (dataTypeItem.no === 'SOCCER-DS27-1') {
+        if(currentPlayItem.text === undefined){
+            status = true;
+        } else {
+            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                status = true;
+            }
+        }
+    }
+
+    // SOCCER-DS27-2
+    if (dataTypeItem.no === 'SOCCER-DS27-2') {
+        if(currentPlayItem.text === undefined){
+            status = true;
+        } else {
+            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                status = true;
+            }
+        }
+    }
+
+    // SOCCER-DS28-1
+    if (dataTypeItem.no === 'SOCCER-DS28-1') {
+        if(currentPlayItem.text === undefined){
+            status = true;
+        } else {
+            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                status = true;
+            }
+        }
+    }
+
+    // SOCCER-DS28-2
+    if (dataTypeItem.no === 'SOCCER-DS28-2') {
+        if(currentPlayItem.text === undefined){
+            status = true;
+        } else {
+            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                status = true;
+            }
+        }
+    }
+
+    // SOCCER-DS28-3
+    if (dataTypeItem.no === 'SOCCER-DS28-3') {
+        if(currentPlayItem.text === undefined){
+            status = true;
+        } else {
+            if (currentPlayItem.text.indexOf('Own Goal') === -1 || currentPlayItem.text.indexOf('OVERTURNED') !== -1) {
+                status = true;
+            }
+        }
+    }
+
+    // SOCCER-DS28-4
+    if (dataTypeItem.no === 'SOCCER-DS28-4') {
         if(currentPlayItem.text === undefined){
             status = true;
         } else {

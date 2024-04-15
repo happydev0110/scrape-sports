@@ -1647,6 +1647,53 @@ export const SOCCER_DS = [
         Increase: false,
         rotation: true
     },
+    {//DataSet27-1
+        no: 'SOCCER-DS27-1',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet27-2
+        no: 'SOCCER-DS27-2',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet28-1
+        no: 'SOCCER-DS28-1',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },{//DataSet28-2
+        no: 'SOCCER-DS28-2',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet28-3
+        no: 'SOCCER-DS28-3',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DataSet28-4
+        no: 'SOCCER-DS28-4',
+        teamId: -1,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
 ]
 
 export const NHL2_DS = [
@@ -1763,7 +1810,6 @@ export const NHL2_DS = [
         rotation: false
     }
 ]
-
 
 export const DATASET_TYPE_CATEGORY = {
     NBA: NBA_DS,
