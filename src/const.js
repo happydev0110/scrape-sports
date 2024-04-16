@@ -1477,14 +1477,6 @@ export const NHL_DS = [
         Increase: false,
         rotation: false
     },
-    {//DataSet11
-        no: 'NHL-DS11',
-        teamId: false,
-        typeId: 503,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: false
-    },
 ]
 
 export const SOCCER_DS = [
