@@ -137,14 +137,14 @@ export const NBA_DS = [
         Increase: 1,
         rotation: false
     },
-    {//DS1-3
-        no: 'NBA2-DS1-3',
-        teamId: true,
-        typeId: false,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: false
-    },
+    // {//DS1-3
+    //     no: 'NBA2-DS1-3',
+    //     teamId: true,
+    //     typeId: false,
+    //     scoreValue: -1,
+    //     Increase: 1,
+    //     rotation: false
+    // },
     {//DS1-4
         no: 'NBA2-DS1-4',
         teamId: true,
@@ -282,6 +282,14 @@ export const NBA_DS = [
         Increase: 1,
         rotation: false
     },
+    {//DS13-1
+        no: 'NBA2-DS13-1',
+        teamId: false,
+        typeId: 100,
+        scoreValue: 0,
+        Increase: false,
+        rotation: false
+    },
     {//DS14-No Change
         no: 'NBA2-DS14',
         teamId: true,
@@ -290,14 +298,6 @@ export const NBA_DS = [
         Increase: 1,
         rotation: false
     },
-    // {//DS15-No Change
-    //     no: 'NBA2-DS15',
-    //     teamId: true,
-    //     typeId: 102,
-    //     scoreValue: 0,
-    //     Increase: 1,
-    //     rotation: false
-    // },
     {//DS16
         no: 'NBA2-DS16',
         teamId: true,
@@ -337,6 +337,14 @@ export const NBA_DS = [
         scoreValue: 0,
         Increase: 1,
         rotation: false
+    },
+    {//DS24
+        no: 'NBA2-DS24',
+        teamId: false,
+        typeId: 24,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
     },
     {//DS26
         no: 'NBA2-DS26',
@@ -439,9 +447,17 @@ export const NBA_DS = [
     {//DS45
         no: 'NBA2-DS45',
         teamId: true,
-        typeId: 84,
+        typeId: 42,
         scoreValue: -1,
-        Increase: 3,
+        Increase: 2,
+        rotation: true
+    },
+    {//DS45-1
+        no: 'NBA2-DS45-1',
+        teamId: true,
+        typeId: 24,
+        scoreValue: -1,
+        Increase: 2,
         rotation: true
     },
     {//DS46
@@ -1662,7 +1678,7 @@ export const SOCCER_DS = [
         scoreValue: -1,
         Increase: false,
         rotation: false
-    },{//DataSet28-2
+    }, {//DataSet28-2
         no: 'SOCCER-DS28-2',
         teamId: -1,
         typeId: false,

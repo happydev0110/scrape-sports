@@ -26,6 +26,7 @@ function App() {
       </nav> */}
       <div className='container'>
         {/* <Dashboard /> */}
+        
         <Event />
       </div>
     </>
