@@ -14,32 +14,21 @@ function App() {
   const [pass, setPass] = useState();
 
   const getAccess = () => {
-    let status = false
-    if(pass === PASSWORD && access){
+    // console.log(localStorage.getItem('password'), 'password')
+    let status = false;
+
+    if (localStorage.getItem('password') === PASSWORD) {
       status = true
     }
 
     return status
   }
 
-  console.log(access,'access')
   return (
     <>
       <div className="p-2 bg-primary text-white text-left">
         <h1>BallHog Demo</h1>
       </div>
-      {/* <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div className="container-fluid">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/dashboard">Dashboard</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/event">Event</a>
-            </li>
-          </ul>
-        </div>
-      </nav> */}
       <div className='container'>
         {/* <Dashboard /> */}
         {
@@ -48,19 +37,19 @@ function App() {
             <div className='my-3'>
               <div className='row'>
                 <div className='col-12 text-center'>
-                  {/* <h1>This is Security Part.</h1> */}
                   <input
                     className='col-12'
                     value={pass}
                     onChange={(evt) => {
-                      setPass(evt.target.value)
-                      setAccess(false)
+                      setPass(evt.target.value);
+                      setAccess(false);
                     }}
                   />
                   <button
                     className='btn btn-primary mt-3'
-                    onClick={() =>{
-                      setAccess(true)
+                    onClick={() => {
+                      setAccess(true);
+                      localStorage.setItem('password', pass);
                     }}
                   >
                     Submit
