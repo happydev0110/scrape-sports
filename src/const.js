@@ -6,6 +6,8 @@ export const URL = {
     SOCCER_TODAY_EVENT: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
     NHL2_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard',
 
+    MLB_TODAY_EVENT: 'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard',
+
     // https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/summary
     // EVENT_SCHEDULE: 'https://www.espn.com/nba/schedule',
 
@@ -17,8 +19,9 @@ export const URL = {
     SOCCER1: "https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/summary",
     NHL2: "https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/summary",
 
-    SOCCER: 'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/summary'
+    SOCCER: 'https://site.api.espn.com/apis/site/v2/sports/soccer/usa.1/summary',
     // NCAA_SCORE_BOARD: "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard"
+    MLB: 'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/summary'
 }
 
 export const SPORTS_CATEGORY = [
@@ -45,6 +48,10 @@ export const SPORTS_CATEGORY = [
     {
         label: 'NBA2',
         value: 'NBA2',
+    },
+    {
+        label: 'MLB',
+        value: 'MLB',
     },
 ]
 
@@ -1819,6 +1826,33 @@ export const NHL2_DS = [
     }
 ]
 
+export const MLB_DS = [
+    {//DS1
+        no: 'MLB-DS1',
+        teamId: false,
+        typeId: 1,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DS1-2
+        no: 'MLB-DS1-2',
+        teamId: false,
+        typeId: 1,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DS1-2
+        no: 'MLB-DS1-3',
+        teamId: true,
+        typeId: 1,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+]
+
 export const DATASET_TYPE_CATEGORY = {
     NBA: NBA_DS,
     NBA2: NBA2_DS,
@@ -1826,4 +1860,5 @@ export const DATASET_TYPE_CATEGORY = {
     NHL: NHL_DS,
     SOCCER: SOCCER_DS,
     NHL2: NHL2_DS,
+    MLB: MLB_DS
 }

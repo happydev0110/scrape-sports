@@ -933,15 +933,21 @@ function EventComponent() {
                                 score: result.score[result.textIndex],
                                 description: result.description,
                                 increase: result.increaseMount,
-                                time: currentPlayItem.clock.displayValue
+                                // time: currentPlayItem.clock.displayValue
                             }
 
                             if (dataTypeItem.logoReverse) {
                                 hisItem.teamIdx = changeTeamIdx(selectedTeamIdx);
                             }
 
-                            if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
-                                hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
+                            if(sportCategory === 'MLB'){
+                                hisItem.time = currentPlayItem.period.displayValue;
+                            } else {
+                                if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
+                                    hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
+                                } else {
+                                    hisItem.time = currentPlayItem.clock.displayValue;
+                                }
                             }
 
                             // console.log(reverseTime(currentPlayItem.clock.displayValue), 'reverse time')
@@ -957,12 +963,18 @@ function EventComponent() {
                             if (quarter < 5) {
                                 if (currentPlayItem.period.number == quarter) {
                                     let timeItem = {
-                                        label: currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue,
+                                        label: currentPlayItem.period.displayValue, 
                                         value: currentPlayItem.sequenceNumber
                                     }
 
-                                    if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
-                                        timeItem.label = currentPlayItem.period.displayValue + ' ' + reverseTime(currentPlayItem.clock.displayValue);
+                                    if(sportCategory === "MLB"){
+                                        timeItem.label = currentPlayItem.period.displayValue
+                                    } else {
+                                        if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
+                                            timeItem.label = currentPlayItem.period.displayValue + ' ' + reverseTime(currentPlayItem.clock.displayValue);
+                                        } else {
+                                            timeItem.label = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue
+                                        }
                                     }
 
                                     timerList[0].push(timeItem)
@@ -990,7 +1002,7 @@ function EventComponent() {
                                     'homeScore:', currentPlayItem.homeScore,
                                     'awayScore', currentPlayItem.awayScore,
                                     'Period:', currentPlayItem.period.displayValue,
-                                    'Clock:', currentPlayItem.clock.displayValue,
+                                    // 'Clock:', currentPlayItem.clock.displayValue,
                                     'WallClock', currentPlayItem.wallclock
                                 )
                             } else {
@@ -1012,7 +1024,7 @@ function EventComponent() {
                                     'homeScore:', currentPlayItem.homeScore,
                                     'awayScore', currentPlayItem.awayScore,
                                     'Period:', currentPlayItem.period.displayValue,
-                                    'Clock:', currentPlayItem.clock.displayValue,
+                                    // 'Clock:', currentPlayItem.clock.displayValue,
                                     'WallClock', currentPlayItem.wallclock
                                 )
                             }

@@ -12,6 +12,7 @@ const Logo = {
     NHL2: defaultNHLLogo,
     NCAA: defaultNHLLogo,
     SOCCER: defaultNHLLogo,
+    MLB: defaultNHLLogo
 }
 
 export default function ScoreBoard(props) {

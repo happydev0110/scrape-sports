@@ -429,12 +429,24 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
     }
 
     // console.log(description,'Func')
-    let timeDisplay = playItem.clock.displayValue;
-    if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
-        timeDisplay = reverseTime(timeDisplay);
+    let timeDisplay;
+    if(sportCategory === 'MLB'){
+        timeDisplay = playItem.period.displayValue
+    } else {
+        if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
+            timeDisplay = reverseTime(playItem.clock.displayValue);
+        } else {
+            timeDisplay = playItem.clock.displayValue;
+        }
+    }
+    
+
+    if(sportCategory === 'MLB'){
+        sequenceTime = timeDisplay
+    } else {
+        sequenceTime = playItem.period.displayValue + '(' + timeDisplay + ')';
     }
 
-    sequenceTime = playItem.period.displayValue + '(' + timeDisplay + ')';
     homeScore = playItem.homeScore;
     awayScore = playItem.awayScore;
 
