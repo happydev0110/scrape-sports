@@ -116,6 +116,7 @@ export const TEAM_LIST = [
         value: 3,
     },
 ]
+
 /*
     no: (String)
     teamId: (-1:'No Compare' false:team1, true:team2)
@@ -1837,19 +1838,259 @@ export const MLB_DS = [
     },
     {//DS1-2
         no: 'MLB-DS1-2',
-        teamId: false,
-        typeId: 1,
-        scoreValue: -1,
-        Increase: false,
-        rotation: false
-    },
-    {//DS1-2
-        no: 'MLB-DS1-3',
         teamId: true,
         typeId: 1,
         scoreValue: -1,
         Increase: false,
         rotation: false
+    },
+    {//DS2
+        no: 'MLB-DS2',
+        teamId: -1,
+        typeId: 59,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DS3
+        no: 'MLB-DS3',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS4
+        no: 'MLB-DS4',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS5
+        no: 'MLB-DS5',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS6
+        no: 'MLB-DS6',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: true
+    },
+    {//DS7
+        no: 'MLB-DS7',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS8
+        no: 'MLB-DS8',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS9
+        no: 'MLB-DS9',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
+    {//DS10
+        no: 'MLB-DS10',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS11
+        no: 'MLB-DS11',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    {//DS12
+        no: 'MLB-DS12',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: false
+    },
+    {//DS13
+        no: 'MLB-DS13',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 4,
+        rotation: false
+    },
+    {//DS14
+        no: 'MLB-DS14',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS15
+        no: 'MLB-DS15',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: true
+    },
+    {//DS16
+        no: 'MLB-DS16',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    // {//DS17
+    //     no: 'MLB-DS17',
+    //     teamId: false,
+    //     typeId: 57,
+    //     scoreValue: -1,
+    //     Increase: 2,
+    //     rotation: false
+    // },
+    // {//DS18
+    //     no: 'MLB-DS18',
+    //     teamId: false,
+    //     typeId: 57,
+    //     scoreValue: -1,
+    //     Increase: 1,
+    //     rotation: true
+    // },
+    {//DS19
+        no: 'MLB-DS19',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS19-1
+        no: 'MLB-DS19-1',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS20
+        no: 'MLB-DS20',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS4-1
+        no: 'MLB-DS4-1',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    {//DS4-2
+        no: 'MLB-DS4-2',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    {//DS21
+        no: 'MLB-DS21',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS21-1
+        no: 'MLB-DS21-1',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: true
+    },
+    {//DS22
+        no: 'MLB-DS22',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    {//DS23
+        no: 'MLB-DS23',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: false
+    },
+    {//DS24
+        no: 'MLB-DS24',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS25
+        no: 'MLB-DS25',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS26
+        no: 'MLB-DS26',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS27
+        no: 'MLB-DS27',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS28
+        no: 'MLB-DS28',
+        teamId: true,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
     },
 ]
 

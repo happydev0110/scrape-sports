@@ -982,32 +982,10 @@ function EventComponent() {
                                 }
                             }
 
-
-                            if (currentPlayItem.team) {
+                            if(sportCategory === 'MLB'){
                                 console.log(
                                     'DS_NO:', dataTypeItem.no,
-                                    'sequence:', currentPlayItem.sequenceNumber,
-                                    'team1Id:', team1Id,
-                                    'teamId:', currentPlayItem.team.id,
-                                    'typeId:', currentPlayItem.type.id,
-                                    "scoreValue:", currentPlayItem.scoreValue,
-                                    'scoringPlay', currentPlayItem.scoringPlay,
-                                    'selectedTeamIdx:', selectedTeamIdx,
-                                    "rotation:", dataTypeItem.rotation,
-                                    'textIdx:', textIndex,
-                                    'tableIdx:', tableIndex,
-                                    'teamIndex:', tableIndex,
-                                    'increase:', increaseAmount,
-                                    'description:', result.description,
-                                    'homeScore:', currentPlayItem.homeScore,
-                                    'awayScore', currentPlayItem.awayScore,
-                                    'WallClock', currentPlayItem.wallclock,
-                                    'Period:', currentPlayItem.period.displayValue,
-                                    // 'Clock:', currentPlayItem.clock.displayValue,
-                                )
-                            } else {
-                                console.log(
-                                    'DS_NO:', dataTypeItem.no,
+                                    'Index:', i,
                                     'sequence:', currentPlayItem.sequenceNumber,
                                     'team1Id:', team1Id,
                                     'teamId:', 'No team',
@@ -1025,12 +1003,53 @@ function EventComponent() {
                                     'awayScore', currentPlayItem.awayScore,
                                     'WallClock', currentPlayItem.wallclock,
                                     'Period:', currentPlayItem.period.displayValue,
-                                    // 'Clock:', currentPlayItem.clock.displayValue,
                                 )
-                            }
-
-                            if(currentPlayItem.clock){
-                                console.log('Clock:',currentPlayItem.clock.displayValue)
+                            } else {
+                                if (currentPlayItem.team) {
+                                    console.log(
+                                        'DS_NO:', dataTypeItem.no,
+                                        'sequence:', currentPlayItem.sequenceNumber,
+                                        'team1Id:', team1Id,
+                                        'teamId:', currentPlayItem.team.id,
+                                        'typeId:', currentPlayItem.type.id,
+                                        "scoreValue:", currentPlayItem.scoreValue,
+                                        'scoringPlay', currentPlayItem.scoringPlay,
+                                        'selectedTeamIdx:', selectedTeamIdx,
+                                        "rotation:", dataTypeItem.rotation,
+                                        'textIdx:', textIndex,
+                                        'tableIdx:', tableIndex,
+                                        'teamIndex:', tableIndex,
+                                        'increase:', increaseAmount,
+                                        'description:', result.description,
+                                        'homeScore:', currentPlayItem.homeScore,
+                                        'awayScore', currentPlayItem.awayScore,
+                                        'Period:', currentPlayItem.period.displayValue,
+                                        'Clock:', currentPlayItem.clock.displayValue,
+                                        'WallClock', currentPlayItem.wallclock,
+                                    )
+                                } else {
+                                    console.log(
+                                        'DS_NO:', dataTypeItem.no,
+                                        'sequence:', currentPlayItem.sequenceNumber,
+                                        'team1Id:', team1Id,
+                                        'teamId:', 'No team',
+                                        'typeId:', currentPlayItem.type.id,
+                                        "scoreValue:", currentPlayItem.scoreValue,
+                                        'scoringPlay', currentPlayItem.scoringPlay,
+                                        'selectedTeamIdx:', selectedTeamIdx,
+                                        "rotation:", dataTypeItem.rotation,
+                                        'textIdx:', textIndex,
+                                        'tableIdx:', tableIndex,
+                                        'teamIndex:', tableIndex,
+                                        'increase:', increaseAmount,
+                                        'description:', result.description,
+                                        'homeScore:', currentPlayItem.homeScore,
+                                        'awayScore', currentPlayItem.awayScore,
+                                        'Period:', currentPlayItem.period.displayValue,
+                                        'Clock:', currentPlayItem.clock.displayValue,
+                                        'WallClock', currentPlayItem.wallclock,
+                                    )
+                                }
                             }
                         }
                     }
