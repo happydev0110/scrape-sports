@@ -1001,9 +1001,9 @@ function EventComponent() {
                                     'description:', result.description,
                                     'homeScore:', currentPlayItem.homeScore,
                                     'awayScore', currentPlayItem.awayScore,
+                                    'WallClock', currentPlayItem.wallclock,
                                     'Period:', currentPlayItem.period.displayValue,
                                     // 'Clock:', currentPlayItem.clock.displayValue,
-                                    'WallClock', currentPlayItem.wallclock
                                 )
                             } else {
                                 console.log(
@@ -1023,10 +1023,14 @@ function EventComponent() {
                                     'description:', result.description,
                                     'homeScore:', currentPlayItem.homeScore,
                                     'awayScore', currentPlayItem.awayScore,
+                                    'WallClock', currentPlayItem.wallclock,
                                     'Period:', currentPlayItem.period.displayValue,
                                     // 'Clock:', currentPlayItem.clock.displayValue,
-                                    'WallClock', currentPlayItem.wallclock
                                 )
+                            }
+
+                            if(currentPlayItem.clock){
+                                console.log('Clock:',currentPlayItem.clock.displayValue)
                             }
                         }
                     }
