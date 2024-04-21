@@ -380,6 +380,19 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
+    /* MLB */
+    
+    // MLB-DS2
+    if (dataTypeItem.no === 'MLB-DS2') {
+        if (currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('Top of the')) {
+                status = true;
+            }
+        }
+    }
+
     // MLB-DS3
     if (dataTypeItem.no === 'MLB-DS3') {
         if (currentPlayItem.alternativeType === undefined) {
