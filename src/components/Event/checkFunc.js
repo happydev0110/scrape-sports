@@ -396,18 +396,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 37 || currentPlayItem.text.includes('interference')) {
-                status = true;
-            }
-        }
-    }
-
-    // MLB-DS5
-    if (dataTypeItem.no === 'MLB-DS5') {
-        if (currentPlayItem.alternativeType === undefined) {
-            status = true;
-        } else {
-            if (currentPlayItem.alternativeType.id != 36) {
+            if (currentPlayItem.text.includes('interference') || !currentPlayItem.text.includes('struck out')) {
                 status = true;
             }
         }
@@ -426,10 +415,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // MLB-DS7
     if (dataTypeItem.no === 'MLB-DS7') {
-        if (currentPlayItem.alternativeType === undefined) {
+        if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 5) {
+            if (!currentPlayItem.text.includes('walked') || currentPlayItem.text.includes('scored')) {
                 status = true;
             }
         }
@@ -459,10 +448,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // MLB-DS10
     if (dataTypeItem.no === 'MLB-DS10') {
-        if (currentPlayItem.alternativeType === undefined) {
+        if (currentPlayItem.alternativeType === undefined  || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 10) {
+            if (!currentPlayItem.text.includes('safe') || !currentPlayItem.text.includes('error')) {
                 status = true;
             }
         }
@@ -503,10 +492,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // MLB-DS14
     if (dataTypeItem.no === 'MLB-DS14') {
-        if (currentPlayItem.alternativeType === undefined) {
+        if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 34) {
+            if (!currentPlayItem.text.includes('sacrifice') || currentPlayItem.text.includes('scored')) {
                 status = true;
             }
         }
@@ -514,10 +503,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // MLB-DS15
     if (dataTypeItem.no === 'MLB-DS15') {
-        if (currentPlayItem.alternativeType === undefined) {
+        if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 35) {
+            if (!currentPlayItem.text.includes('sacrifice') || !currentPlayItem.text.includes('scored')) {
                 status = true;
             }
         }
@@ -529,6 +518,28 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
             status = true;
         } else {
             if (currentPlayItem.alternativeType.id != 52) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS17
+    if (dataTypeItem.no === 'MLB-DS17') {
+        if (currentPlayItem.alternativeType === undefined  || currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('hit by pitch') || currentPlayItem.text.includes('scored')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS17-1
+    if (dataTypeItem.no === 'MLB-DS17-1') {
+        if (currentPlayItem.alternativeType === undefined  || currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('hit by pitch') || !currentPlayItem.text.includes('scored')) {
                 status = true;
             }
         }
@@ -567,34 +578,12 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
-    // MLB-DS20
-    if (dataTypeItem.no === 'MLB-DS20') {
-        if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
-            status = true;
-        } else {
-            if (currentPlayItem.alternativeType.id != 80) {
-                status = true;
-            }
-        }
-    }
-
-    // MLB-DS4-1
-    if (dataTypeItem.no === 'MLB-DS4-1') {
-        if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
-            status = true;
-        } else {
-            if (currentPlayItem.alternativeType.id != 37 || currentPlayItem.text.includes('interference')) {
-                status = true;
-            }
-        }
-    }
-
     // MLB-DS4-2
     if (dataTypeItem.no === 'MLB-DS4-2') {
-        if (currentPlayItem.alternativeType === undefined) {
+        if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 36) {
+            if (!currentPlayItem.text.includes('struck out') || currentPlayItem.text.includes('interference')) {
                 status = true;
             }
         }
@@ -646,10 +635,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // MLB-DS24
     if (dataTypeItem.no === 'MLB-DS24') {
-        if (currentPlayItem.alternativeType === undefined) {
+        if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 5) {
+            if (!currentPlayItem.text.includes('walked')) {
                 status = true;
             }
         }
@@ -694,6 +683,50 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
             status = true;
         } else {
             if (currentPlayItem.alternativeType.id != 4 || currentPlayItem.text.includes('out stretching')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS29
+    if (dataTypeItem.no === 'MLB-DS29') {
+        if (currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('hit by pitch')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS30
+    if (dataTypeItem.no === 'MLB-DS30') {
+        if (currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('sacrifice') || currentPlayItem.text.includes('scored')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS31
+    if (dataTypeItem.no === 'MLB-DS31') {
+        if (currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('sacrifice') || !currentPlayItem.text.includes('scored')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS32
+    if (dataTypeItem.no === 'MLB-DS32') {
+        if (currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('safe') || !currentPlayItem.text.includes('error')) {
                 status = true;
             }
         }

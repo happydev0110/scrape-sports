@@ -1864,15 +1864,7 @@ export const MLB_DS = [
     {//DS4
         no: 'MLB-DS4',
         teamId: false,
-        typeId: 57,
-        scoreValue: -1,
-        Increase: false,
-        rotation: true
-    },
-    {//DS5
-        no: 'MLB-DS5',
-        teamId: false,
-        typeId: 57,
+        typeId: false,
         scoreValue: -1,
         Increase: false,
         rotation: true
@@ -1888,7 +1880,7 @@ export const MLB_DS = [
     {//DS7
         no: 'MLB-DS7',
         teamId: false,
-        typeId: 57,
+        typeId: false,
         scoreValue: -1,
         Increase: 1,
         rotation: true
@@ -1912,7 +1904,7 @@ export const MLB_DS = [
     {//DS10
         no: 'MLB-DS10',
         teamId: false,
-        typeId: 57,
+        typeId: false,
         scoreValue: -1,
         Increase: 1,
         rotation: true
@@ -1944,7 +1936,7 @@ export const MLB_DS = [
     {//DS14
         no: 'MLB-DS14',
         teamId: false,
-        typeId: 57,
+        typeId: false,
         scoreValue: -1,
         Increase: 1,
         rotation: true
@@ -1952,7 +1944,7 @@ export const MLB_DS = [
     {//DS15
         no: 'MLB-DS15',
         teamId: false,
-        typeId: 57,
+        typeId: false,
         scoreValue: -1,
         Increase: 2,
         rotation: true
@@ -1965,22 +1957,30 @@ export const MLB_DS = [
         Increase: 2,
         rotation: false
     },
-    // {//DS17
-    //     no: 'MLB-DS17',
-    //     teamId: false,
-    //     typeId: 57,
-    //     scoreValue: -1,
-    //     Increase: 2,
-    //     rotation: false
-    // },
-    // {//DS18
-    //     no: 'MLB-DS18',
-    //     teamId: false,
-    //     typeId: 57,
-    //     scoreValue: -1,
-    //     Increase: 1,
-    //     rotation: true
-    // },
+    {//DS17
+        no: 'MLB-DS17',
+        teamId: false,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
+    {//DS17-1
+        no: 'MLB-DS17-1',
+        teamId: false,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
+    },
+    {//DS18
+        no: 'MLB-DS18',
+        teamId: false,
+        typeId: 57,
+        scoreValue: -1,
+        Increase: 1,
+        rotation: true
+    },
     {//DS19
         no: 'MLB-DS19',
         teamId: false,
@@ -1996,22 +1996,6 @@ export const MLB_DS = [
         scoreValue: -1,
         Increase: 1,
         rotation: true
-    },
-    {//DS20
-        no: 'MLB-DS20',
-        teamId: false,
-        typeId: 57,
-        scoreValue: -1,
-        Increase: 1,
-        rotation: true
-    },
-    {//DS4-1
-        no: 'MLB-DS4-1',
-        teamId: true,
-        typeId: 57,
-        scoreValue: -1,
-        Increase: 2,
-        rotation: false
     },
     {//DS4-2
         no: 'MLB-DS4-2',
@@ -2056,7 +2040,7 @@ export const MLB_DS = [
     {//DS24
         no: 'MLB-DS24',
         teamId: true,
-        typeId: 57,
+        typeId: false,
         scoreValue: -1,
         Increase: false,
         rotation: true
@@ -2089,6 +2073,14 @@ export const MLB_DS = [
         no: 'MLB-DS28',
         teamId: true,
         typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS29
+        no: 'MLB-DS29',
+        teamId: true,
+        typeId: false,
         scoreValue: -1,
         Increase: false,
         rotation: true
