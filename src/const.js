@@ -390,6 +390,7 @@ export const NBA_DS = [
         no: 'NBA2-DS30',
         noMatchList: [96, 116, 115, 150, 141, 118, 138, 149, 117],
         // description: true,//prev Description
+        logo: 1,
         teamId: true,
         typeId: 44,
         scoreValue: -1,

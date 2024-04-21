@@ -378,9 +378,9 @@ function EventComponent() {
                         */
                         let duration = 0;
                         if (prevPlayItem) {
-                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock)/10;
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
 
-                            if (duration === 0) duration = 100;
+                            if (duration === 0) duration = 1000;
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
@@ -505,6 +505,11 @@ function EventComponent() {
                                     time: currentPlayItem.clock.displayValue
                                 }
 
+                                if (dataTypeItem.logo) {
+                                    historyItem.teamIdx = team1Idx;
+                                    if (dataTypeItem.logo == 2) historyItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
+                                }
+    
                                 if (dataTypeItem.logoReverse) {
                                     hisItem.teamIdx = changeTeamIdx(selectedTeamIdx);
                                 }
