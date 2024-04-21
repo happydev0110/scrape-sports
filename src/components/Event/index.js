@@ -352,7 +352,7 @@ function EventComponent() {
                 function loop() {
                     if (i < eventList.length) {
                         var currentPlayItem = eventList[i];
-                        var prevPlayItem = eventList[i - 1];
+                        var prevPlayItem = eventList[i].prevPlayItem;
 
                         /*
                             Special DS (NHL)
@@ -416,14 +416,14 @@ function EventComponent() {
                                                 continue;
                                             }
                                         }
-
+    
                                         if (dataTypeItem.no === "NHL-DS3-1") {
                                             if (NHL_DS3_CNT <= 2) {
                                                 continue;
                                             }
                                         }
                                     }
-
+    
                                     if (sportCategory === 'NBA') {
                                         /* 
                                             NBA2_DS1 and NBA2_DS4 Logic(more than 2 times)
@@ -438,30 +438,25 @@ function EventComponent() {
                                                 continue;
                                             }
                                         }
-
+    
                                         if (dataTypeItem.no === "NBA2-DS4") {
                                             if (NBA2_DS1_CNT <= 2) {
                                                 continue;
                                             }
                                         }
                                     }
-
-
+    
                                     if (sportCategory === 'NHL2') {
                                         /* 
                                             NHL2_DS2 and NBA2_DS2-1 Logic(more than 2 times)
                                         */
-                                        // if (dataTypeItem.rotation) {
-                                        //     NHL2_DS2_CNT = 0;
-                                        // }
-
                                         if (dataTypeItem.no === "NHL2_DS2") {
                                             NHL2_DS2_CNT++;
                                             if (NHL2_DS2_CNT > 2) {
                                                 continue;
                                             }
                                         }
-
+    
                                         if (dataTypeItem.no === "NHL2_DS2-1") {
                                             if (NHL2_DS2_CNT <= 2) {
                                                 continue;
@@ -902,7 +897,10 @@ function EventComponent() {
                                 matchTeamId = team2Id;
                             }
 
-                            matchEvtList.push(currentPlayItem);
+                            matchEvtList.push({
+                                ...currentPlayItem,
+                                prevPlayItem: prevPlayItem
+                            });
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory, resList.boxscore);
                             hisList = historyList;
 
