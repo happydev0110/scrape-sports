@@ -502,7 +502,7 @@ function EventComponent() {
                                     score: result.score[result.textIndex],
                                     description: result.description,
                                     increase: result.increaseMount,
-                                    time: currentPlayItem.clock.displayValue
+                                    // time: currentPlayItem.clock.displayValue
                                 }
 
                                 if (dataTypeItem.logo) {
@@ -512,6 +512,16 @@ function EventComponent() {
 
                                 if (dataTypeItem.logoReverse) {
                                     hisItem.teamIdx = changeTeamIdx(selectedTeamIdx);
+                                }
+
+                                if (sportCategory === 'MLB') {
+                                    hisItem.time = currentPlayItem.period.displayValue.replace(new RegExp("\\b" + ' Inning' + "\\b", "gi"), '');
+                                } else {
+                                    if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
+                                        hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
+                                    } else {
+                                        hisItem.time = currentPlayItem.clock.displayValue;
+                                    }
                                 }
 
                                 if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
@@ -544,7 +554,7 @@ function EventComponent() {
                                         'homeScore:', currentPlayItem.homeScore,
                                         'awayScore', currentPlayItem.awayScore,
                                         'Period:', currentPlayItem.period.displayValue,
-                                        'Clock:', currentPlayItem.clock.displayValue,
+                                        // 'Clock:', currentPlayItem.clock.displayValue,
                                         'WallClock', currentPlayItem.wallclock
                                     )
                                 } else {
@@ -567,7 +577,7 @@ function EventComponent() {
                                         'homeScore:', currentPlayItem.homeScore,
                                         'awayScore', currentPlayItem.awayScore,
                                         'Period:', currentPlayItem.period.displayValue,
-                                        'Clock:', currentPlayItem.clock.displayValue,
+                                        // 'Clock:', currentPlayItem.clock.displayValue,
                                         'WallClock', currentPlayItem.wallclock
                                     )
                                 }
@@ -951,7 +961,7 @@ function EventComponent() {
                             }
 
                             if (sportCategory === 'MLB') {
-                                hisItem.time = currentPlayItem.period.displayValue;
+                                hisItem.time = currentPlayItem.period.displayValue.replace(new RegExp("\\b" + ' Inning' + "\\b", "gi"), '');
                             } else {
                                 if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
                                     hisItem.time = reverseTime(currentPlayItem.clock.displayValue);
