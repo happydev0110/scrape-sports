@@ -143,7 +143,7 @@ function EventComponent() {
                     if (i < eventList.length) {
 
                         var currentPlayItem = eventList[i];
-                        var prevEventItem = eventList[i-1];
+                        var prevEventItem = eventList[i - 1];
                         var prevPlayItem = eventList[i].prevPlayItem;
 
                         let duration = 0;
@@ -351,7 +351,7 @@ function EventComponent() {
                 function loop() {
                     if (i < eventList.length) {
                         var currentPlayItem = eventList[i];
-                        var prevEventItem = eventList[i-1];
+                        var prevEventItem = eventList[i - 1];
                         var prevPlayItem = eventList[i].prevPlayItem;
 
                         /*
@@ -771,7 +771,7 @@ function EventComponent() {
                         setTime(result.sequenceTime);
                         setHistoryList(hisList);
                         setEventList(matchEvtList)
-                        
+
                         if (startTime == -1) {
                             setTimeList(timerList);
                         }
@@ -793,17 +793,18 @@ function EventComponent() {
 
                     let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
                     let PREV_NHL_DS5 = { id: 516, seq: 0, teamId: 0 }
-
+                    
                     let NBA2_DS1_CNT = 0;
                     let NHL_DS3_CNT = 0;
                     let NHL2_DS2_CNT = 0;
-
+                    
                     console.log('Loop', resList.plays.length)
-
+                    
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
-                        var currentPlayItem = resList.plays[i];
-                        var prevPlayItem = resList.plays[i - 1];
+                        let selectedDS = false;
+                        let currentPlayItem = resList.plays[i];
+                        let prevPlayItem = resList.plays[i - 1];
 
                         /*
                             Special DS (NHL)
@@ -905,10 +906,13 @@ function EventComponent() {
                                 matchTeamId = team2Id;
                             }
 
-                            matchEvtList.push({
-                                ...currentPlayItem,
-                                prevPlayItem: prevPlayItem
-                            });
+                            if(!selectedDS){
+                                matchEvtList.push({
+                                    ...currentPlayItem,
+                                    prevPlayItem: prevPlayItem
+                                });
+                            }
+
                             result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory, resList.boxscore);
                             hisList = historyList;
 
@@ -962,6 +966,7 @@ function EventComponent() {
                             increaseAmount = result.increaseMount;
                             textIndex = result.textIndex;
                             tableIndex = result.tableIndex;
+                            selectedDS = true;
 
                             /*
                                 Add First DS in Quater to timerList
@@ -1057,8 +1062,6 @@ function EventComponent() {
                                     )
                                 }
                             }
-
-                            break;
                         }
                     }
 
