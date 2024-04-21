@@ -144,7 +144,7 @@ function EventComponent() {
                     if (i < eventList.length) {
 
                         var currentPlayItem = eventList[i];
-                        var prevPlayItem = eventList[i - 1];
+                        var prevPlayItem = eventList[i].prevPlayItem;
 
                         let duration = 0;
 
@@ -378,9 +378,9 @@ function EventComponent() {
                         */
                         let duration = 0;
                         if (prevPlayItem) {
-                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
+                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock)/10;
 
-                            if (duration === 0) duration = 1000;
+                            if (duration === 0) duration = 100;
                         }
 
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
@@ -667,7 +667,10 @@ function EventComponent() {
                                 continue;
                             }
 
-                            matchEvtList.push(currentPlayItem);
+                            matchEvtList.push({
+                                ...currentPlayItem,
+                                prevPlayItem: prevPlayItem
+                            });
                             result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                             hisList = historyList;
 
