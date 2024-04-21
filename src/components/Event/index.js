@@ -123,7 +123,6 @@ function EventComponent() {
 
                 let i = 0;
                 let selectedSeqIdx = 0;
-                let prevEventItem;
 
                 // if (startTime != -1) {
                 //     selectedSeqIdx = findSoccerSeqIndex(eventList, startTime);
@@ -144,19 +143,20 @@ function EventComponent() {
                     if (i < eventList.length) {
 
                         var currentPlayItem = eventList[i];
+                        var prevEventItem = eventList[i-1];
                         var prevPlayItem = eventList[i].prevPlayItem;
 
                         let duration = 0;
 
-                        if (prevPlayItem) {
-                            duration = (currentPlayItem.time.value - prevPlayItem.time.value) * 1000;
+                        if (prevEventItem) {
+                            duration = (currentPlayItem.time.value - prevEventItem.time.value) * 1000;
 
                             if (currentPlayItem.time.value == 2700 || currentPlayItem.time.value == 5400) {
                                 if (currentPlayItem.time.displayValue.indexOf('+') != -1) {
                                     let prevSecond = 0;
                                     let currentSecond = parseInt(currentPlayItem.time.displayValue.slice(currentPlayItem.time.displayValue.indexOf('+') + 1, currentPlayItem.time.displayValue.length));
                                     if (currentPlayItem.time.displayValue.indexOf('+') != -1) {
-                                        prevSecond = parseInt(prevPlayItem.time.displayValue.slice(prevPlayItem.time.displayValue.indexOf('+') + 1, prevPlayItem.time.displayValue.length));
+                                        prevSecond = parseInt(prevEventItem.time.displayValue.slice(prevEventItem.time.displayValue.indexOf('+') + 1, prevEventItem.time.displayValue.length));
                                     }
                                     duration = (currentSecond - prevSecond) * 60 * 1000;
                                 }
@@ -268,8 +268,6 @@ function EventComponent() {
                                     setDescription(result.description);
                                     setTime(result.sequenceTime);
                                     setHistoryList(hisList);
-                                    setGoIndex(goToIndex);
-                                    
                                     if (startTime == -1) {
                                         setTimeList(timerList);
                                     }
@@ -318,7 +316,6 @@ function EventComponent() {
 
                 let i = 0;
                 let selectedSeqIdx = 0;
-                let prevEventItem;
                 var team1Id = resList.boxscore.teams[team1Idx].team.id;
                 var team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;
                 var team1Name = resList.boxscore.teams[team1Idx].team.name;
@@ -354,6 +351,7 @@ function EventComponent() {
                 function loop() {
                     if (i < eventList.length) {
                         var currentPlayItem = eventList[i];
+                        var prevEventItem = eventList[i-1];
                         var prevPlayItem = eventList[i].prevPlayItem;
 
                         /*
@@ -379,8 +377,8 @@ function EventComponent() {
                             Duration
                         */
                         let duration = 0;
-                        if (prevPlayItem) {
-                            duration = getDuraton(prevPlayItem.wallclock, currentPlayItem.wallclock);
+                        if (prevEventItem) {
+                            duration = getDuraton(prevEventItem.wallclock, currentPlayItem.wallclock);
 
                             if (duration === 0) duration = 1000;
                         }
@@ -586,7 +584,6 @@ function EventComponent() {
                                     setHomeScore(result.homeScore);
                                     setAwayScore(result.awayScore);
                                     setHistoryList(hisList);
-                                    setGoIndex(goToIndex);
                                 }
                             }
 
@@ -774,8 +771,7 @@ function EventComponent() {
                         setTime(result.sequenceTime);
                         setHistoryList(hisList);
                         setEventList(matchEvtList)
-                        setGoIndex(goToIndex);
-
+                        
                         if (startTime == -1) {
                             setTimeList(timerList);
                         }
@@ -1076,7 +1072,6 @@ function EventComponent() {
                         setAwayScore(result.awayScore);
                         setHistoryList(hisList);
                         setEventList(matchEvtList)
-                        setGoIndex(goToIndex);
 
                         if (startTime == -1) {
                             setTimeList(timerList);
