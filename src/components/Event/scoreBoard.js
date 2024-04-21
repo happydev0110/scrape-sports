@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import defaultNHLLogo from '../../assets/images/nhl_logo.png';
 
 import default_NBA_Logo from '../../assets/images/nba-logo.png';
-import default_NBA_BlackLogo from '../../assets/images/nba-logo-black.png';
+// import default_NBA_Black_Logo from '../../assets/images/nba-logo-black.png';
+import default_MLB_Logo from '../../assets/images/mlb_logo.png';
 // import { TEAM_LIST } from "../../const";
 
 const Logo = {
@@ -12,7 +13,7 @@ const Logo = {
     NHL2: defaultNHLLogo,
     NCAA: defaultNHLLogo,
     SOCCER: defaultNHLLogo,
-    MLB: defaultNHLLogo
+    MLB: default_MLB_Logo
 }
 
 export default function ScoreBoard(props) {
