@@ -2085,6 +2085,30 @@ export const MLB_DS = [
         Increase: false,
         rotation: true
     },
+    {//DS30
+        no: 'MLB-DS30',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS31
+        no: 'MLB-DS31',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS32
+        no: 'MLB-DS32',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
 ]
 
 export const DATASET_TYPE_CATEGORY = {
