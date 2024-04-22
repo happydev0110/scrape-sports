@@ -123,8 +123,12 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // NHL-DS2
     if (dataTypeItem.no === 'NHL-DS2') {
-        if (currentPlayItem.text.toLowerCase().includes('timeout') || currentPlayItem.texttoLowerCase().includes('official') || currentPlayItem.text.toLowerCase().includes('challenge') || currentPlayItem.text.toLowerCase().includes('review')) {
+        if (currentPlayItem === undefined || currentPlayItem.text === undefined) {
             status = true;
+        } else {
+            if (currentPlayItem.text.toLowerCase().includes('timeout') || currentPlayItem.text.toLowerCase().includes('official') || currentPlayItem.text.toLowerCase().includes('challenge') || currentPlayItem.text.toLowerCase().includes('review')) {
+                status = true;
+            }
         }
     }
 
