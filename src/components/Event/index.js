@@ -803,13 +803,13 @@ function EventComponent() {
 
                     let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
                     let PREV_NHL_DS5 = { id: 516, seq: 0, teamId: 0 }
-                    
+
                     let NBA2_DS1_CNT = 0;
                     let NHL_DS3_CNT = 0;
                     let NHL2_DS2_CNT = 0;
-                    
+
                     console.log('Loop', resList.plays.length)
-                    
+
                     for (let i = 0; i < resList.plays.length; i++) {
                         // console.log(i,'Events List')
                         let selectedDS = false;
@@ -916,7 +916,7 @@ function EventComponent() {
                                 matchTeamId = team2Id;
                             }
 
-                            if(!selectedDS){
+                            if (!selectedDS) {
                                 matchEvtList.push({
                                     ...currentPlayItem,
                                     prevPlayItem: prevPlayItem
@@ -1189,7 +1189,7 @@ function EventComponent() {
                             />
                         </div>
                         <div className='col-md-12 mt-3'>
-                            <label className="form-label" style={{ float: "left" }}>Team1</label>
+                            <label className="form-label" style={{ float: "left" }}>Team Your Cheering For</label>
                             <select className="form-select form-select-sm"
                                 value={team1Idx}
                                 onChange={evt => {
@@ -1207,12 +1207,31 @@ function EventComponent() {
                                 }
                             </select>
                         </div>
-                        <div className='col-md-12 mb-5'>
+                        {/* <div className='col-md-12 mb-5'>
                             <label className="form-label">Team2</label>
                             <input type="text" value={team2Name} className="form-control form-control-sm" disabled />
-                        </div>
+                        </div> */}
                         <div className='text-center mt-3 mb-2'>
                             <button className='btn btn-primary' onClick={handleTab}>Go To Game</button>
+                            <div>
+                                <label className="form-label" style={{ float: "left" }}>Time</label>
+                                <select className="form-select form-select-sm"
+                                    value={startTime}
+                                    onChange={evt => {
+                                        setInitial();
+                                        setStartTime(evt.target.value);
+                                    }}
+                                >
+                                    <option value={-1}>Choose One</option>
+                                    {
+                                        timeList[0].map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.value}>{item.label}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
                         </div>
                         <div className='col-md-12'>
                             <label className="form-label">Random GameId</label><br />
@@ -1240,7 +1259,6 @@ function EventComponent() {
 
                 </>
             }
-
             {
                 !tabStatus && <div className='row'>
                     <div className='text-center mt-3'>
