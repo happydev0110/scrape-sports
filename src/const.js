@@ -1991,7 +1991,7 @@ export const MLB_DS = [
         teamId: true,
         typeId: 57,
         scoreValue: -1,
-        Increase: 3,
+        Increase: 2,
         rotation: false
     },
     {//DS21
