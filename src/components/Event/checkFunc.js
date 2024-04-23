@@ -424,7 +424,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 2 || currentPlayItem.text.includes('out stretching')) {
+            if (!currentPlayItem.text.includes('single') || !currentPlayItem.text.includes('singled') || currentPlayItem.text.includes('out stretching')) {
                 status = true;
             }
         }
@@ -608,10 +608,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // MLB-DS21
     if (dataTypeItem.no === 'MLB-DS21') {
-        if (currentPlayItem.alternativeType === undefined) {
+        if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.alternativeType.text.includes('out')) {
+            if (!currentPlayItem.alternativeType.text.includes('out') || currentPlayItem.text.includes('double play') || currentPlayItem.text.includes('triple play')) {
                 status = true;
             }
         }
@@ -744,6 +744,17 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
             status = true;
         } else {
             if (!currentPlayItem.text.includes('safe') || !currentPlayItem.text.includes('error')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS33
+    if (dataTypeItem.no === 'MLB-DS33') {
+        if (currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('caught stealing')) {
                 status = true;
             }
         }

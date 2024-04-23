@@ -1577,7 +1577,6 @@ export const SOCCER_DS = [
         Increase: 3,
         rotation: true
     },
-
     {//DataSet12
         no: 'SOCCER-DS12',
         teamId: -1,
@@ -1612,7 +1611,6 @@ export const SOCCER_DS = [
         Increase: 1,
         rotation: false
     },
-
     // Not complete 
     {//DataSet17
         no: 'SOCCER-DS17',
@@ -1623,7 +1621,6 @@ export const SOCCER_DS = [
         rotation: false
     },
     // Not complete
-
     {//DataSet21
         no: 'SOCCER-DS21',
         teamId: false,
@@ -1874,7 +1871,7 @@ export const MLB_DS = [
         teamId: false,
         typeId: 57,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS7
@@ -1883,7 +1880,7 @@ export const MLB_DS = [
         typeId: false,
         scoreValue: -1,
         Increase: 1,
-        rotation: true
+        rotation: false
     },
     {//DS8
         no: 'MLB-DS8',
@@ -1892,14 +1889,6 @@ export const MLB_DS = [
         scoreValue: -1,
         Increase: 1,
         rotation: true
-    },
-    {//DS9
-        no: 'MLB-DS9',
-        teamId: false,
-        typeId: 57,
-        scoreValue: -1,
-        Increase: false,
-        rotation: false
     },
     {//DS10
         no: 'MLB-DS10',
@@ -1914,7 +1903,7 @@ export const MLB_DS = [
         teamId: false,
         typeId: 57,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: false
     },
     {//DS12
@@ -1922,7 +1911,7 @@ export const MLB_DS = [
         teamId: false,
         typeId: 57,
         scoreValue: -1,
-        Increase: 3,
+        Increase: 4,
         rotation: false
     },
     {//DS13
@@ -1930,7 +1919,7 @@ export const MLB_DS = [
         teamId: false,
         typeId: 57,
         scoreValue: -1,
-        Increase: 4,
+        Increase: 5,
         rotation: false
     },
     {//DS14
@@ -1939,7 +1928,7 @@ export const MLB_DS = [
         typeId: false,
         scoreValue: -1,
         Increase: 1,
-        rotation: true
+        rotation: false
     },
     {//DS15
         no: 'MLB-DS15',
@@ -1947,7 +1936,7 @@ export const MLB_DS = [
         typeId: false,
         scoreValue: -1,
         Increase: 2,
-        rotation: true
+        rotation: false
     },
     {//DS16
         no: 'MLB-DS16',
@@ -1963,7 +1952,7 @@ export const MLB_DS = [
         typeId: false,
         scoreValue: -1,
         Increase: 1,
-        rotation: true
+        rotation: false
     },
     {//DS17-1
         no: 'MLB-DS17-1',
@@ -1979,7 +1968,7 @@ export const MLB_DS = [
         typeId: 57,
         scoreValue: -1,
         Increase: 1,
-        rotation: true
+        rotation: false
     },
     {//DS19
         no: 'MLB-DS19',
@@ -1987,7 +1976,7 @@ export const MLB_DS = [
         typeId: 57,
         scoreValue: -1,
         Increase: 1,
-        rotation: true
+        rotation: false
     },
     {//DS19-1
         no: 'MLB-DS19-1',
@@ -1995,14 +1984,14 @@ export const MLB_DS = [
         typeId: 57,
         scoreValue: -1,
         Increase: 1,
-        rotation: true
+        rotation: false
     },
     {//DS4-2
         no: 'MLB-DS4-2',
         teamId: true,
         typeId: 57,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: false
     },
     {//DS21
@@ -2010,7 +1999,7 @@ export const MLB_DS = [
         teamId: true,
         typeId: 57,
         scoreValue: -1,
-        Increase: 1,
+        Increase: 2,
         rotation: true
     },
     {//DS21-1
@@ -2026,7 +2015,7 @@ export const MLB_DS = [
         teamId: true,
         typeId: 57,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 4,
         rotation: false
     },
     {//DS23
@@ -2034,7 +2023,7 @@ export const MLB_DS = [
         teamId: true,
         typeId: 57,
         scoreValue: -1,
-        Increase: 3,
+        Increase: 5,
         rotation: false
     },
     {//DS24
@@ -2108,6 +2097,14 @@ export const MLB_DS = [
         scoreValue: -1,
         Increase: false,
         rotation: true
+    },
+    {//DS33
+        no: 'MLB-DS33',
+        teamId: true,
+        typeId: false,
+        scoreValue: -1,
+        Increase: 2,
+        rotation: false
     },
 ]
 

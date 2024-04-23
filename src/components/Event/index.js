@@ -35,7 +35,7 @@ function EventComponent() {
     const [description, setDescription] = useState('');
 
     const [historyList, setHistoryList] = useState([[], [], [], []]);
-    const [timeList, setTimeList] = useState([[], [], [], []]);
+    const [timeList, setTimeList] = useState([]);
     const [eventList, setEventList] = useState([]);
 
     // const [selectedTeamTime, setSelectedTeamTime] = useState(0);
@@ -355,7 +355,7 @@ function EventComponent() {
                         var prevPlayItem = eventList[i].prevPlayItem;
 
                         /*
-                            Special DS (NHL)
+                            Special DS(NHL)
                         */
                         if (currentPlayItem.type.id == 502) {
                             PREV_NHL_DS2 = {
@@ -391,7 +391,7 @@ function EventComponent() {
                         /*
                             Handle Go To Feature
                         */
-                        const handleGoTo = () => {
+                        const handleGoTo = async () => {
                             for (let j = 0; j < dataSetType.length; j++) {
                                 // console.log(j,'Datatype')
                                 // var prevEventItem;
@@ -599,15 +599,83 @@ function EventComponent() {
 
                             i++;
                             goToIndex = i;
+
+                            if (eventList.length === i && eventList.length !== 0) {
+                                await getLatestDS()
+                            }
+                        }
+
+                        const getLatestDS = () => {
+                            let dataSetType, apiUrl, resList;
+                            dataSetType = DATASET_TYPE_CATEGORY[sportCategory];
+                            apiUrl = URL[sportCategory];
+
+                            axios.get(apiUrl,
+                                {
+                                    params: {
+                                        event: eventId
+                                    }
+                                }
+                            ).then(response => {
+                                setPlayList(response.data);
+                                resList = response.data;
+                                var result;
+                                var team1Id, team2Id, team1Name, team2Name;
+                                var matchEvtList = [];
+                                
+                                if (resList.boxscore.teams[team1Idx]) {
+                                    team1Id = resList.boxscore.teams[team1Idx].team.id;                                     //team1 ID
+                                    team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;                 //team2 ID
+                                    team1Name = resList.boxscore.teams[team1Idx].team.name;                                 //team1 Name
+                                    team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
+
+                                    if (team1Name.includes('&')) {
+                                        team1Name = team1Name.replace('&', 'and');
+                                    }
+
+                                    if (team2Name.includes('&')) {
+                                        team2Name = team2Name.replace('&', 'and');
+                                    }
+                                }
+
+                                for (let i = 0; i < resList.plays.length; i++) {
+                                    let selectedDS = false;
+                                    let currentPlayItem = resList.plays[i];
+                                    let prevPlayItem = resList.plays[i - 1];
+
+                                    for (let j = 0; j < dataSetType.length; j++) {
+                                        var dataTypeItem = dataSetType[j];
+                                        var matchTeamId = team1Id;
+
+                                        if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, PREV_NHL_DS2, PREV_NHL_DS5)) {
+                                            continue;
+                                        }
+
+                                        if (!selectedDS) {
+                                            matchEvtList.push({
+                                                ...currentPlayItem,
+                                                prevPlayItem: prevPlayItem
+                                            });
+
+                                            selectedDS = true;
+                                        }
+                                    }
+                                }
+
+                                setEventList(matchEvtList)
+                            })
                         }
 
                         if (duration > 0) {
                             timeOut = setTimeout(() => {
                                 handleGoTo();
-                                clearTimeout(timeOut);
-                                timeOut = null;
                                 loop(); // Call loop function recursively after delay
                             }, duration);
+
+                            return () => {
+                                clearTimeout(timeOut)
+                                timeOut = null;
+                            }
                         } else {
                             handleGoTo();
                             clearTimeout(timeOut)
@@ -664,7 +732,7 @@ function EventComponent() {
                     let hisList = [];
                     var team1Score, team2Score = 0;
                     let quarter = 1;
-                    let timerList = [[], [], [], []];
+                    let timerList = [];
 
                     for (let i = 0; i < resList.commentary.length; i++) {
                         // console.log(i, 'soccer item')
@@ -739,7 +807,7 @@ function EventComponent() {
                                 if (currentPlayItem.play) {
                                     if (currentPlayItem.play.period) {
                                         if (currentPlayItem.play.period.number == quarter) {
-                                            timerList[0].push({
+                                            timerList.push({
                                                 label: quarter + "st (" + currentPlayItem.play.clock.displayValue + ")",
                                                 value: currentPlayItem.sequence
                                             })
@@ -798,7 +866,7 @@ function EventComponent() {
             } else {
                 if (team1Idx != -1 && resList.plays) {
                     let hisList = [];
-                    let timerList = [[], [], [], []];
+                    let timerList = [];
                     let quarter = 1;
 
                     let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
@@ -998,7 +1066,7 @@ function EventComponent() {
                                         }
                                     }
 
-                                    timerList[0].push(timeItem)
+                                    timerList.push(timeItem)
                                     quarter++;
                                 }
                             }
@@ -1224,7 +1292,7 @@ function EventComponent() {
                                 >
                                     <option value={-1}>Choose One</option>
                                     {
-                                        timeList[0].map((item, index) => {
+                                        timeList.map((item, index) => {
                                             return (
                                                 <option key={index} value={item.value}>{item.label}</option>
                                             )
@@ -1281,7 +1349,7 @@ function EventComponent() {
                         >
                             <option value={-1}>Choose One</option>
                             {
-                                timeList[0].map((item, index) => {
+                                timeList.map((item, index) => {
                                     return (
                                         <option key={index} value={item.value}>{item.label}</option>
                                     )
