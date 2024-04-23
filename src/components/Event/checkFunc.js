@@ -751,7 +751,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // MLB-DS33
     if (dataTypeItem.no === 'MLB-DS33') {
-        if (currentPlayItem.text === undefined) {
+        if (currentPlayItem.text === undefined || currentPlayItem.alternativePlay === undefined) {
             status = true;
         } else {
             if (!currentPlayItem.text.includes('caught stealing')) {
