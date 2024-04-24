@@ -740,7 +740,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // MLB-DS32
     if (dataTypeItem.no === 'MLB-DS32') {
-        if (currentPlayItem.text === undefined) {
+        if (currentPlayItem.text === undefined  || currentPlayItem.alternativePlay === undefined) {
             status = true;
         } else {
             if (!currentPlayItem.text.includes('safe') || !currentPlayItem.text.includes('error')) {

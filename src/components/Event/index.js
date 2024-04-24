@@ -133,7 +133,7 @@ function EventComponent() {
                 */
                 if (selected === -1) {
                     if (startTime != -1) {
-                        selectedSeqIdx = findSoccerSeqIndex(eventList, startTime);
+                        selectedSeqIdx = startTime;
                     }
                 } else {
                     selectedSeqIdx = selected;
@@ -340,7 +340,7 @@ function EventComponent() {
                 */
                 if (selected === -1) {
                     if (startTime != -1) {
-                        selectedSeqIdx = findSeqIndex(eventList, startTime);
+                        selectedSeqIdx = startTime;
                     }
                 } else {
                     selectedSeqIdx = selected;
@@ -622,7 +622,7 @@ function EventComponent() {
                                 var result;
                                 var team1Id, team2Id, team1Name, team2Name;
                                 var matchEvtList = [];
-                                
+
                                 if (resList.boxscore.teams[team1Idx]) {
                                     team1Id = resList.boxscore.teams[team1Idx].team.id;                                     //team1 ID
                                     team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;                 //team2 ID
@@ -809,7 +809,7 @@ function EventComponent() {
                                         if (currentPlayItem.play.period.number == quarter) {
                                             timerList.push({
                                                 label: quarter + "st (" + currentPlayItem.play.clock.displayValue + ")",
-                                                value: currentPlayItem.sequence
+                                                value: matchEvtList.length - 1
                                             })
                                             quarter++;
                                         }
@@ -1053,7 +1053,7 @@ function EventComponent() {
                                 if (currentPlayItem.period.number == quarter) {
                                     let timeItem = {
                                         label: currentPlayItem.period.displayValue,
-                                        value: currentPlayItem.sequenceNumber
+                                        value: matchEvtList.length - 1
                                     }
 
                                     if (sportCategory === "MLB") {
