@@ -63,9 +63,9 @@ export default function ScoreBoard(props) {
                                 handleTeamShown(0)
                             }}>
                                 <div className='float-left text-center' >
-                                    <h5 className='pb-3'>{player1Name}</h5>
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
-                                    <p className='d-inline-block float-right text-primary'>{show0 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
+                                    <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player1Name}</h5>
+                                    {/* <p className='d-inline-block float-right text-primary'>{show0 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
                                 {
                                     (show0 || selTblIdx == 0) ? historyList[0].map((item, index) => {
@@ -94,6 +94,9 @@ export default function ScoreBoard(props) {
                                         )
                                     })
                                 }
+                                {
+                                    !show0 && <h5>...</h5>
+                                }
                             </div>
                         </div>
                     </div>
@@ -103,9 +106,9 @@ export default function ScoreBoard(props) {
                                 handleTeamShown(1)
                             }}>
                                 <div className='float-left text-center' >
-                                    <h5 className='pb-3'>{player2Name}</h5>
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
-                                    <p className='d-inline-block float-right text-primary'>{show1 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
+                                    <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player2Name}</h5>
+                                    {/* <p className='d-inline-block float-right text-primary'>{show1 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
                                 {
                                     (show1 || selTblIdx == 1) ? historyList[1].map((item, index) => {
@@ -134,6 +137,9 @@ export default function ScoreBoard(props) {
                                         )
                                     })
                                 }
+                                {
+                                    !show1 && <h5>...</h5>
+                                }
                             </div>
                         </div>
                     </div>
@@ -143,9 +149,9 @@ export default function ScoreBoard(props) {
                                 handleTeamShown(2)
                             }}>
                                 <div className='float-left text-center' >
-                                    <h5 className='pb-3'>{player3Name}</h5 >
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
-                                    <p className='d-inline-block float-right text-primary'>{show2 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
+                                    <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player3Name}</h5 >
+                                    {/* <p className='d-inline-block float-right text-primary'>{show2 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
                                 {
                                     (show2 || selTblIdx == 2) ? historyList[2].map((item, index) => {
@@ -174,6 +180,9 @@ export default function ScoreBoard(props) {
                                         )
                                     })
                                 }
+                                {
+                                    !show2 && <h5>...</h5>
+                                }
                             </div>
                         </div>
                     </div>
@@ -183,9 +192,9 @@ export default function ScoreBoard(props) {
                                 handleTeamShown(3)
                             }}>
                                 <div className='float-left text-center' >
-                                    <h5 className='pb-3'>{player4Name}</h5>
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
-                                    <p className='d-inline-block float-right text-primary'>{show3 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
+                                    <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player4Name}</h5>
+                                    {/* <p className='d-inline-block float-right text-primary'>{show3 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
                                 {
                                     (show3 || selTblIdx == 3) ? historyList[3].map((item, index) => {
@@ -213,6 +222,9 @@ export default function ScoreBoard(props) {
                                             </div>
                                         )
                                     })
+                                }
+                                {
+                                    !show3 && <h5>...</h5>
                                 }
                             </div>
                         </div>
