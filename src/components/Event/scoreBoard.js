@@ -19,10 +19,10 @@ const Logo = {
 export default function ScoreBoard(props) {
     const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList, sportCategory } = props;
 
-    const [team1Name, setTeam1Name] = useState('Player1');
-    const [team2Name, setTeam2Name] = useState('Player2');
-    const [team3Name, setTeam3Name] = useState('Player3');
-    const [team4Name, setTeam4Name] = useState('Player4');
+    const [player1Name, setPlayer1Name] = useState('Player1');
+    const [player2Name, setPlayer2Name] = useState('Player2');
+    const [player3Name, setPlayer3Name] = useState('Player3');
+    const [player4Name, setPlayer4Name] = useState('Player4');
 
     const [show0, setShow0] = useState(false);
     const [show1, setShow1] = useState(false);
@@ -55,16 +55,16 @@ export default function ScoreBoard(props) {
     const handleTeamName = (evt, index) => {
         switch (index) {
             case 1:
-                setTeam1Name(evt.target.value)
+                setPlayer1Name(evt.target.value)
                 break;
             case 2:
-                setTeam2Name(evt.target.value)
+                setPlayer2Name(evt.target.value)
                 break;
             case 3:
-                setTeam3Name(evt.target.value)
+                setPlayer3Name(evt.target.value)
                 break;
             case 4:
-                setTeam4Name(evt.target.value)
+                setPlayer4Name(evt.target.value)
                 break;
             default:
                 break;
@@ -89,7 +89,7 @@ export default function ScoreBoard(props) {
                                 <div className='float-left text-center' >
                                     <input
                                         className='text-center'
-                                        value={team1Name}
+                                        value={player1Name}
                                         onChange={(evt) => handleTeamName(evt, 1)}
                                         style={{ width: 150, height: 30, fontSize: 20, border: 'none' }}
                                     />
@@ -134,7 +134,7 @@ export default function ScoreBoard(props) {
                                 <div className='float-left text-center' >
                                     <input
                                         className='text-center'
-                                        value={team2Name}
+                                        value={player2Name}
                                         onChange={(evt) => handleTeamName(evt, 2)}
                                         style={{ width: 150, height: 30, fontSize: 20, border: 'none' }}
                                     />
@@ -179,7 +179,7 @@ export default function ScoreBoard(props) {
                                 <div className='float-left text-center' >
                                     <input
                                         className='text-center'
-                                        value={team3Name}
+                                        value={player3Name}
                                         onChange={(evt) => handleTeamName(evt, 3)}
                                         style={{ width: 150, height: 30, fontSize: 20, border: 'none' }}
                                     />
@@ -224,7 +224,7 @@ export default function ScoreBoard(props) {
                                 <div className='float-left text-center' >
                                     <input
                                         className='text-center'
-                                        value={team4Name}
+                                        value={player4Name}
                                         onChange={(evt) => handleTeamName(evt, 4)}
                                         style={{ width: 150, height: 30, fontSize: 20, border: 'none' }}
                                     />
