@@ -1340,7 +1340,7 @@ function EventComponent() {
                             </select>
                         </div>
                         <div className='text-center mt-3 mb-2'>
-                            <h4>Who is playing</h4>
+                            <h4>Who Is Playing</h4>
                             <p className='border my-3 p-1'>Player1</p>
                             <button className='btn btn-primary' onClick={handleTab}>Go To Game</button>
                             <div>
