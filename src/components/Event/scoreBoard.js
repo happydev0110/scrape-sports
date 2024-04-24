@@ -17,12 +17,7 @@ const Logo = {
 }
 
 export default function ScoreBoard(props) {
-    const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList, sportCategory } = props;
-
-    const [player1Name, setPlayer1Name] = useState('Player1');
-    const [player2Name, setPlayer2Name] = useState('Player2');
-    const [player3Name, setPlayer3Name] = useState('Player3');
-    const [player4Name, setPlayer4Name] = useState('Player4');
+    const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList, sportCategory, player1Name, player2Name, player3Name, player4Name } = props;
 
     const [show0, setShow0] = useState(false);
     const [show1, setShow1] = useState(false);
@@ -52,30 +47,11 @@ export default function ScoreBoard(props) {
         }
     }
 
-    const handleTeamName = (evt, index) => {
-        switch (index) {
-            case 1:
-                setPlayer1Name(evt.target.value)
-                break;
-            case 2:
-                setPlayer2Name(evt.target.value)
-                break;
-            case 3:
-                setPlayer3Name(evt.target.value)
-                break;
-            case 4:
-                setPlayer4Name(evt.target.value)
-                break;
-            default:
-                break;
-        }
-    }
-
     return (
         <>
             {
                 !tabStatus && <>
-                    
+
                     <div className='row pb-2'>
                         <div className='col-md-6'>
                         </div>
@@ -87,12 +63,7 @@ export default function ScoreBoard(props) {
                                 handleTeamShown(0)
                             }}>
                                 <div className='float-left text-center' >
-                                    <input
-                                        className='text-center'
-                                        value={player1Name}
-                                        onChange={(evt) => handleTeamName(evt, 1)}
-                                        style={{ width: 150, height: 30, fontSize: 20, border: 'none' }}
-                                    />
+                                    <h5 className='pb-3'>{player1Name}</h5>
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
                                     <p className='d-inline-block float-right text-primary'>{show0 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
@@ -132,12 +103,7 @@ export default function ScoreBoard(props) {
                                 handleTeamShown(1)
                             }}>
                                 <div className='float-left text-center' >
-                                    <input
-                                        className='text-center'
-                                        value={player2Name}
-                                        onChange={(evt) => handleTeamName(evt, 2)}
-                                        style={{ width: 150, height: 30, fontSize: 20, border: 'none' }}
-                                    />
+                                    <h5 className='pb-3'>{player2Name}</h5>
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
                                     <p className='d-inline-block float-right text-primary'>{show1 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
@@ -177,12 +143,7 @@ export default function ScoreBoard(props) {
                                 handleTeamShown(2)
                             }}>
                                 <div className='float-left text-center' >
-                                    <input
-                                        className='text-center'
-                                        value={player3Name}
-                                        onChange={(evt) => handleTeamName(evt, 3)}
-                                        style={{ width: 150, height: 30, fontSize: 20, border: 'none' }}
-                                    />
+                                    <h5 className='pb-3'>{player3Name}</h5 >
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
                                     <p className='d-inline-block float-right text-primary'>{show2 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>
@@ -222,12 +183,7 @@ export default function ScoreBoard(props) {
                                 handleTeamShown(3)
                             }}>
                                 <div className='float-left text-center' >
-                                    <input
-                                        className='text-center'
-                                        value={player4Name}
-                                        onChange={(evt) => handleTeamName(evt, 4)}
-                                        style={{ width: 150, height: 30, fontSize: 20, border: 'none' }}
-                                    />
+                                    <h5 className='pb-3'>{player4Name}</h5>
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
                                     <p className='d-inline-block float-right text-primary'>{show3 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p>
                                 </div>

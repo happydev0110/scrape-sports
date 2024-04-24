@@ -48,6 +48,11 @@ function EventComponent() {
     const [tabStatus, setTabStatus] = useState(true);
     const [goIndex, setGoIndex] = useState(0);
 
+    const [player1Name, setPlayer1Name] = useState('Player1');
+    const [player2Name, setPlayer2Name] = useState('Player2');
+    const [player3Name, setPlayer3Name] = useState('Player3');
+    const [player4Name, setPlayer4Name] = useState('Player4');
+
     useEffect(() => {
         if (startTime != -1 && goIndex >= 0) {
             goToPlay(goIndex)
@@ -1282,6 +1287,25 @@ function EventComponent() {
         }
     }
 
+    const handleTeamName = (evt, index) => {
+        switch (index) {
+            case 1:
+                setPlayer1Name(evt.target.value)
+                break;
+            case 2:
+                setPlayer2Name(evt.target.value)
+                break;
+            case 3:
+                setPlayer3Name(evt.target.value)
+                break;
+            case 4:
+                setPlayer4Name(evt.target.value)
+                break;
+            default:
+                break;
+        }
+    }
+
     return (
         <>
             {
@@ -1339,9 +1363,34 @@ function EventComponent() {
                                 }
                             </select>
                         </div>
-                        <div className='text-center mt-3 mb-2'>
+                        <div className='row text-center my-3'>
                             <h4>Who Is Playing</h4>
-                            <p className='border my-3 p-1'>Player1</p>
+                            <div className='col-6 my-2'>
+                                <input
+                                    value={player1Name}
+                                    onChange={(evt) => handleTeamName(evt, 1)}
+                                />
+                            </div>
+                            <div className='col-6 my-2'>
+                                <input
+                                    value={player2Name}
+                                    onChange={(evt) => handleTeamName(evt, 2)}
+                                />
+                            </div>
+                            <div className='col-6 my-2'>
+                                <input
+                                    value={player3Name}
+                                    onChange={(evt) => handleTeamName(evt, 3)}
+                                />
+                            </div>
+                            <div className='col-6 my-2'>
+                                <input
+                                    value={player4Name}
+                                    onChange={(evt) => handleTeamName(evt, 4)}
+                                />
+                            </div>
+                        </div>
+                        <div className='text-center mt-3 mb-2'>
                             <button className='btn btn-primary' onClick={handleTab}>Go To Game</button>
                             <div>
                                 <label className="form-label" style={{ float: "left" }}>Time</label>
@@ -1464,6 +1513,11 @@ function EventComponent() {
                 selTextIdx={selTextIdx}
                 historyList={historyList}
                 sportCategory={sportCategory}
+
+                player1Name={player1Name}
+                player2Name={player2Name}
+                player3Name={player3Name}
+                player4Name={player4Name}
             />
         </>
     );
