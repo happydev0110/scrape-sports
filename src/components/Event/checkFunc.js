@@ -763,9 +763,9 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
     return status;
 }
 
-export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, team1Score, team2Score, matchTeamId) => {
+export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, matchTeamId) => {
     let status = false;
-
+    let team1Score, team2Score;
     // SOCCER-DS7
     if (dataTypeItem.no === 'SOCCER-DS7') {
         if (currentPlayItem.text === undefined) {
@@ -793,10 +793,10 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
+            // console.log(currentPlayItem.sequence, currentPlayItem.text, 'SOCCER-DS9-description')
             if (currentPlayItem.text.indexOf('Goal!') === -1) {
                 status = true;
             } else {
-
                 let team1NameIdx = currentPlayItem.text.indexOf(team1Name);
                 let team2NameIdx = currentPlayItem.text.indexOf(team2Name);
 

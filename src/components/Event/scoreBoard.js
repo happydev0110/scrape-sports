@@ -75,26 +75,7 @@ export default function ScoreBoard(props) {
         <>
             {
                 !tabStatus && <>
-                    <div className='row py-2'>
-                        <div className='col-md-2 col-lg-12'>
-                            {
-                                eventId != -1 && team1Idx != -1 &&
-                                <>
-                                    <div className='d-inline-block'>
-                                        <img src={team1Idx != -1 ? playList.boxscore.teams[team1Idx].team.logo : undefined} style={{ width: 40, height: 40 }} />
-                                        <p className='px-2 d-inline-block'><b>{(team1Idx != -1 && team1Idx == 0) ? awayScore : homeScore}</b></p>
-                                    </div>
-                                    <div className='d-inline-block'>
-                                        <img src={team1Idx != -1 ? playList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.logo : undefined} style={{ width: 40, height: 40 }} />
-                                        <p className='px-2 d-inline-block'><b>{(team1Idx != -1 && team1Idx == 0) ? homeScore : awayScore}</b></p>
-                                    </div>
-                                    <div className='d-inline-block'>
-                                        <p className='d-inline-block px-5'>{time}</p>
-                                    </div>
-                                </>
-                            }
-                        </div>
-                    </div>
+                    
                     <div className='row pb-2'>
                         <div className='col-md-6'>
                         </div>
