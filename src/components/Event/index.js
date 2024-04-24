@@ -55,6 +55,7 @@ function EventComponent() {
 
     useEffect(() => {
         if (startTime != -1 && goIndex >= 0) {
+            console.log(eventList.length, goIndex, 'useEffect')
             goToPlay(goIndex)
         }
     }, [goIndex])
@@ -382,19 +383,19 @@ function EventComponent() {
                                 tableIndex = result.tableIndex;
                                 // prevEventItem = currentPlayItem;
 
-                                // console.log(
-                                //     'DS_NO:', dataTypeItem.no,
-                                //     'sequence:', currentPlayItem.sequence,
-                                //     'team1Name:', team1Name,
-                                //     // 'currentTeam:', currentPlayItem.play.team.displayName,
-                                //     // 'typeId:', currentPlayItem.play.type.id,
-                                //     'description:', result.description,
-                                //     'increase:', dataTypeItem.Increase,
-                                //     'rotation:', dataTypeItem.rotation,
-                                //     'time value:', currentPlayItem.time.value,
-                                //     'time displayValue:', currentPlayItem.time.displayValue,
-                                //     // 'historyList:', hisList
-                                // )
+                                console.log(
+                                    'DS_NO:', dataTypeItem.no,
+                                    'sequence:', currentPlayItem.sequence,
+                                    'team1Name:', team1Name,
+                                    // 'currentTeam:', currentPlayItem.play.team.displayName,
+                                    // 'typeId:', currentPlayItem.play.type.id,
+                                    'description:', result.description,
+                                    'increase:', dataTypeItem.Increase,
+                                    'rotation:', dataTypeItem.rotation,
+                                    'time value:', currentPlayItem.time.value,
+                                    'time displayValue:', currentPlayItem.time.displayValue,
+                                    // 'historyList:', hisList
+                                )
 
                                 // console.log(
                                 //     'teamIndex0:', result.score[0],
@@ -449,7 +450,7 @@ function EventComponent() {
                                 console.log(eventList.length, i, 'get Data from API')
                                 if (eventList.length > i) {
                                     clearInterval(timeIntervalForLatest);
-                                    setInitial();
+                                    // setInitial();
                                     setEventList(eventList);
                                     setGoIndex(i);
                                 }
@@ -499,8 +500,8 @@ function EventComponent() {
                         }
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
 
-                        // console.log(duration / 1000, 'duraion')
-                        // console.log(eventList.length, i, 'do while')
+                        console.log(duration / 1000, 'duraion')
+                        console.log(eventList.length, i, 'do while')
 
                         /* Handle Go To Feature */
                         const handleGoTo = async () => {
@@ -646,53 +647,53 @@ function EventComponent() {
                                 textIndex = result.textIndex;
                                 tableIndex = result.tableIndex;
 
-                                // if (currentPlayItem.team) {
-                                //     console.log(
-                                //         'DS_NO:', dataTypeItem.no,
-                                //         'sequence:', currentPlayItem.sequenceNumber,
-                                //         'team1Id:', team1Id,
-                                //         'teamId:', currentPlayItem.team.id,
-                                //         'typeId:', currentPlayItem.type.id,
-                                //         // "scoreValue:", currentPlayItem.scoreValue,
-                                //         // 'scoringPlay', currentPlayItem.scoringPlay,
-                                //         'Wallclock:', currentPlayItem.wallclock,
-                                //         'selectedTeamIdx:', selectedTeamIdx,
-                                //         "rotation:", dataTypeItem.rotation,
-                                //         'textIdx:', textIndex,
-                                //         'tableIdx:', tableIndex,
-                                //         'teamIndex:', tableIndex,
-                                //         'increase:', increaseAmount,
-                                //         'description:', result.description,
-                                //         'homeScore:', currentPlayItem.homeScore,
-                                //         'awayScore', currentPlayItem.awayScore,
-                                //         'Period:', currentPlayItem.period.displayValue,
-                                //         // 'Clock:', currentPlayItem.clock.displayValue,
-                                //         'WallClock', currentPlayItem.wallclock
-                                //     )
-                                // } else {
-                                //     console.log(
-                                //         'DS_NO:', dataTypeItem.no,
-                                //         'sequence:', currentPlayItem.sequenceNumber,
-                                //         'team1Id:', team1Id,
-                                //         'teamId:', 'No team',
-                                //         'typeId:', currentPlayItem.type.id,
-                                //         // "scoreValue:", currentPlayItem.scoreValue,
-                                //         // 'scoringPlay', currentPlayItem.scoringPlay,
-                                //         'Wallclock:', currentPlayItem.wallclock,
-                                //         'selectedTeamIdx:', selectedTeamIdx,
-                                //         "rotation:", dataTypeItem.rotation,
-                                //         'textIdx:', textIndex,
-                                //         'tableIdx:', tableIndex,
-                                //         'teamIndex:', tableIndex,
-                                //         'increase:', increaseAmount,
-                                //         'description:', result.description,
-                                //         'homeScore:', currentPlayItem.homeScore,
-                                //         'awayScore', currentPlayItem.awayScore,
-                                //         'Period:', currentPlayItem.period.displayValue,
-                                //         // 'Clock:', currentPlayItem.clock.displayValue,
-                                //         'WallClock', currentPlayItem.wallclock
-                                //     )
-                                // }
+                                if (currentPlayItem.team) {
+                                    console.log(
+                                        'DS_NO:', dataTypeItem.no,
+                                        'sequence:', currentPlayItem.sequenceNumber,
+                                        'team1Id:', team1Id,
+                                        'teamId:', currentPlayItem.team.id,
+                                        'typeId:', currentPlayItem.type.id,
+                                        // "scoreValue:", currentPlayItem.scoreValue,
+                                        // 'scoringPlay', currentPlayItem.scoringPlay,
+                                        'Wallclock:', currentPlayItem.wallclock,
+                                        'selectedTeamIdx:', selectedTeamIdx,
+                                        "rotation:", dataTypeItem.rotation,
+                                        'textIdx:', textIndex,
+                                        'tableIdx:', tableIndex,
+                                        'teamIndex:', tableIndex,
+                                        'increase:', increaseAmount,
+                                        'description:', result.description,
+                                        'homeScore:', currentPlayItem.homeScore,
+                                        'awayScore', currentPlayItem.awayScore,
+                                        'Period:', currentPlayItem.period.displayValue,
+                                        // 'Clock:', currentPlayItem.clock.displayValue,
+                                        'WallClock', currentPlayItem.wallclock
+                                    )
+                                } else {
+                                    console.log(
+                                        'DS_NO:', dataTypeItem.no,
+                                        'sequence:', currentPlayItem.sequenceNumber,
+                                        'team1Id:', team1Id,
+                                        'teamId:', 'No team',
+                                        'typeId:', currentPlayItem.type.id,
+                                        // "scoreValue:", currentPlayItem.scoreValue,
+                                        // 'scoringPlay', currentPlayItem.scoringPlay,
+                                        'Wallclock:', currentPlayItem.wallclock,
+                                        'selectedTeamIdx:', selectedTeamIdx,
+                                        "rotation:", dataTypeItem.rotation,
+                                        'textIdx:', textIndex,
+                                        'tableIdx:', tableIndex,
+                                        'teamIndex:', tableIndex,
+                                        'increase:', increaseAmount,
+                                        'description:', result.description,
+                                        'homeScore:', currentPlayItem.homeScore,
+                                        'awayScore', currentPlayItem.awayScore,
+                                        'Period:', currentPlayItem.period.displayValue,
+                                        // 'Clock:', currentPlayItem.clock.displayValue,
+                                        'WallClock', currentPlayItem.wallclock
+                                    )
+                                }
 
                                 if (result) {
                                     // prevEventItem = currentPlayItem;
@@ -738,9 +739,9 @@ function EventComponent() {
                                 console.log(eventList.length, i, 'get Data from API')
                                 if (eventList.length > i) {
                                     clearInterval(timeIntervalForLatest);
-                                    setInitial();
+                                    // setInitial();
                                     setEventList(eventList);
-                                    setGoIndex(i);
+                                    setGoIndex(eventList.length);
                                 }
 
                             }, intervalTime * 1000);
@@ -1115,27 +1116,27 @@ function EventComponent() {
                             selectedDS = true;
 
                             /* Add First DS in Quater to timerList */
-                            if (quarter < 5) {
-                                if (currentPlayItem.period.number == quarter) {
-                                    let timeItem = {
-                                        label: currentPlayItem.period.displayValue,
-                                        value: matchEvtList.length - 1
-                                    }
-
-                                    if (sportCategory === "MLB") {
-                                        timeItem.label = currentPlayItem.period.displayValue
-                                    } else {
-                                        if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
-                                            timeItem.label = currentPlayItem.period.displayValue + ' ' + reverseTime(currentPlayItem.clock.displayValue);
-                                        } else {
-                                            timeItem.label = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue
-                                        }
-                                    }
-
-                                    timerList.push(timeItem)
-                                    quarter++;
+                            // if (quarter < 10) {
+                            if (currentPlayItem.period.number == quarter) {
+                                let timeItem = {
+                                    label: currentPlayItem.period.displayValue,
+                                    value: matchEvtList.length - 1
                                 }
+
+                                if (sportCategory === "MLB") {
+                                    timeItem.label = currentPlayItem.period.displayValue
+                                } else {
+                                    if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
+                                        timeItem.label = currentPlayItem.period.displayValue + ' ' + reverseTime(currentPlayItem.clock.displayValue);
+                                    } else {
+                                        timeItem.label = currentPlayItem.period.displayValue + ' ' + currentPlayItem.clock.displayValue
+                                    }
+                                }
+
+                                timerList.push(timeItem)
+                                quarter++;
                             }
+                            // }
 
                             if (sportCategory === 'MLB') {
                                 console.log(
@@ -1272,8 +1273,9 @@ function EventComponent() {
     */
     const handleDS = (direction) => {
         goToIndex = goToIndex + direction;
+
         console.log(goToIndex, 'index in handle DS')
-        if (goToIndex >= 0 && goToIndex < eventList.length) {
+        if (goToIndex >= 0 && goToIndex <= eventList.length) {
             setInitial();
             setGoIndex(goToIndex);
         }
@@ -1282,8 +1284,8 @@ function EventComponent() {
             goToIndex = 0;
         }
 
-        if (goToIndex >= eventList.length) {
-            goToIndex = eventList.length - 1;
+        if (goToIndex > eventList.length) {
+            goToIndex = eventList.length;
         }
     }
 
