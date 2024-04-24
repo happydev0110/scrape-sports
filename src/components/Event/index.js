@@ -650,6 +650,7 @@ function EventComponent() {
                                 if (currentPlayItem.team) {
                                     console.log(
                                         'DS_NO:', dataTypeItem.no,
+                                        'Index:', i,
                                         'sequence:', currentPlayItem.sequenceNumber,
                                         'team1Id:', team1Id,
                                         'teamId:', currentPlayItem.team.id,
@@ -673,6 +674,7 @@ function EventComponent() {
                                 } else {
                                     console.log(
                                         'DS_NO:', dataTypeItem.no,
+                                        'Index:', i,
                                         'sequence:', currentPlayItem.sequenceNumber,
                                         'team1Id:', team1Id,
                                         'teamId:', 'No team',
