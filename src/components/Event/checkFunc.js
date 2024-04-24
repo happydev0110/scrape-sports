@@ -424,7 +424,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('single') || !currentPlayItem.text.includes('singled') || currentPlayItem.text.includes('out stretching')) {
+            if ((!currentPlayItem.text.includes('single') && !currentPlayItem.text.includes('singled')) || currentPlayItem.text.includes('out stretching')) {
                 status = true;
             }
         }
