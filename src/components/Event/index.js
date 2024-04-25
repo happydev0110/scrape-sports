@@ -54,6 +54,7 @@ function EventComponent() {
     const [player4Name, setPlayer4Name] = useState('Player4');
 
     useEffect(() => {
+        console.log('run goTo function')
         if (startTime != -1 && goIndex >= 0) {
             console.log(eventList.length, goIndex, 'useEffect')
             goToPlay(goIndex)
@@ -445,13 +446,13 @@ function EventComponent() {
                         if (startTime != -1) {
                             timeIntervalForLatest = setInterval(async () => {
                                 // console.log(intervalTime, 'get new DS in GoTo function')
-                                let eventList = await getLatestDS(i)
+                                let dsList = await getLatestDS(i)
 
-                                console.log(eventList.length, i, 'get Data from API')
-                                if (eventList.length > i) {
+                                console.log(dsList.length, i, 'get Data from API')
+                                if (dsList.length > i) {
                                     clearInterval(timeIntervalForLatest);
                                     // setInitial();
-                                    setEventList(eventList);
+                                    setEventList(dsList);
                                     setGoIndex(i);
                                 }
 
@@ -736,14 +737,14 @@ function EventComponent() {
                         if (startTime != -1) {
                             timeIntervalForLatest = setInterval(async () => {
                                 // console.log(intervalTime, 'get new DS in GoTo function')
-                                let eventList = await getLatestDS(i)
+                                let dslist = await getLatestDS(i)
 
-                                console.log(eventList.length, i, 'get Data from API')
-                                if (eventList.length > i) {
+                                console.log(dslist.length, i, 'get Data from API')
+                                if (dslist.length > i) {
                                     clearInterval(timeIntervalForLatest);
                                     // setInitial();
-                                    setEventList(eventList);
-                                    setGoIndex(eventList.length);
+                                    setEventList(dslist);
+                                    setGoIndex(i);
                                 }
 
                             }, intervalTime * 1000);
