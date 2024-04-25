@@ -301,10 +301,10 @@ function EventComponent() {
                         if (duration <= 0) duration = 1000;
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
 
-                        // console.log(duration / 1000, i, 'duraion')
+                        console.log(duration / 1000, i, 'duraion')
 
                         const handleGoTo = () => {
-                            // console.log(i, 'do while')
+                            console.log(i, 'do while')
                             for (let j = 0; j < dataSetType.length; j++) {
 
                                 var dataTypeItem = dataSetType[j];
