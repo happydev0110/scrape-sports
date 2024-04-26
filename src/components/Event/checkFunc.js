@@ -1,3 +1,5 @@
+import { getDuraton } from "../../func";
+
 /*
  Status
     false: yes          (continue)
@@ -123,10 +125,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
 
     // NHL-DS2
     if (dataTypeItem.no === 'NHL-DS2') {
-        if (currentPlayItem === undefined || currentPlayItem.text === undefined) {
+        if (currentPlayItem === undefined || currentPlayItem.text === undefined || currentPlayItem.type === undefined || prevPlayItem === undefined || prevPlayItem.type === undefined || currentPlayItem.wallClock === undefined || prevPlayItem.wallClock === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.toLowerCase().includes('timeout') || currentPlayItem.text.toLowerCase().includes('official') || currentPlayItem.text.toLowerCase().includes('challenge') || currentPlayItem.text.toLowerCase().includes('review')) {
+            if (prevPlayItem.type.id != 502 || currentPlayItem.text.toLowerCase().includes('timeout') || currentPlayItem.text.toLowerCase().includes('official') || currentPlayItem.text.toLowerCase().includes('challenge') || currentPlayItem.text.toLowerCase().includes('review') || currentPlayItem.text.toLowerCase().includes('Objects') || getDuraton(prevPlayItem.wallClock, currentPlayItem.wallClock) < 30) {
                 status = true;
             }
         }
@@ -468,7 +470,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined  || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('safe') || !currentPlayItem.text.includes('error')) {
+            if (currentPlayItem.alternativeType.id != 10) {
                 status = true;
             }
         }
@@ -480,6 +482,17 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
             status = true;
         } else {
             if (currentPlayItem.alternativeType.id != 3 || currentPlayItem.text.includes('out stretching')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS11-2
+    if (dataTypeItem.no === 'MLB-DS11-2') {
+        if (currentPlayItem.alternativeType === undefined) {
+            status = true;
+        } else {
+            if (currentPlayItem.alternativeType.id != 60) {
                 status = true;
             }
         }
@@ -689,6 +702,17 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
             status = true;
         } else {
             if (currentPlayItem.alternativeType.id != 3 || currentPlayItem.text.includes('out stretching')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS27-2
+    if (dataTypeItem.no === 'MLB-DS27-2') {
+        if (currentPlayItem.alternativeType === undefined) {
+            status = true;
+        } else {
+            if (currentPlayItem.alternativeType.id != 60) {
                 status = true;
             }
         }

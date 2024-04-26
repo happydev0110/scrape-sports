@@ -283,7 +283,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NBA2-DS4':
             description = '3pt Make. ' + getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
-            
+
         case 'NBA2-DS7':
             description = playItem.type.text
             break;
@@ -419,6 +419,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
         case 'NBA2-DS73-2':
             description = 'Jumpball'
             break;
+        case 'MLB-DS33':
+            description = 'Caught stealing'
+            break;
         default:
             break;
     }
@@ -430,7 +433,7 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
 
     // console.log(description,'Func')
     let timeDisplay;
-    if(sportCategory === 'MLB'){
+    if (sportCategory === 'MLB') {
         timeDisplay = playItem.period.displayValue
     } else {
         if (sportCategory == 'NHL' || sportCategory == 'NHL2') {
@@ -439,9 +442,9 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             timeDisplay = playItem.clock.displayValue;
         }
     }
-    
 
-    if(sportCategory === 'MLB'){
+
+    if (sportCategory === 'MLB') {
         sequenceTime = timeDisplay
     } else {
         sequenceTime = playItem.period.displayValue + '(' + timeDisplay + ')';

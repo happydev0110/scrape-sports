@@ -1502,6 +1502,14 @@ export const NHL_DS = [
         Increase: false,
         rotation: false
     },
+    {//DataSet12
+        no: 'NHL-DS12',
+        teamId: -1,
+        typeId: 518,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
 ]
 
 export const SOCCER_DS = [
@@ -1893,7 +1901,7 @@ export const MLB_DS = [
     {//DS10
         no: 'MLB-DS10',
         teamId: false,
-        typeId: false,
+        typeId: 57,
         scoreValue: -1,
         Increase: 1,
         rotation: true
@@ -1902,6 +1910,14 @@ export const MLB_DS = [
         no: 'MLB-DS11',
         teamId: false,
         typeId: 57,
+        scoreValue: -1,
+        Increase: 3,
+        rotation: false
+    },
+    {//DS11-2
+        no: 'MLB-DS11-2',
+        teamId: false,
+        typeId: false,
         scoreValue: -1,
         Increase: 3,
         rotation: false
@@ -2054,6 +2070,14 @@ export const MLB_DS = [
         no: 'MLB-DS27',
         teamId: true,
         typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS27-2
+        no: 'MLB-DS27-2',
+        teamId: true,
+        typeId: false,
         scoreValue: -1,
         Increase: false,
         rotation: true
