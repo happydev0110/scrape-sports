@@ -981,7 +981,8 @@ function EventComponent() {
                             PREV_NHL_DS2 = {
                                 id: 502,
                                 seq: currentPlayItem.sequenceNumber,
-                                teamId: currentPlayItem.team.id
+                                teamId: currentPlayItem.team.id,
+                                ...currentPlayItem
                             }
                         }
 
