@@ -12,7 +12,6 @@ import { checkFunc, checkSoccerFunc } from './checkFunc.js';
 var goToIndex = 0;
 var timeOut = null;
 var timeIntervalForLatest = null;
-var listOfEvents = [];
 
 function EventComponent() {
     const [events, setEvents] = useState([]);
@@ -57,7 +56,7 @@ function EventComponent() {
     useEffect(() => {
         console.log('run goTo function')
         if (startTime != -1 && goIndex >= 0) {
-            console.log(listOfEvents.length, goIndex, 'useEffect')
+            console.log(eventList.length, goIndex, 'useEffect')
             goToPlay(goIndex)
         }
     }, [goIndex])
@@ -142,6 +141,24 @@ function EventComponent() {
             let selectedDS = false;
             let currentPlayItem = dsList[i];
             let prevPlayItem = dsList[i - 1];
+
+            /* Special DS (NHL) */
+            if (currentPlayItem.type.id == 502 && sportCategory === 'NHL') {
+                PREV_NHL_DS2 = {
+                    id: 502,
+                    seq: currentPlayItem.sequenceNumber,
+                    teamId: currentPlayItem.team.id,
+                    ...currentPlayItem
+                }
+            }
+
+            if (currentPlayItem.type.id == 516 && sportCategory === 'NHL') {
+                PREV_NHL_DS5 = {
+                    id: 516,
+                    seq: currentPlayItem.sequenceNumber,
+                    clock: currentPlayItem.clock,
+                }
+            }
 
             for (let j = 0; j < dataSetType.length; j++) {
                 var dataTypeItem = dataSetType[j];
@@ -273,15 +290,15 @@ function EventComponent() {
         }
 
         if (sportCategory == 'SOCCER') {
-            if (team1Idx != -1 && listOfEvents) {
+            if (team1Idx != -1 && eventList) {
                 console.log('SOCCER DS START')
                 let team1Score = 0, team2Score = 0;
 
                 const loop = () => {
-                    if (i < listOfEvents.length) {
-                        let currentPlayItem = listOfEvents[i];
-                        let prevEventItem = listOfEvents[i - 1];
-                        let prevPlayItem = listOfEvents[i].prevPlayItem;
+                    if (i < eventList.length) {
+                        let currentPlayItem = eventList[i];
+                        let prevEventItem = eventList[i - 1];
+                        let prevPlayItem = eventList[i].prevPlayItem;
                         let duration = 0;
 
                         if (prevEventItem) {
@@ -454,7 +471,7 @@ function EventComponent() {
                                     clearInterval(timeIntervalForLatest);
                                     // setInitial();
                                     setEventList(dsList);
-                                    listOfEvents = dsList
+                                    eventList = dsList
                                     setGoIndex(i);
                                 }
 
@@ -466,14 +483,16 @@ function EventComponent() {
                 loop();
             }
         } else {
-            if (team1Idx != -1 && listOfEvents) {
-                console.log(listOfEvents.length, selectedSeqIdx, 'selectedSeq Index')
+            if (team1Idx != -1 && eventList) {
+                console.log(eventList.length, selectedSeqIdx, 'selectedSeq Index')
 
                 const loop = () => {
-                    if (i < listOfEvents.length) {
-                        var currentPlayItem = listOfEvents[i];
-                        var prevEventItem = listOfEvents[i - 1];
-                        var prevPlayItem = listOfEvents[i].prevPlayItem;
+                    if (i < eventList.length) {
+                        var currentPlayItem = eventList[i];
+                        var prevEventItem = eventList[i - 1];
+                        var prevPlayItem = eventList[i].prevPlayItem;
+                        PREV_NHL_DS2 = eventList[i].PREV_NHL_DS2;
+                        PREV_NHL_DS5 = eventList[i].PREV_NHL_DS5;
 
                         /* Special DS(NHL) */
                         if (currentPlayItem !== undefined || currentPlayItem.type !== undefined) {
@@ -504,7 +523,7 @@ function EventComponent() {
                         if (startTime == -1 || i < selectedSeqIdx) duration = 0;
 
                         console.log(duration / 1000, 'duraion')
-                        console.log(listOfEvents.length, i, 'do while')
+                        console.log(eventList.length, i, 'do while')
 
                         /* Handle Go To Feature */
                         const handleGoTo = async () => {
@@ -746,7 +765,7 @@ function EventComponent() {
                                     console.log('set goIndex')
                                     // setInitial();
                                     setEventList(dsList);
-                                    listOfEvents = dsList;
+                                    eventList = dsList;
                                     setGoIndex(i);
                                     clearInterval(timeIntervalForLatest);
                                     // const myPromise = new Promise((resolve, reject) => {
@@ -998,6 +1017,7 @@ function EventComponent() {
                             // console.log(j,'Datatype')
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
+
                             if (checkFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, matchTeamId, PREV_NHL_DS2, PREV_NHL_DS5)) {
                                 continue;
                             } else {
@@ -1076,7 +1096,9 @@ function EventComponent() {
                             if (!selectedDS) {
                                 matchEvtList.push({
                                     ...currentPlayItem,
-                                    prevPlayItem: prevPlayItem
+                                    prevPlayItem: prevPlayItem,
+                                    PREV_NHL_DS2,
+                                    PREV_NHL_DS5,
                                 });
                             }
 
@@ -1236,7 +1258,6 @@ function EventComponent() {
                         setTime(result.sequenceTime);
                         setHistoryList(hisList);
                         setEventList(matchEvtList);
-                        listOfEvents = matchEvtList;
 
                         setHomeScore(result.homeScore);
                         setAwayScore(result.awayScore);
@@ -1292,7 +1313,7 @@ function EventComponent() {
         goToIndex = goToIndex + direction;
 
         console.log(goToIndex, 'index in handle DS')
-        if (goToIndex >= 0 && goToIndex <= listOfEvents.length) {
+        if (goToIndex >= 0 && goToIndex <= eventList.length) {
             setInitial();
             setGoIndex(goToIndex);
         }
@@ -1301,8 +1322,8 @@ function EventComponent() {
             goToIndex = 0;
         }
 
-        if (goToIndex > listOfEvents.length) {
-            goToIndex = listOfEvents.length;
+        if (goToIndex > eventList.length) {
+            goToIndex = eventList.length;
         }
     }
 
