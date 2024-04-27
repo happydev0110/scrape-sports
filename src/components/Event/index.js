@@ -54,9 +54,7 @@ function EventComponent() {
     const [player4Name, setPlayer4Name] = useState('Player4');
 
     useEffect(() => {
-        console.log('run goTo function')
         if (startTime != -1 && goIndex >= 0) {
-            console.log(eventList.length, goIndex, 'useEffect')
             goToPlay(goIndex)
         }
     }, [goIndex])
