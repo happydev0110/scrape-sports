@@ -469,7 +469,6 @@ function EventComponent() {
                                     clearInterval(timeIntervalForLatest);
                                     // setInitial();
                                     setEventList(dsList);
-                                    eventList = dsList
                                     setGoIndex(i);
                                 }
 
@@ -763,7 +762,6 @@ function EventComponent() {
                                     console.log('set goIndex')
                                     // setInitial();
                                     setEventList(dsList);
-                                    eventList = dsList;
                                     setGoIndex(i);
                                     clearInterval(timeIntervalForLatest);
                                     // const myPromise = new Promise((resolve, reject) => {
