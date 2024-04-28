@@ -54,6 +54,7 @@ function EventComponent() {
     const [player4Name, setPlayer4Name] = useState('Player4');
 
     useEffect(() => {
+        console.log('Run goToPlay function')
         if (startTime != -1 && goIndex >= 0) {
             goToPlay(goIndex)
         }
@@ -764,14 +765,6 @@ function EventComponent() {
                                     setEventList(dsList);
                                     setGoIndex(i);
                                     clearInterval(timeIntervalForLatest);
-                                    // const myPromise = new Promise((resolve, reject) => {
-                                    // })
-
-                                    // myPromise.then(() => {
-                                    //     console.log(dsList.length,'latest DS')
-                                    // }).catch(err => {
-                                    //     console.log(err);
-                                    // })
                                 }
 
                             }, intervalTime * 1000);
