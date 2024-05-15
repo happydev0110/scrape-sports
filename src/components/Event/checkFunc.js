@@ -405,7 +405,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.alternativeType.text.includes('out')) {
+            if (!currentPlayItem.alternativeType.text.toLowerCase().includes('out')) {
                 status = true;
             }
         }
