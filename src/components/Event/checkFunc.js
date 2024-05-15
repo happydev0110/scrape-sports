@@ -416,7 +416,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.includes('interference') || !currentPlayItem.text.includes('struck out')) {
+            if (currentPlayItem.text.toLowerCase().includes('interference') || !currentPlayItem.text.includes('struck out')) {
                 status = true;
             }
         }
@@ -427,7 +427,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if ((!currentPlayItem.text.includes('single') && !currentPlayItem.text.includes('singled')) || currentPlayItem.text.includes('out stretching')) {
+            if ((!currentPlayItem.text.toLowerCase().includes('single') && !currentPlayItem.text.toLowerCase().includes('singled')) || currentPlayItem.text.includes('out stretching')) {
                 status = true;
             }
         }
@@ -438,7 +438,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('walked') || currentPlayItem.text.includes('scored')) {
+            if (!currentPlayItem.text.toLowerCase().includes('walked') || currentPlayItem.text.toLowerCase().includes('scored')) {
                 status = true;
             }
         }
@@ -526,7 +526,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('sacrifice') || currentPlayItem.text.includes('scored')) {
+            if (!currentPlayItem.text.toLowerCase().includes('sacrifice') || currentPlayItem.text.toLowerCase().includes('scored')) {
                 status = true;
             }
         }
@@ -537,7 +537,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('sacrifice') || !currentPlayItem.text.includes('scored')) {
+            if (!currentPlayItem.text.toLowerCase().includes('sacrifice') || !currentPlayItem.text.toLowerCase().includes('scored')) {
                 status = true;
             }
         }
@@ -559,7 +559,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('hit by pitch') || currentPlayItem.text.includes('scored')) {
+            if (!currentPlayItem.text.includes('hit by pitch') || currentPlayItem.text.toLowerCase().includes('scored')) {
                 status = true;
             }
         }
@@ -570,7 +570,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('hit by pitch') || !currentPlayItem.text.includes('scored')) {
+            if (!currentPlayItem.text.includes('hit by pitch') || !currentPlayItem.text.toLowerCase().includes('scored')) {
                 status = true;
             }
         }
@@ -581,7 +581,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('interference')) {
+            if (!currentPlayItem.text.toLowerCase().includes('interference')) {
                 status = true;
             }
         }
@@ -614,7 +614,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('struck out') || currentPlayItem.text.includes('interference')) {
+            if (!currentPlayItem.text.includes('struck out') || currentPlayItem.text.toLowerCase().includes('interference')) {
                 status = true;
             }
         }
@@ -625,7 +625,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.alternativeType.text.includes('out') || currentPlayItem.text.includes('double play') || currentPlayItem.text.includes('triple play')) {
+            if (!currentPlayItem.alternativeType.text.toLowerCase().includes('out') || currentPlayItem.text.toLowerCase().includes('double play') || currentPlayItem.text.toLowerCase().includes('triple play')) {
                 status = true;
             }
         }
@@ -768,7 +768,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.text === undefined || currentPlayItem.alternativePlay === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('safe') || !currentPlayItem.text.includes('error')) {
+            if (!currentPlayItem.text.toLowerCase().includes('safe') || !currentPlayItem.text.toLowerCase().includes('error')) {
                 status = true;
             }
         }
