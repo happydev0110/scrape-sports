@@ -17,7 +17,7 @@ const Logo = {
 }
 
 export default function ScoreBoard(props) {
-    const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList, sportCategory, player1Name, player2Name, player3Name, player4Name } = props;
+    const { tabStatus, eventId, team1Idx, playList, awayScore, homeScore, time, tableScore, selTblIdx, description, increaseAmt, selTeamIdx, selTextIdx, historyList, sportCategory, player1Name, player2Name, player3Name, player4Name, handlePlayName } = props;
 
     const [show0, setShow0] = useState(false);
     const [show1, setShow1] = useState(false);
@@ -51,7 +51,6 @@ export default function ScoreBoard(props) {
         <>
             {
                 !tabStatus && <>
-
                     <div className='row pb-2'>
                         <div className='col-md-6'>
                         </div>
@@ -59,173 +58,217 @@ export default function ScoreBoard(props) {
                     {/* Team Section */}
                     <div className='row pb-3'>
                         <div className='col-md-12'>
-                            <div className={selTblIdx == 0 ? 'border border-danger border-3 p-3' : 'border p-3'} onClick={() => {
-                                handleTeamShown(0)
-                            }}>
+                            <div className={selTblIdx == 0 ? 'border border-danger border-3 p-3' : 'border p-3'} >
                                 <div className='float-left text-center' >
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
-                                    <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player1Name}</h5>
+                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player1Name}</h5> */}
+                                    <input type='text'
+                                        value={player1Name}
+                                        onChange={(evt) => {
+                                            handlePlayName(evt.target.value, 1)
+                                        }}
+                                        className='border-0'
+                                        style={{ width: 100 }}
+                                    />
+
                                     {/* <p className='d-inline-block float-right text-primary'>{show0 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
-                                {
-                                    (show0 || selTblIdx == 0) ? historyList[0].map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div className='d-inline-flex'>
-                                                    {
-                                                        // selTeamIdx != -1 &&
-                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
-                                                    }
-                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
-                                                </div><br />
-                                            </div>
-                                        )
-                                    }) : historyList[0].slice(-1).map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div className='d-inline-flex'>
-                                                    {
-                                                        // selTeamIdx != -1 &&
-                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
-                                                    }
-                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
-                                                </div><br />
-                                            </div>
-                                        )
-                                    })
-                                }
-                                {
-                                    !show0 && <h5>...</h5>
-                                }
+                                <div onClick={() => {
+                                    handleTeamShown(0)
+                                }}>
+                                    {
+                                        (show0 || selTblIdx == 0) ? historyList[0].map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div className='d-inline-flex'>
+                                                        {
+                                                            // selTeamIdx != -1 &&
+                                                            <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
+                                                        }
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
+                                                    </div><br />
+                                                </div>
+                                            )
+                                        }) : historyList[0].slice(-1).map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div className='d-inline-flex'>
+                                                        {
+                                                            // selTeamIdx != -1 &&
+                                                            <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
+                                                        }
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
+                                                    </div><br />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        !show0 && <h5>...</h5>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className='row pb-3'>
                         <div className='col-md-12'>
-                            <div className={selTblIdx == 1 ? 'border border-danger border-3 p-3' : 'border p-3'} onClick={() => {
-                                handleTeamShown(1)
-                            }}>
+                            <div className={selTblIdx == 1 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center' >
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
-                                    <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player2Name}</h5>
+                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player2Name}</h5> */}
+                                    <input type='text'
+                                        value={player2Name}
+                                        onChange={(evt) => {
+                                            handlePlayName(evt.target.value, 2)
+                                        }}
+                                        className='border-0'
+                                        style={{ width: 100 }}
+                                    />
+
                                     {/* <p className='d-inline-block float-right text-primary'>{show1 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
-                                {
-                                    (show1 || selTblIdx == 1) ? historyList[1].map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div className='d-inline-flex'>
-                                                    {
-                                                        // selTeamIdx != -1 &&
-                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
-                                                    }
-                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
-                                                </div><br />
-                                            </div>
-                                        )
-                                    }) : historyList[1].slice(-1).map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div className='d-inline-flex'>
-                                                    {
-                                                        // selTeamIdx != -1 &&
-                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
-                                                    }
-                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
-                                                </div><br />
-                                            </div>
-                                        )
-                                    })
-                                }
-                                {
-                                    !show1 && <h5>...</h5>
-                                }
+                                <div onClick={() => {
+                                    handleTeamShown(1)
+                                }}>
+                                    {
+                                        (show1 || selTblIdx == 1) ? historyList[1].map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div className='d-inline-flex'>
+                                                        {
+                                                            // selTeamIdx != -1 &&
+                                                            <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
+                                                        }
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                                    </div><br />
+                                                </div>
+                                            )
+                                        }) : historyList[1].slice(-1).map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div className='d-inline-flex'>
+                                                        {
+                                                            // selTeamIdx != -1 &&
+                                                            <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
+                                                        }
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
+                                                    </div><br />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        !show1 && <h5>...</h5>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className='row pb-3'>
                         <div className='col-md-12'>
-                            <div className={selTblIdx == 2 ? 'border border-danger border-3 p-3' : 'border p-3'} onClick={() => {
-                                handleTeamShown(2)
-                            }}>
+                            <div className={selTblIdx == 2 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center' >
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
-                                    <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player3Name}</h5 >
+                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player3Name}</h5 > */}
+                                    <input type='text'
+                                        value={player3Name}
+                                        onChange={(evt) => {
+                                            handlePlayName(evt.target.value, 3)
+                                        }}
+                                        className='border-0'
+                                        style={{ width: 100 }}
+                                    />
+
                                     {/* <p className='d-inline-block float-right text-primary'>{show2 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
-                                {
-                                    (show2 || selTblIdx == 2) ? historyList[2].map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div className='d-inline-flex'>
-                                                    {
-                                                        // selTeamIdx != -1 &&
-                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
-                                                    }
-                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
-                                                </div><br />
-                                            </div>
-                                        )
-                                    }) : historyList[2].slice(-1).map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div className='d-inline-flex'>
-                                                    {
-                                                        // selTeamIdx != -1 &&
-                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
-                                                    }
-                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
-                                                </div><br />
-                                            </div>
-                                        )
-                                    })
-                                }
-                                {
-                                    !show2 && <h5>...</h5>
-                                }
+                                <div onClick={() => {
+                                    handleTeamShown(2)
+                                }}>
+                                    {
+                                        (show2 || selTblIdx == 2) ? historyList[2].map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div className='d-inline-flex'>
+                                                        {
+                                                            // selTeamIdx != -1 &&
+                                                            <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
+                                                        }
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                                    </div><br />
+                                                </div>
+                                            )
+                                        }) : historyList[2].slice(-1).map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div className='d-inline-flex'>
+                                                        {
+                                                            // selTeamIdx != -1 &&
+                                                            <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
+                                                        }
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
+                                                    </div><br />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        !show2 && <h5>...</h5>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div className='row pb-3'>
                         <div className='col-md-12'>
-                            <div className={selTblIdx == 3 ? 'border border-danger border-3 p-3' : 'border p-3'} onClick={() => {
-                                handleTeamShown(3)
-                            }}>
+                            <div className={selTblIdx == 3 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center' >
                                     <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
-                                    <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player4Name}</h5>
+                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player4Name}</h5> */}
+                                    <input type='text'
+                                        value={player4Name}
+                                        onChange={(evt) => {
+                                            handlePlayName(evt.target.value, 4)
+                                        }}
+                                        className='border-0'
+                                        style={{ width: 100 }}
+                                    />
+
                                     {/* <p className='d-inline-block float-right text-primary'>{show3 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
-                                {
-                                    (show3 || selTblIdx == 3) ? historyList[3].map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div key={index} className='d-inline-flex'>
-                                                    {
-                                                        // selTeamIdx != -1 &&
-                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
-                                                    }
-                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
-                                                </div><br />
-                                            </div>
-                                        )
-                                    }) : historyList[3].slice(-1).map((item, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div className='d-inline-flex'>
-                                                    {
-                                                        // selTeamIdx != -1 &&
-                                                        <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
-                                                    }
-                                                    <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
-                                                </div><br />
-                                            </div>
-                                        )
-                                    })
-                                }
-                                {
-                                    !show3 && <h5>...</h5>
-                                }
+                                <div onClick={() => {
+                                    handleTeamShown(3)
+                                }}>
+                                    {
+                                        (show3 || selTblIdx == 3) ? historyList[3].map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div key={index} className='d-inline-flex'>
+                                                        {
+                                                            // selTeamIdx != -1 &&
+                                                            <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
+                                                        }
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p><br />
+                                                    </div><br />
+                                                </div>
+                                            )
+                                        }) : historyList[3].slice(-1).map((item, index) => {
+                                            return (
+                                                <div key={index}>
+                                                    <div className='d-inline-flex'>
+                                                        {
+                                                            // selTeamIdx != -1 &&
+                                                            <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
+                                                        }
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
+                                                    </div><br />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        !show3 && <h5>...</h5>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>

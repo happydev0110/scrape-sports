@@ -1858,10 +1858,26 @@ export const MLB_DS = [
         Increase: false,
         rotation: false
     },
+    {//DS2-1
+        no: 'MLB-DS2-1',
+        teamId: -1,
+        typeId: 59,
+        scoreValue: -1,
+        Increase: false,
+        rotation: false
+    },
     {//DS3
         no: 'MLB-DS3',
         teamId: false,
         typeId: 57,
+        scoreValue: -1,
+        Increase: false,
+        rotation: true
+    },
+    {//DS3-2
+        no: 'MLB-DS3-2',
+        teamId: -1,
+        typeId: false,
         scoreValue: -1,
         Increase: false,
         rotation: true

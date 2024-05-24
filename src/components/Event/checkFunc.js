@@ -400,12 +400,34 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
 
+    // MLB-DS2-1
+    if (dataTypeItem.no === 'MLB-DS2-1') {
+        if (currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.toLowerCase().includes('bottom')) {
+                status = true;
+            }
+        }
+    }
+
     // MLB-DS3
     if (dataTypeItem.no === 'MLB-DS3') {
         if (currentPlayItem.alternativeType === undefined) {
             status = true;
         } else {
             if (!currentPlayItem.alternativeType.text.toLowerCase().includes('out')) {
+                status = true;
+            }
+        }
+    }
+
+    // MLB-DS3-2
+    if (dataTypeItem.no === 'MLB-DS3-2') {
+        if (currentPlayItem.alternativeType === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.toLowerCase().includes('out stretching')) {
                 status = true;
             }
         }
@@ -427,7 +449,10 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if ((!currentPlayItem.text.toLowerCase().includes('single') && !currentPlayItem.text.toLowerCase().includes('singled')) || currentPlayItem.text.includes('out stretching')) {
+            // if ((!currentPlayItem.text.toLowerCase().includes('single') && !currentPlayItem.text.toLowerCase().includes('singled')) || currentPlayItem.text.includes('out stretching')) {
+            //     status = true;
+            // }
+            if (currentPlayItem.alternativeType.id != 2 || currentPlayItem.text.toLowerCase().includes('out stretching')) {
                 status = true;
             }
         }
@@ -691,7 +716,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.alternativeType === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.alternativeType.id != 2) {
+            if (currentPlayItem.alternativeType.id != 2 || currentPlayItem.text.toLowerCase().includes('out stretching')) {
                 status = true;
             }
         }
@@ -779,7 +804,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         if (currentPlayItem.text === undefined || currentPlayItem.alternativePlay === undefined) {
             status = true;
         } else {
-            if (!currentPlayItem.text.includes('caught stealing')) {
+            if (!currentPlayItem.text.toLowerCase().includes('caught stealing')) {
                 status = true;
             }
         }

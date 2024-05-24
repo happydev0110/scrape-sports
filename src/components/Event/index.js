@@ -1316,19 +1316,19 @@ function EventComponent() {
         }
     }
 
-    const handleTeamName = (evt, index) => {
+    const handleTeamName = (value, index) => {
         switch (index) {
             case 1:
-                setPlayer1Name(evt.target.value)
+                setPlayer1Name(value)
                 break;
             case 2:
-                setPlayer2Name(evt.target.value)
+                setPlayer2Name(value)
                 break;
             case 3:
-                setPlayer3Name(evt.target.value)
+                setPlayer3Name(value)
                 break;
             case 4:
-                setPlayer4Name(evt.target.value)
+                setPlayer4Name(value)
                 break;
             default:
                 break;
@@ -1397,25 +1397,25 @@ function EventComponent() {
                             <div className='col-6 my-2'>
                                 <input
                                     value={player1Name}
-                                    onChange={(evt) => handleTeamName(evt, 1)}
+                                    onChange={(evt) => handleTeamName(evt.target.value, 1)}
                                 />
                             </div>
                             <div className='col-6 my-2'>
                                 <input
                                     value={player2Name}
-                                    onChange={(evt) => handleTeamName(evt, 2)}
+                                    onChange={(evt) => handleTeamName(evt.target.value, 2)}
                                 />
                             </div>
                             <div className='col-6 my-2'>
                                 <input
                                     value={player3Name}
-                                    onChange={(evt) => handleTeamName(evt, 3)}
+                                    onChange={(evt) => handleTeamName(evt.target.value, 3)}
                                 />
                             </div>
                             <div className='col-6 my-2'>
                                 <input
                                     value={player4Name}
-                                    onChange={(evt) => handleTeamName(evt, 4)}
+                                    onChange={(evt) => handleTeamName(evt.target.value, 4)}
                                 />
                             </div>
                         </div>
@@ -1547,6 +1547,7 @@ function EventComponent() {
                 player2Name={player2Name}
                 player3Name={player3Name}
                 player4Name={player4Name}
+                handlePlayName={handleTeamName}
             />
         </>
     );
