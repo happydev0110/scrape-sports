@@ -60,8 +60,6 @@ export default function ScoreBoard(props) {
                         <div className='col-md-12'>
                             <div className={selTblIdx == 0 ? 'border border-danger border-3 p-3' : 'border p-3'} >
                                 <div className='float-left text-center' >
-                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
-                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player1Name}</h5> */}
                                     <input type='text'
                                         value={player1Name}
                                         onChange={(evt) => {
@@ -70,6 +68,8 @@ export default function ScoreBoard(props) {
                                         className='border-0'
                                         style={{ width: 100 }}
                                     />
+                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
+                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player1Name}</h5> */}
 
                                     {/* <p className='d-inline-block float-right text-primary'>{show0 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
@@ -114,8 +114,6 @@ export default function ScoreBoard(props) {
                         <div className='col-md-12'>
                             <div className={selTblIdx == 1 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center' >
-                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
-                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player2Name}</h5> */}
                                     <input type='text'
                                         value={player2Name}
                                         onChange={(evt) => {
@@ -124,6 +122,8 @@ export default function ScoreBoard(props) {
                                         className='border-0'
                                         style={{ width: 100 }}
                                     />
+                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
+                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player2Name}</h5> */}
 
                                     {/* <p className='d-inline-block float-right text-primary'>{show1 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
@@ -168,8 +168,6 @@ export default function ScoreBoard(props) {
                         <div className='col-md-12'>
                             <div className={selTblIdx == 2 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center' >
-                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
-                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player3Name}</h5 > */}
                                     <input type='text'
                                         value={player3Name}
                                         onChange={(evt) => {
@@ -178,6 +176,8 @@ export default function ScoreBoard(props) {
                                         className='border-0'
                                         style={{ width: 100 }}
                                     />
+                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
+                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player3Name}</h5 > */}
 
                                     {/* <p className='d-inline-block float-right text-primary'>{show2 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
@@ -222,8 +222,6 @@ export default function ScoreBoard(props) {
                         <div className='col-md-12'>
                             <div className={selTblIdx == 3 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center' >
-                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
-                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player4Name}</h5> */}
                                     <input type='text'
                                         value={player4Name}
                                         onChange={(evt) => {
@@ -232,6 +230,8 @@ export default function ScoreBoard(props) {
                                         className='border-0'
                                         style={{ width: 100 }}
                                     />
+                                    <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
+                                    {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player4Name}</h5> */}
 
                                     {/* <p className='d-inline-block float-right text-primary'>{show3 ? <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>+</h5> : <h5 className='d-inline-block text-bold text-white bg-primary' style={{ width: 24, height: 20, borderRadius: '50%', paddingBottom: 23, fontSize: 18 }}>-</h5>}</p> */}
                                 </div>
