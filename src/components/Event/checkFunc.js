@@ -179,6 +179,17 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
             }
         }
     }
+    
+    // NHL-DS12 
+    if (dataTypeItem.no === 'NHL-DS12') {
+        if (prevPlayItem === undefined || currentPlayItem.text === undefined) {
+            status = true;
+        } else {
+            if (!currentPlayItem.text.includes('blocked')) {
+                status = true;
+            }
+        }
+    }
 
     // NHL2-DS2
     if (dataTypeItem.no === 'NHL2-DS2') {
