@@ -1510,15 +1510,14 @@ export const NHL_DS = [
         Increase: false,
         rotation: false
     },
-    {//DataSet15
-        no: 'NHL-DS15',
+    {//DataSet16
+        no: 'NHL-DS16',
         teamId: false,
         typeId: 518,
         scoreValue: -1,
         Increase: 1,
         rotation: false
     },
-
 ]
 
 export const SOCCER_DS = [

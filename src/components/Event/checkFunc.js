@@ -180,8 +180,8 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
         }
     }
     
-    // NHL-DS12 
-    if (dataTypeItem.no === 'NHL-DS12') {
+    // NHL-DS16 
+    if (dataTypeItem.no === 'NHL-DS16') {
         if (prevPlayItem === undefined || currentPlayItem.text === undefined) {
             status = true;
         } else {

@@ -207,7 +207,8 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
                 description = 'Hit. '
             }
             break;
-        case 'NHL-DS12':
+        // NHL-DS16
+        case 'NHL-DS16':
             if (playItem.participants) {
                 description = 'Shot blocked by' + playItem.participants[0].athlete.displayName
             } else {
