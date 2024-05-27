@@ -1513,7 +1513,7 @@ export const NHL_DS = [
     {//DataSet16
         no: 'NHL-DS16',
         teamId: false,
-        typeId: 518,
+        typeId: 508,
         scoreValue: -1,
         Increase: 1,
         rotation: false
