@@ -85,7 +85,9 @@ export default function ScoreBoard(props) {
                                                             // selTeamIdx != -1 &&
                                                             <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
                                                         }
-                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>:
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}
+                                                            {item.increase != 0 && <b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b>}
+                                                        </p>
                                                     </div><br />
                                                 </div>
                                             )
@@ -97,7 +99,9 @@ export default function ScoreBoard(props) {
                                                             // selTeamIdx != -1 &&
                                                             <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
                                                         }
-                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>:
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}
+                                                            {item.increase != 0 && <b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b>}
+                                                        </p>
                                                     </div><br />
                                                 </div>
                                             )
@@ -139,7 +143,9 @@ export default function ScoreBoard(props) {
                                                             // selTeamIdx != -1 &&
                                                             <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
                                                         }
-                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>:
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}
+                                                            {item.increase != 0 && <b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b>}
+                                                        </p>
                                                     </div><br />
                                                 </div>
                                             )
@@ -151,7 +157,9 @@ export default function ScoreBoard(props) {
                                                             // selTeamIdx != -1 &&
                                                             <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
                                                         }
-                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}
+                                                            {item.increase != 0 && <b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b>}
+                                                        </p>
                                                     </div><br />
                                                 </div>
                                             )
@@ -193,7 +201,9 @@ export default function ScoreBoard(props) {
                                                             // selTeamIdx != -1 &&
                                                             <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
                                                         }
-                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p>:
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}
+                                                            {item.increase != 0 && <b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b>}
+                                                        </p>
                                                     </div><br />
                                                 </div>
                                             )
@@ -206,7 +216,9 @@ export default function ScoreBoard(props) {
                                                             <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
                                                         }
 
-                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p> :
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}
+                                                            {item.increase != 0 && <b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b>}
+                                                        </p>
                                                     </div><br />
                                                 </div>
                                             )
@@ -248,7 +260,9 @@ export default function ScoreBoard(props) {
                                                             // selTeamIdx != -1 &&
                                                             <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
                                                         }
-                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p> :
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}
+                                                            {item.increase != 0 && <b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b>}
+                                                        </p>
                                                     </div><br />
                                                 </div>
                                             )
@@ -260,7 +274,9 @@ export default function ScoreBoard(props) {
                                                             // selTeamIdx != -1 &&
                                                             <img className='d-inline-block' src={item.teamIdx !== -1 ? playList.boxscore.teams[item.teamIdx].team.logo : Logo[sportCategory]} style={{ width: 30, height: 30 }} />
                                                         }
-                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}<b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b></p> :
+                                                        <p className='d-inline-block' style={{ paddingLeft: 10 }}>{item.description}
+                                                            {item.increase != 0 && <b className='text-danger'>{" " + item.increase + " (" + item.score + ") " + item.time}</b>}
+                                                        </p>
                                                     </div><br />
                                                 </div>
                                             )
