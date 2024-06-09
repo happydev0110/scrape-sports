@@ -53,6 +53,13 @@ function EventComponent() {
     const [player3Name, setPlayer3Name] = useState('Player3');
     const [player4Name, setPlayer4Name] = useState('Player4');
 
+    // const [player1Team, setPlayer1Team] = useState();
+    // const [player2Team, setPlayer2Team] = useState();
+    // const [player3Team, setPlayer3Team] = useState();
+    // const [player4Team, setPlayer4Team] = useState();
+
+    const [selectedTeam1s, setSelectedTeam1s] = useState([-1, -1, -1, -1])
+
     useEffect(() => {
         console.log('Run goToPlay function')
         if (startTime != -1 && goIndex >= 0) {
@@ -1105,8 +1112,15 @@ function EventComponent() {
                                 selectedTeamIdx = -1
                             }
 
+                            /* New table setting*/
                             if (tableIndex != result.tableIndex) {
                                 hisList[result.tableIndex] = [];
+
+                                let teamIndex = selectedTeam1s[result.tableIndex]
+                                team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
+                                team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
+                                team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
+                                team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
                             }
 
                             let hisItem = {
@@ -1335,6 +1349,15 @@ function EventComponent() {
         }
     }
 
+    const handlePlayerTeam1s = (evt, index) => {
+        console.log(evt.target.value, index)
+        var arrayValue = selectedTeam1s;
+        arrayValue[index] = evt.target.value;
+
+        setSelectedTeam1s(arrayValue);
+        console.log(arrayValue)
+    }
+
     return (
         <>
             {
@@ -1378,8 +1401,10 @@ function EventComponent() {
                             <select className="form-select form-select-sm"
                                 value={team1Idx}
                                 onChange={evt => {
-                                    setTeam1Idx(evt.target.value)
-                                    setTeam2Name(evt.target.value != -1 && playList.boxscore.teams[(parseInt(evt.target.value) + 1) % 2].team.name)
+                                    var team1 = evt.target.value;
+                                    setTeam1Idx(team1)
+                                    setTeam2Name(team1 != -1 && playList.boxscore.teams[(parseInt(team1) + 1) % 2].team.name)
+                                    setSelectedTeam1s([team1, team1, team1, team1])
                                 }}
                             >
                                 <option value={-1}>Choose One</option>
@@ -1401,10 +1426,42 @@ function EventComponent() {
                                 />
                             </div>
                             <div className='col-6 my-2'>
+                                {/* <label className="form-label" style={{ float: "left" }}>Team Your Cheering For</label> */}
+                                <select className="form-select form-select-sm"
+                                    value={selectedTeam1s[0]}
+                                    onChange={evt => handlePlayerTeam1s(evt, 0)}
+                                >
+                                    <option value={-1}>Choose One</option>
+                                    {
+                                        playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                            return (
+                                                <option key={index} value={index}>{item.team.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className='col-6 my-2'>
                                 <input
                                     value={player2Name}
                                     onChange={(evt) => handleTeamName(evt.target.value, 2)}
                                 />
+                            </div>
+                            <div className='col-6 my-2'>
+                                {/* <label className="form-label" style={{ float: "left" }}>Team Your Cheering For</label> */}
+                                <select className="form-select form-select-sm"
+                                    value={selectedTeam1s[1]}
+                                    onChange={evt => handlePlayerTeam1s(evt, 1)}
+                                >
+                                    <option value={-1}>Choose One</option>
+                                    {
+                                        playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                            return (
+                                                <option key={index} value={index}>{item.team.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
                             </div>
                             <div className='col-6 my-2'>
                                 <input
@@ -1413,10 +1470,42 @@ function EventComponent() {
                                 />
                             </div>
                             <div className='col-6 my-2'>
+                                {/* <label className="form-label" style={{ float: "left" }}>Team Your Cheering For</label> */}
+                                <select className="form-select form-select-sm"
+                                    value={selectedTeam1s[2]}
+                                    onChange={evt => handlePlayerTeam1s(evt, 2)}
+                                >
+                                    <option value={-1}>Choose One</option>
+                                    {
+                                        playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                            return (
+                                                <option key={index} value={index}>{item.team.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                            <div className='col-6 my-2'>
                                 <input
                                     value={player4Name}
                                     onChange={(evt) => handleTeamName(evt.target.value, 4)}
                                 />
+                            </div>
+                            <div className='col-6 my-2'>
+                                {/* <label className="form-label" style={{ float: "left" }}>Team Your Cheering For</label> */}
+                                <select className="form-select form-select-sm"
+                                    value={selectedTeam1s[3]}
+                                    onChange={evt => handlePlayerTeam1s(evt, 3)}
+                                >
+                                    <option value={-1}>Choose One</option>
+                                    {
+                                        playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                            return (
+                                                <option key={index} value={index}>{item.team.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
                             </div>
                         </div>
                         <div className='text-center mt-3 mb-2'>
@@ -1547,7 +1636,14 @@ function EventComponent() {
                 player2Name={player2Name}
                 player3Name={player3Name}
                 player4Name={player4Name}
+
+                // player1Team={player1Team}
+                // player2Team={player2Team}
+                // player3Team={player3Team}
+                // player4Team={player4Name}
+                selectedTeam1s={selectedTeam1s}
                 handlePlayName={handleTeamName}
+                handlePlayerTeam1s={handlePlayerTeam1s}
             />
         </>
     );
