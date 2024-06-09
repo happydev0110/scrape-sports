@@ -170,7 +170,7 @@ export default function ScoreBoard(props) {
                                             className="form-select form-select-sm"
                                             style={{ width: 100 }}
                                             value={selectedTeam1s[1]}
-                                            onChange={evt => handlePlayerTeam1s(evt, 0)}
+                                            onChange={evt => handlePlayerTeam1s(evt, 1)}
                                         >
                                             <option value={-1}>Choose One</option>
                                             {
@@ -257,7 +257,7 @@ export default function ScoreBoard(props) {
                                             className="form-select form-select-sm"
                                             style={{ width: 100 }}
                                             value={selectedTeam1s[2]}
-                                            onChange={evt => handlePlayerTeam1s(evt, 0)}
+                                            onChange={evt => handlePlayerTeam1s(evt, 2)}
                                         >
                                             <option value={-1}>Choose One</option>
                                             {
@@ -345,7 +345,7 @@ export default function ScoreBoard(props) {
                                             className="form-select form-select-sm"
                                             style={{ width: 100 }}
                                             value={selectedTeam1s[3]}
-                                            onChange={evt => handlePlayerTeam1s(evt, 0)}
+                                            onChange={evt => handlePlayerTeam1s(evt, 3)}
                                         >
                                             <option value={-1}>Choose One</option>
                                             {
