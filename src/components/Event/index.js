@@ -384,6 +384,12 @@ function EventComponent() {
                                 // console.log(i, 'result')
                                 if (tableIndex != result.tableIndex) {
                                     hisList[result.tableIndex] = [];
+                                    
+                                    let teamIndex = selectedTeam1s[result.tableIndex]
+                                    team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
+                                    team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
+                                    team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
+                                    team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
                                 }
 
                                 let historyItem = {
@@ -632,6 +638,12 @@ function EventComponent() {
 
                                 if (tableIndex != result.tableIndex) {
                                     hisList[result.tableIndex] = [];
+
+                                    let teamIndex = selectedTeam1s[result.tableIndex]
+                                    team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
+                                    team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
+                                    team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
+                                    team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
                                 }
 
                                 let hisItem = {
@@ -896,6 +908,12 @@ function EventComponent() {
 
                             if (tableIndex != result.tableIndex) {
                                 hisList[result.tableIndex] = [];
+
+                                let teamIndex = selectedTeam1s[result.tableIndex]
+                                team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
+                                team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
+                                team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
+                                team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
                             }
 
                             let historyItem = {

@@ -60,6 +60,17 @@ export default function ScoreBoard(props) {
                         <div className='col-md-12'>
                             <div className={selTblIdx == 0 ? 'border border-danger border-3 p-3' : 'border p-3'} >
                                 <div className='float-left text-center row mb-3' >
+                                    <div className='col'>
+                                        <input type='text'
+                                            value={player1Name}
+                                            onChange={(evt) => {
+                                                handlePlayName(evt.target.value, 1)
+                                            }}
+                                            className='border-0'
+                                            style={{ width: 100 }}
+                                        />
+                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
+                                    </div>
                                     <div className='col float-left d-flex'>
                                         <div className='d-inline-block'>
                                             {
@@ -86,17 +97,6 @@ export default function ScoreBoard(props) {
                                                 })
                                             }
                                         </select>
-                                    </div>
-                                    <div className='col'>
-                                        <input type='text'
-                                            value={player1Name}
-                                            onChange={(evt) => {
-                                                handlePlayName(evt.target.value, 1)
-                                            }}
-                                            className='border-0'
-                                            style={{ width: 100 }}
-                                        />
-                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
                                     </div>
                                 </div>
                                 <div onClick={() => {
@@ -144,6 +144,17 @@ export default function ScoreBoard(props) {
                         <div className='col-md-12'>
                             <div className={selTblIdx == 1 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center row mb-3' >
+                                    <div className='col'>
+                                        <input type='text'
+                                            value={player2Name}
+                                            onChange={(evt) => {
+                                                handlePlayName(evt.target.value, 2)
+                                            }}
+                                            className='border-0'
+                                            style={{ width: 100 }}
+                                        />
+                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
+                                    </div>
                                     <div className='col float-left d-flex'>
                                         <div className='d-inline-block'>
                                             {
@@ -170,17 +181,6 @@ export default function ScoreBoard(props) {
                                                 })
                                             }
                                         </select>
-                                    </div>
-                                    <div className='col'>
-                                        <input type='text'
-                                            value={player2Name}
-                                            onChange={(evt) => {
-                                                handlePlayName(evt.target.value, 2)
-                                            }}
-                                            className='border-0'
-                                            style={{ width: 100 }}
-                                        />
-                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
                                     </div>
                                     {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player2Name}</h5> */}
 
@@ -231,6 +231,17 @@ export default function ScoreBoard(props) {
                         <div className='col-md-12'>
                             <div className={selTblIdx == 2 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center row mb-3' >
+                                    <div className='col'>
+                                        <input type='text'
+                                            value={player3Name}
+                                            onChange={(evt) => {
+                                                handlePlayName(evt.target.value, 3)
+                                            }}
+                                            className='border-0'
+                                            style={{ width: 100 }}
+                                        />
+                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
+                                    </div>
                                     <div className='col float-left d-flex'>
                                         <div className='d-inline-block'>
                                             {
@@ -257,17 +268,6 @@ export default function ScoreBoard(props) {
                                                 })
                                             }
                                         </select>
-                                    </div>
-                                    <div className='col'>
-                                        <input type='text'
-                                            value={player3Name}
-                                            onChange={(evt) => {
-                                                handlePlayName(evt.target.value, 3)
-                                            }}
-                                            className='border-0'
-                                            style={{ width: 100 }}
-                                        />
-                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
                                     </div>
                                     {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player3Name}</h5 > */}
 
@@ -319,6 +319,17 @@ export default function ScoreBoard(props) {
                         <div className='col-md-12'>
                             <div className={selTblIdx == 3 ? 'border border-danger border-3 p-3' : 'border p-3'}>
                                 <div className='float-left text-center row mb-3' >
+                                    <div className='col'>
+                                        <input type='text'
+                                            value={player4Name}
+                                            onChange={(evt) => {
+                                                handlePlayName(evt.target.value, 4)
+                                            }}
+                                            className='border-0'
+                                            style={{ width: 100 }}
+                                        />
+                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
+                                    </div>
                                     <div className='col float-left d-flex'>
                                         <div className='d-inline-block'>
                                             {
@@ -345,17 +356,6 @@ export default function ScoreBoard(props) {
                                                 })
                                             }
                                         </select>
-                                    </div>
-                                    <div className='col'>
-                                        <input type='text'
-                                            value={player4Name}
-                                            onChange={(evt) => {
-                                                handlePlayName(evt.target.value, 4)
-                                            }}
-                                            className='border-0'
-                                            style={{ width: 100 }}
-                                        />
-                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
                                     </div>
                                     {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player4Name}</h5> */}
 
