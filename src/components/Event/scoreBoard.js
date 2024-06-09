@@ -72,7 +72,7 @@ export default function ScoreBoard(props) {
                                         <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
                                     </div>
                                     <div className='col float-left d-flex'>
-                                        <div className='d-inline-block'>
+                                        <div className='d-inline-block px-2'>
                                             {
                                                 eventId != -1 && selectedTeam1s[0] != -1 &&
                                                 <>
@@ -156,7 +156,7 @@ export default function ScoreBoard(props) {
                                         <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
                                     </div>
                                     <div className='col float-left d-flex'>
-                                        <div className='d-inline-block'>
+                                        <div className='d-inline-block px-2'>
                                             {
                                                 eventId != -1 && selectedTeam1s[1] != -1 &&
                                                 <>
@@ -243,7 +243,7 @@ export default function ScoreBoard(props) {
                                         <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
                                     </div>
                                     <div className='col float-left d-flex'>
-                                        <div className='d-inline-block'>
+                                        <div className='d-inline-block px-2'>
                                             {
                                                 eventId != -1 && selectedTeam1s[2] != -1 &&
                                                 <>
@@ -331,7 +331,7 @@ export default function ScoreBoard(props) {
                                         <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
                                     </div>
                                     <div className='col float-left d-flex'>
-                                        <div className='d-inline-block'>
+                                        <div className='d-inline-block px-2'>
                                             {
                                                 eventId != -1 && selectedTeam1s[3] != -1 &&
                                                 <>
