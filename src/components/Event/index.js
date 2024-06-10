@@ -1126,9 +1126,9 @@ function EventComponent() {
                             hisList = historyList;
 
                             /* For Logos */
-                            selectedTeamIdx = team1Idx;
+                            selectedTeamIdx = teamIndex;
                             if (team1Id != matchTeamId) {
-                                selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                selectedTeamIdx = (parseInt(teamIndex) + 1) % 2;
                             }
 
                             /* If don't team check, set default team logo */
@@ -1210,7 +1210,6 @@ function EventComponent() {
                                     'selectedTeamIdx:', selectedTeamIdx,
                                     "rotation:", dataTypeItem.rotation,
                                     'textIdx:', textIndex,
-                                    'tableIdx:', tableIndex,
                                     'teamIndex:', tableIndex,
                                     'increase:', increaseAmount,
                                     'description:', result.description,
@@ -1232,7 +1231,6 @@ function EventComponent() {
                                         'selectedTeamIdx:', selectedTeamIdx,
                                         "rotation:", dataTypeItem.rotation,
                                         'textIdx:', textIndex,
-                                        'tableIdx:', tableIndex,
                                         'teamIndex:', tableIndex,
                                         'increase:', increaseAmount,
                                         'description:', result.description,
@@ -1254,7 +1252,6 @@ function EventComponent() {
                                         'selectedTeamIdx:', selectedTeamIdx,
                                         "rotation:", dataTypeItem.rotation,
                                         'textIdx:', textIndex,
-                                        'tableIdx:', tableIndex,
                                         'teamIndex:', tableIndex,
                                         'increase:', increaseAmount,
                                         'description:', result.description,
