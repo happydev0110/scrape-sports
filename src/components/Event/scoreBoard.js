@@ -67,7 +67,7 @@ export default function ScoreBoard(props) {
                                                 handlePlayName(evt.target.value, 1)
                                             }}
                                             className='border-0'
-                                            style={{ width: 100 }}
+                                            style={{ width: 85 }}
                                         />
                                         <p className='d-inline-block pl-2' style={{ fontSize: 18 }}>{tableScore[0]}</p>
                                     </div>
@@ -151,7 +151,7 @@ export default function ScoreBoard(props) {
                                                 handlePlayName(evt.target.value, 2)
                                             }}
                                             className='border-0'
-                                            style={{ width: 100 }}
+                                            style={{ width: 85 }}
                                         />
                                         <p className='d-inline-block pl-2' style={{ fontSize: 18 }}>{tableScore[1]}</p>
                                     </div>
@@ -238,7 +238,7 @@ export default function ScoreBoard(props) {
                                                 handlePlayName(evt.target.value, 3)
                                             }}
                                             className='border-0'
-                                            style={{ width: 100 }}
+                                            style={{ width: 85 }}
                                         />
                                         <p className='d-inline-block pl-2' style={{ fontSize: 18 }}>{tableScore[2]}</p>
                                     </div>
@@ -326,7 +326,7 @@ export default function ScoreBoard(props) {
                                                 handlePlayName(evt.target.value, 4)
                                             }}
                                             className='border-0'
-                                            style={{ width: 100 }}
+                                            style={{ width: 85 }}
                                         />
                                         <p className='d-inline-block pl-2' style={{ fontSize: 18 }}>{tableScore[3]}</p>
                                     </div>
