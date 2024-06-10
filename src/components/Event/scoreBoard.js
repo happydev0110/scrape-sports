@@ -24,6 +24,11 @@ export default function ScoreBoard(props) {
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
 
+    const [team1DropDown1, setTeam1DropDown1] = useState(false);
+    const [team1DropDown2, setTeam1DropDown2] = useState(false);
+    const [team1DropDown3, setTeam1DropDown3] = useState(false);
+    const [team1DropDown4, setTeam1DropDown4] = useState(false);
+
     useEffect(() => {
         handleTeamShown(selTblIdx)
     }, [])
@@ -41,6 +46,25 @@ export default function ScoreBoard(props) {
                 break;
             case 3:
                 setShow3(!show3)
+                break;
+            default:
+                break;
+        }
+    }
+
+    const showTeamDropDown = (index) => {
+        switch (index) {
+            case 1:
+                setTeam1DropDown1(!team1DropDown1)
+                break;
+            case 2:
+                setTeam1DropDown2(!team1DropDown2)
+                break;
+            case 3:
+                setTeam1DropDown3(!team1DropDown3)
+                break;
+            case 4:
+                setTeam1DropDown4(!team1DropDown4)
                 break;
             default:
                 break;
@@ -76,27 +100,30 @@ export default function ScoreBoard(props) {
                                             {
                                                 eventId != -1 && selectedTeam1s[0] != -1 &&
                                                 <>
-                                                    <div className='d-inline-block'>
+                                                    <div className='d-inline-block' onClick={() => { showTeamDropDown(1)}}>
                                                         <img src={selectedTeam1s[0] != -1 ? playList.boxscore.teams[selectedTeam1s[0]].team.logo : undefined} style={{ width: 30, height: 30 }} />
                                                     </div>
                                                 </>
                                             }
                                         </div>
-                                        <select
-                                            className="form-select form-select-sm"
-                                            style={{ width: 100 }}
-                                            value={selectedTeam1s[0]}
-                                            onChange={evt => handlePlayerTeam1s(evt, 0)}
-                                        >
-                                            <option value={-1}>Choose One</option>
-                                            {
-                                                playList.boxscore && playList.boxscore.teams.map((item, index) => {
-                                                    return (
-                                                        <option key={index} value={index}>{item.team.name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
+                                        {
+                                            team1DropDown1 &&
+                                            <select
+                                                className="form-select form-select-sm"
+                                                style={{ width: 100 }}
+                                                value={selectedTeam1s[0]}
+                                                onChange={evt => handlePlayerTeam1s(evt, 0)}
+                                            >
+                                                <option value={-1}>Choose One</option>
+                                                {
+                                                    playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                                        return (
+                                                            <option key={index} value={index}>{item.team.name}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        }
                                     </div>
                                 </div>
                                 <div onClick={() => {
@@ -160,27 +187,30 @@ export default function ScoreBoard(props) {
                                             {
                                                 eventId != -1 && selectedTeam1s[1] != -1 &&
                                                 <>
-                                                    <div className='d-inline-block'>
+                                                    <div className='d-inline-block' onClick={() => { showTeamDropDown(2)}}>
                                                         <img src={selectedTeam1s[1] != -1 ? playList.boxscore.teams[selectedTeam1s[1]].team.logo : undefined} style={{ width: 30, height: 30 }} />
                                                     </div>
                                                 </>
                                             }
                                         </div>
-                                        <select
-                                            className="form-select form-select-sm"
-                                            style={{ width: 100 }}
-                                            value={selectedTeam1s[1]}
-                                            onChange={evt => handlePlayerTeam1s(evt, 1)}
-                                        >
-                                            <option value={-1}>Choose One</option>
-                                            {
-                                                playList.boxscore && playList.boxscore.teams.map((item, index) => {
-                                                    return (
-                                                        <option key={index} value={index}>{item.team.name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
+                                        {
+                                            team1DropDown2 &&
+                                            <select
+                                                className="form-select form-select-sm"
+                                                style={{ width: 100 }}
+                                                value={selectedTeam1s[1]}
+                                                onChange={evt => handlePlayerTeam1s(evt, 1)}
+                                            >
+                                                <option value={-1}>Choose One</option>
+                                                {
+                                                    playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                                        return (
+                                                            <option key={index} value={index}>{item.team.name}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        }
                                     </div>
                                     {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player2Name}</h5> */}
 
@@ -247,27 +277,30 @@ export default function ScoreBoard(props) {
                                             {
                                                 eventId != -1 && selectedTeam1s[2] != -1 &&
                                                 <>
-                                                    <div className='d-inline-block'>
+                                                    <div className='d-inline-block' onClick={() => { showTeamDropDown(3)}}>
                                                         <img src={selectedTeam1s[2] != -1 ? playList.boxscore.teams[selectedTeam1s[2]].team.logo : undefined} style={{ width: 30, height: 30 }} />
                                                     </div>
                                                 </>
                                             }
                                         </div>
-                                        <select
-                                            className="form-select form-select-sm"
-                                            style={{ width: 100 }}
-                                            value={selectedTeam1s[2]}
-                                            onChange={evt => handlePlayerTeam1s(evt, 2)}
-                                        >
-                                            <option value={-1}>Choose One</option>
-                                            {
-                                                playList.boxscore && playList.boxscore.teams.map((item, index) => {
-                                                    return (
-                                                        <option key={index} value={index}>{item.team.name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
+                                        {
+                                            team1DropDown3 &&
+                                            <select
+                                                className="form-select form-select-sm"
+                                                style={{ width: 100 }}
+                                                value={selectedTeam1s[2]}
+                                                onChange={evt => handlePlayerTeam1s(evt, 2)}
+                                            >
+                                                <option value={-1}>Choose One</option>
+                                                {
+                                                    playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                                        return (
+                                                            <option key={index} value={index}>{item.team.name}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        }
                                     </div>
                                     {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player3Name}</h5 > */}
 
@@ -335,27 +368,30 @@ export default function ScoreBoard(props) {
                                             {
                                                 eventId != -1 && selectedTeam1s[3] != -1 &&
                                                 <>
-                                                    <div className='d-inline-block'>
+                                                    <div className='d-inline-block' onClick={() => { showTeamDropDown(4)}}>
                                                         <img src={selectedTeam1s[3] != -1 ? playList.boxscore.teams[selectedTeam1s[3]].team.logo : undefined} style={{ width: 30, height: 30 }} />
                                                     </div>
                                                 </>
                                             }
                                         </div>
-                                        <select
-                                            className="form-select form-select-sm"
-                                            style={{ width: 100 }}
-                                            value={selectedTeam1s[3]}
-                                            onChange={evt => handlePlayerTeam1s(evt, 3)}
-                                        >
-                                            <option value={-1}>Choose One</option>
-                                            {
-                                                playList.boxscore && playList.boxscore.teams.map((item, index) => {
-                                                    return (
-                                                        <option key={index} value={index}>{item.team.name}</option>
-                                                    )
-                                                })
-                                            }
-                                        </select>
+                                        {
+                                            team1DropDown4 &&
+                                            <select
+                                                className="form-select form-select-sm"
+                                                style={{ width: 100 }}
+                                                value={selectedTeam1s[3]}
+                                                onChange={evt => handlePlayerTeam1s(evt, 3)}
+                                            >
+                                                <option value={-1}>Choose One</option>
+                                                {
+                                                    playList.boxscore && playList.boxscore.teams.map((item, index) => {
+                                                        return (
+                                                            <option key={index} value={index}>{item.team.name}</option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                        }
                                     </div>
                                     {/* <h5 className='d-inline-block pb-3' style={{ paddingRight: 45 }}>{player4Name}</h5> */}
 
