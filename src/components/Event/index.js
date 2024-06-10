@@ -1442,6 +1442,7 @@ function EventComponent() {
                             <h4>Who Is Playing</h4>
                             <div className='col-6 my-2'>
                                 <input
+                                    className='w-100'
                                     value={player1Name}
                                     onChange={(evt) => handleTeamName(evt.target.value, 1)}
                                 />
@@ -1464,6 +1465,7 @@ function EventComponent() {
                             </div>
                             <div className='col-6 my-2'>
                                 <input
+                                    className='w-100'
                                     value={player2Name}
                                     onChange={(evt) => handleTeamName(evt.target.value, 2)}
                                 />
@@ -1486,6 +1488,7 @@ function EventComponent() {
                             </div>
                             <div className='col-6 my-2'>
                                 <input
+                                    className='w-100'
                                     value={player3Name}
                                     onChange={(evt) => handleTeamName(evt.target.value, 3)}
                                 />
@@ -1508,6 +1511,7 @@ function EventComponent() {
                             </div>
                             <div className='col-6 my-2'>
                                 <input
+                                    className='w-100'
                                     value={player4Name}
                                     onChange={(evt) => handleTeamName(evt.target.value, 4)}
                                 />
