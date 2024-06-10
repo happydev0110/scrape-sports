@@ -69,7 +69,7 @@ export default function ScoreBoard(props) {
                                             className='border-0'
                                             style={{ width: 100 }}
                                         />
-                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[0]}</p>
+                                        <p className='d-inline-block pl-2' style={{ fontSize: 18 }}>{tableScore[0]}</p>
                                     </div>
                                     <div className='col float-left d-flex'>
                                         <div className='d-inline-block px-2'>
@@ -153,7 +153,7 @@ export default function ScoreBoard(props) {
                                             className='border-0'
                                             style={{ width: 100 }}
                                         />
-                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[1]}</p>
+                                        <p className='d-inline-block pl-2' style={{ fontSize: 18 }}>{tableScore[1]}</p>
                                     </div>
                                     <div className='col float-left d-flex'>
                                         <div className='d-inline-block px-2'>
@@ -240,7 +240,7 @@ export default function ScoreBoard(props) {
                                             className='border-0'
                                             style={{ width: 100 }}
                                         />
-                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[2]}</p>
+                                        <p className='d-inline-block pl-2' style={{ fontSize: 18 }}>{tableScore[2]}</p>
                                     </div>
                                     <div className='col float-left d-flex'>
                                         <div className='d-inline-block px-2'>
@@ -328,7 +328,7 @@ export default function ScoreBoard(props) {
                                             className='border-0'
                                             style={{ width: 100 }}
                                         />
-                                        <p className='d-inline-block px-3' style={{ fontSize: 18 }}>{tableScore[3]}</p>
+                                        <p className='d-inline-block pl-2' style={{ fontSize: 18 }}>{tableScore[3]}</p>
                                     </div>
                                     <div className='col float-left d-flex'>
                                         <div className='d-inline-block px-2'>
