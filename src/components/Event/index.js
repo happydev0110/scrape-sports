@@ -849,6 +849,12 @@ function EventComponent() {
 
                     for (let i = 0; i < resList.commentary.length; i++) {
                         // console.log(i, 'soccer item')
+                        let teamIndex = selectedTeam1s[tableIndex]
+                        team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
+                        team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
+                        team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
+                        team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
+                        
                         for (let j = 0; j < dataSetType.length; j++) {
                             var currentPlayItem = resList.commentary[i];
                             var prevPlayItem = resList.commentary[i - 1];
@@ -899,9 +905,9 @@ function EventComponent() {
                                     selectedTeamIdx = -1
                                 } else {
                                     if (currentPlayItem.play.team.displayName === team1Name) {
-                                        selectedTeamIdx = team1Idx;
+                                        selectedTeamIdx = teamIndex;
                                     } else {
-                                        selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                        selectedTeamIdx = (parseInt(teamIndex) + 1) % 2;
                                     }
                                 }
                             }
