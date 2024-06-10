@@ -382,15 +382,11 @@ function EventComponent() {
                                 }
 
                                 // console.log(i, 'result')
-                                if (tableIndex != result.tableIndex) {
-                                    hisList[result.tableIndex] = [];
-
-                                    let teamIndex = selectedTeam1s[result.tableIndex]
-                                    team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
-                                    team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
-                                    team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
-                                    team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
-                                }
+                                let teamIndex = selectedTeam1s[tableIndex]
+                                team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
+                                team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
+                                team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
+                                team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
 
                                 let historyItem = {
                                     no: dataTypeItem.no,
@@ -403,8 +399,8 @@ function EventComponent() {
                                 }
 
                                 if (dataTypeItem.logo) {
-                                    historyItem.teamIdx = team1Idx;
-                                    if (dataTypeItem.logo == 2) historyItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
+                                    historyItem.teamIdx = teamIndex;
+                                    if (dataTypeItem.logo == 2) historyItem.teamIdx = (parseInt(teamIndex) + 1) % 2;
                                 }
 
                                 hisList[result.textIndex].push(historyItem);
@@ -536,6 +532,11 @@ function EventComponent() {
                         console.log(duration / 1000, 'duraion')
                         console.log(eventList.length, i, 'do while')
 
+                        let teamIndex = selectedTeam1s[tableIndex]
+                        team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
+                        team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
+                        team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
+                        team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
                         /* Handle Go To Feature */
                         const handleGoTo = async () => {
                             for (let j = 0; j < dataSetType.length; j++) {
@@ -638,12 +639,6 @@ function EventComponent() {
 
                                 if (tableIndex != result.tableIndex) {
                                     hisList[result.tableIndex] = [];
-
-                                    let teamIndex = selectedTeam1s[result.tableIndex]
-                                    team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
-                                    team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
-                                    team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
-                                    team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
                                 }
 
                                 let hisItem = {
@@ -658,8 +653,8 @@ function EventComponent() {
                                 }
 
                                 if (dataTypeItem.logo) {
-                                    hisItem.teamIdx = team1Idx;
-                                    if (dataTypeItem.logo == 2) hisItem.teamIdx = (parseInt(team1Idx) + 1) % 2;
+                                    hisItem.teamIdx = teamIndex;
+                                    if (dataTypeItem.logo == 2) hisItem.teamIdx = (parseInt(teamIndex) + 1) % 2;
                                 }
 
                                 if (dataTypeItem.logoReverse) {
@@ -854,7 +849,7 @@ function EventComponent() {
                         team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
                         team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
                         team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
-                        
+
                         for (let j = 0; j < dataSetType.length; j++) {
                             var currentPlayItem = resList.commentary[i];
                             var prevPlayItem = resList.commentary[i - 1];
