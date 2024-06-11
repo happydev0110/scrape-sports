@@ -374,9 +374,9 @@ function EventComponent() {
                                         selectedTeamIdx = -1
                                     } else {
                                         if (currentPlayItem.play.team.displayName === team1Name) {
-                                            selectedTeamIdx = team1Idx;
+                                            selectedTeamIdx = teamIndex;
                                         } else {
-                                            selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                            selectedTeamIdx = (parseInt(teamIndex) + 1) % 2;
                                         }
                                     }
                                 }
@@ -400,7 +400,9 @@ function EventComponent() {
 
                                 if (dataTypeItem.logo) {
                                     historyItem.teamIdx = teamIndex;
-                                    if (dataTypeItem.logo == 2) historyItem.teamIdx = (parseInt(teamIndex) + 1) % 2;
+                                    if (dataTypeItem.logo == 2) historyItem.teamIdx = (parseInt(teamIndex
+                                        
+                                    ) + 1) % 2;
                                 }
 
                                 hisList[result.textIndex].push(historyItem);
@@ -625,9 +627,9 @@ function EventComponent() {
                                 /* 
                                     For Logos
                                 */
-                                selectedTeamIdx = team1Idx;
+                                selectedTeamIdx = teamIndex;
                                 if (team1Id != matchTeamId) {
-                                    selectedTeamIdx = (parseInt(team1Idx) + 1) % 2;
+                                    selectedTeamIdx = (parseInt(teamIndex) + 1) % 2;
                                 }
 
                                 /* 
