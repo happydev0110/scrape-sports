@@ -426,7 +426,7 @@ export const NBA_DS = [
         teamId: true,
         typeId: 45,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS33
@@ -466,7 +466,7 @@ export const NBA_DS = [
         teamId: true,
         typeId: 24,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS46
@@ -482,7 +482,7 @@ export const NBA_DS = [
         teamId: true,
         typeId: 22,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS48
@@ -490,7 +490,7 @@ export const NBA_DS = [
         teamId: true,
         typeId: 44,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS48-2
@@ -498,7 +498,7 @@ export const NBA_DS = [
         teamId: true,
         typeId: 44,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS49
@@ -506,7 +506,7 @@ export const NBA_DS = [
         teamId: true,
         typeId: 31,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS50
@@ -514,7 +514,7 @@ export const NBA_DS = [
         teamId: true,
         typeId: 32,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS51
@@ -594,7 +594,7 @@ export const NBA_DS = [
         teamId: true,
         typeId: 43,
         scoreValue: -1,
-        Increase: 2,
+        Increase: 3,
         rotation: true
     },
     {//DS62
