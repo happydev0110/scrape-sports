@@ -328,6 +328,12 @@ function EventComponent() {
 
                         console.log(duration / 1000, i, 'duraion')
 
+                        let teamIndex = selectedTeam1s[tableIndex]
+                        team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
+                        team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
+                        team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
+                        team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
+                        
                         const handleGoTo = () => {
                             console.log(i, 'do while')
                             for (let j = 0; j < dataSetType.length; j++) {
@@ -368,6 +374,8 @@ function EventComponent() {
                                 result = handleSoccerScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name);
                                 hisList = historyList;
 
+                                // console.log(i, 'result')
+
                                 /* For Logos */
                                 if (currentPlayItem.play) {
                                     if (currentPlayItem.play.team === undefined) {
@@ -381,12 +389,6 @@ function EventComponent() {
                                     }
                                 }
 
-                                // console.log(i, 'result')
-                                let teamIndex = selectedTeam1s[tableIndex]
-                                team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
-                                team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
-                                team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
-                                team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
 
                                 let historyItem = {
                                     no: dataTypeItem.no,
