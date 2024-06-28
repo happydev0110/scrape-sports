@@ -388,7 +388,7 @@ function EventComponent() {
                                     }
                                 }
 
-                                /* 
+                                 /* 
                                     If don't team check, set default team logo
                                 */
                                 if (dataTypeItem.teamId === -1) {

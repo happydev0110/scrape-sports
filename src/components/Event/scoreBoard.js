@@ -3,7 +3,7 @@ import defaultNHLLogo from '../../assets/images/nhl_logo.png';
 
 import default_NBA_Logo from '../../assets/images/nba-logo.png';
 import default_MLB_Logo from '../../assets/images/mlb_logo.png';
-// import default_NBA_Black_Logo from '../../assets/images/nba-logo-black.png';
+import default_MLS_Logo from '../../assets/images/mls-logo.png';
 // import { TEAM_LIST } from "../../const";
 
 const Logo = {
@@ -12,7 +12,7 @@ const Logo = {
     NHL: defaultNHLLogo,
     NHL2: defaultNHLLogo,
     NCAA: defaultNHLLogo,
-    SOCCER: defaultNHLLogo,
+    SOCCER: default_MLS_Logo,
     MLB: default_MLB_Logo
 }
 
