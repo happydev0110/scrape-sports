@@ -550,6 +550,7 @@ function EventComponent() {
                         team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
                         team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
                         team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
+                        
                         /* Handle Go To Feature */
                         const handleGoTo = async () => {
                             for (let j = 0; j < dataSetType.length; j++) {
@@ -629,23 +630,17 @@ function EventComponent() {
                                     matchTeamId = team2Id;
                                 }
 
-                                /* 
-                                    Special DS
-                                */
+                                /* Special DS */
                                 result = handleScore(currentPlayItem, dataTypeItem, score, tableIndex, prevPlayItem, team1Name, team2Name, sportCategory, resList.boxscore);
                                 hisList = historyList;
 
-                                /* 
-                                    For Logos
-                                */
+                                /* For Logos */
                                 selectedTeamIdx = teamIndex;
                                 if (team1Id != matchTeamId) {
                                     selectedTeamIdx = (parseInt(teamIndex) + 1) % 2;
                                 }
 
-                                /* 
-                                    If don't team check, set default team logo
-                                */
+                                /* If don't team check, set default team logo */
                                 if (dataTypeItem.teamId === -1) {
                                     selectedTeamIdx = -1
                                 }
@@ -922,12 +917,6 @@ function EventComponent() {
 
                             if (tableIndex != result.tableIndex) {
                                 hisList[result.tableIndex] = [];
-
-                                let teamIndex = selectedTeam1s[result.tableIndex]
-                                team1Id = resList.boxscore.teams[teamIndex].team.id;                                     //team1 ID
-                                team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
-                                team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
-                                team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
                             }
 
                             let historyItem = {
@@ -1004,7 +993,7 @@ function EventComponent() {
                         }
                     }
 
-                    console.log(team1Score, team2Score, 'team score')
+                    // console.log(team1Score, team2Score, 'team score')
                     if (team1Idx === 1) {
                         setHomeScore(team1Score);
                         setAwayScore(team2Score);
