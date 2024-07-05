@@ -111,7 +111,7 @@ function EventComponent() {
         setPlayList(response.data);
         resList = response.data;
         // let result;
-        let team1Id, team2Id, team1Name, team2Name;
+        let team1Id, team2Id, team1Name, team2Name, team1Abbre, team2Abbre;
         let PREV_NHL_DS2 = { id: 502, seq: 0, teamId: 0 };
         let PREV_NHL_DS5 = { id: 516, seq: 0, teamId: 0 }
         let matchEvtList = [];
@@ -125,7 +125,9 @@ function EventComponent() {
             team2Id = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.id;                 //team2 ID
             team1Name = resList.boxscore.teams[team1Idx].team.name;                                 //team1 Name
             team2Name = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.name;
-
+            team1Abbre = resList.boxscore.teams[team1Idx].team.abbreviation;                        //team1 abbreviation
+            team2Abbre = resList.boxscore.teams[(parseInt(team1Idx) + 1) % 2].team.abbreviation;
+            
             if (team1Name.includes('&')) {
                 team1Name = team1Name.replace('&', 'and');
             }
@@ -171,7 +173,7 @@ function EventComponent() {
                 var matchTeamId = team1Id;
 
                 if (sportCategory === 'SOCCER') {
-                    if (checkSoccerFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, matchTeamId)) {
+                    if (checkSoccerFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, team1Abbre, team2Abbre, matchTeamId)) {
                         continue;
                     }
                 } else {
@@ -258,7 +260,7 @@ function EventComponent() {
         let result;
         let selectedTeamIdx = 0;
         let score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
-        let team1Id, team2Id, team1Name, team2Name;
+        let team1Id, team2Id, team1Name, team2Name, team1Abbre, team2Abbre;
 
         let hisList = [];
         let i = 0;
@@ -334,6 +336,8 @@ function EventComponent() {
                         team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
                         team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
                         team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
+                        team1Abbre = resList.boxscore.teams[teamIndex].team.abbreviation;                        //team1 abbreviation
+                        team2Abbre = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.abbreviation;
 
                         const handleGoTo = () => {
                             console.log(i, 'do while')
@@ -342,7 +346,7 @@ function EventComponent() {
                                 var dataTypeItem = dataSetType[j];
                                 var matchTeamId = team1Id;
 
-                                if (checkSoccerFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, matchTeamId)) {
+                                if (checkSoccerFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, team1Abbre, team2Abbre, matchTeamId)) {
                                     continue;
                                 }
 
@@ -818,7 +822,7 @@ function EventComponent() {
             let matchEvtList = [];
             let selectedTeamIdx = 0;
             let score = [0, 0, 0, 0], tableIndex = 0, textIndex = 0, increaseAmount;
-            let team1Id, team2Id, team1Name, team2Name;
+            let team1Id, team2Id, team1Name, team2Name, team1Abbre, team2Abbre;
 
             let hisList = [];
             let timerList = [];
@@ -857,6 +861,8 @@ function EventComponent() {
                         team2Id = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.id;                 //team2 ID
                         team1Name = resList.boxscore.teams[teamIndex].team.name;                                 //team1 Name
                         team2Name = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.name;
+                        team1Abbre = resList.boxscore.teams[teamIndex].team.abbreviation;                        //team1 abbreviation
+                        team2Abbre = resList.boxscore.teams[(parseInt(teamIndex) + 1) % 2].team.abbreviation;
 
                         for (let j = 0; j < dataSetType.length; j++) {
                             var currentPlayItem = resList.commentary[i];
@@ -866,7 +872,7 @@ function EventComponent() {
                             var dataTypeItem = dataSetType[j];
                             var matchTeamId = team1Id;
 
-                            if (checkSoccerFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, matchTeamId)) {
+                            if (checkSoccerFunc(dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, team1Abbre, team2Abbre, matchTeamId)) {
                                 continue;
                             }
 

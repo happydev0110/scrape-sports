@@ -69,7 +69,6 @@ export const getAthleteName = (data, id = -1) => {
     let playList = [...data.players[0].statistics[0].athletes,...data.players[0].statistics[1].athletes, ...data.players[1].statistics[0].athletes, ...data.players[1].statistics[1].athletes];
     let athlete = '';
 
-    console.log(playList, id,"play list")
     if(id != -1){
         athlete = playList.find(item => { return item.athlete.id == id });
     }
@@ -433,10 +432,10 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             description = 'Jumpball'
             break;
         case 'MLB-DS1':
-            description = playItem.type.alternativeText +", " + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            description = playItem.type.alternativeText +", " + getAthleteName(boxScore, playItem.participants[1].athlete.id)
             break;
         case 'MLB-DS1-2':
-            description = playItem.type.alternativeText  +", "+ getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            description = playItem.type.alternativeText  +", "+ getAthleteName(boxScore, playItem.participants[1].athlete.id)
             break;
         case 'MLB-DS33':
             description = 'Caught stealing'
@@ -508,10 +507,10 @@ export const handleSoccerScore = (playItem, dataTypeItem, score, tableIndex, pre
 
     switch (dataTypeItem.no) {
         case 'SOCCER-DS7':
-            description = 'Foul by ' + team1Name + playItem.play.participants[0].athlete.displayName
+            description = 'Foul by ' + team1Name + " " + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS8':
-            description = 'Foul by ' + team2Name + playItem.play.participants[0].athlete.displayName
+            description = 'Foul by ' + team2Name + " " + playItem.play.participants[0].athlete.displayName
             break;
         case 'SOCCER-DS9':
             description = 'Goal! ' + playItem.play.participants[0].athlete.displayName

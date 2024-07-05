@@ -824,7 +824,7 @@ export const checkFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, 
     return status;
 }
 
-export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, matchTeamId) => {
+export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, team1Id, team2Id, team1Name, team2Name, team1Abbre, team2Abbre, matchTeamId) => {
     let status = false;
     let team1Score, team2Score;
     // SOCCER-DS7
@@ -899,7 +899,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.toLowerCase().indexOf(team1Name.toLowerCase()) === -1) {
+            if (currentPlayItem.text.indexOf('Attempt saved') === -1 || (!currentPlayItem.text.toLowerCase().includes(team1Name.toLowerCase()) && !currentPlayItem.text.toLowerCase().includes(team1Abbre.toLowerCase()))) {
                 status = true;
             }
         }
@@ -910,7 +910,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Attempt saved') === -1 || currentPlayItem.text.toLowerCase().indexOf(team2Name.toLowerCase()) === -1) {
+            if (currentPlayItem.text.indexOf('Attempt saved') === -1 || (!currentPlayItem.text.toLowerCase().includes(team2Name.toLowerCase()) && !currentPlayItem.text.toLowerCase().includes(team2Abbre.toLowerCase()))) {
                 status = true;
             }
         }
@@ -921,7 +921,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.toLowerCase().indexOf(team1Name.toLowerCase()) === -1) {
+            if (currentPlayItem.text.indexOf('Corner,') === -1 || (!currentPlayItem.text.toLowerCase().includes(team1Name.toLowerCase()) && !currentPlayItem.text.toLowerCase().includes(team1Abbre.toLowerCase()))) {
                 status = true;
             }
         }
@@ -932,7 +932,7 @@ export const checkSoccerFunc = (dataTypeItem, currentPlayItem, prevPlayItem, tea
         if (currentPlayItem.text === undefined) {
             status = true;
         } else {
-            if (currentPlayItem.text.indexOf('Corner,') === -1 || currentPlayItem.text.toLowerCase().indexOf(team2Name.toLowerCase()) === -1) {
+            if (currentPlayItem.text.indexOf('Corner,') === -1 || (!currentPlayItem.text.toLowerCase().includes(team2Name.toLowerCase()) && !currentPlayItem.text.toLowerCase().includes(team2Abbre.toLowerCase()))) {
                 status = true;
             }
         }
