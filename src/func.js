@@ -65,9 +65,14 @@ export const reverseTime = (time, limitMinutes = 20) => {
     return result.join(':')
 }
 
-export const getAthleteName = (data, id) => {
-    let playList = [...data.players[0].statistics[0].athletes, ...data.players[1].statistics[0].athletes];
-    let athlete = playList.find(item => { return item.athlete.id == id });
+export const getAthleteName = (data, id = -1) => {
+    let playList = [...data.players[0].statistics[0].athletes,...data.players[0].statistics[1].athletes, ...data.players[1].statistics[0].athletes, ...data.players[1].statistics[1].athletes];
+    let athlete = '';
+
+    console.log(playList, id,"play list")
+    if(id != -1){
+        athlete = playList.find(item => { return item.athlete.id == id });
+    }
     return athlete.athlete.displayName
 }
 
@@ -426,6 +431,12 @@ export const handleScore = (playItem, dataTypeItem, score, tableIndex, prevPlayI
             break;
         case 'NBA2-DS73-2':
             description = 'Jumpball'
+            break;
+        case 'MLB-DS1':
+            description = playItem.type.alternativeText +", " + getAthleteName(boxScore, playItem.participants[0].athlete.id)
+            break;
+        case 'MLB-DS1-2':
+            description = playItem.type.alternativeText  +", "+ getAthleteName(boxScore, playItem.participants[0].athlete.id)
             break;
         case 'MLB-DS33':
             description = 'Caught stealing'
